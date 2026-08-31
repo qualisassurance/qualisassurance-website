@@ -181,7 +181,19 @@ plus `X-Content-Type-Options`, `Referrer-Policy` and `X-Frame-Options`.
 - **23 of 30 pages have meta descriptions over 160 characters** (up to 265) and 4 have
   titles over 65, so search results will truncate them. This is original copy and was
   left untouched deliberately; it needs the owner's words.
-- **No SEO plugin is bridged to WPGraphQL**, so per-post SEO falls back to the post title
-  and excerpt. Installing Rank Math (or Yoast) *plus* its WPGraphQL add-on on the CMS is
-  all that is needed — `lib/wp.ts` probes the schema each build and switches over
-  automatically, no code change.
+## Per-post SEO
+
+The CMS runs **Yoast SEO** + **Add WPGraphQL SEO**, so authors can set an SEO title and
+meta description per post, independent of the headline. `lib/wp.ts` probes the schema
+each build and falls back to post title + excerpt if the bridge is ever removed.
+
+Only `seo.title` and `seo.metaDesc` are consumed. Two Yoast fields are deliberately
+ignored:
+
+- `canonical` — points at `cms.qualisinspections.com`, never this domain.
+- `metaRobotsNoindex` — reflects the CMS's own site-wide "discourage search engines"
+  setting, which is **on**. Propagating it would put `noindex` on every published post.
+
+Yoast also fills its SEO title from a template, so an untouched post returns
+`"Post title - Qualis CMS"`. The client recognises that pattern and treats it as unset,
+so the CMS's name can never reach the public site.

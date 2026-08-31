@@ -80,16 +80,22 @@ export interface WpPost {
 
 /* ------------------------------------------------------ SEO field probe */
 /**
- * Rank Math / Yoast expose per-post SEO fields only when their WPGraphQL bridge
- * plugin is active. It is not active today, so we probe once per build and add
- * the `seo { … }` selection only if the schema has it. The day that plugin is
- * installed, the next build starts using real SEO titles with no code change.
+ * Per-post SEO fields exist only when an SEO plugin's WPGraphQL bridge is active
+ * (currently Yoast SEO + "Add WPGraphQL SEO"). We probe once per build and add
+ * the `seo { … }` selection only if the schema has it, so the build still works
+ * if the bridge is ever removed or breaks after a plugin update.
+ *
+ * We read only `title` and `metaDesc`. Deliberately NOT used:
+ *   · `canonical`     — points at cms.qualisinspections.com, never our domain.
+ *   · `metaRobotsNoindex` — reflects the CMS's own site-wide "discourage search
+ *     engines" setting, which is ON (the CMS must not be indexed). Propagating
+ *     it would put noindex on every published post of the public site.
  */
 let seoSupport: boolean | null = null;
 async function hasSeoFields(): Promise<boolean> {
   if (seoSupport !== null) return seoSupport;
   const probe = await gql<{ posts: unknown }>(
-    '{ posts(first: 1) { nodes { seo { title description } } } }',
+    '{ posts(first: 1) { nodes { seo { title metaDesc } } } }',
     {},
     true
   );
@@ -115,7 +121,7 @@ const POST_FIELDS = (seo: boolean) => `
   featuredImage { node { sourceUrl altText mediaDetails { width height } } }
   categories { nodes { name slug } }
   tags { nodes { name slug } }
-  ${seo ? 'seo { title description }' : ''}
+  ${seo ? 'seo { title metaDesc }' : ''}
 `;
 
 type RawPost = Record<string, any>;
@@ -143,10 +149,31 @@ function shape(n: RawPost): WpPost {
       : null,
     categories: n.categories?.nodes ?? [],
     tags: n.tags?.nodes ?? [],
-    seoTitle: n.seo?.title || null,
-    seoDescription: n.seo?.description || null,
+    seoTitle: customSeoTitle(n.seo?.title, n.title ?? ''),
+    seoDescription: n.seo?.metaDesc || null,
   };
 }
+
+/**
+ * Yoast fills its SEO title from a template (`%%title%% %%sep%% %%sitename%%`),
+ * so an untouched post returns "Hello world! - Qualis CMS" — the *CMS's* name,
+ * which must never reach the public site. Treat the templated value as "unset"
+ * and only honour a title the author actually wrote.
+ */
+function customSeoTitle(seoTitle: string | undefined, postTitle: string): string | null {
+  if (!seoTitle) return null;
+  const site = cmsSiteName;
+  if (site) {
+    const stripped = seoTitle.replace(new RegExp(`\\s*[-|–—]\\s*${escapeRe(site)}\\s*$`), '').trim();
+    if (stripped === postTitle.trim()) return null;
+  }
+  return seoTitle.trim() === postTitle.trim() ? null : seoTitle;
+}
+
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/** The CMS's own site title, needed to recognise Yoast's default title template. */
+let cmsSiteName = '';
 
 /* ------------------------------------------------------------- fetching */
 let cache: WpPost[] | null = null;
@@ -155,6 +182,10 @@ let cache: WpPost[] | null = null;
 export async function getAllPosts(): Promise<WpPost[]> {
   if (cache) return cache;
   const seo = await hasSeoFields();
+  if (seo && !cmsSiteName) {
+    const g = await gql<{ generalSettings: { title: string } }>('{ generalSettings { title } }');
+    cmsSiteName = g?.generalSettings?.title ?? '';
+  }
   const out: WpPost[] = [];
   let after: string | null = null;
 
