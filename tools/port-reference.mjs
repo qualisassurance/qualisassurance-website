@@ -203,11 +203,11 @@ const OWNER_FIXES = `
    inlined SVG lockup. The old font-size/letter-spacing rules on .logo are inert
    against an SVG child and are left in place rather than surgically removed. */
 .logo{display:inline-flex;align-items:center;line-height:0}
-.logo .brand-logo{display:block;height:30px;width:auto}
-footer .logo .brand-logo{height:34px}
+.logo .brand-logo{display:block;height:36px;width:auto}
+footer .logo .brand-logo{height:40px}
 .logo:hover .brand-logo{opacity:.85;transition:opacity .2s ease}
-@media (max-width:640px){.logo .brand-logo{height:26px}footer .logo .brand-logo{height:30px}}
-@media (max-width:380px){.logo .brand-logo{height:23px}}
+@media (max-width:640px){.logo .brand-logo{height:30px}footer .logo .brand-logo{height:34px}}
+@media (max-width:380px){.logo .brand-logo{height:27px}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 

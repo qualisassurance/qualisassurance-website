@@ -28,12 +28,13 @@
   "IMG-SV-03": "street shot of the locked shutter - factory verification.jpg",
   "LOGO-01…06": "Qualis - Clients1.jpg",
   "LOGO": "Qualis - Clients2.jpg",
-  "LOGO#2": "Qualis - Clients3.jpg",
-  "LOGO#3": "Qualis - Clients4.jpg",
-  "LOGO#4": "Qualis - Clients5.jpg",
-  "LOGO#5": "Qualis - Clients6.jpg",
+  "LOGO#2": "Qualis - Clients4.jpg",
+  "LOGO#3": "Qualis - Clients3.jpg",
+  "LOGO#4": "Qualis - Clients6.jpg",
+  "LOGO#5": "Qualis - Clients5.jpg",
   "_sources": [
     "~/Downloads/Qualis Images",
     "~/Downloads/Qualis Image 2"
-  ]
+  ],
+  "_logo_order": "The six client logos ship with mixed backgrounds (1,4,6 white; 2,3,5 dark). They are mapped so the row alternates white / dark / white / dark / white / dark rather than clumping. Re-measure backgrounds before reordering."
 }
