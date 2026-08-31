@@ -1,0 +1,40 @@
+---
+/**
+ * Brand lockup, inlined rather than referenced as <img>.
+ *
+ * The wordmark is <text> in Archivo. An SVG loaded via <img> renders in an
+ * isolated document with no access to the page's webfonts, so it would silently
+ * fall back to Helvetica and change width per platform. Inlining lets the
+ * self-hosted Archivo apply, which is what the brand handoff specifies.
+ *
+ * Geometry is verbatim from design_handoff_brand_logo/assets — ring, tail and
+ * checkmark untouched.
+ */
+interface Props {
+  /** "ink" for light backgrounds (header, footer); "paper" for dark sections. */
+  tone?: 'ink' | 'paper';
+  /** Rendered height in px. The lockup is 560×100, so width follows at 5.6×. */
+  height?: number;
+  class?: string;
+}
+const { tone = 'ink', height = 30, class: className } = Astro.props;
+const wordmark = tone === 'paper' ? '#F7F6F2' : '#111214';
+const mark = '#0F7A5A';
+---
+<svg
+  class:list={['brand-logo', className]}
+  viewBox="0 0 560 100"
+  height={height}
+  width={height * 5.6}
+  role="img"
+  aria-label="Qualis Inspection"
+  focusable="false"
+>
+  <g>
+    <circle cx="50" cy="50" r="36" fill="none" stroke={mark} stroke-width="11" stroke-dasharray="200 26.2" stroke-dashoffset="-54.5" />
+    <line x1="65" y1="65" x2="83" y2="83" stroke={mark} stroke-width="11" />
+    <polyline points="34,49 45,60 67,36" fill="none" stroke={mark} stroke-width="10" stroke-linecap="square" stroke-linejoin="miter" />
+  </g>
+  <text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="0.5" fill={wordmark}>QUALIS</text>
+  <text x="113" y="82" font-family="Archivo, Helvetica, sans-serif" font-weight="500" font-size="13.5" letter-spacing="6" fill={mark}>INSPECTION</text>
+</svg>

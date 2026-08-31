@@ -197,6 +197,18 @@ const OWNER_FIXES = `
       other 23. The markup always said class="mono"; this makes it true. */
 :root{--g500:#737169}
 .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.04em}
+
+/* --- BRAND LOCKUP --------------------------------------------------------
+   .logo used to be text ("QUALIS" + a green full stop); it now wraps the
+   inlined SVG lockup. The old font-size/letter-spacing rules on .logo are inert
+   against an SVG child and are left in place rather than surgically removed. */
+.logo{display:inline-flex;align-items:center;line-height:0}
+.logo .brand-logo{display:block;height:30px;width:auto}
+footer .logo .brand-logo{height:34px}
+.logo:hover .brand-logo{opacity:.85;transition:opacity .2s ease}
+@media (max-width:640px){.logo .brand-logo{height:26px}footer .logo .brand-logo{height:30px}}
+@media (max-width:380px){.logo .brand-logo{height:23px}}
+@media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 
 const IMAGE_SLOT_RUNTIME = `
@@ -381,9 +393,12 @@ for (const file of files) {
   const ogTitle = metaContent(html, (a) => (a.property === 'og:title' ? a.content : null));
   const ogDescription = metaContent(html, (a) => (a.property === 'og:description' ? a.content : null));
 
+  /* The reference points the organisation logo at /images/qualis-logo.svg, which
+     has never existed (404 on the live site). Repoint it at the raster built by
+     tools/prepare-brand.mjs. */
   const jsonld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((m) => {
-      try { return JSON.parse(m[1]); }
+      try { return JSON.parse(m[1].replaceAll('/images/qualis-logo.svg', '/images/qualis-logo.png')); }
       catch (e) { problems.push(`${urlPath}: invalid JSON-LD (${e.message})`); return null; }
     })
     .filter(Boolean);

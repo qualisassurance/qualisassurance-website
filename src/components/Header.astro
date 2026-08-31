@@ -1,5 +1,6 @@
 ---
 import { NAV, type NavVariant } from '../lib/site';
+import Logo from './Logo.astro';
 
 interface Props {
   /** Which of the reference's three nav link-sets to render. */
@@ -18,7 +19,7 @@ const links = NAV[variant];
 ---
 <header>
   <div class="wrap nav">
-    <a class="logo" href="/" aria-label="Qualis home">QUALIS<span>.</span></a>
+    <a class="logo" href="/" aria-label="Qualis Inspection — home"><Logo height={30} /></a>
     <ul class="nav-links" id="nav-menu">
       {links.map((l) => (
         <li><a href={l.href}>{l.label}</a></li>

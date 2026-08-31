@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200">
+<g transform="translate(70,10)"><circle cx="50" cy="50" r="36" fill="none" stroke="#0F7A5A" stroke-width="11" stroke-dasharray="200 26.2" stroke-dashoffset="-54.5"></circle><line x1="65" y1="65" x2="83" y2="83" stroke="#0F7A5A" stroke-width="11"></line><polyline points="34,49 45,60 67,36" fill="none" stroke="#0F7A5A" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"></polyline></g>
+<text x="120" y="152" text-anchor="middle" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="42" fill="#111214">QUALIS</text>
+<text x="122" y="175" text-anchor="middle" font-family="Archivo, Helvetica, sans-serif" font-weight="500" font-size="12" letter-spacing="5" fill="#0F7A5A">INSPECTION</text>
+</svg>

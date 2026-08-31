@@ -100,9 +100,31 @@ emits last. Blog mobile rules live inside `blog.css` because Astro emits `blog.c
 
 ---
 
+## Brand
+
+The logo lives in `public/brand/` — the production SVGs from the brand handoff, geometry
+untouched. `src/components/Logo.astro` **inlines** the horizontal lockup in the header and
+footer rather than referencing it as `<img>`: an SVG loaded via `<img>` renders in an
+isolated document with no access to the page's webfonts, so the Archivo wordmark would
+silently fall back to Helvetica and change width per platform. Inlined, the self-hosted
+Archivo applies.
+
+`tools/prepare-brand.mjs` builds the raster derivatives — the Open Graph card, the
+organisation logo for JSON-LD, and the 180/192/512 app icons — inlining the Archivo woff2
+so the rasteriser uses real outlines:
+
+```bash
+node tools/prepare-brand.mjs
+```
+
+This also fixed two long-standing broken references: the reference site points every page's
+`og:image` at `/images/og-qualis-1200x630.jpg` and its JSON-LD `logo` at
+`/images/qualis-logo.svg`, and **neither file has ever existed** — both still 404 on the
+live site. Both are now generated.
+
 ## Fonts
 
-Inter Tight, Inter and JetBrains Mono are **self-hosted** in `public/fonts` — the same
+Inter Tight, Inter, JetBrains Mono and Archivo (the wordmark) are **self-hosted** in `public/fonts` — the same
 woff2 files Google serves, with the original unicode-range subsetting and
 `font-display:swap`. The third-party request was render-blocking and cost 17 Lighthouse
 points (FCP 3.3 s vs 1.4 s).
@@ -152,7 +174,7 @@ porter), at the owner's request:
 - The `/why-independent/` founder portrait was dropped and the section restyled as a
   signed statement. **All prose is preserved verbatim**; only the layout changed.
 
-`public/favicon.svg` remains a placeholder derived from the wordmark.
+`public/favicon.svg` is now the brand favicon tile from the handoff.
 
 ---
 
