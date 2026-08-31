@@ -1,0 +1,22 @@
+---
+import { FOOTER_COLUMNS } from '../lib/site';
+---
+<footer>
+  <div class="wrap bigfoot">
+    <div class="fcol fbrand">
+      <a class="logo" href="/" aria-label="Qualis home">QUALIS<span>.</span></a>
+      <p>India's Furniture Import Assurance Partner. Independent inspection and verification on the ground in India's furniture clusters since 2017.</p>
+      <p class="mono" style="color:var(--pass)">PAID BY BUYERS. NEVER BY FACTORIES.</p>
+    </div>
+    {FOOTER_COLUMNS.map((col) => (
+      <div class="fcol">
+        <b>{col.heading}</b>
+        {col.links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+    ))}
+  </div>
+  <div class="wrap fbase">
+    <span>© Qualis INC · Jodhpur, Rajasthan, India</span>
+    <span>Serving buyers in USA · UK · Australia · Germany · Netherlands · France · UAE</span>
+  </div>
+</footer>

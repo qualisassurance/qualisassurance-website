@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/global.css';
+
+const title = "Furniture Inspection in Moradabad | QUALIS";
+const description = "Furniture inspection, factory audits & supplier verification in Moradabad: the metalware capital — iron, aluminium and metal-wood combination furniture and hardware. 48-hour response from our Jodhpur HQ. Paid by buyers, never by factories.";
+const canonical = "https://qualisinspections.com/clusters/moradabad/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Inspection in Moradabad",
+    "url": "https://qualisinspections.com/clusters/moradabad/",
+    "description": "Furniture inspection, factory audits & supplier verification in Moradabad: the metalware capital — iron, aluminium and metal-wood combination furniture and hardware. 48-hour response from our Jodhpur HQ. Paid by buyers, never by factories.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Clusters",
+        "item": "https://qualisinspections.com/clusters/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Moradabad",
+        "item": "https://qualisinspections.com/clusters/moradabad/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Cluster — 48-hour response</span>
+<h1>Furniture inspection &amp; supplier verification in Moradabad</h1>
+<p class="lead">The metalware capital. Iron, aluminium and metal-wood combination furniture and hardware. Full cluster guide publishing soon—every Qualis service is available here now, with 48-hour response.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">What we watch here</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Weld quality</h3><p>Ground-and-painted welds hide porosity and cold joints; structural checks and load tests catch what paint covers.</p></a><a class="card rv" href="/defects/"><h3>Coating adhesion</h3><p>Powder-coat and plating failures show up as rust complaints months later — adhesion and film checks at PSI prevent them.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Metal-wood interfaces</h3><p>Mixed-material joints loosen with wood movement; fastener and insert checks are cluster-standard here.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Cluster notes</span><p class="prose rv">Moradabad makes the metal side of the Indian range: bases, frames, hardware and full metal-wood combination pieces, often mated with Jodhpur wood tops. Corrosion protection and weld integrity are the cluster's defining checks.</p></div></section><section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Services available</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection</h3><p>AQL 2.5, moisture, structure, finish vs golden sample — report in 24h.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>Unannounced premises visits, verdict in 3–5 working days.</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>8-section scored audit for programme onboarding.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Tally, dunnage, weather hold and photographed seal.</p></a></div></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

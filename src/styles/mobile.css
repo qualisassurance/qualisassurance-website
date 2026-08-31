@@ -1,0 +1,231 @@
+/* ==========================================================================
+   QUALIS — mobile layer
+   Loaded last on every page (imported by BaseLayout, which Astro emits after
+   the page's own stylesheet). Contains ONLY rules inside min/max-width media
+   queries, so desktop rendering above 960px is untouched — the reference is
+   pixel-verified at 1024px and up and must stay that way.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. NO HORIZONTAL SCROLL
+   Grid and flex items default to min-width:auto, so a wide child (a data table,
+   a long mono string) forces its track wider than the viewport. This was making
+   the home page 468px wide inside a 375px screen.
+   ========================================================================== */
+@media (max-width: 960px) {
+  html, body { overflow-x: hidden; }
+
+  /* let every grid/flex track shrink below its content's min-content width */
+  .grid > *, .hero-grid > *, .sr-grid > *, .cl-grid > *, .defect-grid > *,
+  .stage-grid > *, .price-grid > *, .scen-grid > *, .std-grid > *, .steps > *,
+  .check-grid > *, .final-grid > *, .stats > *, .logos > *, .bigfoot > *,
+  .case-grid > *, .flag-grid > *, .risk-grid > *, .who-grid > *, .svc-grid > *,
+  .map-grid > *, .made-grid > *, .prof-grid > *, .team-grid > *, .score-grid > *,
+  .cal > *, .cal-notes > *, .clause > *, .flow > *, .founder > *, .tip > *,
+  .verdicts > *, .finding > * { min-width: 0; }
+
+  /* anything that must scroll, scrolls in its own box — never the page */
+  pre, .b-body pre { overflow-x: auto; }
+}
+
+/* ==========================================================================
+   2. LAYOUT COLLAPSE
+   ========================================================================== */
+@media (max-width: 960px) {
+  .hero-grid, .final-grid, .check-grid, .sr-grid, .cl-grid, .map-grid,
+  .founder, .flow, .made-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .steps, .price-grid, .scen-grid, .std-grid, .defect-grid, .stage-grid,
+  .case-grid, .flag-grid, .risk-grid, .who-grid, .svc-grid, .prof-grid,
+  .team-grid, .score-grid, .verdicts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* the hero's overlaid report card must never sit on top of the copy */
+  .hero-card { position: static; left: auto; bottom: auto; width: 100%; margin-top: 18px; box-shadow: none; }
+  .hero-fig { margin-bottom: 0; }
+
+  /* annotation pins are positioned for a wide image; keep them inside it */
+  .anno { right: 4% !important; max-width: 60%; }
+  .anno::before { display: none; }
+
+  /* the independence bar wraps instead of forcing one long row */
+  .ibar span { white-space: normal; flex: 1 1 46%; }
+}
+
+@media (max-width: 640px) {
+  .stats, .logos, .steps, .price-grid, .scen-grid, .std-grid, .defect-grid,
+  .stage-grid, .case-grid, .flag-grid, .risk-grid, .who-grid, .svc-grid,
+  .prof-grid, .team-grid, .score-grid, .verdicts, .grid { grid-template-columns: minmax(0, 1fr); }
+
+  .ibar span { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--rule); }
+  .ibar span:last-child { border-bottom: none; }
+}
+
+/* ==========================================================================
+   3. WIDE DATA TABLES → STACKED LABEL/VALUE CARDS
+   Each row becomes a card; each cell shows its column name beside the value,
+   from the data-label the porter copies off the <th>. The real <table> is kept
+   above 760px. No pinch-zoom, no sideways scroll, nothing clipped.
+   ========================================================================== */
+@media (max-width: 760px) {
+  .check-table, .cl-table, .area-table, .cmp, .sr table {
+    display: block;
+    border: none;
+    background: none;
+    font-size: 1rem;
+  }
+  .check-table thead, .cl-table thead, .area-table thead, .cmp thead, .sr table thead {
+    /* visually hidden, still read by assistive tech */
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+  }
+  .check-table tbody, .cl-table tbody, .area-table tbody, .cmp tbody, .sr table tbody { display: block; }
+
+  .check-table tr, .cl-table tr, .area-table tr, .cmp tr, .sr table tr {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--rule);
+    margin-bottom: 12px;
+    padding: 4px 0;
+  }
+  .check-table tr:last-child, .cl-table tr:last-child, .area-table tr:last-child,
+  .cmp tr:last-child, .sr table tr:last-child { margin-bottom: 0; }
+
+  .check-table td, .cl-table td, .area-table td, .cmp td, .sr table td {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+    padding: 10px 16px;
+    border-bottom: 1px dashed var(--rule);
+    white-space: normal;      /* overrides the desktop nowrap on ref columns */
+    vertical-align: baseline;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .check-table tr td:last-child, .cl-table tr td:last-child, .area-table tr td:last-child,
+  .cmp tr td:last-child, .sr table tr td:last-child { border-bottom: none; }
+
+  /* the column name, in the same mono voice as the rest of the system */
+  .check-table td[data-label]::before, .cl-table td[data-label]::before,
+  .area-table td[data-label]::before, .cmp td[data-label]::before,
+  .sr table td[data-label]::before {
+    content: attr(data-label);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--g500);
+    font-weight: 500;
+  }
+
+  /* first cell of each row reads as the card's title */
+  .check-table td:first-child, .cl-table td:first-child,
+  .area-table td:first-child, .cmp td:first-child {
+    background: var(--paper);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--ink);
+    white-space: normal;
+  }
+  /* the comparison table's first cell is the question, and has no label */
+  .cmp td:first-child { background: var(--ink); color: var(--paper); }
+
+  /* keep the Qualis column visually marked */
+  .cmp td.qcol { background: var(--pass-tint); }
+  .cl-table td.mono, .area-table td.mono { font-size: .95rem; }
+}
+
+/* ==========================================================================
+   4. READABLE TYPE
+   Body copy at 16px+ on phones. Mono labels, chips, eyebrows and captions stay
+   small on purpose — they are labels, not prose.
+   ========================================================================== */
+@media (max-width: 760px) {
+  /* Every rule in the reference that sets prose below 1rem. rem resolves against
+     the 16px root (not body's 17px), so .9rem was rendering at 14.4px. Listed
+     explicitly rather than with a blanket `p{font-size:1rem}`, which would have
+     shrunk the paragraphs that are already larger. */
+  .card p, .defect p, .scen p, .std p, .step p, .step h3, .price li, .sec-head p,
+  .finding-body p, .faq details p, .prose, .who p, .case p, .risk p, .svc p,
+  .flag p, .hero-facts b, .cbody p, .flow-note, .flow-line, .verdict p,
+  .stat span, .made span, .made b, .fcol.fbrand p, .fbase span, .charter p,
+  .person p, .report p, .clause p, .tip p, .cal-notes p, .score p, .bundle p,
+  .founder p, .prof-grid > div p, .stage li, .sr td, .sr th { font-size: 1rem; line-height: 1.6; }
+
+  /* button labels are actions — never below 16px on a phone */
+  .btn, .bundle .btn, form input, form select { font-size: 1rem; }
+
+  .hero p.lead { font-size: 1.05rem; line-height: 1.65; }
+  h1 { font-size: clamp(1.75rem, 7.2vw, 2.3rem); }
+  h2 { font-size: clamp(1.35rem, 5.4vw, 1.75rem); }
+  h3 { font-size: 1.08rem; }
+  .final h2 { font-size: clamp(1.35rem, 5.4vw, 1.75rem); }
+
+  /* long unbroken strings (URLs, codes) must not push the page wide */
+  .prose, .card p { overflow-wrap: anywhere; }
+}
+
+/* ==========================================================================
+   5. TAP TARGETS — 44px minimum
+   ========================================================================== */
+@media (max-width: 960px) {
+  .menu-btn { min-height: 44px; min-width: 44px; padding: 12px 16px; }
+  .logo { display: inline-flex; align-items: center; min-height: 44px; }
+  .nav .btn { min-height: 44px; display: inline-flex; align-items: center; }
+  .nav-links a { min-height: 48px; display: flex; align-items: center; }
+
+  .fcol a { padding: 11px 0; min-height: 44px; display: flex; align-items: center; }
+  .crumbs { line-height: 2.4; }
+  /* widen the breadcrumb hit area without moving anything: the negative margin
+     cancels the padding, so the trail still reads "Home / Services / …" */
+  .crumbs a { padding: 12px 8px; margin: 0 -8px; display: inline-block; }
+  .faq summary { min-height: 52px; align-items: center; }
+  /* links inside the stacked table cards are the row's primary action */
+  .cl-table td a, .area-table td a, .check-table td a, .cmp td a, .sr table td a {
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+  .btn { min-height: 44px; }
+
+  /* the hero CTAs go full width so they are easy to hit one-handed */
+  .hero-ctas { gap: 12px; }
+  .hero-ctas .btn { flex: 1 1 100%; text-align: center; }
+}
+
+/* ==========================================================================
+   6. STICKY HEADER — keep vertical space for content
+   ========================================================================== */
+@media (max-width: 640px) {
+  .nav { height: 56px; }
+  header { border-top-width: 2px; }
+  .nav-links { top: 56px; }
+  .logo { font-size: 1.12rem; letter-spacing: .13em; }
+  .nav .btn { padding: 9px 13px; font-size: .8rem; }
+  .menu-btn { padding: 11px 12px; }
+  .wrap { padding: 0 20px; }
+  section { padding: 44px 0; }
+  .hero { padding: 32px 0 44px; }
+}
+
+@media (max-width: 380px) {
+  /* at 320–380px the header CTA label is the first thing to run out of room */
+  .nav .btn { padding: 9px 10px; font-size: .74rem; }
+  .logo { font-size: 1rem; letter-spacing: .1em; }
+  .wrap { padding: 0 16px; }
+}
+
+/* ==========================================================================
+   7. MOTION
+   The base sheets already quiet the reveal and button transitions; this covers
+   the mobile-only additions and the sticky header's shadow.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .rv { opacity: 1 !important; transform: none !important; }
+}

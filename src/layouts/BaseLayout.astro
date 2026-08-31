@@ -1,0 +1,139 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, type NavVariant } from '../lib/site';
+
+/* No stylesheet is imported here on purpose. In the reference, each page is a
+   single self-contained <style> block where base rules and page rules interleave;
+   splitting that across two files reorders them and silently changes the cascade.
+   So every page imports exactly one stylesheet: the 23 pages that share a
+   stylesheet import styles/global.css, and the 7 that differ import their own
+   file from styles/pages/. See README "Why some pages have their own stylesheet".
+
+   The mobile layer IS imported here, deliberately: Astro emits a page's own
+   stylesheet BEFORE the layout's, so importing it here puts it last — exactly
+   where an override layer belongs. It contains only media-query rules, so the
+   desktop rendering verified against the reference is untouched. */
+import '../styles/mobile.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute canonical URL. Always on the production domain. */
+  canonical: string;
+  /** One or more JSON-LD graphs, emitted verbatim in <head>. */
+  jsonld?: Record<string, unknown>[];
+  navVariant?: NavVariant;
+  /** Header CTA overrides; see Header.astro. */
+  ctaLabel?: string;
+  ctaHref?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  jsonld = [],
+  navVariant = 'inner',
+  ctaLabel,
+  ctaHref,
+  ogTitle,
+  ogDescription,
+  ogImage = SITE.defaultOgImage,
+  ogType = 'website',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content={SITE.themeColor}>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+<meta property="og:title" content={ogTitle ?? title}>
+<meta property="og:description" content={ogDescription ?? description}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:url" content={canonical}>
+<meta property="og:type" content={ogType}>
+<meta property="og:site_name" content={SITE.siteName}>
+<meta property="og:locale" content={SITE.locale}>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<!-- Self-hosted webfonts. The third-party Google Fonts request was render-blocking
+     and cost FCP 3.3s vs 1.1s. Same woff2 files, same subsetting, same swap. -->
+<link rel="preload" href="/fonts/intertight-NGSwv5HMAFg6IuGlBNMjxLsH8ahuQ2e8.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+{jsonld.map((graph) => (
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+))}
+<slot name="head" />
+</head>
+<body>
+<Header variant={navVariant} ctaLabel={ctaLabel} ctaHref={ctaHref} />
+<main>
+  <slot />
+</main>
+<Footer />
+<script>
+  // Reveal-on-scroll, mobile menu and header elevation.
+  // Ported from the reference; behaviour is identical.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealables = document.querySelectorAll<HTMLElement>('.rv');
+  if (reduce) {
+    revealables.forEach((el) => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.1 }
+    );
+    revealables.forEach((el) => io.observe(el));
+  }
+
+  const mb = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const nl = document.querySelector<HTMLElement>('.nav-links');
+  if (mb && nl) {
+    const close = () => {
+      nl.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      mb.setAttribute('aria-expanded', 'false');
+      mb.textContent = 'MENU';
+    };
+    mb.addEventListener('click', () => {
+      const open = nl.classList.toggle('open');
+      document.body.classList.toggle('nav-open', open);
+      mb.setAttribute('aria-expanded', String(open));
+      mb.textContent = open ? 'CLOSE' : 'MENU';
+    });
+    // close on link tap
+    nl.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    // close on Escape, and if the viewport grows past the mobile breakpoint
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => {
+      if (e.matches) close();
+    });
+  }
+
+  const hdEl = document.querySelector('header');
+  if (hdEl) {
+    const onScroll = () => hdEl.classList.toggle('scrolled', window.scrollY > 10);
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
+</body>
+</html>

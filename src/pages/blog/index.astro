@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogIndex from '../../components/BlogIndex.astro';
+import { getAllPosts, getUsedTerms, POSTS_PER_PAGE } from '../../lib/wp';
+import '../../styles/global.css';
+import '../../styles/blog.css';
+
+const all = await getAllPosts();
+const categories = await getUsedTerms('categories');
+const tags = await getUsedTerms('tags');
+const totalPages = Math.max(1, Math.ceil(all.length / POSTS_PER_PAGE));
+const posts = all.slice(0, POSTS_PER_PAGE);
+
+const title = 'Furniture Inspection Field Notes & Import Guides | QUALIS';
+const description =
+  'Furniture inspection findings, defect patterns and India import-compliance notes from Qualis inspectors on the ground in Jodhpur, Jaipur, Delhi NCR and beyond.';
+const canonical = 'https://qualisinspections.com/blog/';
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Qualis Field Notes',
+    url: canonical,
+    description,
+    inLanguage: 'en',
+    publisher: {
+      '@type': 'ProfessionalService',
+      name: 'Qualis',
+      legalName: 'Qualis INC',
+      url: 'https://qualisinspections.com',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Jodhpur',
+        addressRegion: 'Rajasthan',
+        addressCountry: 'IN',
+      },
+    },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `https://qualisinspections.com/blog/${p.slug}/`,
+      datePublished: p.date,
+      dateModified: p.modified,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisinspections.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Field Notes', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+  <BlogIndex posts={posts} page={1} totalPages={totalPages} total={all.length} categories={categories} tags={tags} />
+</BaseLayout>

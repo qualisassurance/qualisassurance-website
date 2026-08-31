@@ -1,0 +1,212 @@
+[
+  {
+    "url": "/academy/",
+    "title": "Furniture Import Academy | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/brands/",
+    "title": "Furniture Import Assurance for Furniture Brands & DTC | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/ecommerce/",
+    "title": "Furniture Import Assurance for E-commerce Sellers | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/importers/",
+    "title": "Furniture Import Assurance for Importers & Wholesalers | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/procurement/",
+    "title": "Furniture Import Assurance for Procurement Teams | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/projects/",
+    "title": "Furniture Import Assurance for Interior & Hospitality Projects | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/buyers/retail-chains/",
+    "title": "Furniture Import Assurance for Retail Chains | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/delhi-ncr/",
+    "title": "Furniture Inspection in Delhi NCR | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/",
+    "title": "India Furniture Clusters — Risk Guide | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/jaipur/",
+    "title": "Furniture Inspection in Jaipur | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/jodhpur/",
+    "title": "Furniture Inspection in Jodhpur | QUALIS",
+    "jsonld": 3,
+    "stylesheet": "styles/pages/clusters-jodhpur.css",
+    "imageSlots": 3
+  },
+  {
+    "url": "/clusters/kolkata/",
+    "title": "Furniture Inspection in Kolkata | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/moradabad/",
+    "title": "Furniture Inspection in Moradabad | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/clusters/saharanpur/",
+    "title": "Furniture Inspection in Saharanpur | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/container-loading-supervision/",
+    "title": "Container Loading Supervision in India | QUALIS",
+    "jsonld": 3,
+    "stylesheet": "styles/pages/container-loading-supervision.css",
+    "imageSlots": 3
+  },
+  {
+    "url": "/defects/",
+    "title": "India Furniture Defect Library | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/during-production-inspection/",
+    "title": "During-Production Inspection (DUPRO) in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/factory-audit-india/",
+    "title": "Furniture Factory Audit in India | QUALIS",
+    "jsonld": 3,
+    "stylesheet": "styles/pages/factory-audit-india.css",
+    "imageSlots": 1
+  },
+  {
+    "url": "/first-order-shield/",
+    "title": "First Order Shield — Bundle for Your First India Order | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/import-compliance/",
+    "title": "Importing Furniture from India — Compliance Hub | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/",
+    "title": "Furniture Inspection & Supplier Verification in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/pages/home.css",
+    "imageSlots": 22
+  },
+  {
+    "url": "/monsoon-watch/",
+    "title": "Monsoon Watch — Seasonal Risk Advisories | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/packaging-transit-validation/",
+    "title": "Furniture Packaging & Transit Validation (ISTA) in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/pre-shipment-inspection-india/",
+    "title": "Pre-Shipment Furniture Inspection in India | QUALIS",
+    "jsonld": 3,
+    "stylesheet": "styles/pages/pre-shipment-inspection-india.css",
+    "imageSlots": 3
+  },
+  {
+    "url": "/production-monitoring-india/",
+    "title": "Furniture Production Monitoring in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/sample-reports/",
+    "title": "Sample Furniture Inspection Reports | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/services/",
+    "title": "Furniture Inspection Services in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/supplier-shortlisting/",
+    "title": "Fixed-Fee Furniture Supplier Shortlisting in India | QUALIS",
+    "jsonld": 2,
+    "stylesheet": "styles/global.css",
+    "imageSlots": 0
+  },
+  {
+    "url": "/supplier-verification-india/",
+    "title": "Furniture Supplier Verification in India | QUALIS",
+    "jsonld": 3,
+    "stylesheet": "styles/pages/supplier-verification-india.css",
+    "imageSlots": 3
+  },
+  {
+    "url": "/why-independent/",
+    "title": "Why Independent | The Qualis Independence Charter",
+    "jsonld": 2,
+    "stylesheet": "styles/pages/why-independent.css",
+    "imageSlots": 1
+  }
+]

@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import '../../styles/pages/container-loading-supervision.css';
+
+const title = "Container Loading Supervision in India | QUALIS";
+const description = "Container loading supervision (CLS) for furniture shipments from India: container condition check, full carton tally, dunnage & stacking verification, photographed seal. Jodhpur, Jaipur & all clusters. Paid by buyers, never by factories.";
+const canonical = "https://qualisinspections.com/container-loading-supervision/";
+const ogDescription = "A passed inspection can still be crushed at loading. CLS covers the last 100 metres of risk — count, condition, dunnage, seal.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Container Loading Supervision (CLS)",
+    "serviceType": "Container loading inspection",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "url": "https://qualisinspections.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Jodhpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Jaipur"
+      },
+      {
+        "@type": "Place",
+        "name": "Saharanpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Moradabad"
+      },
+      {
+        "@type": "Place",
+        "name": "Delhi NCR"
+      },
+      {
+        "@type": "Place",
+        "name": "Kolkata"
+      }
+    ],
+    "audience": {
+      "@type": "BusinessAudience",
+      "name": "Furniture importers, retailers, brands and e-commerce sellers"
+    },
+    "description": "On-site supervision of furniture container loading in India: container condition inspection before loading, full carton tally against the packing list, dunnage and stacking verification, weather hold authority, and photographed seal application — reported the same day.",
+    "offers": {
+      "@type": "Offer",
+      "price": "269",
+      "priceCurrency": "USD",
+      "description": "Flat fee, buyer-paid, no travel charges inside clusters"
+    },
+    "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://qualisinspections.com/services/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Container Loading Supervision",
+        "item": "https://qualisinspections.com/container-loading-supervision/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is container loading supervision (CLS)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CLS is an on-site check at the moment of stuffing: the inspector verifies the container's condition before loading, tallies every carton against the packing list, supervises stacking and dunnage so furniture survives the voyage, and photographs the applied seal number. It is the only service that covers the gap between a passed inspection and a sealed container."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I need CLS if my order already passed pre-shipment inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A PSI proves the goods were correct at sampling. CLS proves those same goods — all of them — went into a sound container, stacked and braced correctly, and that the container was sealed in front of your inspector. Substitution, short-loading, rain-wet floors and crushed bottom tiers all happen after PSI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do you check on the container itself?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Before loading begins: holes and light-test, floor dryness and cleanliness, odour and previous-cargo contamination, door seals and locking bars, and structural damage. A defective container is rejected before a single carton goes in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the CLS report delivered?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Same day. It includes the container condition record, the full tally versus packing list, stacking and dunnage photos in sequence, the load plan as executed, and close-up photographs of the applied seal number — the evidence set an insurer or claims process asks for."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ctaLabel={"Book CLS"} ctaHref={"#book"} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Container Loading Supervision</div>
+
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stage 3 — Before payment</span>
+      <h1>Watch it go in. Know what's actually inside.</h1>
+      <p class="lead">A perfect inspection report doesn't guarantee a perfect container. Crushed cartons. Soaked goods. Swapped items. Short loads. All of it happens at stuffing. CLS puts your inspector at the container door—count, condition, dunnage, seal. Witnessed and photographed.</p>
+      <div class="hero-facts">
+        <div><small>Price</small><b>from $269</b></div>
+        <div><small>Report</small><b>Same day</b></div>
+        <div><small>Coverage</small><b>Full stuffing, start to seal</b></div>
+        <div><small>Seal</small><b>Photographed</b></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Book CLS</a>
+        <a class="btn btn-ghost" href="/sample-reports/">See a CLS report</a>
+      </div>
+    </div>
+    <figure class="hero-fig rv">
+      <ImageSlot id={"IMG-CLS-01"} spec={"1600×1200px"} desc={"A 40ft container backed to a factory ramp at first light, doors open, half-loaded with braced furniture cartons; your inspector at the door with tally sheet, hi-vis vest, torch clipped to chest. Warm dawn light against the muted grade — the one cinematic image on the site."} anno={"TALLY 212 / 384"} annoStyle={"top:24%;right:8%"} />
+      <figcaption><em>EVIDENCE</em><span>CLS · STUFFING IN PROGRESS · QLS-2026-0911</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 02 WHAT GOES WRONG AT LOADING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The gap</span><h2>Three things that happen after your PSI passes</h2></div>
+      <p>Everything below occurs in the hours between a passed inspection and a sealed container — the only window no other service covers.</p>
+    </div>
+    <div class="scen-grid">
+      <div class="scen rv"><span class="mono">RISK A</span><h3>The crushed bottom tier</h3><p>Heavy cartons stacked on light ones, no dunnage between tiers, gaps left to shift at sea. The damage is invisible until your warehouse opens the doors.</p></div>
+      <div class="scen rv"><span class="mono">RISK B</span><h3>The swap and the short-load</h3><p>Inspected cartons stay in the warehouse; uninspected or fewer cartons go in the box. Without a witnessed tally, the packing list is a work of fiction.</p></div>
+      <div class="scen rv"><span class="mono">RISK C</span><h3>The bad box</h3><p>Pinholes that let monsoon rain in, wet floors that wick into carton bases, last-cargo chemical odour absorbed by raw wood. The container itself is a defect.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 WHAT WE CHECK -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Scope</span><h2>What CLS actually covers</h2></div>
+      <p>From the moment the empty box arrives to the moment the seal closes — nothing loads without being counted, and nothing seals without being photographed.</p>
+    </div>
+    <div class="check-grid">
+      <table class="check-table rv">
+        <thead><tr><th>Ref</th><th>Check</th><th>Method</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Ref">L-01</td><td data-label="Check">Container exterior &amp; structure</td><td data-label="Method">Dents, holes, door alignment, locking bars, CSC plate</td></tr>
+          <tr><td data-label="Ref">L-02</td><td data-label="Check">Light test &amp; watertightness</td><td data-label="Method">Doors closed from inside — any daylight is a rejection</td></tr>
+          <tr><td data-label="Ref">L-03</td><td data-label="Check">Floor condition</td><td data-label="Method">Dry, clean, nail-free; moisture wicking risk for wood cartons</td></tr>
+          <tr><td data-label="Ref">L-04</td><td data-label="Check">Odour &amp; contamination</td><td data-label="Method">Previous-cargo smell check — raw wood absorbs everything</td></tr>
+          <tr><td data-label="Ref">L-05</td><td data-label="Check">Carton tally vs packing list</td><td data-label="Method">Every carton counted in, SKU-level, running tally sheet</td></tr>
+          <tr><td data-label="Ref">L-06</td><td data-label="Check">Carton condition at loading</td><td data-label="Method">Damaged or rain-exposed cartons pulled before they enter</td></tr>
+          <tr><td data-label="Ref">L-07</td><td data-label="Check">Stacking &amp; weight distribution</td><td data-label="Method">Heavy-below-light, tier limits, no void columns</td></tr>
+          <tr><td data-label="Ref">L-08</td><td data-label="Check">Dunnage &amp; bracing</td><td data-label="Method">Airbags, corner boards, lashing where specified — photographed in place</td></tr>
+          <tr><td data-label="Ref">L-09</td><td data-label="Check">Desiccant placement</td><td data-label="Method">Count and position per spec for humidity control</td></tr>
+          <tr><td data-label="Ref">L-10</td><td data-label="Check">Weather hold authority</td><td data-label="Method">Loading paused during rain — no exceptions during monsoon</td></tr>
+          <tr><td data-label="Ref">L-11</td><td data-label="Check">Load plan as executed</td><td data-label="Method">Photo sequence door-to-back, matched to the plan</td></tr>
+          <tr><td data-label="Ref">L-12</td><td data-label="Check">Seal application</td><td data-label="Method">Seal applied in inspector's presence, number photographed close-up</td></tr>
+        </tbody>
+      </table>
+      <figure class="check-fig rv">
+        <ImageSlot id={"IMG-CLS-02"} spec={"1200×1600px · portrait"} desc={"Inside the empty container before loading: inspector's torch beam raking across the floor, checking for wet patches and nails; wall corrugations receding to the door's bright rectangle. Moody but legible."} anno={"L-03: FLOOR DRY"} annoStyle={"top:22%;right:8%"} />
+        <figcaption><em>METHOD</em><span>L-01→L-04 · PRE-LOAD CONDITION</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PROCESS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Process</span><h2>Stuffing day, supervised in five steps</h2></div></div>
+    <div class="steps">
+      <div class="step rv"><h3>Box arrives</h3><p>Container inspected empty — L-01→L-04. A bad box is rejected before loading starts.</p></div>
+      <div class="step rv"><h3>Tally begins</h3><p>Every carton counted in against the packing list, damaged cartons pulled.</p></div>
+      <div class="step rv"><h3>Stack &amp; brace</h3><p>Stacking, dunnage and desiccant supervised and photographed tier by tier.</p></div>
+      <div class="step rv"><h3>Seal witnessed</h3><p>Doors closed and seal applied in front of your inspector — number photographed.</p></div>
+      <div class="step rv"><h3>Report same day</h3><p>Condition record, tally, photo sequence and seal — the evidence set claims and insurers ask for.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 RECENT FINDING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">From the field</span><h2>What CLS caught last month</h2></div></div>
+    <div class="finding rv">
+      <figure style="margin:0">
+        <ImageSlot id={"IMG-CLS-03"} spec={"1200×900px"} desc={"Torch-lit container floor with a visible dark wet patch spreading from the door end, inspector's boot and tally clipboard at frame edge for scale. Shot before any carton loaded."} anno={"L-03: WET FLOOR · REJECTED"} annoStyle={"top:34%;right:8%"} />
+      </figure>
+      <div class="finding-body">
+        <span class="mono">QLS-2026-0883 · CLS · JODHPUR · MONSOON WEEK</span>
+        <h3>Caught at the door: the container that would have soaked the shipment</h3>
+        <p>The box arrived with a floor wet from overnight rain through a failed door gasket — invisible from outside, obvious under a torch. Loaded, the bottom tier of carved sideboards would have wicked moisture for three weeks at sea.</p>
+        <p>The container was rejected on the spot under L-03, a replacement box arrived by afternoon, and loading finished the same day — seal photographed at 17:40.</p>
+        <p class="mono" style="margin-top:16px;color:var(--pass)">OUTCOME: BOX REJECTED · RELOADED SAME DAY · SEALED</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Pricing</span><h2>CLS pricing, published</h2></div>
+      <p>Flat fees per container, no man-day arithmetic, no travel charges inside our clusters.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price rv">
+        <h3>Standalone CLS</h3>
+        <div class="amt">$269 <small>/ container</small></div>
+        <ul><li>Full L-01→L-12 scope</li><li>1×20ft or 1×40ft, single factory</li><li>Weather hold authority</li><li>Same-day photographed report</li></ul>
+        <a class="btn btn-ghost" href="#book">Book CLS</a>
+      </div>
+      <div class="price feat rv">
+        <h3>Protected Container</h3>
+        <div class="amt">$449 <small>/ container</small></div>
+        <ul><li><a href="/pre-shipment-inspection-india/">Pre-shipment inspection</a> included</li><li>+ Full CLS at stuffing</li><li>Same inspector, goods to seal</li><li>Priority 12-hour reporting</li></ul>
+        <a class="btn btn-solid" href="#book">Protect my container</a>
+      </div>
+      <div class="price rv">
+        <h3>Multi-factory loading</h3>
+        <div class="amt">$349 <small>/ container</small></div>
+        <ul><li>Consolidated containers, 2+ pickup points</li><li>Tally per factory, per SKU</li><li>Common for mixed Jodhpur orders</li><li>Quoted per route</li></ul>
+        <a class="btn btn-ghost" href="#book">Get a route quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Container loading supervision FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What is container loading supervision (CLS)?</summary><p>An on-site check at the moment of stuffing: container condition before loading, a full carton tally against the packing list, supervised stacking and dunnage, and the seal applied and photographed in your inspector's presence.</p></details>
+      <details class="rv"><summary>Why do I need CLS if my order already passed PSI?</summary><p>A PSI proves the goods were right at sampling. CLS proves those goods — all of them — went into a sound container, correctly braced, and that the box was sealed in front of your inspector. Substitution, short-loading, wet floors and crushed tiers all happen after PSI.</p></details>
+      <details class="rv"><summary>What do you check on the container itself?</summary><p>Structure and doors, a light test for pinholes, floor dryness and cleanliness, and previous-cargo odour — raw wood absorbs chemical smells permanently. A defective box is rejected before a single carton goes in.</p></details>
+      <details class="rv"><summary>Does the CLS report help with insurance claims?</summary><p>It provides exactly the evidence set claims processes ask for: pre-load condition record, witnessed tally, tier-by-tier photo sequence and the sealed seal number. We are not insurers, but our reports have supported buyers' claims.</p></details>
+      <details class="rv"><summary>Can loading be stopped for rain?</summary><p>Yes — weather hold authority is L-10 in scope, and non-negotiable during monsoon. Cartons exposed to rain are pulled and noted.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 08 BUNDLE -->
+<section>
+  <div class="wrap">
+    <div class="bundle rv">
+      <div>
+        <h3>The full assurance chain: verify, monitor, inspect, load.</h3>
+        <p>CLS is the last link. For a first order, the <a href="/first-order-shield/">First Order Shield</a> covers supplier verification, during-production inspection and PSI in one package — add CLS and nothing ships unseen.</p>
+      </div>
+      <a class="btn btn-solid" href="/first-order-shield/">See First Order Shield</a>
+    </div>
+  </div>
+</section>
+
+<!-- 09 BOOKING -->
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Book container loading supervision</h2>
+      <p>Tell us the stuffing date and location. Confirmed within 2 hours; your inspector is at the door before the box opens.</p>
+      <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT SAME DAY · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+      <label for="cluster">Loading location</label>
+      <select id="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
+      <label for="size">Container</label>
+      <select id="size"><option>1×20ft</option><option>1×40ft</option><option>1×40ft HC</option><option>Multiple containers</option><option>Consolidated / multi-factory</option></select>
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <label for="date">Stuffing date</label>
+      <input id="date" type="date">
+      <button class="btn btn-solid" type="submit">Get instant estimate</button>
+      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

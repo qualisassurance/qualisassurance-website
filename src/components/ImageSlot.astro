@@ -1,0 +1,58 @@
+---
+/**
+ * ImageSlot — the reference's "annotated evidence" image placeholder.
+ *
+ * Today it renders the exact dashed placeholder from the static site, so the
+ * layout is identical while the owner is still shooting the photography.
+ * Once a real file exists, pass `src` (and ideally `width`/`height`) and the
+ * same slot renders the photo in place — no markup or CSS changes needed,
+ * because the sizing lives on the parent (e.g. `.hero-fig .ph{aspect-ratio:4/3}`).
+ *
+ *   <ImageSlot id="IMG-01" spec="1600×1200px · JPG/AVIF" desc="Inspector at bench…" />
+ *   <ImageSlot id="IMG-01" spec="1600×1200px · JPG/AVIF" desc="Inspector at bench…"
+ *              src="/images/img-01.avif" width={1600} height={1200} />
+ */
+interface Props {
+  /** Slot identifier from the reference, e.g. "IMG-01", "IMG-PSI-02", "LOGO". */
+  id: string;
+  /** Size/format note shown after the id, e.g. "1600×1200px · JPG/AVIF". */
+  spec?: string;
+  /** The art-direction brief. Doubles as the alt text once a photo lands. */
+  desc?: string;
+  /** Real image URL. When set, the photo replaces the placeholder artwork. */
+  src?: string;
+  /** Overrides `desc` for alt text. Pass "" for decorative images. */
+  alt?: string;
+  width?: number;
+  height?: number;
+  /** Optional amber callout pinned over the image, e.g. "GAP 2MM". */
+  anno?: string;
+  /** Inline position for the callout, e.g. "top:40%;right:6%". */
+  annoStyle?: string;
+  /** Eager-load this image (use for the hero slot only). */
+  eager?: boolean;
+  /** Container element. The reference uses <div> for photos and <figure> for logos. */
+  as?: 'div' | 'figure';
+}
+
+const { id, spec, desc, src, alt, width, height, anno, annoStyle, eager = false, as = 'div' } = Astro.props;
+const Tag = as;
+const label = spec ? `${id} · ${spec}` : id;
+const altText = alt ?? desc ?? '';
+---
+<Tag class:list={['ph', src && 'has-img']}>
+  {src ? (
+    <img
+      src={src}
+      alt={altText}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchpriority={eager ? 'high' : undefined}
+    />
+  ) : (
+    <div class="ph-spec"><b>{label}</b>{desc && <span>{desc}</span>}</div>
+  )}
+  {anno && <span class="anno" style={annoStyle}>{anno}</span>}
+</Tag>

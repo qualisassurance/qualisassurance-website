@@ -1,0 +1,38 @@
+---
+import PostCard from './PostCard.astro';
+import type { WpPost } from '../lib/wp';
+
+interface Props { kind: 'tag' | 'category'; name: string; posts: WpPost[] }
+const { kind, name, posts } = Astro.props;
+---
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a> / <a href="/blog/">Field Notes</a> / <span>{kind === 'tag' ? `#${name}` : name}</span>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="b-head">
+      <span class="eyebrow">{kind === 'tag' ? 'Tag' : 'Category'}</span>
+      <h1>{kind === 'tag' ? `#${name}` : name}</h1>
+      <p>{posts.length} article{posts.length === 1 ? '' : 's'} from Qualis inspectors.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="b-grid">{posts.map((p) => <PostCard post={p} />)}</div>
+    <nav class="b-pager"><a class="b-term" href="/blog/">← All field notes</a></nav>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">Book</span>
+    <h2>Your next India order. Protected.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/global.css';
+
+const title = "Furniture Import Assurance for E-commerce Sellers | QUALIS";
+const description = "How Qualis protects e-commerce sellers importing furniture from India: transit-damage returns cut before the container ships.";
+const canonical = "https://qualisinspections.com/buyers/ecommerce/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Import Assurance for E-commerce Sellers",
+    "url": "https://qualisinspections.com/buyers/ecommerce/",
+    "description": "How Qualis protects e-commerce sellers importing furniture from India: transit-damage returns cut before the container ships.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Buyers",
+        "item": "https://qualisinspections.com/buyers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Ecommerce",
+        "item": "https://qualisinspections.com/buyers/ecommerce/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Who we protect</span>
+<h1>For e-commerce sellers: transit-damage returns cut before the container ships</h1>
+<p class="lead">For parcel-shipped furniture, the journey is the final inspection—unless you run one first. Sellers come to us with double-digit damage-return rates and leave with packaging that survives the network.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Your assurance stack</span></div></div><div class="grid"><a class="card rv" href="/packaging-transit-validation/"><h3>ISTA drop testing</h3><p>Sampled cartons through the parcel-network protocol before sealing.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Flat-pack kit checks</h3><p>Hardware BOM counts and instruction sheets verified—the return-rate killers.</p></a><a class="card rv" href="/packaging-transit-validation/"><h3>Packaging respec support</h3><p>Failed tests come with the fix: corner blocks, board grades, void fill.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Start here</span><p class="prose rv">Tell us your product, supplier status and destination market — we'll recommend the right sequence of services and a fixed quote within 2 hours. Every engagement is buyer-paid under our Independence Charter: we take nothing from factories, ever.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

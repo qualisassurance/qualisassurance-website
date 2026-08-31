@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "First Order Shield — Bundle for Your First India Order | QUALIS";
+const description = "One package for your first furniture order from India: supplier verification + during-production inspection + pre-shipment inspection at a fixed bundle price.";
+const canonical = "https://qualisinspections.com/first-order-shield/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "First Order Shield — Bundle for Your First India Order",
+    "url": "https://qualisinspections.com/first-order-shield/",
+    "description": "One package for your first furniture order from India: supplier verification + during-production inspection + pre-shipment inspection at a fixed bundle price.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "First Order Shield",
+        "item": "https://qualisinspections.com/first-order-shield/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Bundle</span>
+<h1>First Order Shield: your first India order, covered end to end</h1>
+<p class="lead">First orders carry every risk at once—unknown supplier, deposit exposure, no golden history. The Shield bundles the three services that cover each, at one fixed price.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">What's inside</span></div></div><div class="grid"><a class="card rv" href="/supplier-verification-india/"><h3>1 · Supplier Verification</h3><p>Before the deposit: premises, documents, manufacturer-vs-trader verdict in 3 working days.</p></a><a class="card rv" href="/during-production-inspection/"><h3>2 · During-Production Inspection</h3><p>At 20–50% complete: moisture, first-offs and finish direction while rework is still cheap.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>3 · Pre-Shipment Inspection</h3><p>Before the balance payment: AQL 2.5 sampling, full checklist, photographed report in 24 hours.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Optional · Container Loading</h3><p>Add CLS to witness the tally, dunnage and seal—nothing ships unseen.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Why a bundle</span><p class="prose rv">Priced below the three services booked separately, sequenced so each stage de-risks the next, and coordinated by one inspector who knows your order from verification to container. The Shield also comes with the contract language that makes it work: a deposit released only after verification, and a balance payable against the passed PSI report. Tell us your product and supplier—fixed quote within 2 hours.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

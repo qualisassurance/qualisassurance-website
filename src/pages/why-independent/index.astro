@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import '../../styles/pages/why-independent.css';
+
+const title = "Why Independent | The Qualis Independence Charter";
+const description = "The Qualis Independence Charter: paid only by buyers, zero factory commission, firewalled supplier shortlisting. Why independence is the difference between a sourcing agent and a real furniture inspection company in India.";
+const canonical = "https://qualisinspections.com/why-independent/";
+const ogTitle = "The Qualis Independence Charter";
+const ogDescription = "Paid by buyers. Never by factories. The seven commitments that make Qualis an independent furniture import assurance partner.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "The Qualis Independence Charter",
+    "url": "https://qualisinspections.com/why-independent/",
+    "description": "The seven public commitments that guarantee Qualis works only for furniture buyers, never for factories.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "about": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between a sourcing agent and an inspection company in India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A sourcing agent is paid by, or earns commission from, the factories they introduce — so their income depends on orders being placed and shipped. An independent inspection company is paid only by the buyer and earns nothing from the factory, so it can fail a shipment without losing income. Qualis is the second kind, and publishes an Independence Charter guaranteeing it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Qualis take commission from furniture factories?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Qualis accepts zero commission, referral fees, gifts or hospitality from factories, and this is a published, contractual commitment. All revenue comes from buyer-paid fees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "If Qualis shortlists a supplier, can it still inspect that supplier honestly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, because the two services are firewalled: shortlisting is a fixed fee paid by the buyer with no factory commission, and any subsequent inspection of a Qualis-shortlisted factory is performed and signed by a different inspector. Qualis has failed factories it shortlisted, and that right is written into the Charter."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ogTitle={ogTitle} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / Why Independent</div>
+
+<!-- 01 HERO + MONEY FLOW -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">The Qualis Independence Charter</span>
+    <h1>Trust isn't a feature. It's the only thing that matters.</h1>
+    <p class="lead">Most "inspection" offers in India come from sourcing agents whose income depends on the factory shipping. Ours depends on you being protected. Here is the difference, drawn as money.</p>
+
+    <div class="flow">
+      <div class="flow-card bad rv">
+        <div class="flow-head"><b>The sourcing-agent model</b><span class="mono">CONFLICTED</span></div>
+        <div class="flow-body">
+          <div class="flow-line"><span>Factory</span><span class="arrow">→ commission →</span><span>Agent</span><span class="tag tag-bad">HIDDEN</span></div>
+          <div class="flow-line"><span>Buyer</span><span class="arrow">→ "free" inspection →</span><span>Agent</span><span class="tag tag-bad">UNPAID</span></div>
+          <div class="flow-line"><span>Agent income</span><span class="arrow">= % of</span><span>shipped orders</span><span class="tag tag-bad">CONFLICT</span></div>
+        </div>
+        <div class="flow-note">If the shipment fails, the agent loses commission. Guess how often shipments "pass".</div>
+      </div>
+      <div class="flow-card good rv">
+        <div class="flow-head"><b>The Qualis model</b><span class="mono">INDEPENDENT</span></div>
+        <div class="flow-body">
+          <div class="flow-line"><span>Buyer</span><span class="arrow">→ fixed fee →</span><span>Qualis</span><span class="tag tag-good">PUBLISHED</span></div>
+          <div class="flow-line"><span>Factory</span><span class="arrow">→ nothing →</span><span>Qualis</span><span class="tag tag-good">ZERO</span></div>
+          <div class="flow-line"><span>Qualis income</span><span class="arrow">= same, pass</span><span>or fail</span><span class="tag tag-good">NO CONFLICT</span></div>
+        </div>
+        <div class="flow-note">We earn exactly the same whether your shipment passes or fails. That is the whole point.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 THE CHARTER -->
+<section>
+  <div class="wrap">
+    <div class="charter rv">
+      <div class="charter-head">
+        <div><span class="eyebrow" style="margin-bottom:8px">Public commitment · Binding on every engagement</span><h2>The Independence Charter</h2></div>
+        <span class="mono">DOC QLS-IC-01 · V1.0 · JODHPUR</span>
+      </div>
+
+      <div class="clause"><div class="cnum">CLAUSE 01</div><div class="cbody"><h3>Paid by buyers only</h3><p>All Qualis revenue comes from buyer-paid fees. We accept no commission, referral fee, margin, gift, hospitality or benefit of any kind from any factory, trader or exporter — ever, in any form.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 02</div><div class="cbody"><h3>Same fee, pass or fail</h3><p>Our fee is fixed at booking and does not change with the result. We have no financial stake in whether your shipment ships.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 03</div><div class="cbody"><h3>Your report goes only to you</h3><p>Findings, photographs and results are delivered to the buyer alone. Factories receive defect details only if you instruct us to share them for rework.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 04</div><div class="cbody"><h3>Random sampling, our hands</h3><p>Samples are selected by our inspector, at random, from packed goods. Factory-preselected pieces are refused and the refusal is noted in your report.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 05</div><div class="cbody"><h3>The shortlisting firewall</h3><p>Our supplier shortlisting service is a fixed fee paid by the buyer, with zero factory commission. Any later inspection of a factory Qualis shortlisted is performed and signed by a different inspector. We have failed factories we shortlisted, and we retain that right in writing.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 06</div><div class="cbody"><h3>Furniture only</h3><p>We inspect furniture and nothing else. Specialisation is a quality control on ourselves: our inspectors see the same materials, joints and finishes every day, in the clusters where they are made.</p></div></div>
+
+      <div class="clause"><div class="cnum">CLAUSE 07</div><div class="cbody"><h3>Declared conflicts, refused work</h3><p>If any relationship could compromise our independence on an engagement — family, financial or otherwise — we declare it and decline the work. An inspection you cannot trust is worth less than no inspection at all.</p></div></div>
+
+      <div class="charter-foot">
+        <div class="sig"><b>Yogesh Raygoor</b>FOUNDER · QUALIS INC · JODHPUR</div>
+        <span class="mono" style="color:var(--pass)">IN FORCE ON EVERY ENGAGEMENT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 COMPARISON -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The market</span><h2>Three ways to get furniture "inspected" in India</h2></div>
+    </div>
+    <table class="cmp rv">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sourcing agent<small>India-based, factory-paid</small></th>
+          <th>Global inspection firm<small>SGS · BV · Intertek class</small></th>
+          <th class="qcol">Qualis<small>Independent · furniture · India</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Who pays them</td><td class="n" data-label="Sourcing agent">Factory commission</td><td class="y" data-label="Global inspection firm">Buyer</td><td class="qcol y" data-label="Qualis">Buyer only — Charter Clause 01</td></tr>
+        <tr><td>Can fail a shipment without losing income</td><td class="n" data-label="Sourcing agent">No</td><td class="y" data-label="Global inspection firm">Yes</td><td class="qcol y" data-label="Qualis">Yes — fee fixed, pass or fail</td></tr>
+        <tr><td>Furniture specialisation</td><td data-label="Sourcing agent">Sometimes, mixed with 50+ categories</td><td class="n" data-label="Global inspection firm">Generalist inspector, any product</td><td class="qcol y" data-label="Qualis">Furniture only, every day</td></tr>
+        <tr><td>Distance to Jodhpur factories</td><td class="y" data-label="Sourcing agent">Local</td><td class="n" data-label="Global inspection firm">Flight + hotel, billed to you</td><td class="qcol y" data-label="Qualis">Minutes — same-day, unannounced revisits</td></tr>
+        <tr><td>Report transparency</td><td class="n" data-label="Sourcing agent">Rarely a formal report</td><td data-label="Global inspection firm">Formal, gated samples</td><td class="qcol y" data-label="Qualis">Full sample reports published, ungated</td></tr>
+        <tr><td>Published pricing</td><td class="n" data-label="Sourcing agent">Bundled into commission</td><td class="n" data-label="Global inspection firm">Quote on request</td><td class="qcol y" data-label="Qualis">Fixed fees, on the website</td></tr>
+        <tr><td>Typical cost per inspection</td><td data-label="Sourcing agent">"Free" (paid in your unit price)</td><td data-label="Global inspection firm">High — man-days + travel</td><td class="qcol y" data-label="Qualis">40–60% below global firms</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 04 FOUNDER NOTE -->
+<section>
+  <div class="wrap founder">
+    <figure class="rv">
+      <ImageSlot id={"IMG-IND-01"} spec={"1000×1000px"} desc={"Yogesh seated at a workbench in a Jodhpur factory, printed Charter document in front of him, pen in hand, looking at camera. Honest, unglossy, natural side light. Same muted grade as all site photography."} />
+      <figcaption><em>FOUNDER</em><span>YOGESH RAYGOOR · JODHPUR</span></figcaption>
+    </figure>
+    <div class="rv">
+      <span class="eyebrow">Why this page exists</span>
+      <blockquote>"I've watched buyers wire deposits to factories their own agent was paid to praise. This Charter is the document I wish someone had shown them first."</blockquote>
+      <p>Qualis started in Jodhpur in 2017, inside the largest wooden-furniture export cluster in India. We built this firm on one uncomfortable truth: an inspection is a financial instrument. If the person inspecting earns from the shipment, you don't have an inspection — you have marketing.</p>
+      <p>The Charter above is not a values page. It is the operating agreement behind every booking, quoted in our contracts and enforceable by you. If you ever find us in breach of it, the engagement is free and the report is void.</p>
+      <p class="mono" style="color:var(--pass)">QUESTIONS? ASK THE INSPECTOR, NOT A SALESPERSON → <a href="/#book" style="color:var(--pass)">BOOK A 20-MIN CALL</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Independence, examined</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What is the difference between a sourcing agent and an inspection company?</summary><p>A sourcing agent earns from the factories they introduce — commission on shipped orders — so their income depends on shipments passing. An independent inspection company is paid only by the buyer and earns the same whether the shipment passes or fails. The first has a reason to say yes; the second has no reason to say anything but the truth.</p></details>
+      <details class="rv"><summary>Does Qualis take any money from factories?</summary><p>No — zero commission, referral fees, gifts or hospitality, under Clause 01 of the Charter. All revenue is buyer-paid fees, published on our <a href="/#pricing">pricing page</a>.</p></details>
+      <details class="rv"><summary>You offer supplier shortlisting. Isn't that sourcing?</summary><p>It's the buyer-side version of it: you pay a fixed fee, we shortlist and verify factories, and no factory pays us anything to be on or off the list. Clause 05 firewalls it — a different inspector signs any later inspection of a shortlisted factory, and we keep the written right to fail factories we shortlisted.</p></details>
+      <details class="rv"><summary>Why should I believe a charter on a website?</summary><p>Because it's contractual, not decorative: the Charter is referenced in every engagement letter, and breach makes the engagement free and the report void. It's also commercially rational — our entire business depends on buyers trusting our reports more than a factory's photos.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">Put it to work</span>
+    <h2>Hire the one party in the deal that works for you</h2>
+    <p>Verification before you commit. Inspection before you pay. The same fee whether we pass or fail your shipment.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+    <a class="btn btn-ghost" style="margin:12px 0 0 12px;border-color:var(--paper);color:var(--paper)" href="/sample-reports/">Read a sample report</a>
+  </div>
+</section>
+</BaseLayout>

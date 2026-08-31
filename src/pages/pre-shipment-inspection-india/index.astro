@@ -1,0 +1,346 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import '../../styles/pages/pre-shipment-inspection-india.css';
+
+const title = "Pre-Shipment Furniture Inspection in India | QUALIS";
+const description = "Independent pre-shipment inspection (PSI) for furniture in Jodhpur, Jaipur & across India. AQL 2.5 sampling per ISO 2859-1, moisture checks, photographed report in 24 hours. Paid by buyers, never by factories.";
+const canonical = "https://qualisinspections.com/pre-shipment-inspection-india/";
+const ogDescription = "Know what's in the container before it's sealed. AQL-sampled, standards-referenced furniture PSI with reports in 24 hours.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Pre-Shipment Furniture Inspection (PSI)",
+    "serviceType": "Pre-shipment inspection",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "url": "https://qualisinspections.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Jodhpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Jaipur"
+      },
+      {
+        "@type": "Place",
+        "name": "Saharanpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Moradabad"
+      },
+      {
+        "@type": "Place",
+        "name": "Delhi NCR"
+      },
+      {
+        "@type": "Place",
+        "name": "Kolkata"
+      }
+    ],
+    "audience": {
+      "@type": "BusinessAudience",
+      "name": "Furniture importers, retailers, brands and e-commerce sellers"
+    },
+    "description": "Independent AQL-sampled pre-shipment inspection of furniture orders in India, covering moisture content, structural integrity, finish, hardware, packaging drop tests and quantity verification, with photographed reports delivered within 24 hours.",
+    "offers": {
+      "@type": "Offer",
+      "price": "249",
+      "priceCurrency": "USD",
+      "description": "Flat fee, buyer-paid, no travel charges inside clusters"
+    },
+    "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://qualisinspections.com/services/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Pre-Shipment Inspection",
+        "item": "https://qualisinspections.com/pre-shipment-inspection-india/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should a pre-shipment inspection be booked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the order is at least 80% complete and 100% packed or packable. Booking 5–7 days before your planned container date leaves time for rework if defects are found, without delaying the vessel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What AQL level do you use for furniture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our default is AQL 2.5 for major defects and 4.0 for minor defects under ISO 2859-1, General Inspection Level II. Retail chains often specify their own AQL, which we adopt. Critical defects are always zero-tolerance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the inspection fails?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You receive the photographed findings the same day and a decision call with the inspector. Most buyers demand rework and book a re-inspection; because we are local, re-inspection in Jodhpur or Jaipur usually happens within 48 hours at a reduced fee."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you check moisture content during PSI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — on every solid-wood order. We take multiple pin-meter readings per sampled piece and report the range against a limit set for your destination climate, typically 8–11% for North America and Northern Europe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the factory refuse or influence the inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We are appointed and paid by you, never by the factory. We select samples ourselves at random from packed cartons, we photograph everything, and our report goes only to you."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ctaLabel={"Book a PSI"} ctaHref={"#book"} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Pre-Shipment Inspection</div>
+
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stage 3 — Before payment</span>
+      <h1>Know what's inside before it ships</h1>
+      <p class="lead">Pre-shipment inspection for furniture in India. AQL-sampled, standards-referenced, photographed, and reported within 24 hours. Appointed and paid by you—never the factory.</p>
+      <div class="hero-facts">
+        <div><small>Price</small><b>from $249</b></div>
+        <div><small>Report</small><b>&lt; 24 hrs</b></div>
+        <div><small>Jodhpur / Jaipur</small><b>Same day</b></div>
+        <div><small>Sampling</small><b>AQL 2.5 · ISO 2859-1</b></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Book a PSI</a>
+        <a class="btn btn-ghost" href="/sample-reports/">See a PSI report</a>
+      </div>
+    </div>
+    <figure class="hero-fig rv">
+      <ImageSlot id={"IMG-PSI-01"} spec={"1600×1200px"} desc={"Inspector at a packed-goods staging area: opening a randomly selected carton from a tall stack, box cutter in hand, tablet resting on adjacent carton showing the checklist. Stacks recede into the factory behind. Documentary light, muted grade."} anno={"SAMPLE 17 OF 32"} annoStyle={"top:24%;right:8%"} />
+      <figcaption><em>EVIDENCE</em><span>PSI · RANDOM SAMPLING · QLS-2026-0871</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 02 WHEN YOU NEED THIS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">When to book</span><h2>Three moments a PSI saves the order</h2></div>
+      <p>Book when production is at least 80% complete and goods are packed—5 to 7 days before your container date, so rework fits before the vessel.</p>
+    </div>
+    <div class="scen-grid">
+      <div class="scen rv"><span class="mono">SCENARIO A</span><h3>Before releasing the balance payment</h3><p>Your 70% balance is due against shipment. A PSI is the only independent evidence of what you're paying for.</p></div>
+      <div class="scen rv"><span class="mono">SCENARIO B</span><h3>First order with a new factory</h3><p>The golden sample was perfect. Production of 240 pieces is a different question — sampling answers it.</p></div>
+      <div class="scen rv"><span class="mono">SCENARIO C</span><h3>After a problem shipment</h3><p>Last container arrived cracked or short. A PSI on every order afterwards is cheaper than one more claim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 WHAT WE CHECK -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Scope</span><h2>What a furniture PSI actually checks</h2></div>
+      <p>Generic inspection firms run a generic checklist. This one exists because furniture from India fails in specific ways.</p>
+    </div>
+    <div class="check-grid">
+      <table class="check-table rv">
+        <thead><tr><th>Ref</th><th>Check</th><th>Method</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Ref">C-01</td><td data-label="Check">Quantity verification vs PO &amp; packing list</td><td data-label="Method">Full carton tally, SKU-level</td></tr>
+          <tr><td data-label="Ref">C-02</td><td data-label="Check">Moisture content (solid wood)</td><td data-label="Method">Pin meter, multiple readings per sampled piece, range vs destination limit</td></tr>
+          <tr><td data-label="Ref">C-03</td><td data-label="Check">Dimensions vs approved spec</td><td data-label="Method">Calipers &amp; tape on sampled pieces, tolerance per spec sheet</td></tr>
+          <tr><td data-label="Ref">C-04</td><td data-label="Check">Structural &amp; joint integrity</td><td data-label="Method">Racking, load and wobble checks referencing EN 1728</td></tr>
+          <tr><td data-label="Ref">C-05</td><td data-label="Check">Finish &amp; colour vs golden sample</td><td data-label="Method">Side-by-side under daylight lamp, batch drift noted</td></tr>
+          <tr><td data-label="Ref">C-06</td><td data-label="Check">Workmanship defects</td><td data-label="Method">AQL 2.5 major / 4.0 minor, classified per our <a href="/defects/">Defect Library</a></td></tr>
+          <tr><td data-label="Ref">C-07</td><td data-label="Check">Hardware kits &amp; assembly guides</td><td data-label="Method">Kit-by-kit count vs BOM on sampled flat-packs</td></tr>
+          <tr><td data-label="Ref">C-08</td><td data-label="Check">Function &amp; moving parts</td><td data-label="Method">Drawers, hinges, extensions, locks — cycle tested</td></tr>
+          <tr><td data-label="Ref">C-09</td><td data-label="Check">Packaging integrity</td><td data-label="Method">Carton spec, corner protection, ISTA 3A drop test on sampled cartons</td></tr>
+          <tr><td data-label="Ref">C-10</td><td data-label="Check">Marks, labels &amp; barcodes</td><td data-label="Method">Shipping marks, country-of-origin, client labels scanned</td></tr>
+        </tbody>
+      </table>
+      <figure class="check-fig rv">
+        <ImageSlot id={"IMG-PSI-02"} spec={"1200×1600px · portrait"} desc={"Vertical shot: digital calipers measuring a drawer-front thickness, spec sheet with red pen marks visible beneath, moisture meter and daylight lamp at frame edge — the inspector's bench mid-check. Overhead angle."} anno={"18.9MM · SPEC 19±0.5"} annoStyle={"top:18%;right:8%"} />
+        <figcaption><em>METHOD</em><span>C-03 DIMENSIONS · CALIPER</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 STANDARDS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">References</span><h2>Standards we inspect against</h2></div></div>
+    <div class="std-grid">
+      <div class="std rv"><b>ISO 2859-1 · AQL</b><p>Statistical sampling plan — default AQL 2.5 major / 4.0 minor, GII. Critical defects: zero tolerance.</p></div>
+      <div class="std rv"><b>EN 1728 / EN 12520</b><p>Seating strength &amp; durability references for structural checks on chairs and sofas.</p></div>
+      <div class="std rv"><b>EN 12521</b><p>Strength and stability references for tables.</p></div>
+      <div class="std rv"><b>ISTA 3A</b><p>Packaged-product drop testing for parcel-shipped and flat-pack furniture.</p></div>
+      <div class="std rv"><b>BS 5852 · UK</b><p>Match/cigarette fire-label verification on upholstered items bound for the UK.</p></div>
+      <div class="std rv"><b>Your specification</b><p>Golden sample, spec sheet and tolerances — the contract is always the first standard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 HOW IT WORKS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Process</span><h2>Booking to decision in five steps</h2></div></div>
+    <div class="steps">
+      <div class="step rv"><h3>Book</h3><p>Service, cluster, date, product spec. Fixed quote and confirmation within 2 hours.</p></div>
+      <div class="step rv"><h3>Prepare</h3><p>We agree the checklist, AQL and golden sample references with you before arrival.</p></div>
+      <div class="step rv"><h3>Inspect</h3><p>Random sampling from packed cartons. Live WhatsApp photo updates if you want them.</p></div>
+      <div class="step rv"><h3>Report &lt; 24h</h3><p>Photographed findings, severity classes, standard references, pass/fail result.</p></div>
+      <div class="step rv"><h3>Decide</h3><p>Call with your inspector: release payment, demand rework, or hold the container.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 RECENT FINDING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">From the field</span><h2>What our inspectors found last month</h2></div></div>
+    <div class="finding rv">
+      <figure style="margin:0">
+        <ImageSlot id={"IMG-PSI-03"} spec={"1200×900px"} desc={"Real anonymised finding photo: moisture meter pins in a console-table top, display reading clearly visible, chalk circle around the test point, carton edge in frame proving packed-stage."} anno={"MC 13.6% · LIMIT 11%"} annoStyle={"top:30%;right:8%"} />
+      </figure>
+      <div class="finding-body">
+        <span class="mono">QLS-2026-0791 · JODHPUR · CONSOLE TABLES ×180</span>
+        <h3>Caught at PSI: 13.6% moisture on a US-bound order</h3>
+        <p>Sampling flagged moisture well above the 11% limit set for the buyer's Arizona warehouse climate. The batch had skipped a kiln cycle to hit the vessel date. Shipment held, re-kilned, re-inspected 6 days later at 9.8% — and the buyer avoided a winter of cracking claims.</p>
+        <p class="mono" style="margin-top:16px;color:var(--pass)">OUTCOME: REWORKED · RE-INSPECTED · CLEARED</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Pricing</span><h2>PSI pricing, published</h2></div>
+      <p>Flat fees, no man-day arithmetic, no hidden travel charges inside our clusters.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price rv">
+        <h3>Standard PSI</h3>
+        <div class="amt">$249 <small>/ inspection</small></div>
+        <ul><li>Up to 1×40ft container / 1 factory</li><li>AQL 2.5 · ISO 2859-1 sampling</li><li>Full C-01→C-10 checklist</li><li>Photographed report &lt; 24 hrs</li><li>Decision call included</li></ul>
+        <a class="btn btn-ghost" href="#book">Book standard</a>
+      </div>
+      <div class="price feat rv">
+        <h3>Protected Container</h3>
+        <div class="amt">$449 <small>/ container</small></div>
+        <ul><li>Everything in Standard PSI</li><li>+ Container loading supervision</li><li>Dunnage &amp; stacking verification</li><li>Seal number photographed</li><li>Priority 12-hour reporting</li></ul>
+        <a class="btn btn-solid" href="#book">Protect my container</a>
+      </div>
+      <div class="price rv">
+        <h3>Re-inspection</h3>
+        <div class="amt">$149 <small>/ visit</small></div>
+        <ul><li>After failed PSI &amp; rework</li><li>Failed points re-checked in full</li><li>Within 48 hrs in Jodhpur/Jaipur</li><li>Reduced fee for same order</li></ul>
+        <a class="btn btn-ghost" href="#book">Book re-inspection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Pre-shipment inspection FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>When should a pre-shipment inspection be booked?</summary><p>When the order is at least 80% complete and packed or packable — ideally 5–7 days before your container date, so rework fits without delaying the vessel.</p></details>
+      <details class="rv"><summary>What AQL level do you use for furniture?</summary><p>Default AQL 2.5 major / 4.0 minor under ISO 2859-1, General Inspection Level II. Retail chains often specify their own AQL, which we adopt. Critical defects are always zero-tolerance.</p></details>
+      <details class="rv"><summary>What happens if the inspection fails?</summary><p>You get the photographed findings the same day and a decision call. Most buyers demand rework and re-inspect — within 48 hours in Jodhpur or Jaipur, at a reduced fee.</p></details>
+      <details class="rv"><summary>Do you check moisture content during PSI?</summary><p>On every solid-wood order — multiple pin-meter readings per sampled piece, reported as a range against a limit set for your destination climate (typically 8–11% for North America and Northern Europe).</p></details>
+      <details class="rv"><summary>Can the factory refuse or influence the inspection?</summary><p>We are appointed and paid by you, never by the factory. We select samples ourselves at random from packed cartons, photograph everything, and report only to you. Read our <a href="/why-independent/">Independence Charter</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 09 BUNDLE UPSELL -->
+<section>
+  <div class="wrap">
+    <div class="bundle rv">
+      <div>
+        <h3>A passed PSI can still be crushed at loading.</h3>
+        <p>Add Container Loading Supervision and the same inspector witnesses count, condition, dunnage and seal — the Protected Container bundle covers the last 100 metres of risk.</p>
+      </div>
+      <a class="btn btn-solid" href="/container-loading-supervision/">See Container Loading Supervision</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 BOOKING -->
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Book a pre-shipment inspection</h2>
+      <p>Confirmed within 2 hours. Same-day availability in Jodhpur and Jaipur. Report within 24 hours of inspection.</p>
+      <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+      <label for="cluster">Factory location</label>
+      <select id="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
+      <label for="product">Product</label>
+      <input id="product" type="text" placeholder="e.g. Sheesham dining tables ×240">
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <label for="date">Target inspection date</label>
+      <input id="date" type="date">
+      <button class="btn btn-solid" type="submit">Get instant estimate</button>
+      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

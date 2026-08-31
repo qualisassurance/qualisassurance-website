@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "Fixed-Fee Furniture Supplier Shortlisting in India | QUALIS";
+const description = "Buyer-paid, fixed-fee furniture supplier shortlisting in India with zero factory commission — firewalled under the Qualis Independence Charter.";
+const canonical = "https://qualisinspections.com/supplier-shortlisting/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Fixed-Fee Furniture Supplier Shortlisting in India",
+    "url": "https://qualisinspections.com/supplier-shortlisting/",
+    "description": "Buyer-paid, fixed-fee furniture supplier shortlisting in India with zero factory commission — firewalled under the Qualis Independence Charter.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Supplier Shortlisting",
+        "item": "https://qualisinspections.com/supplier-shortlisting/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Stage 1 — Before the order</span>
+<h1>Supplier Shortlisting — the buyer-side version of sourcing</h1>
+<p class="lead">We find and verify candidate factories for your product. You pay a fixed fee; factories pay us nothing—which is exactly why the shortlist can be honest.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">How it stays independent</span></div></div><div class="grid"><a class="card rv" href="/why-independent/"><h3>Fixed fee, buyer-paid</h3><p>No commission, no margin on your unit price, no success fee from factories—ever. Clause 01 &amp; 05 of the Charter.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Verified, not just listed</h3><p>Every shortlisted factory passes the same V-01 to V-10 verification we sell standalone.</p></a><a class="card rv" href="/why-independent/"><h3>The firewall</h3><p>Any later inspection of a factory we shortlisted is signed by a different inspector—and we keep the written right to fail it.</p></a><a class="card rv" href="/#book"><h3>Your list, your relationships</h3><p>You get names, evidence and introductions. We never sit in the middle of your commercial terms.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">What you receive</span><p class="prose rv">A brief call defines your product, target price band, volumes and destination-market requirements. Within ten working days you receive a shortlist of verified manufacturers—typically three to five—each with a verification summary, capacity notes, cluster context and recommended inspection plan. What happens next is your negotiation; what we sell is the confidence that everyone on the list is real.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

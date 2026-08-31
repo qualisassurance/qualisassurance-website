@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "Monsoon Watch — Seasonal Risk Advisories | QUALIS";
+const description = "Free July–September advisories for furniture buyers with orders in production in India: moisture, finish curing and lead-time risk from inside the clusters.";
+const canonical = "https://qualisinspections.com/monsoon-watch/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Monsoon Watch — Seasonal Risk Advisories",
+    "url": "https://qualisinspections.com/monsoon-watch/",
+    "description": "Free July–September advisories for furniture buyers with orders in production in India: moisture, finish curing and lead-time risk from inside the clusters.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Monsoon Watch",
+        "item": "https://qualisinspections.com/monsoon-watch/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Seasonal</span>
+<h1>Monsoon Watch: July–September, from inside the clusters</h1>
+<p class="lead">The cluster doesn't stop for monsoon—it just gets riskier. Monsoon Watch is our free seasonal advisory for buyers with orders in production between July and September.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">What changes in monsoon</span></div></div><div class="grid"><a class="card rv" href="/clusters/jodhpur/"><h3>Moisture physics</h3><p>Humidity stalls drying and re-wets seasoned stock; we tighten moisture limits and extend kiln checks.</p></a><a class="card rv" href="/defects/"><h3>Finish behaviour</h3><p>Lacquer blushes and cure times stretch—early finished pieces need longer holds before packing.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Lead-time drift</h3><p>Power, transport and subcontractor delays stack quietly. Vessel dates need buffer, not optimism.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Loading protocol</h3><p>Weather holds enforced at stuffing; rain-exposed cartons pulled. Non-negotiable under CLS L-10.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Get the advisories</span><p class="prose rv">Subscribers receive a short advisory at monsoon onset, mid-season and close-out, plus alerts when conditions warrant. It's free—the goal is fewer August surprises for everyone. If you're shipping in this window, our standing recommendation is DUPRO plus PSI plus CLS as a set, not any one alone.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

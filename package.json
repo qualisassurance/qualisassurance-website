@@ -1,0 +1,21 @@
+{
+  "name": "qualisinspections-website",
+  "version": "1.0.0",
+  "description": "QUALIS — headless Astro site with WordPress-fed blog",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.9"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

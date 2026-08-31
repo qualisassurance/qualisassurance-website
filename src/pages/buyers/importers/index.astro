@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/global.css';
+
+const title = "Furniture Import Assurance for Importers & Wholesalers | QUALIS";
+const description = "How Qualis protects importers & wholesalers importing furniture from India: container-level certainty on every India order.";
+const canonical = "https://qualisinspections.com/buyers/importers/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Import Assurance for Importers & Wholesalers",
+    "url": "https://qualisinspections.com/buyers/importers/",
+    "description": "How Qualis protects importers & wholesalers importing furniture from India: container-level certainty on every India order.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Buyers",
+        "item": "https://qualisinspections.com/buyers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Importers",
+        "item": "https://qualisinspections.com/buyers/importers/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Who we protect</span>
+<h1>For importers &amp; wholesalers: container-level certainty on every India order</h1>
+<p class="lead">Wholesale margins don't survive rejected containers. We put the same inspection discipline on your fifth container as your first—fixed fees, 24-hour reports, and a balance-against-passed-PSI clause that keeps factories planning quality.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Your assurance stack</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Protected Container</h3><p>PSI + Container Loading Supervision on every shipment—the repeat-order standard.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>Every new source verified before the first deposit moves.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Monitoring for long runs</h3><p>Weekly eyes on production when orders span multiple months.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Start here</span><p class="prose rv">Tell us your product, supplier status and destination market — we'll recommend the right sequence of services and a fixed quote within 2 hours. Every engagement is buyer-paid under our Independence Charter: we take nothing from factories, ever.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

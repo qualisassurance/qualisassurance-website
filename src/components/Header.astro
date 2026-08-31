@@ -1,0 +1,30 @@
+---
+import { NAV, type NavVariant } from '../lib/site';
+
+interface Props {
+  /** Which of the reference's three nav link-sets to render. */
+  variant?: NavVariant;
+  /** Header CTA text. Six reference pages tailor it ("Book a PSI", "Book CLS"…). */
+  ctaLabel?: string;
+  /** Header CTA target. Pages with their own booking form link to "#book". */
+  ctaHref?: string;
+}
+const {
+  variant = 'inner',
+  ctaLabel = 'Book an inspection',
+  ctaHref = variant === 'home' ? '#book' : '/#book',
+} = Astro.props;
+const links = NAV[variant];
+---
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Qualis home">QUALIS<span>.</span></a>
+    <ul class="nav-links" id="nav-menu">
+      {links.map((l) => (
+        <li><a href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">MENU</button>
+    <a class="btn btn-solid" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</header>

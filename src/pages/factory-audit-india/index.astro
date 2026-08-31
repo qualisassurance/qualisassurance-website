@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import '../../styles/pages/factory-audit-india.css';
+
+const title = "Furniture Factory Audit in India | QUALIS";
+const description = "On-site furniture factory audits across India's clusters: production process, QC system, capacity, subcontracting map & compliance readiness. For programme suppliers and retail vendor onboarding. Paid by buyers, never by factories.";
+const canonical = "https://qualisinspections.com/factory-audit-india/";
+const ogDescription = "Know how your supplier actually produces before you scale orders. Full factory audit: process, QC, capacity, subcontracting, compliance.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Furniture Factory Audit",
+    "serviceType": "Factory audit",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "url": "https://qualisinspections.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Jodhpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Jaipur"
+      },
+      {
+        "@type": "Place",
+        "name": "Saharanpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Moradabad"
+      },
+      {
+        "@type": "Place",
+        "name": "Delhi NCR"
+      },
+      {
+        "@type": "Place",
+        "name": "Kolkata"
+      }
+    ],
+    "description": "Full on-site audit of Indian furniture factories: production process and equipment, quality control system, real capacity, subcontracting map, workforce and safety observations, and compliance readiness — for supplier onboarding and programme buying.",
+    "offers": {
+      "@type": "Offer",
+      "price": "449",
+      "priceCurrency": "USD",
+      "description": "Flat fee, buyer-paid, no travel charges inside clusters"
+    },
+    "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://qualisinspections.com/services/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Factory Audit",
+        "item": "https://qualisinspections.com/factory-audit-india/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between supplier verification and a factory audit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verification answers 'is this a real, legitimate manufacturer?' — identity, premises, documents. An audit answers 'how well do they actually produce?' — process, QC system, capacity, subcontracting and compliance readiness. Verify before the first deposit; audit before scaling to programme volumes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a furniture factory audit take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One full day on site for a typical Jodhpur or Jaipur factory, with the scored report delivered within 3 working days. Larger export houses or multi-site suppliers may need two days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you audit against my company's own checklist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Retail chains and brands often supply their own vendor audit protocol; we execute it alongside or instead of the Qualis framework and report in your format."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner" ctaLabel={"Book an audit"} ctaHref={"#book"} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Factory Audit</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stage 1 — Before the order</span>
+      <h1>Audit the factory before you scale</h1>
+      <p class="lead">Verification tells you if they exist. An audit tells you if they can actually make your order—and make it right, consistently. Process, QC system, true capacity, and the subcontracting map they didn't mention. Book it before you commit to programme volumes.</p>
+      <div class="hero-facts">
+        <div><small>Price</small><b>from $449</b></div>
+        <div><small>On site</small><b>1 full day</b></div>
+        <div><small>Report</small><b>3 working days</b></div>
+        <div><small>Format</small><b>Scored, photographed</b></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Book an audit</a>
+        <a class="btn btn-ghost" href="/sample-reports/">See an audit report</a>
+      </div>
+    </div>
+    <figure class="hero-fig rv">
+      <ImageSlot id={"IMG-FA-01"} spec={"1600×1200px"} desc={"Auditor and factory production manager walking the finishing line together, auditor pointing at a spray booth with clipboard in hand, extraction ducting and racked panels visible. Collaborative but evaluative body language. Muted documentary grade."} />
+      <figcaption><em>EVIDENCE</em><span>AUDIT · FINISHING LINE · QLS-2026-0924</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Scope</span><h2>The eight sections of a Qualis factory audit</h2></div>
+      <p>One day on site, every section scored and photographed. Retail chains can substitute their own vendor protocol — we execute and report in your format.</p>
+    </div>
+    <table class="check-table rv">
+      <thead><tr><th>Ref</th><th>Section</th><th>What we assess</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Ref">A-01</td><td data-label="Section">Profile &amp; legitimacy</td><td data-label="What we assess">Ownership, history, export record, documents recap (builds on <a href="/supplier-verification-india/">verification</a>)</td></tr>
+        <tr><td data-label="Ref">A-02</td><td data-label="Section">Production process</td><td data-label="What we assess">Machining, joinery, assembly and finishing flow — bottlenecks and risk points mapped</td></tr>
+        <tr><td data-label="Ref">A-03</td><td data-label="Section">Material control</td><td data-label="What we assess">Timber sourcing, kiln capacity &amp; cycle records, moisture management, storage</td></tr>
+        <tr><td data-label="Ref">A-04</td><td data-label="Section">Quality control system</td><td data-label="What we assess">In-process checkpoints, final QC, defect recording, golden-sample handling, calibration</td></tr>
+        <tr><td data-label="Ref">A-05</td><td data-label="Section">Real capacity</td><td data-label="What we assess">Workforce, shifts, machine hours vs claimed monthly output — the over-promise check</td></tr>
+        <tr><td data-label="Ref">A-06</td><td data-label="Section">Subcontracting map</td><td data-label="What we assess">Which processes leave the building, to whom, and how that work is controlled</td></tr>
+        <tr><td data-label="Ref">A-07</td><td data-label="Section">Workforce &amp; safety</td><td data-label="What we assess">Working conditions, safety equipment, basic social-compliance observations</td></tr>
+        <tr><td data-label="Ref">A-08</td><td data-label="Section">Compliance readiness</td><td data-label="What we assess">Ability to meet destination requirements: fire labels, formaldehyde docs, timber legality paperwork</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Deliverable</span><h2>A scored verdict with a development path</h2></div></div>
+    <div class="score-grid">
+      <div class="score rv"><span class="chip chip-pass">APPROVED</span><h3>Programme-ready</h3><p>Systems and capacity support repeat orders. Report includes the inspection plan we'd recommend per order.</p></div>
+      <div class="score rv"><span class="chip chip-amber">CONDITIONAL</span><h3>Approve with a CAP</h3><p>Capable but with gaps. You get a corrective action plan with deadlines, and we re-audit the failed sections only.</p></div>
+      <div class="score rv"><span class="chip chip-crit">NOT APPROVED</span><h3>Do not scale</h3><p>Structural problems — phantom capacity, uncontrolled subcontracting, no QC system. Evidence included, alternatives discussed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Process</span><h2>Booking to scored report in four steps</h2></div></div>
+    <div class="steps">
+      <div class="step rv"><h3>Scope call</h3><p>Your products, volumes and any vendor protocol of your own. Fixed quote within 2 hours.</p></div>
+      <div class="step rv"><h3>Audit day</h3><p>Full day on site across A-01→A-08, photographed section by section.</p></div>
+      <div class="step rv"><h3>Scored report · 3 days</h3><p>Section scores, findings, photos, and Approved / Conditional / Not Approved verdict.</p></div>
+      <div class="step rv"><h3>CAP &amp; re-audit</h3><p>If conditional: corrective action plan with deadlines, re-audit of failed sections at reduced fee.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Pricing</span><h2>Audit pricing, published</h2></div></div>
+    <div class="price-grid">
+      <div class="price rv">
+        <h3>Standard audit</h3>
+        <div class="amt">$449 <small>/ factory</small></div>
+        <ul><li>Full A-01→A-08 scope</li><li>1 day on site, 1 factory</li><li>Scored report in 3 working days</li><li>Verdict + recommended inspection plan</li></ul>
+        <a class="btn btn-ghost" href="#book">Book standard</a>
+      </div>
+      <div class="price feat rv">
+        <h3>Verification + Audit</h3>
+        <div class="amt">$649 <small>/ supplier</small></div>
+        <ul><li>Full <a href="/supplier-verification-india/">supplier verification</a> first</li><li>+ Complete factory audit</li><li>One combined report, 5 working days</li><li>The onboarding standard for new vendors</li></ul>
+        <a class="btn btn-solid" href="#book">Book combined</a>
+      </div>
+      <div class="price rv">
+        <h3>Re-audit</h3>
+        <div class="amt">$199 <small>/ visit</small></div>
+        <ul><li>After a corrective action plan</li><li>Failed sections re-scored only</li><li>Reduced fee, same auditor</li></ul>
+        <a class="btn btn-ghost" href="#book">Book re-audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Factory audit FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What's the difference between verification and an audit?</summary><p>Verification answers "is this a real, legitimate manufacturer?" An audit answers "how well do they actually produce?" Verify before the first deposit; audit before scaling to programme volumes.</p></details>
+      <details class="rv"><summary>How long does it take?</summary><p>One full day on site for a typical cluster factory; scored report within 3 working days. Large export houses may need two days.</p></details>
+      <details class="rv"><summary>Can you audit against our own vendor checklist?</summary><p>Yes — retail chains and brands often supply their own protocol. We execute it alongside or instead of the Qualis framework and report in your format.</p></details>
+      <details class="rv"><summary>Is the audit announced?</summary><p>A full audit is scheduled — you need the management present and records open. The unannounced layer comes from <a href="/production-monitoring-india/">production monitoring</a> visits afterwards.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Audit before you scale</h2>
+      <p>One day on site now is cheaper than a failed programme later. Fixed quote within 2 hours.</p>
+      <p class="mono" style="color:var(--g300)">1 DAY ON SITE · REPORT 3 DAYS · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="cluster">Factory location</label>
+      <select id="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <button class="btn btn-solid" type="submit">Get instant estimate</button>
+      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

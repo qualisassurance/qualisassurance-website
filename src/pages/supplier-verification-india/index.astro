@@ -1,0 +1,356 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import '../../styles/pages/supplier-verification-india.css';
+
+const title = "Furniture Supplier Verification in India | QUALIS";
+const description = "Verify an Indian furniture supplier before wiring a deposit. On-site premises check, manufacturer-vs-trader confirmation, IEC & GST document verification, export history. Report in 3 working days. Paid by buyers, never by factories.";
+const canonical = "https://qualisinspections.com/supplier-verification-india/";
+const ogDescription = "Know who you're paying before you pay them. On-site supplier verification across India's furniture clusters, report in 3 working days.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Furniture Supplier Verification",
+    "serviceType": "Supplier verification",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "url": "https://qualisinspections.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Jodhpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Jaipur"
+      },
+      {
+        "@type": "Place",
+        "name": "Saharanpur"
+      },
+      {
+        "@type": "Place",
+        "name": "Moradabad"
+      },
+      {
+        "@type": "Place",
+        "name": "Delhi NCR"
+      },
+      {
+        "@type": "Place",
+        "name": "Kolkata"
+      }
+    ],
+    "audience": {
+      "@type": "BusinessAudience",
+      "name": "Furniture importers, retailers, brands and e-commerce sellers"
+    },
+    "description": "On-site verification of Indian furniture suppliers before deposits are paid: premises visit, manufacturer-versus-trader confirmation, IEC and GST document checks, machinery and capacity assessment, and export history — reported within 3 working days.",
+    "offers": {
+      "@type": "Offer",
+      "price": "299",
+      "priceCurrency": "USD",
+      "description": "Flat fee, buyer-paid, no travel charges inside clusters"
+    },
+    "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://qualisinspections.com/services/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Supplier Verification",
+        "item": "https://qualisinspections.com/supplier-verification-india/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I verify a furniture supplier in India before paying a deposit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verify three layers: documents (IEC export licence, GST registration, company incorporation), premises (an unannounced physical visit to confirm a real factory with machinery and workers, not a trading office), and history (export shipments, existing overseas clients, bank references). Qualis performs all three on-site within 3 working days and reports before you wire anything."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I tell if an Indian supplier is a manufacturer or a trader?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You usually can't from photos, videos or a video call — traders borrow factories for tours. Reliable signals require a physical visit: machinery consistent with the product, raw material stock, workers on payroll, production in progress matching claimed capacity, and GST/IEC documents matching the premises address."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does supplier verification take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard verification is reported within 3 working days of booking for Jodhpur and Jaipur, and within 5 working days for other clusters. A desk-only Red-Flag Check is returned within 24 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is verification worth it for a small first order?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The typical first-order deposit to an Indian furniture supplier is 30–50% of order value. Verification costs a small fraction of that and is the only step that protects the deposit itself — inspection protects the goods, verification protects the money."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ctaLabel={"Verify a supplier"} ctaHref={"#book"} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Supplier Verification</div>
+
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stage 1 — Before the order</span>
+      <h1>Verify the supplier before you wire a deposit</h1>
+      <p class="lead">Inspection protects the goods. Verification protects the money. We physically visit the supplier, confirm whether they're a real manufacturer or a trader, check every export document, and report before you send a single dollar.</p>
+      <div class="hero-facts">
+        <div><small>Price</small><b>from $299</b></div>
+        <div><small>Report</small><b>3 working days</b></div>
+        <div><small>Visit</small><b>Unannounced</b></div>
+        <div><small>Desk check</small><b>24 hrs</b></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Verify a supplier</a>
+        <a class="btn btn-ghost" href="#redflag">Free Red-Flag Check</a>
+      </div>
+    </div>
+    <figure class="hero-fig rv">
+      <ImageSlot id={"IMG-SV-01"} spec={"1600×1200px"} desc={"Inspector at a factory gate comparing a printed GST certificate against the unit's signboard, clipboard under arm, factory shed and stacked timber visible through the gate. Shot from behind-shoulder so both document and signboard are readable. Documentary, muted grade."} anno={"ADDRESS MATCH: CONFIRMED"} annoStyle={"top:22%;right:8%"} />
+      <figcaption><em>EVIDENCE</em><span>VERIFICATION · PREMISES CHECK · QLS-2026-0902</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 02 WHEN YOU NEED THIS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">When to book</span><h2>Three moments verification saves the deposit</h2></div>
+      <p>The typical first-order deposit to an Indian supplier is 30–50% of order value. This service exists so that money only ever reaches a real factory.</p>
+    </div>
+    <div class="scen-grid">
+      <div class="scen rv"><span class="mono">SCENARIO A</span><h3>You found them on IndiaMART or Alibaba</h3><p>Profiles, photos and even video calls are borrowable. Traders routinely tour someone else's factory. Only an unannounced visit settles it.</p></div>
+      <div class="scen rv"><span class="mono">SCENARIO B</span><h3>The deposit request just arrived</h3><p>Before 30–50% of your order value crosses a border, verify the bank account belongs to the company, and the company owns a factory.</p></div>
+      <div class="scen rv"><span class="mono">SCENARIO C</span><h3>Prices look too good</h3><p>A quote 25% under market usually means a trader planning to subcontract to the cheapest workshop — or worse. Verification finds out which.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RED FLAGS -->
+<section id="redflag">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Field-tested</span><h2>Six red flags we see every month</h2></div>
+      <p>Send us a supplier name or listing and we'll run a free 5-point desk check within 24 hours — before you go any further. <a href="#book">Request it here.</a></p>
+    </div>
+    <div class="flag-grid">
+      <div class="flag rv"><span class="mono">FLAG-01</span><h3>Deposit to a personal account</h3><p>Payment requested to an individual's name or a different company than the one quoting. Walk away or verify first.</p></div>
+      <div class="flag rv"><span class="mono">FLAG-02</span><h3>Factory tour, but never unannounced</h3><p>Every visit needs "preparation time". Real manufacturers let you in; borrowed factories need scheduling.</p></div>
+      <div class="flag rv"><span class="mono">FLAG-03</span><h3>GST/IEC address ≠ factory address</h3><p>Documents registered to a city office while the "factory" is somewhere else entirely. Sometimes legitimate — always worth checking.</p></div>
+      <div class="flag rv"><span class="mono">FLAG-04</span><h3>Catalogue covers everything</h3><p>Sheesham beds, metal chairs, rattan sofas, marble tops — no single factory makes all of it. That's a trader's catalogue.</p></div>
+      <div class="flag rv"><span class="mono">FLAG-05</span><h3>No verifiable export history</h3><p>Claims of "clients in USA and Europe" but no shipment records, no references, no consistency in container volumes.</p></div>
+      <div class="flag rv"><span class="mono">FLAG-06</span><h3>Pressure to skip inspection</h3><p>"Inspection will delay the vessel." A factory confident in its goods never fears an inspector. This flag alone justifies verification.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 WHAT WE CHECK -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Scope</span><h2>What supplier verification actually checks</h2></div>
+      <p>Three layers: paper, premises, and history. All three on-site — desk research alone catches almost nothing in this market.</p>
+    </div>
+    <div class="check-grid">
+      <table class="check-table rv">
+        <thead><tr><th>Ref</th><th>Check</th><th>Method</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Ref">V-01</td><td data-label="Check">Legal identity</td><td data-label="Method">Company registration, proprietorship/LLP/Pvt Ltd status, registered directors</td></tr>
+          <tr><td data-label="Ref">V-02</td><td data-label="Check">Export licence (IEC)</td><td data-label="Method">Importer-Exporter Code validity and name match</td></tr>
+          <tr><td data-label="Ref">V-03</td><td data-label="Check">GST registration</td><td data-label="Method">Active status, address match to premises, filing consistency</td></tr>
+          <tr><td data-label="Ref">V-04</td><td data-label="Check">Premises visit</td><td data-label="Method">Unannounced physical visit: factory vs trading office, photographed</td></tr>
+          <tr><td data-label="Ref">V-05</td><td data-label="Check">Manufacturer vs trader</td><td data-label="Method">Machinery consistent with product, raw material stock, work in progress</td></tr>
+          <tr><td data-label="Ref">V-06</td><td data-label="Check">Real capacity</td><td data-label="Method">Workforce present, shift pattern, output vs claimed monthly capacity</td></tr>
+          <tr><td data-label="Ref">V-07</td><td data-label="Check">Subcontracting exposure</td><td data-label="Method">Which processes leave the building — carving, finishing, upholstery</td></tr>
+          <tr><td data-label="Ref">V-08</td><td data-label="Check">Export history</td><td data-label="Method">Past shipments, destination markets, container volumes, references</td></tr>
+          <tr><td data-label="Ref">V-09</td><td data-label="Check">Bank account match</td><td data-label="Method">Account name vs legal entity vs quote — the wire-fraud check</td></tr>
+          <tr><td data-label="Ref">V-10</td><td data-label="Check">Working conditions snapshot</td><td data-label="Method">Basic safety and workforce observations, photographed</td></tr>
+        </tbody>
+      </table>
+      <figure class="check-fig rv">
+        <ImageSlot id={"IMG-SV-02"} spec={"1200×1600px · portrait"} desc={"Vertical shot down a working machine hall: panel saw and sanding stations in use, timber stock racked to the right, workers mid-task — the visual definition of \"real manufacturer\". Wide-normal lens, natural light, muted grade."} anno={"V-05: MACHINERY CONFIRMED"} annoStyle={"top:20%;right:8%"} />
+        <figcaption><em>METHOD</em><span>V-04/05 PREMISES · UNANNOUNCED</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 VERDICTS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Deliverable</span><h2>You get a verdict, not a data dump</h2></div>
+      <p>Every verification report ends with one of three classifications and a plain-English recommendation.</p>
+    </div>
+    <div class="verdicts">
+      <div class="verdict rv"><span class="chip chip-pass">VERIFIED</span><h3>Proceed</h3><p>Real manufacturer, documents consistent, capacity credible. Recommended payment terms and inspection points included.</p></div>
+      <div class="verdict rv"><span class="chip chip-amber">CONDITIONAL</span><h3>Proceed with controls</h3><p>Genuine but with exposures — heavy subcontracting, capacity stretch, document gaps. We specify the exact controls: milestones, DUPRO, holdbacks.</p></div>
+      <div class="verdict rv"><span class="chip chip-crit">NOT VERIFIED</span><h3>Do not pay</h3><p>Trader posing as manufacturer, premises mismatch, or account red flags. We say it plainly and show the evidence.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PROCESS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Process</span><h2>Booking to verdict in four steps</h2></div></div>
+    <div class="steps">
+      <div class="step rv"><h3>Send the supplier</h3><p>Name, website or marketplace listing, and any quote or proforma you've received.</p></div>
+      <div class="step rv"><h3>Desk check · 24h</h3><p>Documents, registrations and digital footprint cross-checked before anyone travels.</p></div>
+      <div class="step rv"><h3>Unannounced visit</h3><p>Premises, machinery, workforce and capacity — photographed as evidence, V-01→V-10.</p></div>
+      <div class="step rv"><h3>Verdict · day 3</h3><p>Verified / Conditional / Not Verified, with recommended payment terms and next steps.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 RECENT FINDING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">From the field</span><h2>What verification found last month</h2></div></div>
+    <div class="finding rv">
+      <figure style="margin:0">
+        <ImageSlot id={"IMG-SV-03"} spec={"1200×900px"} desc={"Anonymised street shot: a small locked shutter beneath an oversized \"…FURNITURE INDUSTRIES — MANUFACTURER & EXPORTER\" signboard, no factory in sight. Neighbouring shops visible for scale. Signboard name blurred."} anno={"V-04: NO FACTORY AT ADDRESS"} annoStyle={"top:32%;right:8%"} />
+      </figure>
+      <div class="finding-body">
+        <span class="mono">QLS-2026-0868 · VERIFICATION · AU BUYER</span>
+        <h3>Caught before the wire: the manufacturer that was a shutter</h3>
+        <p>An Australian importer was two days from wiring a 30% deposit for a container of "own-factory" dining sets. The GST address led to a locked 200-square-foot trading office; the machinery photos in the supplier's profile traced to another unit entirely; the quoted bank account was in a third name.</p>
+        <p>Verdict: Not Verified. The deposit was never sent, and the buyer placed the order with a verified Boranada factory the same month.</p>
+        <p class="mono" style="margin-top:16px;color:var(--pass)">OUTCOME: AU$27,000 NOT LOST · ORDER REDIRECTED</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Pricing</span><h2>Verification pricing, published</h2></div>
+      <p>A fraction of the deposit it protects.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price rv">
+        <h3>Red-Flag Check</h3>
+        <div class="amt">Free <small>/ supplier</small></div>
+        <ul><li>Desk-only, 5-point check</li><li>Documents &amp; digital footprint</li><li>Returned within 24 hours</li><li>No visit, no verdict — a first filter</li></ul>
+        <a class="btn btn-ghost" href="#book">Request free check</a>
+      </div>
+      <div class="price feat rv">
+        <h3>Full Verification</h3>
+        <div class="amt">$299 <small>/ supplier</small></div>
+        <ul><li>Complete V-01→V-10 scope</li><li>Unannounced premises visit</li><li>Photographed evidence file</li><li>Verified / Conditional / Not Verified verdict</li><li>Report in 3 working days</li></ul>
+        <a class="btn btn-solid" href="#book">Verify a supplier</a>
+      </div>
+      <div class="price rv">
+        <h3>Verification + Audit</h3>
+        <div class="amt">$649 <small>/ supplier</small></div>
+        <ul><li>Everything in Full Verification</li><li>+ Full <a href="/factory-audit-india/">factory audit</a>: process, QC system, compliance</li><li>For programme suppliers &amp; retail vendors</li><li>Report in 5 working days</li></ul>
+        <a class="btn btn-ghost" href="#book">Book combined</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Supplier verification FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How do I verify a furniture supplier in India before paying a deposit?</summary><p>Three layers: documents (IEC, GST, incorporation), premises (an unannounced physical visit — the only reliable test), and history (shipments, references, bank account name match). We do all three and report in 3 working days.</p></details>
+      <details class="rv"><summary>Can't I just do a video call tour?</summary><p>Traders borrow factories for tours, scheduled visits get staged, and video hides addresses. An unannounced visit by someone local who knows what a real production floor looks like is the difference between a check and a performance.</p></details>
+      <details class="rv"><summary>How can you tell a manufacturer from a trader?</summary><p>Machinery consistent with the product, raw material stock, work in progress matching claimed capacity, workers on shift, and documents whose addresses match the building we're standing in. Traders fail at least two of those every time.</p></details>
+      <details class="rv"><summary>Is verification worth it for a small first order?</summary><p>The deposit on even a small container order is usually 30–50% of order value — many times the cost of verification. Inspection protects the goods; verification is the only thing that protects the money.</p></details>
+      <details class="rv"><summary>Do you also help find suppliers?</summary><p>Yes — as a firewalled, fixed-fee <a href="/supplier-shortlisting/">Supplier Shortlisting</a> service paid by you, with zero factory commission, under Clause 05 of our <a href="/why-independent/">Independence Charter</a>. A different inspector signs any later inspection of a factory we shortlisted.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10 BUNDLE -->
+<section>
+  <div class="wrap">
+    <div class="bundle rv">
+      <div>
+        <h3>First order from India? Bundle the whole shield.</h3>
+        <p>First Order Shield combines Supplier Verification, a During-Production Inspection and a Pre-Shipment Inspection at a package price — deposit, production and payment all covered.</p>
+      </div>
+      <a class="btn btn-solid" href="/first-order-shield/">See First Order Shield</a>
+    </div>
+  </div>
+</section>
+
+<!-- 11 BOOKING -->
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Verify before you wire</h2>
+      <p>Send the supplier's name or listing. Free Red-Flag desk check in 24 hours; full on-site verification reported in 3 working days.</p>
+      <p class="mono" style="color:var(--g300)">DESK CHECK 24H · FULL VERDICT 3 DAYS · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Received — desk check within 24 hours';">
+      <label for="supplier">Supplier name or listing URL</label>
+      <input id="supplier" type="text" placeholder="e.g. company name, IndiaMART/Alibaba link" required>
+      <label for="level">Level</label>
+      <select id="level"><option>Free Red-Flag Check (desk only)</option><option>Full Verification (on-site)</option><option>Verification + Factory Audit</option></select>
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <label for="value">Approx. order value (optional)</label>
+      <input id="value" type="text" placeholder="e.g. $40,000">
+      <button class="btn btn-solid" type="submit">Start verification</button>
+      <p class="note">No payment for the Red-Flag Check. Fixed quote before any paid work.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

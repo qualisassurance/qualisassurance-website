@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/global.css';
+
+const title = "Furniture Import Assurance for Furniture Brands & DTC | QUALIS";
+const description = "How Qualis protects furniture brands & dtc importing furniture from India: spec enforcement from golden sample to sealed container.";
+const canonical = "https://qualisinspections.com/buyers/brands/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Import Assurance for Furniture Brands & DTC",
+    "url": "https://qualisinspections.com/buyers/brands/",
+    "description": "How Qualis protects furniture brands & dtc importing furniture from India: spec enforcement from golden sample to sealed container.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Buyers",
+        "item": "https://qualisinspections.com/buyers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Brands",
+        "item": "https://qualisinspections.com/buyers/brands/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Who we protect</span>
+<h1>For furniture brands &amp; DTC: spec enforcement from golden sample to sealed container</h1>
+<p class="lead">Your brand promise is a spec. Indian hand-craft is why you're sourcing here and why enforcement matters—we hold every batch against the golden sample so carton 400 matches the product photography.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Your assurance stack</span></div></div><div class="grid"><a class="card rv" href="/during-production-inspection/"><h3>Golden-sample discipline</h3><p>Approved samples frozen, photographed and enforced at DUPRO and PSI.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Finish &amp; tolerance control</h3><p>Hand-finish variation held inside a defined range—not left to the factory's eye.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Launch protection</h3><p>First-production runs monitored so a launch date never meets a surprise.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Start here</span><p class="prose rv">Tell us your product, supplier status and destination market — we'll recommend the right sequence of services and a fixed quote within 2 hours. Every engagement is buyer-paid under our Independence Charter: we take nothing from factories, ever.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

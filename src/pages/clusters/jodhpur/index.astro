@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImageSlot from '../../../components/ImageSlot.astro';
+import '../../../styles/pages/clusters-jodhpur.css';
+
+const title = "Furniture Inspection in Jodhpur | QUALIS";
+const description = "Same-day furniture inspection, factory audits & supplier verification in Jodhpur — Boranada, Basni, Sangariya & Salawas. Sheesham & mango wood specialists based inside India's largest wooden furniture export cluster since 2017.";
+const canonical = "https://qualisinspections.com/clusters/jodhpur/";
+const ogDescription = "We don't fly in. We live here. Same-day inspections and unannounced factory visits across Jodhpur's furniture industrial areas.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Furniture Inspection & Supplier Verification in Jodhpur",
+    "serviceType": "Furniture inspection",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "url": "https://qualisinspections.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Jodhpur",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Rajasthan"
+      }
+    },
+    "description": "Same-day pre-shipment inspection, factory audits, supplier verification and container loading supervision across Jodhpur's furniture industrial areas: Boranada, Basni, Sangariya and Salawas."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Clusters",
+        "item": "https://qualisinspections.com/clusters/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jodhpur",
+        "item": "https://qualisinspections.com/clusters/jodhpur/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How fast can you inspect a furniture order in Jodhpur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Same day. Qualis is headquartered in Jodhpur, minutes from the Boranada, Basni and Sangariya industrial areas, so inspections can be booked in the morning and performed the same afternoon, and re-inspections after rework typically happen within 48 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What furniture is Jodhpur known for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jodhpur is India's largest wooden furniture export cluster, known for solid sheesham (Indian rosewood), mango and acacia furniture, reclaimed and recycled wood pieces, industrial metal-and-wood designs, carved and distressed 'antique finish' furniture, and bone-inlay work shared with the Jaipur belt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the main quality risks when buying furniture from Jodhpur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The four risks we inspect for most: high moisture content from skipped or shortened kiln cycles, finish drift between production batches, quality variation from subcontracted carving and finishing, and monsoon-season effects on drying, curing and lead times between July and September."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are Jodhpur's furniture factories located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Export furniture production concentrates in the Boranada industrial area (including the EPIP zone), Basni, Sangariya and the Salawas road belt, with hundreds of workshops and factories ranging from 10-worker units to large export houses."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner" ctaLabel={"Book in Jodhpur"} ctaHref={"#book"} ogDescription={ogDescription}>
+<div class="wrap crumbs"><a href="/">Home</a> / <a href="/clusters/">Clusters</a> / Jodhpur</div>
+
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Cluster HQ — where Qualis lives</span>
+      <h1>Furniture inspection &amp; supplier verification in Jodhpur</h1>
+      <p class="lead">India's largest wooden furniture export cluster is our home base. We don't fly in for a day — we're minutes from Boranada, Basni and Sangariya, which is why we inspect same-day and revisit unannounced.</p>
+      <div class="hero-facts">
+        <div><small>Response</small><b>Same day</b></div>
+        <div><small>Re-inspection</small><b>&lt; 48 hrs</b></div>
+        <div><small>Based here since</small><b>2017</b></div>
+        <div><small>Visits</small><b>Unannounced OK</b></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Book in Jodhpur</a>
+        <a class="btn btn-ghost" href="#risks">Jodhpur risk guide</a>
+      </div>
+    </div>
+    <figure class="hero-fig rv">
+      <ImageSlot id={"IMG-JDH-01"} spec={"1600×1200px"} desc={"Elevated view over a Boranada factory yard: rows of finished sheesham furniture staged for packing under shade nets, stacked timber and a kiln shed behind, blue sky burned down to the muted grade. Feels like scale + place — unmistakably Jodhpur."} anno={"BORANADA · 14 MIN FROM HQ"} annoStyle={"top:24%;right:8%"} />
+      <figcaption><em>FIELD</em><span>JODHPUR CLUSTER · EXPORT STAGING</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 02 CLUSTER PROFILE -->
+<section>
+  <div class="wrap prof-grid">
+    <div class="rv">
+      <span class="eyebrow">Cluster profile</span>
+      <h2>What Jodhpur makes, and why buyers come here</h2>
+      <p>Jodhpur is the centre of gravity of Indian wooden furniture export. Thousands of workshops and factories — from ten-craftsman carving units to large export houses — feed containers to the USA, UK, Europe and Australia every week.</p>
+      <p>The cluster's strength is solid wood at scale with hand character: carving, distressing, inlay and finishes that factories in Vietnam or China don't attempt at this price. Its weakness is the same thing — hand processes across subcontracted units produce variation that only inspection controls.</p>
+      <div class="made-grid">
+        <div class="made"><b>Solid sheesham (rosewood)</b><span>Dining, bedroom, living — the cluster staple</span></div>
+        <div class="made"><b>Mango &amp; acacia</b><span>Value solid-wood lines, painted &amp; natural</span></div>
+        <div class="made"><b>Reclaimed &amp; recycled wood</b><span>Character pieces, mixed-timber tops</span></div>
+        <div class="made"><b>Industrial metal + wood</b><span>Iron bases, pipe frames, cart tables</span></div>
+        <div class="made"><b>Carved &amp; distressed "antique"</b><span>Hand-finished, batch-variable by nature</span></div>
+        <div class="made"><b>Bone inlay &amp; painted</b><span>Shared belt with Jaipur workshops</span></div>
+      </div>
+    </div>
+    <figure class="prof-fig rv">
+      <ImageSlot id={"IMG-JDH-02"} spec={"1200×1600px · portrait"} desc={"Timber yard: tall stacks of rough-sawn sheesham air-drying with spacer sticks between boards, a worker moving planks, kiln doorway visible. The raw-material start of every Jodhpur container."} anno={"AIR-DRYING · PRE-KILN"} annoStyle={"top:20%;right:8%"} />
+      <figcaption><em>MATERIAL</em><span>SHEESHAM STOCK · SEASONING YARD</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 03 INDUSTRIAL AREAS + MAP -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Where we work</span><h2>Jodhpur's furniture areas, by drive time from our base</h2></div>
+      <p>Proximity is a risk control: it's what makes same-day booking, 48-hour re-inspection and genuinely unannounced visits possible.</p>
+    </div>
+    <div class="map-grid">
+      <figure class="map-fig rv">
+        <ImageSlot id={"IMG-JDH-03"} spec={"1100×1100px · SVG preferred"} desc={"Thin-line blueprint map of Jodhpur city: Qualis HQ pin in green, dashed drive-time rings, mono labels on Boranada/EPIP, Basni, Sangariya, Salawas Road, ICD (inland container depot) marked with a container glyph. Same drawn style as the India cluster map."} />
+        <figcaption><em>MAP</em><span>JODHPUR · DRIVE-TIME RINGS</span></figcaption>
+      </figure>
+      <table class="area-table rv">
+        <thead><tr><th>Area</th><th>Character</th><th>Drive time</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Area">Boranada / EPIP</td><td data-label="Character">The export engine — large factories, kilns, container stuffing yards</td><td class="mono" data-label="Drive time">~15 MIN</td></tr>
+          <tr><td data-label="Area">Basni</td><td data-label="Character">Dense mid-size units, finishing &amp; assembly, trader offices mixed in</td><td class="mono" data-label="Drive time">~10 MIN</td></tr>
+          <tr><td data-label="Area">Sangariya</td><td data-label="Character">Workshops &amp; component makers, heavy subcontracting flows</td><td class="mono" data-label="Drive time">~15 MIN</td></tr>
+          <tr><td data-label="Area">Salawas Road belt</td><td data-label="Character">Smaller craft units, carving &amp; weaving, pickup-point loading</td><td class="mono" data-label="Drive time">~25 MIN</td></tr>
+          <tr><td data-label="Area">ICD Jodhpur</td><td data-label="Character">Inland container depot — where CLS and seal checks happen</td><td class="mono" data-label="Drive time">~20 MIN</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 CLUSTER RISKS -->
+<section id="risks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Risk guide</span><h2>The four Jodhpur risks we inspect for daily</h2></div>
+      <p>Every cluster fails in its own way. These are Jodhpur's ways — and the inspection point that catches each one.</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk rv"><span class="mono">RISK JDH-1 · MOISTURE</span><h3>Skipped kiln cycles</h3><p>Desert-dry air makes surface wood feel ready while cores stay wet. Under vessel-date pressure, kiln time is the first thing cut — and the crack appears in a heated home in January, not here. This is the cluster's #1 claim generator.</p><span class="caught">CAUGHT AT: <a href="/during-production-inspection/">DUPRO</a> + <a href="/pre-shipment-inspection-india/">PSI C-02 MOISTURE</a></span></div>
+      <div class="risk rv"><span class="mono">RISK JDH-2 · FINISH</span><h3>Batch finish drift</h3><p>Hand-applied stains and distressing mean carton 200 rarely matches carton 20 — different mixing day, different hand, different humidity. Acceptable variation must be defined against a golden sample, or it's defined by your customers' reviews.</p><span class="caught">CAUGHT AT: <a href="/pre-shipment-inspection-india/">PSI C-05 VS GOLDEN SAMPLE</a></span></div>
+      <div class="risk rv"><span class="mono">RISK JDH-3 · SUBCONTRACTING</span><h3>The invisible second factory</h3><p>Carving, turning and finishing routinely leave the building to units your supplier never mentions. Quality control ends at the factory gate unless someone maps where the work actually happens.</p><span class="caught">CAUGHT AT: <a href="/supplier-verification-india/">VERIFICATION V-07</a> + <a href="/factory-audit-india/">FACTORY AUDIT</a></span></div>
+      <div class="risk rv"><span class="mono">RISK JDH-4 · MONSOON</span><h3>July–September physics</h3><p>Humidity spikes stall drying, blush lacquer, swell drawer fits and stretch lead times — while loading in rain soaks cartons. The cluster doesn't stop for monsoon; it just gets riskier.</p><span class="caught">CAUGHT AT: <a href="/container-loading-supervision/">CLS L-10 WEATHER HOLD</a> + MONSOON WATCH</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SEASONAL CALENDAR -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Seasonal risk</span><h2>The Jodhpur production calendar</h2></div>
+      <p>When you order matters almost as much as who you order from. Plan vessel dates around this.</p>
+    </div>
+    <div class="cal rv">
+      <div class="cal-m"><small>JAN</small><div class="cal-dot d-ok"></div></div>
+      <div class="cal-m"><small>FEB</small><div class="cal-dot d-ok"></div></div>
+      <div class="cal-m"><small>MAR</small><div class="cal-dot d-ok"></div></div>
+      <div class="cal-m"><small>APR</small><div class="cal-dot d-warn"></div></div>
+      <div class="cal-m"><small>MAY</small><div class="cal-dot d-warn"></div></div>
+      <div class="cal-m"><small>JUN</small><div class="cal-dot d-warn"></div></div>
+      <div class="cal-m"><small>JUL</small><div class="cal-dot d-crit"></div></div>
+      <div class="cal-m"><small>AUG</small><div class="cal-dot d-crit"></div></div>
+      <div class="cal-m"><small>SEP</small><div class="cal-dot d-crit"></div></div>
+      <div class="cal-m"><small>OCT</small><div class="cal-dot d-warn"></div></div>
+      <div class="cal-m"><small>NOV</small><div class="cal-dot d-ok"></div></div>
+      <div class="cal-m"><small>DEC</small><div class="cal-dot d-ok"></div></div>
+    </div>
+    <div class="cal-legend">
+      <span><i class="d-ok"></i>Stable — best production &amp; loading window</span>
+      <span><i class="d-warn"></i>Watch — heat/festival &amp; pre/post-monsoon effects</span>
+      <span><i class="d-crit"></i>Monsoon — moisture, curing &amp; loading risk elevated</span>
+    </div>
+    <div class="cal-notes">
+      <div class="cal-note rv"><b>OCT–MAR · THE GOOD WINDOW</b><p>Dry, stable conditions: fastest kiln turnaround, most reliable finishes, cleanest loading. Book production for these months when you can.</p></div>
+      <div class="cal-note rv"><b>APR–JUN · HEAT + DIWALI-SEASON RAMP LATER</b><p>Extreme heat affects adhesives and worker hours; peak-season order ramps stretch subcontractors. Watch capacity claims and add DUPRO.</p></div>
+      <div class="cal-note rv"><b>JUL–SEP · MONSOON PROTOCOL</b><p>We tighten moisture limits, extend cure checks, and enforce weather holds at loading. Shipments in this window need PSI + CLS, not either alone.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SERVICES IN JODHPUR -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Available here</span><h2>Every Qualis service, at cluster speed</h2></div></div>
+    <div class="svc-grid">
+      <a class="svc rv" href="/pre-shipment-inspection-india/"><span class="mono">SAME DAY</span><h3>Pre-Shipment Inspection</h3><p>AQL 2.5, moisture, structure, finish vs golden sample — report in 24h.</p></a>
+      <a class="svc rv" href="/container-loading-supervision/"><span class="mono">SAME DAY</span><h3>Container Loading Supervision</h3><p>At factory ramps and ICD Jodhpur — tally, dunnage, weather hold, seal.</p></a>
+      <a class="svc rv" href="/supplier-verification-india/"><span class="mono">3 DAYS</span><h3>Supplier Verification</h3><p>Unannounced premises visits anywhere in the cluster, verdict in 3 working days.</p></a>
+      <a class="svc rv" href="/factory-audit-india/"><span class="mono">BOOKED</span><h3>Factory Audit</h3><p>Process, QC system, subcontracting map, compliance readiness.</p></a>
+      <a class="svc rv" href="/production-monitoring-india/"><span class="mono">WEEKLY</span><h3>Production Monitoring</h3><p>Scheduled + unannounced visits through your production run.</p></a>
+      <a class="svc rv" href="/packaging-transit-validation/"><span class="mono">SAME DAY</span><h3>Packaging &amp; Transit Validation</h3><p>ISTA 3A drop tests for flat-pack and e-commerce orders.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 BUYER TIPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Field advice</span><h2>Five things to know before ordering from Jodhpur</h2></div>
+    </div>
+    <div class="tips">
+      <div class="tip rv"><div class="tnum">TIP 01</div><div class="tbody"><h3>Put moisture in the contract, not the conversation</h3><p>Specify a number — e.g. "≤10% at PSI, pin-meter, core reading" — in the PO. "Properly seasoned wood" is not a specification; it's a hope.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 02</div><div class="tbody"><h3>Approve a golden sample, then freeze it</h3><p>For hand finishes, agree an acceptable-variation range against a physical sample we hold photos of. Distressed finishes without a reference standard are unarbitratable.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 03</div><div class="tbody"><h3>Ask where the carving actually happens</h3><p>Assume subcontracting until proven otherwise, and price it into your inspection plan — a DUPRO visit catches component problems before assembly hides them.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 04</div><div class="tbody"><h3>Respect the calendar</h3><p>A vessel date in August is a moisture bet. If you must ship in monsoon, budget for PSI + CLS together and slightly longer lead times.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 05</div><div class="tbody"><h3>Tie the balance payment to the inspection</h3><p>The clause that changes behaviour: "Balance payable against passed pre-shipment inspection report." Factories plan quality differently when the report is the payment trigger.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2>Jodhpur inspection FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How fast can you inspect in Jodhpur?</summary><p>Same day — we're based here, minutes from Boranada, Basni and Sangariya. Book in the morning, inspect in the afternoon; re-inspections after rework typically within 48 hours.</p></details>
+      <details class="rv"><summary>What furniture is Jodhpur known for?</summary><p>Solid sheesham, mango and acacia furniture, reclaimed-wood pieces, industrial metal-and-wood designs, carved and distressed "antique finish" work, and bone inlay shared with the Jaipur belt. It's India's largest wooden furniture export cluster.</p></details>
+      <details class="rv"><summary>What are the biggest quality risks in Jodhpur?</summary><p>Moisture from skipped kiln cycles, batch-to-batch finish drift on hand-applied finishes, subcontracted processes outside the main factory, and monsoon effects from July to September. Each maps to a specific inspection point — see the risk guide above.</p></details>
+      <details class="rv"><summary>Can you visit a Jodhpur supplier unannounced?</summary><p>Yes — that's the point of being local. Unannounced visits are standard in <a href="/supplier-verification-india/">verification</a> and available in <a href="/production-monitoring-india/">production monitoring</a>.</p></details>
+      <details class="rv"><summary>Do you cover container stuffing at ICD Jodhpur?</summary><p>Yes — <a href="/container-loading-supervision/">CLS</a> runs at factory ramps and at the inland container depot, including multi-factory consolidated loads.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 09 BOOKING -->
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Book any service in Jodhpur — today, if needed</h2>
+      <p>Morning booking, afternoon inspection. The cluster is our neighbourhood.</p>
+      <p class="mono" style="color:var(--g300)">SAME-DAY IN JODHPUR · RESPONSE &lt; 2 HRS · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+      <label for="svc">Service</label>
+      <select id="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select>
+      <label for="area">Factory area (if known)</label>
+      <select id="area"><option>Boranada / EPIP</option><option>Basni</option><option>Sangariya</option><option>Salawas Road</option><option>Elsewhere in Jodhpur</option><option>Don't know yet</option></select>
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <label for="date">Target date</label>
+      <input id="date" type="date">
+      <button class="btn btn-solid" type="submit">Get instant estimate</button>
+      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

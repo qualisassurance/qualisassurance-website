@@ -1,0 +1,177 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import type { WpPost } from '../../lib/wp';
+import { getAllPosts, sanitize, plainText, formatDate, readingMinutes } from '../../lib/wp';
+import { SITE } from '../../lib/site';
+import '../../styles/global.css';
+import '../../styles/blog.css';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const all = await getAllPosts();
+  return all.map((post) => ({
+    params: { slug: post.slug },
+    props: {
+      post,
+      related: all
+        .filter((p) => p.slug !== post.slug)
+        .sort((a, b) => {
+          const shares = (x: WpPost) =>
+            x.categories.some((c) => post.categories.some((pc) => pc.slug === c.slug)) ? 0 : 1;
+          return shares(a) - shares(b) || +new Date(b.date) - +new Date(a.date);
+        })
+        .slice(0, 3),
+    },
+  }));
+};
+
+const { post, related } = Astro.props as { post: WpPost; related: WpPost[] };
+
+const url = `${SITE.url}/blog/${post.slug}/`;
+/* SEO_FIELDS_PER_POST: use the SEO plugin's fields when the schema exposes them,
+   otherwise fall back to the post title and excerpt. See lib/wp.ts. */
+const title = post.seoTitle || `${post.title} | QUALIS`;
+const description = post.seoDescription || plainText(post.excerpt, 155) || plainText(post.content, 155);
+const image = post.featuredImage?.sourceUrl ?? SITE.defaultOgImage;
+const body = sanitize(post.content);
+const mins = readingMinutes(post.content);
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description,
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    datePublished: post.date,
+    dateModified: post.modified,
+    image: [image],
+    inLanguage: 'en',
+    author: {
+      '@type': post.author ? 'Person' : 'Organization',
+      name: post.author?.name ?? 'Qualis',
+      ...(post.author ? {} : { url: SITE.url }),
+    },
+    publisher: {
+      '@type': 'ProfessionalService',
+      name: 'Qualis',
+      legalName: 'Qualis INC',
+      url: SITE.url,
+      logo: { '@type': 'ImageObject', url: `${SITE.url}/images/qualis-logo.svg` },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Jodhpur',
+        addressRegion: 'Rajasthan',
+        addressCountry: 'IN',
+      },
+    },
+    ...(post.categories.length || post.tags.length
+      ? { keywords: [...post.categories, ...post.tags].map((t) => t.name).join(', ') }
+      : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Field Notes', item: `${SITE.url}/blog/` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+    ],
+  },
+];
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={url}
+  jsonld={jsonld}
+  navVariant="inner"
+  ogTitle={post.seoTitle || post.title}
+  ogImage={image}
+  ogType="article"
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog/">Field Notes</a> / <span>{post.title}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <article class="b-article">
+        <span class="eyebrow">{post.categories[0]?.name ?? 'Field note'}</span>
+        <h1>{post.title}</h1>
+        <div class="b-meta">
+          <span class="b-mono">{formatDate(post.date)}</span>
+          {post.author && <span class="b-mono">By {post.author.name}</span>}
+          <span class="b-mono">{mins} min read</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <article class="b-article">
+        {post.featuredImage && (
+          <figure class="b-hero-img">
+            <img
+              src={post.featuredImage.sourceUrl}
+              alt={post.featuredImage.altText ?? post.title}
+              width={post.featuredImage.width ?? undefined}
+              height={post.featuredImage.height ?? undefined}
+              loading="eager"
+              decoding="async"
+            />
+            <figcaption><span>Evidence</span><em>Qualis · {formatDate(post.date)}</em></figcaption>
+          </figure>
+        )}
+
+        <div class="b-body" set:html={body} />
+
+        <div class="b-foot">
+          {(post.tags.length > 0 || post.categories.length > 0) && (
+            <div class="b-terms">
+              {post.categories.map((c) => (
+                <a class="b-term" href={`/blog/category/${c.slug}/`}>{c.name}</a>
+              ))}
+              {post.tags.map((t) => (
+                <a class="b-term" href={`/blog/tag/${t.slug}/`}>#{t.name}</a>
+              ))}
+            </div>
+          )}
+          {post.author?.description && (
+            <div class="b-author">
+              <div>
+                <b>{post.author.name}</b>
+                <p>{post.author.description}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section>
+      <div class="wrap">
+        <div class="sec-head"><div><span class="eyebrow">Keep reading</span></div></div>
+        <div class="b-related">
+          {related.map((p) => <PostCard post={p} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="final">
+    <div class="wrap">
+      <span class="eyebrow">Book</span>
+      <h2>Your next India order. Protected.</h2>
+      <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+      <a class="btn btn-solid" href="/#book">Book an inspection</a>
+    </div>
+  </section>
+</BaseLayout>

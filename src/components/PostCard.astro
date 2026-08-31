@@ -1,0 +1,33 @@
+---
+import type { WpPost } from '../lib/wp';
+import { formatDate, plainText } from '../lib/wp';
+
+interface Props { post: WpPost }
+const { post } = Astro.props;
+const cat = post.categories[0];
+---
+<a class="b-card rv" href={`/blog/${post.slug}/`}>
+  {post.featuredImage ? (
+    <div class="b-thumb">
+      <img
+        src={post.featuredImage.sourceUrl}
+        alt={post.featuredImage.altText ?? ''}
+        width={post.featuredImage.width ?? undefined}
+        height={post.featuredImage.height ?? undefined}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div class="b-thumb is-empty"><span>Qualis field note</span></div>
+  )}
+  <div class="b-body">
+    <div class="b-kicker">
+      <span class="b-mono">{formatDate(post.date)}</span>
+      {cat && <span class="chip chip-pass">{cat.name}</span>}
+    </div>
+    <h2>{post.title}</h2>
+    <p>{plainText(post.excerpt, 150)}</p>
+    <span class="b-more">Read →</span>
+  </div>
+</a>

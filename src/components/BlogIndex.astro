@@ -1,0 +1,70 @@
+---
+import PostCard from './PostCard.astro';
+import BlogEmpty from './BlogEmpty.astro';
+import type { WpPost, WpTerm } from '../lib/wp';
+
+interface Props {
+  posts: WpPost[];
+  page: number;
+  totalPages: number;
+  total: number;
+  categories: (WpTerm & { count: number })[];
+  tags: (WpTerm & { count: number })[];
+}
+const { posts, page, totalPages, total, categories, tags } = Astro.props;
+const href = (n: number) => (n <= 1 ? '/blog/' : `/blog/page/${n}/`);
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="b-head">
+      <span class="eyebrow">Field notes</span>
+      <h1>What we see on the floor in India's furniture clusters</h1>
+      <p>
+        Inspection findings, defect patterns and import-compliance notes from our inspectors —
+        written for buyers, not for factories.
+      </p>
+      {(categories.length > 0 || tags.length > 0) && (
+        <div class="b-terms">
+          {categories.map((c) => (
+            <a class="b-term" href={`/blog/category/${c.slug}/`}>{c.name} ({c.count})</a>
+          ))}
+          {tags.map((t) => (
+            <a class="b-term" href={`/blog/tag/${t.slug}/`}>#{t.name}</a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    {posts.length === 0 ? (
+      <BlogEmpty />
+    ) : (
+      <>
+        <div class="b-grid">
+          {posts.map((p) => <PostCard post={p} />)}
+        </div>
+        {totalPages > 1 && (
+          <nav class="b-pager" aria-label="Blog pages">
+            <span class="b-count">Page {page} of {totalPages} · {total} article{total === 1 ? '' : 's'}</span>
+            <div class="b-pager-links">
+              {page > 1 ? <a href={href(page - 1)} rel="prev">← Newer</a> : <span>← Newer</span>}
+              {page < totalPages ? <a href={href(page + 1)} rel="next">Older →</a> : <span>Older →</span>}
+            </div>
+          </nav>
+        )}
+      </>
+    )}
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">Book</span>
+    <h2>Your next India order. Protected.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>

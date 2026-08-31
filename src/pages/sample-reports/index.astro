@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "Sample Furniture Inspection Reports | QUALIS";
+const description = "Read real anonymised Qualis reports before you hire us: pre-shipment inspection, supplier verification, factory audit and container loading supervision. No login, no email gate.";
+const canonical = "https://qualisinspections.com/sample-reports/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sample Furniture Inspection Reports",
+    "url": "https://qualisinspections.com/sample-reports/",
+    "description": "Read real anonymised Qualis reports before you hire us: pre-shipment inspection, supplier verification, factory audit and container loading supervision. No login, no email gate.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sample Reports",
+        "item": "https://qualisinspections.com/sample-reports/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">The product</span>
+<h1>Read our reports before you hire us</h1>
+<p class="lead">The report is the product. Every finding photographed, measured and referenced to a standard—judge us on it. No login, no email gate.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Available reports</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection — PSI</h3><p>14-page anonymised report: AQL summary, moisture readings, defect photos with severity classes, pass/fail result. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>The three-layer verdict report: documents, premises evidence, manufacturer-vs-trader conclusion. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>Scored 8-section audit with corrective action plan example. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Condition record, tally, tier-by-tier photo sequence and sealed seal number. [PDF + HTML coming at launch]</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">How to read a Qualis report</span><p class="prose rv">Three habits make our reports useful: numbers instead of adjectives (a moisture range, not "acceptable"), a standard reference on every check (ISO 2859-1, EN 1728, ISTA 3A, or your spec), and a severity class on every defect so you can apply your own tolerance. The final page is always a decision aid: release payment, demand rework, or hold—with the evidence you would need for either conversation.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

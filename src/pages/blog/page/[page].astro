@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogIndex from '../../../components/BlogIndex.astro';
+import { getAllPosts, getUsedTerms, POSTS_PER_PAGE } from '../../../lib/wp';
+import '../../../styles/global.css';
+import '../../../styles/blog.css';
+
+/** Page 1 lives at /blog/, so this route starts at 2. With 0–12 posts it emits nothing. */
+export const getStaticPaths: GetStaticPaths = async () => {
+  const all = await getAllPosts();
+  const totalPages = Math.ceil(all.length / POSTS_PER_PAGE);
+  const paths = [];
+  for (let n = 2; n <= totalPages; n++) {
+    paths.push({
+      params: { page: String(n) },
+      props: {
+        posts: all.slice((n - 1) * POSTS_PER_PAGE, n * POSTS_PER_PAGE),
+        page: n,
+        totalPages,
+        total: all.length,
+      },
+    });
+  }
+  return paths;
+};
+
+const { posts, page, totalPages, total } = Astro.props as any;
+const categories = await getUsedTerms('categories');
+const tags = await getUsedTerms('tags');
+
+const title = `Field Notes — page ${page} | QUALIS`;
+const description = `Page ${page} of furniture inspection field notes and India import guides from Qualis.`;
+const canonical = `https://qualisinspections.com/blog/page/${page}/`;
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    url: canonical,
+    isPartOf: { '@type': 'Blog', name: 'Qualis Field Notes', url: 'https://qualisinspections.com/blog/' },
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+  <BlogIndex posts={posts} page={page} totalPages={totalPages} total={total} categories={categories} tags={tags} />
+</BaseLayout>

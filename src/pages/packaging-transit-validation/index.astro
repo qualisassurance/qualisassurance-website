@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "Furniture Packaging & Transit Validation (ISTA) in India | QUALIS";
+const description = "ISTA 3A drop testing and packaging validation for flat-pack and e-commerce furniture shipped from India — cut transit-damage returns before the container ships.";
+const canonical = "https://qualisinspections.com/packaging-transit-validation/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Packaging & Transit Validation (ISTA) in India",
+    "url": "https://qualisinspections.com/packaging-transit-validation/",
+    "description": "ISTA 3A drop testing and packaging validation for flat-pack and e-commerce furniture shipped from India — cut transit-damage returns before the container ships.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Packaging Transit Validation",
+        "item": "https://qualisinspections.com/packaging-transit-validation/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Stage 3 — Before payment</span>
+<h1>The carton is part of the product</h1>
+<p class="lead">For parcel-shipped furniture, the box matters as much as the piece inside. We drop-test, review packaging specs and validate hardware kits so your returns rate stops eating the margin.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">What we validate</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>ISTA 3A drop sequence</h3><p>Sampled cartons through the parcel-network drop protocol—six orientations, photographed results.</p></a><a class="card rv" href="/#book"><h3>Packaging spec review</h3><p>Corner protection, honeycomb board, void fill and carton grade vs the weight actually inside.</p></a><a class="card rv" href="/#book"><h3>Flat-pack kit integrity</h3><p>Hardware BOM counts, instruction sheets, part labelling—the difference between a sale and a return.</p></a><a class="card rv" href="/#book"><h3>Marketplace requirements</h3><p>Packaging expectations for Amazon-class parcel networks checked before goods are sealed.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Why it pays for itself</span><p class="prose rv">Transit damage is the silent margin killer for e-commerce furniture: the product was perfect, the journey wasn't. A failed drop test before shipment costs a packaging respec; a failed journey after shipment costs return freight, refunds and reviews. Buyers typically add this to a pre-shipment inspection on the same visit—one booking, both risks covered.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

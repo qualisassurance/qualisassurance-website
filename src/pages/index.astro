@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageSlot from '../components/ImageSlot.astro';
+import '../styles/pages/home.css';
+
+const title = "Furniture Inspection & Supplier Verification in India | QUALIS";
+const description = "Independent furniture inspection, factory audits & supplier verification in Jodhpur and across India. Paid by buyers, never by factories. Reports in 24 hours. Since 2017.";
+const canonical = "https://qualisinspections.com/";
+const ogTitle = "QUALIS — India's Furniture Import Assurance Partner";
+const ogDescription = "Independent furniture inspection & supplier verification on the ground in India's furniture clusters. Paid by buyers. Never by factories.";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Qualis",
+    "legalName": "Qualis INC",
+    "url": "https://qualisinspections.com",
+    "logo": "https://qualisinspections.com/images/qualis-logo.svg",
+    "description": "Independent furniture inspection, factory audits and supplier verification for overseas buyers importing furniture from India.",
+    "foundingDate": "2017",
+    "founder": {
+      "@type": "Person",
+      "name": "Yogesh Raygoor"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jodhpur",
+      "addressRegion": "Rajasthan",
+      "addressCountry": "IN"
+    },
+    "areaServed": [
+      "US",
+      "GB",
+      "AU",
+      "DE",
+      "NL",
+      "FR",
+      "AE"
+    ],
+    "knowsAbout": [
+      "Furniture inspection",
+      "Pre-shipment inspection",
+      "Supplier verification",
+      "Factory audit",
+      "Container loading supervision",
+      "AQL sampling"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pre-Shipment Furniture Inspection"
+        },
+        "price": "249",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Supplier Verification"
+        },
+        "price": "299",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Factory Audit"
+        },
+        "price": "449",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Container Loading Supervision"
+        },
+        "price": "269",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Production Monitoring"
+        },
+        "price": "199",
+        "priceCurrency": "USD"
+      }
+    ],
+    "slogan": "Paid by buyers. Never by factories.",
+    "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does furniture inspection cost in India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Qualis publishes fixed per-inspection pricing, typically 40–60% below global inspection firms for equivalent scope. A standard pre-shipment inspection in Jodhpur is quoted as a flat fee including AQL 2.5 sampling, photographed reporting within 24 hours, and a decision call."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How fast can you inspect a furniture order in Jodhpur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Same-day in Jodhpur and Jaipur, 24 hours in Delhi NCR, and 48–72 hours in Saharanpur, Moradabad and Kolkata. Bookings are confirmed within 2 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are you a sourcing agent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Qualis is an independent, buyer-side inspection and verification firm. We are paid only by buyers and accept zero commission from factories. Our supplier shortlisting service is a fixed fee paid by the buyer, firewalled from inspection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What standards do you inspect furniture against?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AQL sampling per ISO 2859-1, structural checks referencing EN 1728 and EN 12520/12521, BS 5852 awareness for UK upholstery, ISTA 3A packaging drop tests, moisture-content limits per destination climate, and your own product specification."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you verify an Indian furniture supplier before I pay a deposit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Supplier verification confirms whether you are dealing with a real manufacturer or a trader, checks export licences (IEC), GST registration, premises, machinery and export history — usually within 3 working days."
+        }
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="home" ogTitle={ogTitle} ogDescription={ogDescription}>
+<!-- 01 HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">QUALIS — India's Furniture Import Assurance Partner</span>
+      <h1>The one thing every furniture importer needs in India</h1>
+      <p class="punch">Paid by buyers. Never by factories.</p>
+      <p class="lead">Independent inspection and supplier verification—done on the ground, not from a desk. We verify suppliers. We monitor production. We inspect every shipment before it leaves India's furniture clusters. Simple reason: so you never pay for a container you can't sell.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#book">Book an inspection</a>
+        <a class="btn btn-ghost" href="#report">See a sample report</a>
+      </div>
+    </div>
+    <div class="hero-fig rv">
+      <figure>
+        <ImageSlot id={"IMG-01"} spec={"1600×1200px · JPG/AVIF"} desc={"Your inspector mid-inspection in a Jodhpur factory: gloved hand pressing a pin-type moisture meter into a sheesham tabletop, tablet with checklist visible, natural window light, workshop softly blurred behind. Shot at eye level, subject right-of-centre to leave room for the overlay card. Slightly desaturated, documentary style — no posing, no stock."} anno={"MC 9.2% · WITHIN SPEC"} annoStyle={"top:22%;right:8%"} />
+        <figcaption><em>EVIDENCE</em><span>PSI · JODHPUR-BORANADA · QLS-2026-0834</span></figcaption>
+      </figure>
+      <div class="hero-card" aria-label="Inspection summary example">
+        <div class="hc-top"><span class="mono">PRE-SHIPMENT INSPECTION</span><span class="mono">AQL 2.5</span></div>
+        <div class="rrow"><span>Moisture (12 readings)</span><span class="chip chip-pass">PASS</span></div>
+        <div class="rrow"><span>Joint integrity</span><span class="chip chip-pass">PASS</span></div>
+        <div class="rrow"><span>Finish uniformity</span><span class="chip chip-amber">3 MIN</span></div>
+        <div class="hc-foot"><span class="mono">RESULT</span><b>CLEARED FOR LOADING</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 INDEPENDENCE BAR -->
+<div class="ibar" id="independent">
+  <div class="wrap">
+    <span><b>Paid by buyers only</b></span>
+    <span>Zero factory commission</span>
+    <span>Furniture only</span>
+    <span>Jodhpur-based since 2017</span>
+    <span>ISO/IEC 17020 — in progress</span>
+  </div>
+</div>
+
+<!-- 03 PROOF STRIP: STATS + LOGOS -->
+<section>
+  <div class="wrap">
+    <div class="stats rv">
+      <div class="stat"><b>2 hrs</b><span>Booking confirmed</span></div>
+      <div class="stat"><b>24 hrs</b><span>Report delivered after inspection</span></div>
+      <div class="stat"><b>Same day</b><span>On-site in Jodhpur &amp; Jaipur</span></div>
+      <div class="stat"><b>7 countries</b><span>Buyers protected: US · UK · AU · DE · NL · FR · UAE</span></div>
+    </div>
+    <p class="eyebrow" style="text-align:center">Trusted by furniture importers &amp; brands</p>
+    <div class="logos rv">
+      <ImageSlot id={"LOGO-01…06"} spec={"400×160px · SVG/PNG"} desc={"Client logos, mono-grey"} as={"figure"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+    </div>
+  </div>
+</section>
+
+<!-- 04 WHAT GOES WRONG -->
+<section aria-labelledby="h-defects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The problem</span><h2 id="h-defects">What goes wrong with Indian furniture imports</h2></div>
+      <p>Six failure patterns. They cause most rejected containers and most buyer claims. We've photographed every single one, classified them, and catch them all before loading. Explore the full <a href="/defects/">India Furniture Defect Library</a>.</p>
+    </div>
+    <div class="defect-grid">
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-02"} spec={"800×600px"} desc={"Macro: hairline crack running along sheesham tabletop grain, raking side-light to show depth, steel rule laid beside it for scale."} anno={"SPLIT 0.4MM"} annoStyle={"top:30%;right:6%"} />
+        <figcaption><em>DEF-011</em><span>WOOD · MOISTURE</span></figcaption></figure>
+        <div class="d-body"><h3>Unseasoned timber cracking</h3><p>Sheesham shipped above 12% moisture splits when it meets central heating in the US or EU. The single largest claim category.</p><span class="chip chip-crit">CRITICAL</span></div>
+      </article>
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-03"} spec={"800×600px"} desc={"Macro: cloudy white blush/bloom patch on a dark lacquered surface, reflection of window showing the haze clearly."} />
+        <figcaption><em>DEF-024</em><span>FINISH · HUMIDITY</span></figcaption></figure>
+        <div class="d-body"><h3>Finish bloom in transit</h3><p>Lacquer cured during monsoon humidity clouds and blushes inside a hot container.</p><span class="chip chip-amber">MAJOR</span></div>
+      </article>
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-04"} spec={"800×600px"} desc={"Underside of a chair flipped on a workbench: open mortise-and-tenon joint with visible gap, inspector's finger pointing, torch light."} anno={"GAP 2MM"} annoStyle={"top:40%;right:6%"} />
+        <figcaption><em>DEF-032</em><span>STRUCTURE · JOINT</span></figcaption></figure>
+        <div class="d-body"><h3>Joint &amp; frame failure</h3><p>Subcontracted assembly with undersized tenons or missing corner blocks — invisible until a customer sits down.</p><span class="chip chip-crit">CRITICAL</span></div>
+      </article>
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-05"} spec={"800×600px"} desc={"Warehouse stack of brown cartons being tally-counted, inspector with clipboard in frame, carton count chalked on end panels."} />
+        <figcaption><em>DEF-047</em><span>QUANTITY · COUNT</span></figcaption></figure>
+        <div class="d-body"><h3>Short shipment</h3><p>Cartons counted at the door, not the invoice. Orders arrive 5–20% short with no recourse after payment.</p><span class="chip chip-amber">MAJOR</span></div>
+      </article>
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-06"} spec={"800×600px"} desc={"Flat-pack hardware bag emptied onto white tray: bolts sorted into rows, one row visibly short, printed kit list beside tray."} anno={"M6 ×4 MISSING"} annoStyle={"top:26%;right:6%"} />
+        <figcaption><em>DEF-053</em><span>HARDWARE · KIT</span></figcaption></figure>
+        <div class="d-body"><h3>Wrong or missing hardware</h3><p>Flat-pack kits with mismatched fittings turn a sellable SKU into a returns problem.</p><span class="chip chip-amber">MAJOR</span></div>
+      </article>
+      <article class="defect rv">
+        <figure><ImageSlot id={"IMG-07"} spec={"800×600px"} desc={"Inside an open 40ft container at dawn: crushed bottom-tier carton under a badly stacked load, inspector's torch beam on the damage."} />
+        <figcaption><em>DEF-061</em><span>LOADING · STACKING</span></figcaption></figure>
+        <div class="d-body"><h3>Container loading damage</h3><p>Poor dunnage and stacking crush the bottom tier before the ship leaves Mundra.</p><span class="chip chip-crit">CRITICAL</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SERVICES -->
+<section id="services" aria-labelledby="h-services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The system</span><h2 id="h-services">Furniture import assurance in three stages</h2></div>
+      <p>Verification before you commit. Monitoring while you wait. Inspection before you pay.</p>
+    </div>
+    <div class="stage-grid">
+      <div class="stage rv">
+        <span class="stage-n">STAGE 1 — BEFORE THE ORDER</span>
+        <h3>Verify</h3>
+        <ul>
+          <li><a href="/supplier-verification-india/">Supplier Verification</a><small>Documents, premises, export history — factory or trader?</small></li>
+          <li><a href="/factory-audit-india/">Factory Audit</a><small>Capacity, process, compliance, subcontracting — on site.</small></li>
+          <li><a href="/supplier-shortlisting/">Supplier Shortlisting</a><small>Fixed fee, paid by you. We take nothing from factories.</small></li>
+        </ul>
+      </div>
+      <div class="stage rv">
+        <span class="stage-n">STAGE 2 — DURING PRODUCTION</span>
+        <h3>Monitor</h3>
+        <ul>
+          <li><a href="/production-monitoring-india/">Production Monitoring</a><small>Scheduled and unannounced visits with photo reports.</small></li>
+          <li><a href="/during-production-inspection/">During-Production Inspection</a><small>Catch defects at 20–50% complete, when they're fixable.</small></li>
+          <li><a href="/monsoon-watch/">Monsoon Watch</a><small>Seasonal moisture and lead-time risk advisories.</small></li>
+        </ul>
+      </div>
+      <div class="stage rv">
+        <span class="stage-n">STAGE 3 — BEFORE PAYMENT</span>
+        <h3>Inspect</h3>
+        <ul>
+          <li><a href="/pre-shipment-inspection-india/">Pre-Shipment Inspection</a><small>AQL-sampled, standards-referenced, report in 24 hours.</small></li>
+          <li><a href="/container-loading-supervision/">Container Loading Supervision</a><small>Count, condition, dunnage, seal — witnessed and photographed.</small></li>
+          <li><a href="/packaging-transit-validation/">Packaging &amp; Transit Validation</a><small>ISTA drop tests for e-commerce and flat-pack orders.</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FIELD STRIP + HOW IT WORKS -->
+<section>
+  <div class="wrap">
+    <figure class="strip rv" style="margin-bottom:56px">
+      <ImageSlot id={"IMG-08"} spec={"2400×900px · panorama"} desc={"Wide establishing shot inside a working Jodhpur furniture factory: rows of carved sheesham pieces in progress, craftsmen working, dust in shafts of morning light, your inspector walking the line with a tablet — the one image that proves \"we are actually here\". Colour-graded to the muted paper/ink palette."} />
+      <figcaption><em>FIELD</em><span>BORANADA INDUSTRIAL AREA · JODHPUR · 08:40 IST</span></figcaption>
+    </figure>
+    <div class="sec-head"><div><span class="eyebrow">Process</span><h2>How a booking works</h2></div></div>
+    <div class="steps">
+      <div class="step rv"><h3>Book online</h3><p>Service, cluster, date, product. Confirmed within 2 hours with a fixed quote.</p></div>
+      <div class="step rv"><h3>We inspect</h3><p>AQL sampling per ISO 2859-1, live photo updates on WhatsApp if you want them.</p></div>
+      <div class="step rv"><h3>Report in 24h</h3><p>Photographed findings, severity classification, standard references, pass/fail.</p></div>
+      <div class="step rv"><h3>You decide</h3><p>Decision call with your inspector. Release payment, demand rework, or hold the container.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 SAMPLE REPORT -->
+<section id="report" aria-labelledby="h-report">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The product</span><h2 id="h-report">Read a real furniture inspection report before you hire us</h2></div>
+      <p>Every finding is photographed, measured and referenced to a standard. No login, no email gate.</p>
+    </div>
+    <div class="sr-grid">
+      <figure class="sr-fig rv">
+        <ImageSlot id={"IMG-09"} spec={"1200×900px"} desc={"Flat-lay of the printed Qualis report: cover page with green CLEARED badge and a spread showing an annotated defect photo page. Shot on the paper-toned background, slight shadow, QR code visible."} />
+        <figcaption><em>REPORT</em><span>PSI · 14 PAGES · DELIVERED 24H</span></figcaption>
+      </figure>
+      <div class="rv">
+        <div class="sr">
+          <table>
+            <thead><tr><th>Item</th><th>Check</th><th>Reading</th><th>Standard</th><th>Class</th></tr></thead>
+            <tbody>
+              <tr><td class="mono" data-label="Item">03/240</td><td data-label="Check">Tabletop moisture content</td><td class="mono" data-label="Reading">13.6%</td><td class="mono" data-label="Standard">SPEC ≤11%</td><td data-label="Class"><span class="chip chip-crit">CRIT</span></td></tr>
+              <tr><td class="mono" data-label="Item">17/240</td><td data-label="Check">Leg joint racking test</td><td class="mono" data-label="Reading">STABLE</td><td class="mono" data-label="Standard">EN 1728</td><td data-label="Class"><span class="chip chip-pass">PASS</span></td></tr>
+              <tr><td class="mono" data-label="Item">44/240</td><td data-label="Check">Finish vs approved sample</td><td class="mono" data-label="Reading">ΔVISIBLE</td><td class="mono" data-label="Standard">CLIENT REF</td><td data-label="Class"><span class="chip chip-amber">MAJ</span></td></tr>
+              <tr><td class="mono" data-label="Item">CARTON</td><td data-label="Check">Drop test, 6 orientations</td><td class="mono" data-label="Reading">6/6</td><td class="mono" data-label="Standard">ISTA 3A</td><td data-label="Class"><span class="chip chip-pass">PASS</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:20px"><a class="btn btn-ghost" href="/sample-reports/">Download three full sample reports</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 CLUSTERS -->
+<section id="clusters" aria-labelledby="h-clusters">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">On the ground</span><h2 id="h-clusters">Minutes from India's furniture factories, not a flight away</h2></div>
+      <p>Global firms fly an inspector in for a day. We live in the clusters. Same-day inspections. Unannounced revisits. And we know which industrial area floods in August.</p>
+    </div>
+    <div class="cl-grid">
+      <figure class="map-fig rv">
+        <ImageSlot id={"IMG-10"} spec={"1000×1100px · SVG preferred"} desc={"Thin-line blueprint-style map of India on paper background: green location pins on Jodhpur (largest), Jaipur, Saharanpur, Moradabad, Delhi NCR, Kolkata; dashed response-radius rings around Jodhpur; mono labels. Drawn, not photographic."} />
+        <figcaption><em>COVERAGE</em><span>6 CLUSTERS · HQ JODHPUR</span></figcaption>
+      </figure>
+      <table class="cl-table rv">
+        <thead><tr><th>Cluster</th><th>Known for</th><th>Key risk we watch</th><th>Response</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Cluster"><a href="/clusters/jodhpur/">Jodhpur</a></td><td data-label="Known for">Solid sheesham, mango, reclaimed &amp; industrial</td><td data-label="Key risk we watch">Seasoning &amp; batch finish drift</td><td class="mono" data-label="Response">SAME DAY</td></tr>
+          <tr><td data-label="Cluster"><a href="/clusters/jaipur/">Jaipur</a></td><td data-label="Known for">Carved, painted &amp; bone-inlay furniture</td><td data-label="Key risk we watch">Subcontracted carving quality</td><td class="mono" data-label="Response">SAME DAY</td></tr>
+          <tr><td data-label="Cluster"><a href="/clusters/saharanpur/">Saharanpur</a></td><td data-label="Known for">Wood carving &amp; turned components</td><td data-label="Key risk we watch">Moisture &amp; grading consistency</td><td class="mono" data-label="Response">48 HRS</td></tr>
+          <tr><td data-label="Cluster"><a href="/clusters/moradabad/">Moradabad</a></td><td data-label="Known for">Metal &amp; metal-wood combination</td><td data-label="Key risk we watch">Weld quality &amp; coating adhesion</td><td class="mono" data-label="Response">48 HRS</td></tr>
+          <tr><td data-label="Cluster"><a href="/clusters/delhi-ncr/">Delhi NCR</a></td><td data-label="Known for">Upholstery, mixed-material, export houses</td><td data-label="Key risk we watch">Trader-vs-factory verification</td><td class="mono" data-label="Response">24 HRS</td></tr>
+          <tr><td data-label="Cluster"><a href="/clusters/kolkata/">Kolkata</a></td><td data-label="Known for">Cane &amp; rattan</td><td data-label="Key risk we watch">Material treatment &amp; mould</td><td class="mono" data-label="Response">72 HRS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 09 CASE STUDIES -->
+<section aria-labelledby="h-cases">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Proof</span><h2 id="h-cases">Findings that paid for themselves</h2></div></div>
+    <div class="case-grid">
+      <article class="case rv">
+        <figure><ImageSlot id={"IMG-11"} spec={"800×500px"} desc={"Moisture meter reading 15.8% on an unfinished bed headboard, kiln in background."} />
+        <figcaption><em>CASE-01</em><span>UK RETAILER · DUPRO</span></figcaption></figure>
+        <div class="c-body"><dl>
+          <dt>Risk</dt><dd>First order, 2×40ft of sheesham bedroom sets.</dd>
+          <dt>Finding</dt><dd>DUPRO found moisture at 14–16%. Production paused; kiln cycle enforced.</dd>
+          <dt>Outcome</dt><dd>Shipped at ≤10%. Zero cracking claims in the first UK winter.</dd>
+        </dl><div class="saved">£38,000 protected</div></div>
+      </article>
+      <article class="case rv">
+        <figure><ImageSlot id={"IMG-12"} spec={"800×500px"} desc={"Carton mid-drop-test above concrete floor; corner protection visible; before/after diptych acceptable."} />
+        <figcaption><em>CASE-02</em><span>US E-COMMERCE · ISTA 3A</span></figcaption></figure>
+        <div class="c-body"><dl>
+          <dt>Risk</dt><dd>22% transit-damage return rate on flat-pack.</dd>
+          <dt>Finding</dt><dd>Drop tests failed 4/6 orientations. Packaging respecced with corner blocks and honeycomb board.</dd>
+          <dt>Outcome</dt><dd>Return rate fell to 6% over two shipments.</dd>
+        </dl><div class="saved">$61,000/yr in returns</div></div>
+      </article>
+      <article class="case rv">
+        <figure><ImageSlot id={"IMG-13"} spec={"800×500px"} desc={"Locked shutter of a small trading office with a grand signboard — the \"factory\" that wasn't. Shot from street, anonymised."} />
+        <figcaption><em>CASE-03</em><span>AU IMPORTER · VERIFICATION</span></figcaption></figure>
+        <div class="c-body"><dl>
+          <dt>Risk</dt><dd>30% deposit ready to wire to an unverified "manufacturer".</dd>
+          <dt>Finding</dt><dd>Verification found a trading office, no factory, a borrowed export licence.</dd>
+          <dt>Outcome</dt><dd>Deposit never sent. Buyer redirected to a verified Boranada factory.</dd>
+        </dl><div class="saved">AU$27,000 not lost</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 10 WHO WE PROTECT -->
+<section id="who" aria-labelledby="h-who">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Buyers</span><h2 id="h-who">Who we protect</h2></div></div>
+    <div class="who-grid">
+      <a class="who rv" href="/buyers/importers/"><h3>Importers &amp; wholesalers</h3><p>Container-level assurance and repeat-order monitoring.</p></a>
+      <a class="who rv" href="/buyers/retail-chains/"><h3>Retail chains</h3><p>Vendor programmes, AQL alignment and audit trails for your QA team.</p></a>
+      <a class="who rv" href="/buyers/brands/"><h3>Furniture brands &amp; DTC</h3><p>Spec enforcement from golden sample to sealed container.</p></a>
+      <a class="who rv" href="/buyers/ecommerce/"><h3>E-commerce sellers</h3><p>ISTA packaging validation to cut transit-damage returns.</p></a>
+      <a class="who rv" href="/buyers/projects/"><h3>Interior &amp; hospitality projects</h3><p>FF&amp;E inspection against project specifications and deadlines.</p></a>
+      <a class="who rv" href="/buyers/procurement/"><h3>Procurement teams</h3><p>Independent eyes and documented evidence for every India PO.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- 11 PRICING -->
+<section id="pricing" aria-labelledby="h-pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Pricing</span><h2 id="h-pricing">Published prices. No enterprise runaround.</h2></div>
+      <p>We're typically 40–60% below global inspection firms for equivalent scope. Because we're already here.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price rv">
+        <h3>Single inspection</h3>
+        <div class="amt">from $249 <small>/ inspection</small></div>
+        <ul><li>PSI, DUPRO or CLS</li><li>AQL 2.5 · ISO 2859-1 sampling</li><li>Photographed report in 24 hours</li><li>Decision call with your inspector</li></ul>
+        <a class="btn btn-ghost" href="#book">Book now</a>
+      </div>
+      <div class="price feat rv">
+        <h3>Protected Container</h3>
+        <div class="amt">from $449 <small>/ container</small></div>
+        <ul><li>Pre-shipment inspection</li><li>Container loading supervision</li><li>Seal verification &amp; load photos</li><li>Priority 12-hour reporting</li></ul>
+        <a class="btn btn-solid" href="#book">Protect my container</a>
+      </div>
+      <div class="price rv">
+        <h3>First Order Shield</h3>
+        <div class="amt">from $649 <small>/ order</small></div>
+        <ul><li>Supplier verification</li><li>During-production inspection</li><li>Pre-shipment inspection</li><li>Built for your first India order</li></ul>
+        <a class="btn btn-ghost" href="#book">Start protected</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 TEAM -->
+<section aria-labelledby="h-team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">People</span><h2 id="h-team">Your inspectors, by name</h2></div>
+      <p>No anonymous freelancers. The person who signs your report is the person who stood in the factory.</p>
+    </div>
+    <div class="team-grid">
+      <article class="person rv">
+        <figure><ImageSlot id={"IMG-14"} spec={"600×600px"} desc={"Yogesh, half-length portrait in a factory aisle, arms relaxed, tablet in hand, looking at camera. Natural light, muted grade. Not a studio headshot."} />
+        <figcaption><em>FOUNDER</em><span>LEAD INSPECTOR · JODHPUR</span></figcaption></figure>
+        <div class="p-body"><h3>Yogesh Raygoor</h3><p>In the Jodhpur furniture trade since before Qualis existed. Solid wood, finishes, and the factories behind them.</p></div>
+      </article>
+      <article class="person rv">
+        <figure><ImageSlot id={"IMG-15"} spec={"600×600px"} desc={"Inspector portrait, same style and grade as IMG-14 for consistency."} />
+        <figcaption><em>INSPECTOR</em><span>JODHPUR / JAIPUR</span></figcaption></figure>
+        <div class="p-body"><h3>[Inspector name]</h3><p>Specialty, years, standards trained on.</p></div>
+      </article>
+      <article class="person rv">
+        <figure><ImageSlot id={"IMG-16"} spec={"600×600px"} desc={"Inspector portrait, same style and grade as IMG-14 for consistency."} />
+        <figcaption><em>INSPECTOR</em><span>NCR / SAHARANPUR</span></figcaption></figure>
+        <div class="p-body"><h3>[Inspector name]</h3><p>Specialty, years, standards trained on.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 13 FAQ -->
+<section id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Questions</span><h2 id="h-faq">Furniture inspection in India — FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How much does furniture inspection cost in India?</summary><p>We publish fixed per-inspection pricing — typically 40–60% below global inspection firms for equivalent scope. A standard pre-shipment inspection is a flat fee including AQL 2.5 sampling, a photographed report within 24 hours, and a decision call with your inspector.</p></details>
+      <details class="rv"><summary>How fast can you inspect a furniture order in Jodhpur?</summary><p>Same-day in Jodhpur and Jaipur, 24 hours in Delhi NCR, and 48–72 hours in Saharanpur, Moradabad and Kolkata. Every booking is confirmed within 2 hours.</p></details>
+      <details class="rv"><summary>Are you a sourcing agent?</summary><p>No. Qualis is an independent, buyer-side inspection and verification firm. We are paid only by buyers and accept zero commission from factories. Our supplier shortlisting service is a fixed fee paid by you, firewalled from inspection — read our <a href="/why-independent/">Independence Charter</a>.</p></details>
+      <details class="rv"><summary>What standards do you inspect furniture against?</summary><p>AQL sampling per ISO 2859-1, structural checks referencing EN 1728 and EN 12520/12521, BS 5852 awareness for UK upholstery, ISTA 3A packaging drop tests, moisture-content limits set for your destination climate, and your own product specification.</p></details>
+      <details class="rv"><summary>Can you verify an Indian furniture supplier before I pay a deposit?</summary><p>Yes — and you should. Supplier verification confirms whether you're dealing with a real manufacturer or a trader, and checks export licence (IEC), GST registration, premises, machinery and export history, usually within 3 working days.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 14 FINAL CTA -->
+<section class="final" id="book">
+  <div class="wrap final-grid">
+    <div>
+      <span class="eyebrow">Book</span>
+      <h2>Your next India order. Protected.</h2>
+      <p>Tell us the service, the cluster and the date. We confirm within 2 hours, inspect on schedule, and report within 24 — with live photo updates on WhatsApp if you want them.</p>
+      <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+      <label for="svc">Service</label>
+      <select id="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select>
+      <label for="cluster">Factory location</label>
+      <select id="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
+      <label for="fullname">Your name</label>
+      <input id="fullname" type="text" placeholder="First and last name" required>
+      <label for="company">Company</label>
+      <input id="company" type="text" placeholder="Company name" required>
+      <label for="email">Work email</label>
+      <input id="email" type="email" placeholder="you@company.com" required>
+      <label for="phone">Phone / WhatsApp (optional)</label>
+      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <label for="date">Target inspection date</label>
+      <input id="date" type="date">
+      <button class="btn btn-solid" type="submit">Get instant estimate</button>
+      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+    </form>
+  </div>
+</section>
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const title = "During-Production Inspection (DUPRO) in India | QUALIS";
+const description = "During-production furniture inspection in India at 20–50% completion: catch moisture, dimension and finish problems while rework is still cheap. Same-day in Jodhpur & Jaipur.";
+const canonical = "https://qualisinspections.com/during-production-inspection/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "During-Production Inspection (DUPRO) in India",
+    "url": "https://qualisinspections.com/during-production-inspection/",
+    "description": "During-production furniture inspection in India at 20–50% completion: catch moisture, dimension and finish problems while rework is still cheap. Same-day in Jodhpur & Jaipur.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "During Production Inspection",
+        "item": "https://qualisinspections.com/during-production-inspection/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Stage 2 — During production</span>
+<h1>Catch it at 30% complete. Fix it in hours, not containers.</h1>
+<p class="lead">The cheapest defect is the one caught mid-run. DUPRO inspects at 20–50% completion—components, early assemblies, first finished pieces—while rework costs hours, not containers.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">What DUPRO catches early</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Moisture, before assembly hides it</h3><p>Core readings on components and panels—the point where a skipped kiln cycle is still fixable.</p></a><a class="card rv" href="/#book"><h3>Dimensions &amp; first-offs</h3><p>First completed pieces measured against spec before the whole batch repeats an error.</p></a><a class="card rv" href="/#book"><h3>Finish direction</h3><p>Early finished pieces vs golden sample, before 200 more are sprayed the wrong shade.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Schedule truth</h3><p>Real progress vs claimed progress—the honest answer to "will it make the vessel?"</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">When to book</span><p class="prose rv">Book DUPRO at 20–50% completion—early enough that findings change the run, late enough that there is real product to inspect. On first orders and monsoon-season orders we recommend DUPRO plus PSI as a pair; the combination is included in the First Order Shield bundle. Same-day availability in Jodhpur and Jaipur, report within 24 hours, fixed fee from $249 published on booking.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>

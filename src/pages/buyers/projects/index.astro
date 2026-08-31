@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/global.css';
+
+const title = "Furniture Import Assurance for Interior & Hospitality Projects | QUALIS";
+const description = "How Qualis protects interior & hospitality projects importing furniture from India: FF&E delivered to spec, on the project timeline.";
+const canonical = "https://qualisinspections.com/buyers/projects/";
+const jsonld = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Furniture Import Assurance for Interior & Hospitality Projects",
+    "url": "https://qualisinspections.com/buyers/projects/",
+    "description": "How Qualis protects interior & hospitality projects importing furniture from India: FF&E delivered to spec, on the project timeline.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Qualis",
+      "url": "https://qualisinspections.com"
+    },
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Qualis",
+      "legalName": "Qualis INC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jodhpur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://qualisinspections.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Buyers",
+        "item": "https://qualisinspections.com/buyers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Projects",
+        "item": "https://qualisinspections.com/buyers/projects/"
+      }
+    ]
+  }
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Who we protect</span>
+<h1>For interior &amp; hospitality projects: FF&amp;E delivered to spec, on the project timeline</h1>
+<p class="lead">Projects don't get second containers: the install date is the install date. We inspect against the FF&amp;E schedule itself and keep production honest to the timeline, so procurement never explains a delayed opening.</p>
+<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
+</div>
+</section>
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Your assurance stack</span></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Spec-package inspection</h3><p>Every line item checked against the FF&amp;E schedule and finishes package.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Timeline monitoring</h3><p>Production tracked against install dates—slippage flagged in week 2, not week 8.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Multi-vendor consolidation</h3><p>Per-factory tally at loading when one container serves one project.</p></a></div></div></section><section><div class="wrap prose-wrap"><span class="eyebrow">Start here</span><p class="prose rv">Tell us your product, supplier status and destination market — we'll recommend the right sequence of services and a fixed quote within 2 hours. Every engagement is buyer-paid under our Independence Charter: we take nothing from factories, ever.</p></div></section>
+<section class="final">
+<div class="wrap">
+<span class="eyebrow">Book</span>
+<h2>Your next India order. Protected.</h2>
+<p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+<a class="btn btn-solid" href="/#book">Book an inspection</a>
+</div>
+</section>
+</BaseLayout>
