@@ -144,7 +144,7 @@
     "title": "Furniture Inspection & Supplier Verification in India | QUALIS",
     "jsonld": 2,
     "stylesheet": "styles/pages/home.css",
-    "imageSlots": 22
+    "imageSlots": 19
   },
   {
     "url": "/monsoon-watch/",
@@ -207,6 +207,6 @@
     "title": "Why Independent | The Qualis Independence Charter",
     "jsonld": 2,
     "stylesheet": "styles/pages/why-independent.css",
-    "imageSlots": 1
+    "imageSlots": 0
   }
 ]

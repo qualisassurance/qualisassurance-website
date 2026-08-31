@@ -101,6 +101,9 @@ const HERO_SLOTS = new Set([
 function toImageSlots(main, stats) {
   const total = (main.match(/<(?:div|figure) class="ph">/g) || []).length;
   let matched = 0;
+  /* Repeated ids (the client-logo row) are addressed ID#2, ID#3, … in document
+     order, matching the keys in image-map.json. */
+  const seen = new Map();
   const out = main.replace(PH_RE, (_all, tag, label, desc, annoStyle, anno) => {
     matched++;
     const clean = (s) => decodeAttr((s ?? '').replace(/\s+/g, ' ').trim());
@@ -114,7 +117,9 @@ function toImageSlots(main, stats) {
     if (clean(anno)) parts.push(`anno=${attr(clean(anno))}`);
     if (annoStyle) parts.push(`annoStyle=${attr(annoStyle)}`);
     if (tag !== 'div') parts.push(`as=${attr(tag)}`);
-    const img = IMAGES[id];
+    const n = (seen.get(id) ?? 0) + 1;
+    seen.set(id, n);
+    const img = IMAGES[n === 1 ? id : `${id}#${n}`];
     if (img) {
       stats.withPhoto++;
       parts.push(`src=${attr(img.src)}`, `width={${img.width}}`, `height={${img.height}}`);
@@ -237,6 +242,112 @@ function slugFor(urlPath) {
   return s === '' ? 'home' : s;
 }
 
+/* ------------------------------------------------------ section rewrites */
+/**
+ * Two sections in the reference are built around photography the owner has
+ * decided not to shoot (three inspector portraits and a founder portrait), and
+ * the team cards also still carry unfilled copy — literal "[Inspector name]"
+ * and "Specialty, years, standards trained on.". Both are rewritten here rather
+ * than by hand so a re-port cannot bring the placeholders back.
+ *
+ * Every factual claim below is carried over from the reference or from
+ * llms.txt; nothing about the team is invented. The two unnamed inspectors are
+ * represented by the clusters they cover, not by made-up names.
+ */
+const SECTION_REWRITES = {
+  '/': [
+    {
+      // the whole "Your inspectors, by name" section
+      find: /<section aria-labelledby="h-team">[\s\S]*?<\/section>/,
+      replace: `<section aria-labelledby="h-team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">People</span><h2 id="h-team">Who signs your report</h2></div>
+      <p>No anonymous freelancers. The person who signs your report is the person who stood in the factory.</p>
+    </div>
+    <div class="signoff rv">
+      <div class="signoff-lead">
+        <span class="mono">REPORT SIGNATORY</span>
+        <h3>Yogesh Raygoor</h3>
+        <p class="signoff-role">Founder &amp; lead inspector · Jodhpur</p>
+        <p>In the Jodhpur furniture trade since before Qualis existed. Solid wood, finishes, and the factories behind them.</p>
+      </div>
+      <ul class="signoff-facts">
+        <li><b>Named on the report</b><span>Not a company stamp. You know who inspected your order.</span></li>
+        <li><b>Same person on the call</b><span>The inspector who walked the floor talks you through the findings.</span></li>
+        <li><b>Charter-bound</b><span>Buyer-paid under the Independence Charter — never paid by the factory.</span></li>
+      </ul>
+    </div>
+    <div class="signoff-foot rv">
+      <span class="mono">ON THE GROUND</span>
+      <p>Inspectors working across <a href="/clusters/jodhpur/">Jodhpur</a>, <a href="/clusters/jaipur/">Jaipur</a>, <a href="/clusters/saharanpur/">Saharanpur</a>, <a href="/clusters/moradabad/">Moradabad</a>, <a href="/clusters/delhi-ncr/">Delhi NCR</a> and <a href="/clusters/kolkata/">Kolkata</a>.</p>
+    </div>
+  </div>
+</section>`,
+    },
+  ],
+  '/why-independent/': [
+    {
+      // drop the founder portrait; keep every word, restyled as a signed statement
+      find: /<div class="wrap founder">[\s\S]*?<figure class="rv">[\s\S]*?<\/figure>/,
+      replace: `<div class="wrap founder founder-statement">`,
+    },
+    {
+      // the removed figcaption carried the attribution; reinstate it as a
+      // signature strip under the quote, in the same ink/mono language
+      find: /<\/blockquote>/,
+      replace: `</blockquote>
+      <div class="sig"><em>FOUNDER</em><span>YOGESH RAYGOOR · JODHPUR</span></div>`,
+    },
+  ],
+};
+
+function rewriteSections(main, urlPath, problems) {
+  for (const rule of SECTION_REWRITES[urlPath] ?? []) {
+    if (!rule.find.test(main)) { problems.push(`${urlPath}: section rewrite did not match — the reference markup changed`); continue; }
+    main = main.replace(rule.find, rule.replace);
+  }
+  return main;
+}
+
+/* Page-specific CSS for the rewritten sections, appended to that page's own
+   stylesheet. Uses only existing design tokens. */
+const PAGE_EXTRA_CSS = {
+  home: `
+/* --- "Who signs your report" — replaces the three portrait cards ---------- */
+.signoff{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.signoff-lead{background:#fff;padding:30px 28px}
+.signoff-lead .mono{display:block;color:var(--g500);margin-bottom:14px}
+.signoff-lead h3{font-size:1.45rem;margin-bottom:4px}
+.signoff-lead .signoff-role{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pass);margin-bottom:14px}
+.signoff-lead p{font-size:.95rem;color:var(--g700)}
+.signoff-facts{list-style:none;background:#fff;display:flex;flex-direction:column}
+.signoff-facts li{padding:20px 28px;border-bottom:1px dashed var(--rule)}
+.signoff-facts li:last-child{border-bottom:none}
+.signoff-facts b{font-family:'Inter Tight',sans-serif;font-size:1rem;display:block;margin-bottom:4px}
+.signoff-facts span{font-size:.9rem;color:var(--g700)}
+.signoff-foot{border:1px solid var(--rule);border-top:none;background:var(--paper);padding:18px 28px;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.signoff-foot .mono{color:var(--g500);white-space:nowrap}
+.signoff-foot p{font-size:.95rem;color:var(--g700)}
+.signoff-foot a{color:var(--pass);text-decoration:none;border-bottom:1px solid var(--pass-tint)}
+.signoff-foot a:hover{border-bottom-color:var(--pass)}
+@media (max-width:760px){
+  .signoff{grid-template-columns:1fr}
+  .signoff-lead,.signoff-facts li,.signoff-foot{padding-left:22px;padding-right:22px}
+  .signoff-foot{flex-direction:column;gap:8px}
+  /* same 16px body-copy floor the rest of the mobile layer enforces */
+  .signoff-lead p,.signoff-facts span,.signoff-foot p{font-size:1rem;line-height:1.6}
+}
+`,
+  'why-independent': `
+/* --- founder statement — replaces the portrait + text split -------------- */
+.founder-statement{display:block;max-width:820px}
+.founder-statement blockquote{font-size:clamp(1.3rem,2.6vw,1.7rem);border-left:3px solid var(--pass);padding-left:22px}
+.founder-statement .sig{display:inline-flex;gap:12px;align-items:baseline;background:var(--ink);color:var(--g300);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;padding:8px 14px;text-transform:uppercase;margin:0 0 26px}
+.founder-statement .sig em{font-style:normal;color:var(--pass-tint)}
+`,
+};
+
 /* ------------------------------------------------------------------- convert */
 /* Remove only what THIS tool generated last time, listed in the previous
    manifest. Never blanket-delete src/pages: hand-written routes (the whole
@@ -279,6 +390,7 @@ for (const file of files) {
 
   let main = between(html, '<main>', '</main>');
   if (main == null) { problems.push(`${urlPath}: no <main>`); continue; }
+  main = rewriteSections(main, urlPath, problems);
   main = labelTableCells(main, stats);
   main = toImageSlots(main, stats);
   const usesImageSlot = main.includes('<ImageSlot');
@@ -297,7 +409,7 @@ for (const file of files) {
       `   split into shared + override sheets. Do not edit by hand; regenerate\n` +
       `   with: node tools/port-reference.mjs <reference-dir> */\n`;
     fs.mkdirSync(path.join(ROOT, 'src/styles/pages'), { recursive: true });
-    fs.writeFileSync(path.join(ROOT, 'src/styles/pages', `${slug}.css`), header + style.trim() + '\n' + IMAGE_SLOT_RUNTIME + OWNER_FIXES);
+    fs.writeFileSync(path.join(ROOT, 'src/styles/pages', `${slug}.css`), header + style.trim() + '\n' + IMAGE_SLOT_RUNTIME + OWNER_FIXES + (PAGE_EXTRA_CSS[slug] ?? ''));
     stats.withCss++;
   }
 

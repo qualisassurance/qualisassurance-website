@@ -312,3 +312,28 @@ figure{margin:0}
       other 23. The markup always said class="mono"; this makes it true. */
 :root{--g500:#737169}
 .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.04em}
+
+/* --- "Who signs your report" — replaces the three portrait cards ---------- */
+.signoff{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.signoff-lead{background:#fff;padding:30px 28px}
+.signoff-lead .mono{display:block;color:var(--g500);margin-bottom:14px}
+.signoff-lead h3{font-size:1.45rem;margin-bottom:4px}
+.signoff-lead .signoff-role{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pass);margin-bottom:14px}
+.signoff-lead p{font-size:.95rem;color:var(--g700)}
+.signoff-facts{list-style:none;background:#fff;display:flex;flex-direction:column}
+.signoff-facts li{padding:20px 28px;border-bottom:1px dashed var(--rule)}
+.signoff-facts li:last-child{border-bottom:none}
+.signoff-facts b{font-family:'Inter Tight',sans-serif;font-size:1rem;display:block;margin-bottom:4px}
+.signoff-facts span{font-size:.9rem;color:var(--g700)}
+.signoff-foot{border:1px solid var(--rule);border-top:none;background:var(--paper);padding:18px 28px;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.signoff-foot .mono{color:var(--g500);white-space:nowrap}
+.signoff-foot p{font-size:.95rem;color:var(--g700)}
+.signoff-foot a{color:var(--pass);text-decoration:none;border-bottom:1px solid var(--pass-tint)}
+.signoff-foot a:hover{border-bottom-color:var(--pass)}
+@media (max-width:760px){
+  .signoff{grid-template-columns:1fr}
+  .signoff-lead,.signoff-facts li,.signoff-foot{padding-left:22px;padding-right:22px}
+  .signoff-foot{flex-direction:column;gap:8px}
+  /* same 16px body-copy floor the rest of the mobile layer enforces */
+  .signoff-lead p,.signoff-facts span,.signoff-foot p{font-size:1rem;line-height:1.6}
+}

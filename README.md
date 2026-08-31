@@ -115,8 +115,7 @@ User-Agent, download every `fonts.gstatic.com` URL, and rewrite those URLs to `/
 
 ## Images
 
-**23 of the 36 slots have real photography**; the remaining 13 still render the original
-dashed placeholder with its slot ID and art-direction brief.
+**Every image slot is filled** — 32 of them. No dashed placeholders remain.
 
 `tools/image-map.json` maps a slot ID to a source filename. To add or replace photos,
 drop the files in a folder, add the mapping, and run:
@@ -136,9 +135,24 @@ verified: every `.ph` frame occupies an identical box with and without photograp
 Alt text is derived from the first sentence of the art-direction brief, which describes
 the shot; the rest (lighting, grading, framing notes) is dropped.
 
-**Still outstanding:** 6 client logos, 3 team portraits (`IMG-14/15/16`), the founder
-portrait (`IMG-IND-01`), two blueprint maps (`IMG-10` India, `IMG-JDH-03` Jodhpur) and
-`IMG-SV-03`. `public/favicon.svg` is also a placeholder derived from the wordmark.
+Where a page repeats a slot id — the six client-logo frames all but one use `LOGO` —
+later occurrences are addressed `LOGO#2`, `LOGO#3`, … in document order.
+
+The two supplied blueprint maps arrived as `.svg` but are a single base64 bitmap in an
+SVG wrapper, so they are rasterised rather than shipped raw: 2.5 MB becomes 33 KB.
+
+**Two sections were rewritten to need no photography** (`SECTION_REWRITES` in the
+porter), at the owner's request:
+
+- The home page's three inspector portrait cards became a "Who signs your report"
+  signatory panel. Those cards also still carried unfilled copy — literal
+  `[Inspector name]` and "Specialty, years, standards trained on." — so they could not
+  have shipped as they were. Every claim in the replacement comes from existing copy or
+  llms.txt; the two unnamed inspectors are represented by the clusters they cover.
+- The `/why-independent/` founder portrait was dropped and the section restyled as a
+  signed statement. **All prose is preserved verbatim**; only the layout changed.
+
+`public/favicon.svg` remains a placeholder derived from the wordmark.
 
 ---
 

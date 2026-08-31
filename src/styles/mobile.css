@@ -162,6 +162,10 @@
      and are left alone. */
   .stage li small { font-size: 1rem; line-height: 1.55; }
 
+  /* Case-study details inherit .88rem from `.case dl`; the <dt> labels stay mono
+     micro-type, but the <dd> copy is prose and needs the 16px floor. */
+  .case dl { font-size: 1rem; line-height: 1.6; }
+
   /* button labels are actions — never below 16px on a phone */
   .btn, .bundle .btn, form input, form select { font-size: 1rem; }
 

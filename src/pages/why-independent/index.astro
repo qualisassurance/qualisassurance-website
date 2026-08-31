@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ImageSlot from '../../components/ImageSlot.astro';
 import '../../styles/pages/why-independent.css';
 
 const title = "Why Independent | The Qualis Independence Charter";
@@ -158,14 +157,11 @@ const jsonld = [
 
 <!-- 04 FOUNDER NOTE -->
 <section>
-  <div class="wrap founder">
-    <figure class="rv">
-      <ImageSlot id={"IMG-IND-01"} spec={"1000×1000px"} desc={"Yogesh seated at a workbench in a Jodhpur factory, printed Charter document in front of him, pen in hand, looking at camera. Honest, unglossy, natural side light. Same muted grade as all site photography."} />
-      <figcaption><em>FOUNDER</em><span>YOGESH RAYGOOR · JODHPUR</span></figcaption>
-    </figure>
+  <div class="wrap founder founder-statement">
     <div class="rv">
       <span class="eyebrow">Why this page exists</span>
       <blockquote>"I've watched buyers wire deposits to factories their own agent was paid to praise. This Charter is the document I wish someone had shown them first."</blockquote>
+      <div class="sig"><em>FOUNDER</em><span>YOGESH RAYGOOR · JODHPUR</span></div>
       <p>Qualis started in Jodhpur in 2017, inside the largest wooden-furniture export cluster in India. We built this firm on one uncomfortable truth: an inspection is a financial instrument. If the person inspecting earns from the shipment, you don't have an inspection — you have marketing.</p>
       <p>The Charter above is not a values page. It is the operating agreement behind every booking, quoted in our contracts and enforceable by you. If you ever find us in breach of it, the engagement is free and the report is void.</p>
       <p class="mono" style="color:var(--pass)">QUESTIONS? ASK THE INSPECTOR, NOT A SALESPERSON → <a href="/#book" style="color:var(--pass)">BOOK A 20-MIN CALL</a></p>

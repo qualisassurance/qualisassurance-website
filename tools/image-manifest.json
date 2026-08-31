@@ -113,5 +113,50 @@
     "src": "/images/img-fa-01.jpg",
     "width": 1600,
     "height": 1200
+  },
+  "IMG-10": {
+    "src": "/images/img-10.jpg",
+    "width": 1000,
+    "height": 1100
+  },
+  "IMG-JDH-03": {
+    "src": "/images/img-jdh-03.jpg",
+    "width": 1100,
+    "height": 1100
+  },
+  "IMG-SV-03": {
+    "src": "/images/img-sv-03.jpg",
+    "width": 1200,
+    "height": 900
+  },
+  "LOGO-01…06": {
+    "src": "/images/logo-01-06.jpg",
+    "width": 400,
+    "height": 160
+  },
+  "LOGO": {
+    "src": "/images/logo.jpg",
+    "width": 400,
+    "height": 160
+  },
+  "LOGO#2": {
+    "src": "/images/logo-2.jpg",
+    "width": 400,
+    "height": 160
+  },
+  "LOGO#3": {
+    "src": "/images/logo-3.jpg",
+    "width": 400,
+    "height": 160
+  },
+  "LOGO#4": {
+    "src": "/images/logo-4.jpg",
+    "width": 400,
+    "height": 160
+  },
+  "LOGO#5": {
+    "src": "/images/logo-5.jpg",
+    "width": 400,
+    "height": 160
   }
 }

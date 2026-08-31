@@ -195,12 +195,12 @@ const jsonld = [
     </div>
     <p class="eyebrow" style="text-align:center">Trusted by furniture importers &amp; brands</p>
     <div class="logos rv">
-      <ImageSlot id={"LOGO-01…06"} spec={"400×160px · SVG/PNG"} desc={"Client logos, mono-grey"} as={"figure"} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} />
+      <ImageSlot id={"LOGO-01…06"} spec={"400×160px · SVG/PNG"} desc={"Client logos, mono-grey"} as={"figure"} src={"/images/logo-01-06.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-2.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-3.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-4.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-5.jpg"} width={400} height={160} />
     </div>
   </div>
 </section>
@@ -342,7 +342,7 @@ const jsonld = [
     </div>
     <div class="cl-grid">
       <figure class="map-fig rv">
-        <ImageSlot id={"IMG-10"} spec={"1000×1100px · SVG preferred"} desc={"Thin-line blueprint-style map of India on paper background: green location pins on Jodhpur (largest), Jaipur, Saharanpur, Moradabad, Delhi NCR, Kolkata; dashed response-radius rings around Jodhpur; mono labels. Drawn, not photographic."} />
+        <ImageSlot id={"IMG-10"} spec={"1000×1100px · SVG preferred"} desc={"Thin-line blueprint-style map of India on paper background: green location pins on Jodhpur (largest), Jaipur, Saharanpur, Moradabad, Delhi NCR, Kolkata; dashed response-radius rings around Jodhpur; mono labels. Drawn, not photographic."} src={"/images/img-10.jpg"} width={1000} height={1100} />
         <figcaption><em>COVERAGE</em><span>6 CLUSTERS · HQ JODHPUR</span></figcaption>
       </figure>
       <table class="cl-table rv">
@@ -445,25 +445,25 @@ const jsonld = [
 <section aria-labelledby="h-team">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="eyebrow">People</span><h2 id="h-team">Your inspectors, by name</h2></div>
+      <div><span class="eyebrow">People</span><h2 id="h-team">Who signs your report</h2></div>
       <p>No anonymous freelancers. The person who signs your report is the person who stood in the factory.</p>
     </div>
-    <div class="team-grid">
-      <article class="person rv">
-        <figure><ImageSlot id={"IMG-14"} spec={"600×600px"} desc={"Yogesh, half-length portrait in a factory aisle, arms relaxed, tablet in hand, looking at camera. Natural light, muted grade. Not a studio headshot."} />
-        <figcaption><em>FOUNDER</em><span>LEAD INSPECTOR · JODHPUR</span></figcaption></figure>
-        <div class="p-body"><h3>Yogesh Raygoor</h3><p>In the Jodhpur furniture trade since before Qualis existed. Solid wood, finishes, and the factories behind them.</p></div>
-      </article>
-      <article class="person rv">
-        <figure><ImageSlot id={"IMG-15"} spec={"600×600px"} desc={"Inspector portrait, same style and grade as IMG-14 for consistency."} />
-        <figcaption><em>INSPECTOR</em><span>JODHPUR / JAIPUR</span></figcaption></figure>
-        <div class="p-body"><h3>[Inspector name]</h3><p>Specialty, years, standards trained on.</p></div>
-      </article>
-      <article class="person rv">
-        <figure><ImageSlot id={"IMG-16"} spec={"600×600px"} desc={"Inspector portrait, same style and grade as IMG-14 for consistency."} />
-        <figcaption><em>INSPECTOR</em><span>NCR / SAHARANPUR</span></figcaption></figure>
-        <div class="p-body"><h3>[Inspector name]</h3><p>Specialty, years, standards trained on.</p></div>
-      </article>
+    <div class="signoff rv">
+      <div class="signoff-lead">
+        <span class="mono">REPORT SIGNATORY</span>
+        <h3>Yogesh Raygoor</h3>
+        <p class="signoff-role">Founder &amp; lead inspector · Jodhpur</p>
+        <p>In the Jodhpur furniture trade since before Qualis existed. Solid wood, finishes, and the factories behind them.</p>
+      </div>
+      <ul class="signoff-facts">
+        <li><b>Named on the report</b><span>Not a company stamp. You know who inspected your order.</span></li>
+        <li><b>Same person on the call</b><span>The inspector who walked the floor talks you through the findings.</span></li>
+        <li><b>Charter-bound</b><span>Buyer-paid under the Independence Charter — never paid by the factory.</span></li>
+      </ul>
+    </div>
+    <div class="signoff-foot rv">
+      <span class="mono">ON THE GROUND</span>
+      <p>Inspectors working across <a href="/clusters/jodhpur/">Jodhpur</a>, <a href="/clusters/jaipur/">Jaipur</a>, <a href="/clusters/saharanpur/">Saharanpur</a>, <a href="/clusters/moradabad/">Moradabad</a>, <a href="/clusters/delhi-ncr/">Delhi NCR</a> and <a href="/clusters/kolkata/">Kolkata</a>.</p>
     </div>
   </div>
 </section>

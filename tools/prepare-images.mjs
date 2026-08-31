@@ -15,14 +15,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const SRC = process.argv[2];
-if (!SRC) throw new Error('usage: node tools/prepare-images.mjs <source-image-dir>');
+const SRC_DIRS = process.argv.slice(2);
+if (!SRC_DIRS.length) throw new Error('usage: node tools/prepare-images.mjs <source-dir> [more dirs…]');
+/** Sources are spread over several folders; take the first match. */
+const findSource = (file) => SRC_DIRS.map((d) => path.join(d, file)).find((f) => fs.existsSync(f));
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT = path.join(ROOT, 'public/images');
 const PAGES = path.join(ROOT, 'src/pages');
 
 /* ---- collect each slot's declared pixel spec from the ported pages ---- */
 const specs = new Map();
+const seen = new Map();
 (function walk(d) {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
     const p = path.join(d, e.name);
@@ -32,9 +35,14 @@ const specs = new Map();
       for (const m of s.matchAll(/<ImageSlot ([^>]*?)\/>/g)) {
         const a = {};
         for (const kv of m[1].matchAll(/(\w+)=\{("(?:[^"\\]|\\.)*")\}/g)) a[kv[1]] = JSON.parse(kv[2]);
-        if (!a.id || !a.spec) continue;
-        const dim = a.spec.match(/(\d+)\s*×\s*(\d+)/);
-        if (dim) specs.set(a.id, { w: +dim[1], h: +dim[2] });
+        if (!a.id) continue;
+        /* A page can repeat an id — the six client-logo frames all but one use
+           "LOGO". Address later occurrences as ID#2, ID#3, … in document order. */
+        const n = (seen.get(a.id) ?? 0) + 1;
+        seen.set(a.id, n);
+        const key = n === 1 ? a.id : `${a.id}#${n}`;
+        const dim = (a.spec ?? '').match(/(\d+)\s*×\s*(\d+)/) || (a.desc ?? '').match(/(\d+)\s*×\s*(\d+)/);
+        if (dim) specs.set(key, { w: +dim[1], h: +dim[2] });
       }
     }
   }
@@ -49,19 +57,26 @@ let bytesIn = 0, bytesOut = 0;
 
 for (const [id, file] of Object.entries(map)) {
   if (id.startsWith('_')) continue;
-  const from = path.join(SRC, file);
-  if (!fs.existsSync(from)) { problems.push(`${id}: source not found — ${file}`); continue; }
+  const from = findSource(file);
+  if (!from) { problems.push(`${id}: source not found in any source dir — ${file}`); continue; }
   const spec = specs.get(id);
   if (!spec) { problems.push(`${id}: no slot with that id, or it declares no pixel spec`); continue; }
 
-  const meta = await sharp(from).metadata();
-  if (meta.width !== spec.w || meta.height !== spec.h) {
+  const isSvg = from.toLowerCase().endsWith('.svg');
+  /* Both supplied "SVG" maps are a single base64 bitmap in an SVG wrapper — no
+     real vector paths — so shipping them raw would cost ~2.5MB each. Rasterise
+     at 2x then downsample, which is sharper than a straight 1x render. */
+  const input = isSvg ? sharp(from, { density: 144 }) : sharp(from);
+  const meta = await input.metadata();
+  if (!isSvg && (meta.width !== spec.w || meta.height !== spec.h)) {
     problems.push(`${id}: source is ${meta.width}×${meta.height} but the slot declares ${spec.w}×${spec.h}`);
   }
   bytesIn += fs.statSync(from).size;
 
-  const slug = id.toLowerCase();
-  const base = sharp(from).resize(spec.w, spec.h, { fit: 'cover', position: 'attention' });
+  const slug = id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const base = sharp(from, isSvg ? { density: 144 } : undefined)
+    .resize(spec.w, spec.h, { fit: isSvg ? 'contain' : 'cover', position: 'attention',
+                              background: { r: 247, g: 246, b: 242 } });
   await base.clone().avif({ quality: 52, effort: 6 }).toFile(path.join(OUT, `${slug}.avif`));
   await base.clone().webp({ quality: 80 }).toFile(path.join(OUT, `${slug}.webp`));
   await base.clone().jpeg({ quality: 82, mozjpeg: true, progressive: true }).toFile(path.join(OUT, `${slug}.jpg`));

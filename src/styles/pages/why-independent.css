@@ -243,3 +243,9 @@ figure{margin:0}
       other 23. The markup always said class="mono"; this makes it true. */
 :root{--g500:#737169}
 .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.04em}
+
+/* --- founder statement — replaces the portrait + text split -------------- */
+.founder-statement{display:block;max-width:820px}
+.founder-statement blockquote{font-size:clamp(1.3rem,2.6vw,1.7rem);border-left:3px solid var(--pass);padding-left:22px}
+.founder-statement .sig{display:inline-flex;gap:12px;align-items:baseline;background:var(--ink);color:var(--g300);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;padding:8px 14px;text-transform:uppercase;margin:0 0 26px}
+.founder-statement .sig em{font-style:normal;color:var(--pass-tint)}
