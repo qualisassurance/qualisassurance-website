@@ -11,7 +11,16 @@ export const SITE = {
   fontsSource:
     'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap',
   fontsHref: '/fonts/fonts.css',
+  /** Contact points. `waNumber` is digits-only for wa.me; `phoneE164` for tel:. */
+  phoneDisplay: '+91 844 000 7574',
+  phoneE164: '+918440007574',
+  waNumber: '918440007574',
+  email: 'info@qualisinspections.com',
 } as const;
+
+/** Pre-filled WhatsApp link. `text` is encoded by the caller. */
+export const waLink = (text?: string) =>
+  `https://wa.me/${SITE.waNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 
 /**
  * The reference ships three header variants. They differ only in how the

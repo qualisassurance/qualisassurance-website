@@ -129,6 +129,34 @@ const {
     });
   }
 
+  // Booking enquiries. The reference's forms only faked a confirmation; these
+  // compose the enquiry and hand it to WhatsApp, which is the channel Qualis
+  // actually answers on. Nothing is stored or sent anywhere else.
+  document.querySelectorAll<HTMLFormElement>('form[data-enquiry="wa"]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const val = (n: string) =>
+        (form.querySelector(`[name="${n}"]`) as HTMLInputElement | HTMLSelectElement | null)?.value?.trim() ?? '';
+      const lines = [
+        'New inspection enquiry from qualisinspections.com',
+        '',
+        val('svc') && `Service: ${val('svc')}`,
+        val('cluster') && `Factory location: ${val('cluster')}`,
+        val('fullname') && `Name: ${val('fullname')}`,
+        val('company') && `Company: ${val('company')}`,
+        val('email') && `Email: ${val('email')}`,
+        val('phone') && `Phone: ${val('phone')}`,
+        val('date') && `Target date: ${val('date')}`,
+      ].filter(Boolean).join('\n');
+
+      const btn = form.querySelector('.btn');
+      if (btn) btn.textContent = 'Opening WhatsApp…';
+      window.open(`https://wa.me/918440007574?text=${encodeURIComponent(lines)}`, '_blank', 'noopener');
+      setTimeout(() => { if (btn) btn.textContent = 'Send another enquiry'; }, 2500);
+    });
+  });
+
   const hdEl = document.querySelector('header');
   if (hdEl) {
     const onScroll = () => hdEl.classList.toggle('scrolled', window.scrollY > 10);

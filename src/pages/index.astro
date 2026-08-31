@@ -93,7 +93,9 @@ const jsonld = [
       }
     ],
     "slogan": "Paid by buyers. Never by factories.",
-    "inLanguage": "en"
+    "inLanguage": "en",
+    "telephone": "+918440007574",
+    "email": "info@qualisinspections.com"
   },
   {
     "@context": "https://schema.org",
@@ -491,24 +493,29 @@ const jsonld = [
       <p>Tell us the service, the cluster and the date. We confirm within 2 hours, inspect on schedule, and report within 24 — with live photo updates on WhatsApp if you want them.</p>
       <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
     </div>
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Request received — confirming within 2 hours';">
+    <form data-enquiry="wa">
       <label for="svc">Service</label>
-      <select id="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select>
+      <select id="svc" name="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select>
       <label for="cluster">Factory location</label>
-      <select id="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
+      <select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select>
       <label for="fullname">Your name</label>
-      <input id="fullname" type="text" placeholder="First and last name" required>
+      <input id="fullname" name="fullname" type="text" placeholder="First and last name" required>
       <label for="company">Company</label>
-      <input id="company" type="text" placeholder="Company name" required>
+      <input id="company" name="company" type="text" placeholder="Company name" required>
       <label for="email">Work email</label>
-      <input id="email" type="email" placeholder="you@company.com" required>
+      <input id="email" name="email" type="email" placeholder="you@company.com" required>
       <label for="phone">Phone / WhatsApp (optional)</label>
-      <input id="phone" type="tel" placeholder="+1 555 000 0000">
+      <input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000">
       <label for="date">Target inspection date</label>
-      <input id="date" type="date">
+      <input id="date" name="date" type="date">
       <button class="btn btn-solid" type="submit">Get instant estimate</button>
       <p class="note">No payment now. We reply with scope and a fixed quote.</p>
     </form>
+      <div class="bookdirect">
+        <a href="https://wa.me/918440007574?text=Hi%20Qualis%20%E2%80%94%20I%20would%20like%20to%20book%20an%20inspection." target="_blank" rel="noopener"><b>WhatsApp</b><span>+91 844 000 7574</span></a>
+        <a href="tel:+918440007574"><b>Call</b><span>+91 844 000 7574</span></a>
+        <a href="mailto:info@qualisinspections.com"><b>Email</b><span>info@qualisinspections.com</span></a>
+      </div>
   </div>
 </section>
 </BaseLayout>

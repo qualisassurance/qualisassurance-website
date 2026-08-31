@@ -208,6 +208,23 @@ footer .logo .brand-logo{height:40px}
 .logo:hover .brand-logo{opacity:.85;transition:opacity .2s ease}
 @media (max-width:640px){.logo .brand-logo{height:30px}footer .logo .brand-logo{height:34px}}
 @media (max-width:380px){.logo .brand-logo{height:27px}}
+
+/* --- FOOTER CONTACT -------------------------------------------------------
+   The reference published no phone, WhatsApp or email anywhere. */
+.fcontact{margin-top:18px;display:flex;flex-direction:column;gap:2px}
+.fcontact a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--g700);font-size:.9rem;padding:6px 0}
+.fcontact a:hover{color:var(--pass)}
+.fcontact b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:74px}
+@media (max-width:960px){.fcontact a{padding:10px 0;min-height:44px;align-items:center}}
+
+/* --- CONTACT STRIP beside the booking form -------------------------------- */
+.bookdirect{margin-top:18px;border:1px solid var(--rule);background:#fff}
+.bookdirect a{display:flex;gap:12px;align-items:baseline;padding:13px 18px;text-decoration:none;color:var(--ink);font-size:.95rem;border-bottom:1px dashed var(--rule)}
+.bookdirect a:last-child{border-bottom:none}
+.bookdirect a:hover{background:var(--pass-tint)}
+.bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:82px}
+.bookdirect span{color:var(--pass);font-weight:600}
+@media (max-width:960px){.bookdirect a{padding:15px 18px;min-height:48px;align-items:center;font-size:1rem}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 
@@ -252,6 +269,60 @@ function usesGlobal(pageStyle) {
 function slugFor(urlPath) {
   const s = urlPath.replace(/^\/|\/$/g, '').replace(/\//g, '-');
   return s === '' ? 'home' : s;
+}
+
+/* ----------------------------------------------------------- contact + forms */
+const CONTACT = {
+  phoneDisplay: '+91 844 000 7574',
+  phoneE164: '+918440007574',
+  wa: '918440007574',
+  email: 'info@qualisinspections.com',
+};
+
+/**
+ * The reference's booking forms are decorative: every one is
+ *   <form onsubmit="event.preventDefault(); …textContent='Request received'">
+ * so a visitor is told "Request received — confirming within 2 hours" and the
+ * enquiry is silently discarded. The fields also carry only `id`, no `name`, so
+ * nothing would submit even with a backend behind it.
+ *
+ * This makes them real without introducing a server: fields get names, and
+ * submitting composes the enquiry and hands it to WhatsApp — the channel the
+ * owner actually uses — with the phone and email shown alongside as fallbacks.
+ */
+function fixForms(main, stats) {
+  if (!main.includes('<form')) return main;
+
+  // give every field a name derived from its id
+  main = main.replace(/<(input|select|textarea)([^>]*?)id="([^"]+)"([^>]*)>/g, (tag, el, pre, id, post) =>
+    /\bname=/.test(tag) ? tag : `<${el}${pre}id="${id}" name="${id}"${post}>`
+  );
+
+  main = main.replace(/<form([^>]*)onsubmit="[^"]*"([^>]*)>/g, (_m, a, b) => {
+    stats.forms++;
+    return `<form${a}data-enquiry="wa"${b}>`;
+  });
+
+  // a direct-contact strip under each form, so there is always a way through
+  main = main.replace(/<\/form>/g, `</form>
+      <div class="bookdirect">
+        <a href="https://wa.me/${CONTACT.wa}?text=${encodeURIComponent('Hi Qualis — I would like to book an inspection.')}" target="_blank" rel="noopener"><b>WhatsApp</b><span>${CONTACT.phoneDisplay}</span></a>
+        <a href="tel:${CONTACT.phoneE164}"><b>Call</b><span>${CONTACT.phoneDisplay}</span></a>
+        <a href="mailto:${CONTACT.email}"><b>Email</b><span>${CONTACT.email}</span></a>
+      </div>`);
+  return main;
+}
+
+/** telephone/email were absent from the reference's ProfessionalService graph. */
+function enrichJsonLd(graph) {
+  if (graph['@type'] === 'ProfessionalService') {
+    graph.telephone = CONTACT.phoneE164;
+    graph.email = CONTACT.email;
+  }
+  for (const v of Object.values(graph)) {
+    if (v && typeof v === 'object') enrichJsonLd(v);
+  }
+  return graph;
 }
 
 /* ------------------------------------------------------ section rewrites */
@@ -377,7 +448,7 @@ if (fs.existsSync(manifestPath)) {
   }
 }
 
-const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0 };
+const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0, forms: 0 };
 const problems = [];
 const manifest = [];
 
@@ -398,7 +469,7 @@ for (const file of files) {
      tools/prepare-brand.mjs. */
   const jsonld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((m) => {
-      try { return JSON.parse(m[1].replaceAll('/images/qualis-logo.svg', '/images/qualis-logo.png')); }
+      try { return enrichJsonLd(JSON.parse(m[1].replaceAll('/images/qualis-logo.svg', '/images/qualis-logo.png'))); }
       catch (e) { problems.push(`${urlPath}: invalid JSON-LD (${e.message})`); return null; }
     })
     .filter(Boolean);
@@ -406,6 +477,7 @@ for (const file of files) {
   let main = between(html, '<main>', '</main>');
   if (main == null) { problems.push(`${urlPath}: no <main>`); continue; }
   main = rewriteSections(main, urlPath, problems);
+  main = fixForms(main, stats);
   main = labelTableCells(main, stats);
   main = toImageSlots(main, stats);
   const usesImageSlot = main.includes('<ImageSlot');
@@ -479,6 +551,7 @@ console.log(`own stylesheet    : ${stats.withCss}  (rest share styles/global.css
 console.log(`image slots        : ${stats.phMatched}/${stats.phTotal} converted to <ImageSlot>`);
 console.log(`responsive tables  : ${stats.tables} tables, ${stats.cells} cells labelled`);
 console.log(`with photography   : ${stats.withPhoto}/${stats.phMatched} slots (rest still placeholders)`);
+console.log(`booking forms wired: ${stats.forms}`);
 if (stats.phUnmatched.length) console.log('  unmatched:', stats.phUnmatched.join('; '));
 if (problems.length) {
   console.log(`\nPROBLEMS (${problems.length}):`);

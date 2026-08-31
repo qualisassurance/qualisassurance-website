@@ -229,4 +229,21 @@ footer .logo .brand-logo{height:40px}
 .logo:hover .brand-logo{opacity:.85;transition:opacity .2s ease}
 @media (max-width:640px){.logo .brand-logo{height:30px}footer .logo .brand-logo{height:34px}}
 @media (max-width:380px){.logo .brand-logo{height:27px}}
+
+/* --- FOOTER CONTACT -------------------------------------------------------
+   The reference published no phone, WhatsApp or email anywhere. */
+.fcontact{margin-top:18px;display:flex;flex-direction:column;gap:2px}
+.fcontact a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--g700);font-size:.9rem;padding:6px 0}
+.fcontact a:hover{color:var(--pass)}
+.fcontact b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:74px}
+@media (max-width:960px){.fcontact a{padding:10px 0;min-height:44px;align-items:center}}
+
+/* --- CONTACT STRIP beside the booking form -------------------------------- */
+.bookdirect{margin-top:18px;border:1px solid var(--rule);background:#fff}
+.bookdirect a{display:flex;gap:12px;align-items:baseline;padding:13px 18px;text-decoration:none;color:var(--ink);font-size:.95rem;border-bottom:1px dashed var(--rule)}
+.bookdirect a:last-child{border-bottom:none}
+.bookdirect a:hover{background:var(--pass-tint)}
+.bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:82px}
+.bookdirect span{color:var(--pass);font-weight:600}
+@media (max-width:960px){.bookdirect a{padding:15px 18px;min-height:48px;align-items:center;font-size:1rem}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}

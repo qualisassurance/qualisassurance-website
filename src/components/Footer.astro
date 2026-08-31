@@ -1,5 +1,5 @@
 ---
-import { FOOTER_COLUMNS } from '../lib/site';
+import { FOOTER_COLUMNS, SITE, waLink } from '../lib/site';
 import Logo from './Logo.astro';
 ---
 <footer>
@@ -8,6 +8,11 @@ import Logo from './Logo.astro';
       <a class="logo" href="/" aria-label="Qualis Inspection — home"><Logo height={34} /></a>
       <p>India's Furniture Import Assurance Partner. Independent inspection and verification on the ground in India's furniture clusters since 2017.</p>
       <p class="mono" style="color:var(--pass)">PAID BY BUYERS. NEVER BY FACTORIES.</p>
+      <div class="fcontact">
+        <a href={`tel:${SITE.phoneE164}`}><b>Call</b>{SITE.phoneDisplay}</a>
+        <a href={waLink('Hi Qualis — I have a question about furniture inspection in India.')} target="_blank" rel="noopener"><b>WhatsApp</b>{SITE.phoneDisplay}</a>
+        <a href={`mailto:${SITE.email}`}><b>Email</b>{SITE.email}</a>
+      </div>
     </div>
     {FOOTER_COLUMNS.map((col) => (
       <div class="fcol">
