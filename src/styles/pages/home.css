@@ -300,7 +300,8 @@ figure{margin:0}
    Applies only once a real photo is supplied to <ImageSlot src="…">. While
    every slot is still a placeholder these rules match nothing. */
 .ph.has-img{background:none;border:none}
-.ph>img{display:block;width:100%;height:100%;object-fit:cover}
+.ph>picture{display:block;width:100%;height:100%}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
 
 /* --- ACCESSIBILITY + CONSISTENCY FIXES (agreed with the owner, 2026-09-01) ----
    1. --g500 was #8A8880, which is 3.28:1 on the paper background where WCAG AA

@@ -1,0 +1,117 @@
+{
+  "IMG-01": {
+    "src": "/images/img-01.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "IMG-02": {
+    "src": "/images/img-02.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-03": {
+    "src": "/images/img-03.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-04": {
+    "src": "/images/img-04.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-05": {
+    "src": "/images/img-05.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-06": {
+    "src": "/images/img-06.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-07": {
+    "src": "/images/img-07.jpg",
+    "width": 800,
+    "height": 600
+  },
+  "IMG-08": {
+    "src": "/images/img-08.jpg",
+    "width": 2400,
+    "height": 900
+  },
+  "IMG-09": {
+    "src": "/images/img-09.jpg",
+    "width": 1200,
+    "height": 900
+  },
+  "IMG-11": {
+    "src": "/images/img-11.jpg",
+    "width": 800,
+    "height": 500
+  },
+  "IMG-12": {
+    "src": "/images/img-12.jpg",
+    "width": 800,
+    "height": 500
+  },
+  "IMG-13": {
+    "src": "/images/img-13.jpg",
+    "width": 800,
+    "height": 500
+  },
+  "IMG-PSI-01": {
+    "src": "/images/img-psi-01.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "IMG-PSI-02": {
+    "src": "/images/img-psi-02.jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "IMG-PSI-03": {
+    "src": "/images/img-psi-03.jpg",
+    "width": 1200,
+    "height": 900
+  },
+  "IMG-SV-01": {
+    "src": "/images/img-sv-01.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "IMG-SV-02": {
+    "src": "/images/img-sv-02.jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "IMG-CLS-01": {
+    "src": "/images/img-cls-01.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "IMG-CLS-02": {
+    "src": "/images/img-cls-02.jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "IMG-CLS-03": {
+    "src": "/images/img-cls-03.jpg",
+    "width": 1200,
+    "height": 900
+  },
+  "IMG-JDH-01": {
+    "src": "/images/img-jdh-01.jpg",
+    "width": 1600,
+    "height": 1200
+  },
+  "IMG-JDH-02": {
+    "src": "/images/img-jdh-02.jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  "IMG-FA-01": {
+    "src": "/images/img-fa-01.jpg",
+    "width": 1600,
+    "height": 1200
+  }
+}

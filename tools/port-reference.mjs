@@ -87,6 +87,17 @@ const PH_RE =
    through as a literal string and then escapes again on render (&amp;quot;). */
 const attr = (v) => `{${JSON.stringify(String(v))}}`;
 
+/* Real photography, keyed by slot id. Produced by tools/prepare-images.mjs; absent
+   until that has been run, in which case every slot stays a placeholder. */
+const imageManifestPath = path.join(ROOT, 'tools/image-manifest.json');
+const IMAGES = fs.existsSync(imageManifestPath) ? JSON.parse(read(imageManifestPath)) : {};
+
+/* The one above-the-fold image per page, loaded eagerly so it is not deprioritised
+   as the LCP element. Everything else stays lazy. */
+const HERO_SLOTS = new Set([
+  'IMG-01', 'IMG-PSI-01', 'IMG-SV-01', 'IMG-CLS-01', 'IMG-JDH-01', 'IMG-FA-01',
+]);
+
 function toImageSlots(main, stats) {
   const total = (main.match(/<(?:div|figure) class="ph">/g) || []).length;
   let matched = 0;
@@ -103,6 +114,12 @@ function toImageSlots(main, stats) {
     if (clean(anno)) parts.push(`anno=${attr(clean(anno))}`);
     if (annoStyle) parts.push(`annoStyle=${attr(annoStyle)}`);
     if (tag !== 'div') parts.push(`as=${attr(tag)}`);
+    const img = IMAGES[id];
+    if (img) {
+      stats.withPhoto++;
+      parts.push(`src=${attr(img.src)}`, `width={${img.width}}`, `height={${img.height}}`);
+      if (HERO_SLOTS.has(id)) parts.push('eager');
+    }
     return `<ImageSlot ${parts.join(' ')} />`;
   });
   stats.phTotal += total;
@@ -182,7 +199,8 @@ const IMAGE_SLOT_RUNTIME = `
    Applies only once a real photo is supplied to <ImageSlot src="…">. While
    every slot is still a placeholder these rules match nothing. */
 .ph.has-img{background:none;border:none}
-.ph>img{display:block;width:100%;height:100%;object-fit:cover}
+.ph>picture{display:block;width:100%;height:100%}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
 `;
 
 /**
@@ -236,7 +254,7 @@ if (fs.existsSync(manifestPath)) {
   }
 }
 
-const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0 };
+const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0 };
 const problems = [];
 const manifest = [];
 
@@ -333,6 +351,7 @@ console.log(`pages written      : ${stats.pages}`);
 console.log(`own stylesheet    : ${stats.withCss}  (rest share styles/global.css)`);
 console.log(`image slots        : ${stats.phMatched}/${stats.phTotal} converted to <ImageSlot>`);
 console.log(`responsive tables  : ${stats.tables} tables, ${stats.cells} cells labelled`);
+console.log(`with photography   : ${stats.withPhoto}/${stats.phMatched} slots (rest still placeholders)`);
 if (stats.phUnmatched.length) console.log('  unmatched:', stats.phUnmatched.join('; '));
 if (problems.length) {
   console.log(`\nPROBLEMS (${problems.length}):`);

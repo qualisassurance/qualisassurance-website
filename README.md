@@ -115,17 +115,30 @@ User-Agent, download every `fonts.gstatic.com` URL, and rewrite those URLs to `/
 
 ## Images
 
-Every image is still a styled placeholder carrying its slot ID and art-direction brief
-(`IMG-01`, `IMG-PSI-02`, …), exactly as in the original. To drop in a real photo:
+**23 of the 36 slots have real photography**; the remaining 13 still render the original
+dashed placeholder with its slot ID and art-direction brief.
 
-```astro
-<ImageSlot id="IMG-01" spec="1600×1200px · JPG/AVIF" desc="…"
-           src="/images/img-01.avif" width={1600} height={1200} />
+`tools/image-map.json` maps a slot ID to a source filename. To add or replace photos,
+drop the files in a folder, add the mapping, and run:
+
+```bash
+node tools/prepare-images.mjs "/path/to/image folder"
+node tools/port-reference.mjs /path/to/qualis-deploy-hostinger
 ```
 
-Sizing lives on the parent, so adding `src` cannot shift the layout.
-`public/favicon.svg` is a placeholder derived from the wordmark — replace it with the
-real asset.
+`prepare-images.mjs` reads each slot's published pixel spec straight from the pages,
+resizes to exactly that, and writes AVIF + WebP + JPEG into `public/images/`. It warns if
+a source's dimensions do not match the slot. `port-reference.mjs` then fills in
+`src`/`width`/`height` on the matching `<ImageSlot>`, marking the one hero image per page
+`eager`. Because sizing lives on the parent, adding a photo cannot shift the layout —
+verified: every `.ph` frame occupies an identical box with and without photography.
+
+Alt text is derived from the first sentence of the art-direction brief, which describes
+the shot; the rest (lighting, grading, framing notes) is dropped.
+
+**Still outstanding:** 6 client logos, 3 team portraits (`IMG-14/15/16`), the founder
+portrait (`IMG-IND-01`), two blueprint maps (`IMG-10` India, `IMG-JDH-03` Jodhpur) and
+`IMG-SV-03`. `public/favicon.svg` is also a placeholder derived from the wordmark.
 
 ---
 

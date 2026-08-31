@@ -17,5 +17,8 @@
   "type": "module",
   "engines": {
     "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

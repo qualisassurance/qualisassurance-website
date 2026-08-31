@@ -154,6 +154,14 @@
   .person p, .report p, .clause p, .tip p, .cal-notes p, .score p, .bundle p,
   .founder p, .prof-grid > div p, .stage li, .sr td, .sr th { font-size: 1rem; line-height: 1.6; }
 
+  /* The <small> in the services list carries real descriptive copy, not fine
+     print, so it needs the same 16px floor. Must be selected as `.stage li small`
+     to outrank home.css's own `.stage li small{font-size:.8rem}` — a bare
+     `main li > small` loses on specificity. The other <small> rules
+     (.hero-facts, .cal-m, .cmp th, .price .amt) are deliberate mono micro-labels
+     and are left alone. */
+  .stage li small { font-size: 1rem; line-height: 1.55; }
+
   /* button labels are actions — never below 16px on a phone */
   .btn, .bundle .btn, form input, form select { font-size: 1rem; }
 
