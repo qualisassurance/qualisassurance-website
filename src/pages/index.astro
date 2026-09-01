@@ -4,10 +4,9 @@ import ImageSlot from '../components/ImageSlot.astro';
 import '../styles/pages/home.css';
 
 const title = "Furniture Inspection & Supplier Verification in India | QUALIS";
-const description = "Independent furniture inspection, factory audits & supplier verification in Jodhpur and across India. Paid by buyers, never by factories. Reports in 24 hours. Since 2017.";
+const description = "Independent furniture inspection, factory audits & supplier verification in Jodhpur and across India. Reports in 24 hours. Buyer-paid since 2017.";
 const canonical = "https://qualisinspections.com/";
 const ogTitle = "QUALIS — India's Furniture Import Assurance Partner";
-const ogDescription = "Independent furniture inspection & supplier verification on the ground in India's furniture clusters. Paid by buyers. Never by factories.";
 const jsonld = [
   {
     "@context": "https://schema.org",
@@ -148,7 +147,7 @@ const jsonld = [
   }
 ];
 ---
-<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="home" ogTitle={ogTitle} ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="home" ogTitle={ogTitle}>
 <!-- 01 HERO -->
 <section class="hero">
   <div class="wrap hero-grid">

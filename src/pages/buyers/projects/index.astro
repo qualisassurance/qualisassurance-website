@@ -2,9 +2,10 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import '../../../styles/global.css';
 
-const title = "Furniture Import Assurance for Interior & Hospitality Projects | QUALIS";
+const title = "Furniture Inspection for Interior & Hospitality Projects | QUALIS";
 const description = "How Qualis protects interior & hospitality projects importing furniture from India: FF&E delivered to spec, on the project timeline.";
 const canonical = "https://qualisinspections.com/buyers/projects/";
+const ogTitle = "Furniture Import Assurance for Interior & Hospitality Projects | QUALIS";
 const jsonld = [
   {
     "@context": "https://schema.org",
@@ -57,7 +58,7 @@ const jsonld = [
   }
 ];
 ---
-<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner" ogTitle={ogTitle}>
 <section class="hero">
 <div class="wrap">
 <span class="eyebrow">Who we protect</span>

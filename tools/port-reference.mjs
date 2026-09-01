@@ -366,6 +366,43 @@ function fixForms(main, stats) {
 const SERVED = ['US', 'CA', 'GB', 'AU', 'DE', 'NL', 'BE', 'FR', 'DK', 'AE'];
 
 
+/* --- META TRIMS --------------------------------------------------------------
+   Google truncates a description at roughly 160 characters. 21 of the
+   reference's pages ran over, up to 261, so the tail was being cut mid-sentence
+   in search results. These keep the front-loaded specifics — cluster, technique,
+   standard, response time — and drop the trailing "Paid by buyers, never by
+   factories.", which repeated on eight pages and occupied exactly the space
+   Google cuts. The line still appears on the pages themselves; only the search
+   snippet changes. Approved by the owner 2026-09-01. All land at 135-150 chars.
+
+   Titles are left alone: five of the six over 60 chars are only 62-65, which is
+   inside the pixel budget in practice. Only /buyers/projects/ was genuinely long. */
+const META_DESCRIPTIONS = {
+  "/": "Independent furniture inspection, factory audits & supplier verification in Jodhpur and across India. Reports in 24 hours. Buyer-paid since 2017.",
+  "/academy/": "Free, practical training for furniture importers buying from India: first-order playbook, spec templates, payment terms and claim handling.",
+  "/clusters/": "Where Indian export furniture is really made, and how each cluster fails: Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata.",
+  "/clusters/delhi-ncr/": "Furniture inspection, factory audits & supplier verification in Delhi NCR \u2014 upholstery, mixed-material production and export houses. 24-hour response.",
+  "/clusters/jaipur/": "Furniture inspection, factory audits & supplier verification in Jaipur \u2014 carved, painted, bone-inlay and heritage-style furniture. Same-day response.",
+  "/clusters/jodhpur/": "Same-day furniture inspection, factory audits & supplier verification in Jodhpur \u2014 Boranada, Basni, Sangariya & Salawas. Sheesham & mango specialists.",
+  "/clusters/kolkata/": "Furniture inspection, factory audits & supplier verification in Kolkata \u2014 cane, rattan and natural-fibre furniture. 72-hour response from Jodhpur.",
+  "/clusters/moradabad/": "Furniture inspection, factory audits & supplier verification in Moradabad \u2014 the metalware capital: iron, aluminium and metal-wood furniture.",
+  "/clusters/saharanpur/": "Furniture inspection, factory audits & supplier verification in Saharanpur \u2014 north India's wood-carving centre. 48-hour response from our Jodhpur HQ.",
+  "/container-loading-supervision/": "Container loading supervision for furniture shipments from India: container condition check, full carton tally, stacking check, photographed seal.",
+  "/defects/": "A photographic library of Indian furniture defects: moisture cracking, finish bloom, joint failures, hardware shortfalls and loading damage.",
+  "/during-production-inspection/": "During-production furniture inspection in India at 20\u201350% completion: catch moisture, dimension and finish faults while rework is still cheap.",
+  "/factory-audit-india/": "On-site furniture factory audits across India's clusters: production process, QC system, capacity, subcontracting map and compliance readiness.",
+  "/import-compliance/": "Country-by-country compliance for furniture imports from India: US (TSCA, Lacey, Prop 65), UK (BS 5852, UKTR), EU (EUDR, REACH) and Australia.",
+  "/pre-shipment-inspection-india/": "Independent pre-shipment inspection for furniture across India. AQL 2.5 sampling per ISO 2859-1, moisture checks, photographed report in 24 hours.",
+  "/production-monitoring-india/": "Production monitoring for furniture orders in India: scheduled and unannounced factory visits, photo reports, schedule tracking and defect alerts.",
+  "/sample-reports/": "Read real anonymised Qualis reports before you hire us: pre-shipment inspection, supplier verification and factory audit. No login, no email gate.",
+  "/services/": "All Qualis services: supplier verification, factory audits, production monitoring, pre-shipment inspection and container loading supervision.",
+  "/supplier-verification-india/": "Verify an Indian furniture supplier before wiring a deposit: premises check, manufacturer-vs-trader confirmation, IEC & GST checks. Report in 3 days.",
+  "/why-independent/": "The Qualis Independence Charter: paid only by buyers, zero factory commission, firewalled shortlisting. Why independence beats a sourcing agent.",
+};
+
+const META_TITLES = {
+  '/buyers/projects/': 'Furniture Inspection for Interior & Hospitality Projects | QUALIS',
+};
 /* --- SCHEMA COMPLETION -------------------------------------------------------
    The reference typed most pages as a bare WebPage. These pages sell a named
    service, so a Service node is added *alongside* the WebPage rather than
@@ -637,11 +674,20 @@ for (const file of files) {
   const urlPath = '/' + rel;
   stats.current = urlPath;
 
-  const title = decodeAttr(between(html, '<title>', '</title>') ?? '');
-  const description = metaContent(html, (a) => (a.name === 'description' ? a.content : null)) ?? '';
+  const title = META_TITLES[urlPath] ?? decodeAttr(between(html, '<title>', '</title>') ?? '');
+  const description =
+    META_DESCRIPTIONS[urlPath] ??
+    metaContent(html, (a) => (a.name === 'description' ? a.content : null)) ??
+    '';
   const canonical = metaContent(html, (a) => (a.rel === 'canonical' ? a.href : null)) ?? '';
   const ogTitle = metaContent(html, (a) => (a.property === 'og:title' ? a.content : null));
-  const ogDescription = metaContent(html, (a) => (a.property === 'og:description' ? a.content : null));
+  // A trimmed description has to carry into og:description too. The reference
+  // sets both to the same string, so they used to match and the porter emitted
+  // only `description`, with BaseLayout falling back to it. Overriding one alone
+  // made them differ, which resurrected the untrimmed text in the social preview.
+  const ogDescription =
+    META_DESCRIPTIONS[urlPath] ??
+    metaContent(html, (a) => (a.property === 'og:description' ? a.content : null));
 
   /* The reference points the organisation logo at /images/qualis-logo.svg, which
      has never existed (404 on the live site). Repoint it at the raster built by
