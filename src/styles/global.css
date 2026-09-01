@@ -246,3 +246,9 @@ footer .logo .brand-logo{height:40px}
 .bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:112px}
 .bookdirect span{color:var(--pass);font-weight:600}
 @media (max-width:960px){.bookdirect a{padding:15px 18px;min-height:48px;align-items:center;font-size:1rem}}
+
+/* --- ENQUIRY FORM FEEDBACK ------------------------------------------------- */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.formstatus{margin-top:10px;min-height:1.2em}
+.formstatus[data-state="ok"]{color:var(--pass);font-weight:600}
+.formstatus[data-state="err"]{color:var(--crit);font-weight:600}

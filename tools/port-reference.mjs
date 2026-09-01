@@ -225,6 +225,11 @@ footer .logo .brand-logo{height:40px}
 .bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:112px}
 .bookdirect span{color:var(--pass);font-weight:600}
 @media (max-width:960px){.bookdirect a{padding:15px 18px;min-height:48px;align-items:center;font-size:1rem}}
+/* --- ENQUIRY FORM FEEDBACK ------------------------------------------------- */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.formstatus{margin-top:10px;min-height:1.2em}
+.formstatus[data-state="ok"]{color:var(--pass);font-weight:600}
+.formstatus[data-state="err"]{color:var(--crit);font-weight:600}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 
@@ -302,6 +307,13 @@ function fixForms(main, stats) {
     stats.forms++;
     return `<form${a}data-enquiry="wa"${b}>`;
   });
+
+  // A honeypot a real visitor never sees or tabs to, and a live region the
+  // submit handler writes the send result into — without it the only feedback
+  // is the button label, which says nothing about whether the enquiry landed.
+  main = main.replace(/<\/form>/g, `  <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <p class="note formstatus" role="status" aria-live="polite"></p>
+    </form>`);
 
   // a direct-contact strip under each form, so there is always a way through
   // One row per channel. The phone and the WhatsApp number are the same line,

@@ -16,6 +16,17 @@ export const SITE = {
   phoneE164: '+918440007574',
   waNumber: '918440007574',
   email: 'info@qualisinspections.com',
+  /**
+   * Form backend for booking enquiries. Web3Forms delivers straight to the
+   * address the key was verified against; the access key is public by design
+   * (it is embedded in the page and can only ever deliver to that one address),
+   * so it is not a secret and belongs in the repo.
+   *
+   * Empty key = disabled: the forms fall back to WhatsApp only, exactly as
+   * before, and nothing on the page changes. Paste the key to switch capture on.
+   */
+  formEndpoint: 'https://api.web3forms.com/submit',
+  formAccessKey: '',
 } as const;
 
 /** Pre-filled WhatsApp link. `text` is encoded by the caller. */

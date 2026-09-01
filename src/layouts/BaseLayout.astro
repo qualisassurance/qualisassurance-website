@@ -83,6 +83,8 @@ const {
 </main>
 <Footer />
 <script>
+  import { SITE, waLink } from '../lib/site';
+
   // Reveal-on-scroll, mobile menu and header elevation.
   // Ported from the reference; behaviour is identical.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -129,30 +131,98 @@ const {
     });
   }
 
-  // Booking enquiries. The reference's forms only faked a confirmation; these
-  // compose the enquiry and hand it to WhatsApp, which is the channel Qualis
-  // actually answers on. Nothing is stored or sent anywhere else.
+  // Booking enquiries. The reference's forms only faked a confirmation. These
+  // do two things: POST the enquiry to a form backend so it is captured even
+  // if the visitor never completes the WhatsApp handoff, and hand the same
+  // enquiry to WhatsApp, which is the channel Qualis actually answers on.
+  //
+  // Order is deliberate. window.open has to run synchronously inside the submit
+  // gesture or pop-up blockers kill it, so the POST is fired first, with
+  // keepalive so the request survives the tab going to WhatsApp, and is never
+  // awaited. Awaiting it would push window.open outside the gesture.
+  //
+  // With no access key configured the POST is skipped and behaviour is exactly
+  // what it was before: WhatsApp only.
   document.querySelectorAll<HTMLFormElement>('form[data-enquiry="wa"]').forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
+
+      // Honeypot: hidden and untabbable, so anything that fills it is a bot.
+      // Drop silently — telling it why would only help it try again.
+      const hp = form.querySelector<HTMLInputElement>('[name="_hp"]');
+      if (hp?.value) return;
+
       const val = (n: string) =>
         (form.querySelector(`[name="${n}"]`) as HTMLInputElement | HTMLSelectElement | null)?.value?.trim() ?? '';
+
+      const fields = {
+        service: val('svc'),
+        factory_location: val('cluster'),
+        name: val('fullname'),
+        company: val('company'),
+        email: val('email'),
+        phone: val('phone'),
+        target_date: val('date'),
+      };
+
       const lines = [
         'New inspection enquiry from qualisinspections.com',
         '',
-        val('svc') && `Service: ${val('svc')}`,
-        val('cluster') && `Factory location: ${val('cluster')}`,
-        val('fullname') && `Name: ${val('fullname')}`,
-        val('company') && `Company: ${val('company')}`,
-        val('email') && `Email: ${val('email')}`,
-        val('phone') && `Phone: ${val('phone')}`,
-        val('date') && `Target date: ${val('date')}`,
+        fields.service && `Service: ${fields.service}`,
+        fields.factory_location && `Factory location: ${fields.factory_location}`,
+        fields.name && `Name: ${fields.name}`,
+        fields.company && `Company: ${fields.company}`,
+        fields.email && `Email: ${fields.email}`,
+        fields.phone && `Phone: ${fields.phone}`,
+        fields.target_date && `Target date: ${fields.target_date}`,
       ].filter(Boolean).join('\n');
+
+      const status = form.querySelector<HTMLElement>('.formstatus');
+      const setStatus = (text: string, state: string) => {
+        if (!status) return;
+        status.textContent = text;
+        status.dataset.state = state;
+      };
+
+      const captured = Boolean(SITE.formAccessKey);
+      if (captured) {
+        setStatus('Sending your enquiry…', 'busy');
+        fetch(SITE.formEndpoint, {
+          method: 'POST',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: SITE.formAccessKey,
+            subject: `Inspection enquiry — ${fields.service || 'Qualis'}${fields.factory_location ? ` · ${fields.factory_location}` : ''}`,
+            from_name: 'qualisinspections.com',
+            ...fields,
+            page: location.pathname,
+          }),
+        })
+          .then((r) => {
+            if (!r.ok) throw new Error(String(r.status));
+            setStatus('Enquiry received. We reply within 2 hours.', 'ok');
+            form.reset();
+          })
+          .catch(() => {
+            setStatus(
+              `Could not send that. Please WhatsApp or email ${SITE.email} and we will pick it up.`,
+              'err',
+            );
+          });
+      }
 
       const btn = form.querySelector('.btn');
       if (btn) btn.textContent = 'Opening WhatsApp…';
-      window.open(`https://wa.me/918440007574?text=${encodeURIComponent(lines)}`, '_blank', 'noopener');
+      const win = window.open(waLink(lines), '_blank', 'noopener');
+
+      // Pop-up blocked and nothing captured server-side means the enquiry is
+      // simply gone, which is the failure this whole block exists to prevent.
+      if (!win && !captured) {
+        setStatus('Pop-up blocked. Use the WhatsApp or email link just below.', 'err');
+      }
+
       setTimeout(() => { if (btn) btn.textContent = 'Send another enquiry'; }, 2500);
     });
   });
