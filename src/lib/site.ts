@@ -110,6 +110,7 @@ export const FOOTER_COLUMNS = [
       { href: '/import-compliance/', label: 'Import Compliance' },
       { href: '/academy/', label: 'Import Academy' },
       { href: '/why-independent/', label: 'Why Independent' },
+      { href: '/contact/', label: 'Contact' },
     ],
   },
 ] as const;

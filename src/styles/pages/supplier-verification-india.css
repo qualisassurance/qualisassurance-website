@@ -301,4 +301,26 @@ footer .logo .brand-logo{height:40px}
 .formstatus{margin-top:10px;min-height:1.2em}
 .formstatus[data-state="ok"]{color:var(--pass);font-weight:600}
 .formstatus[data-state="err"]{color:var(--crit);font-weight:600}
+/* --- SECTION NUMBERING ------------------------------------------------------
+   The reference numbers every section with a CSS counter, so each eyebrow reads
+   "01 — BOOK", "02 — SERVICES". The owner asked for the numbers gone. Overridden
+   rather than deleted: the counter rules come from the reference stylesheet and
+   a re-port would reinstate them. The counter itself still increments, which
+   costs nothing and keeps the ported CSS byte-comparable. */
+main section:not(.hero):not(.final) .sec-head .eyebrow::before,
+main section:not(.hero):not(.final) .prose-wrap>.eyebrow::before{content:none}
+/* --- ENQUIRY FORM LAYOUT ----------------------------------------------------
+   Two columns, so the form stops towering over the copy beside it. Fields that
+   deserve their own row opt out with .field--wide; the button, note and status
+   always span. Collapses to one column on narrow screens. */
+.final form{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-items:start}
+.final form .field{display:flex;flex-direction:column;min-width:0}
+.final form .field label{margin-top:0}
+.final form>.note,.final form>.formstatus,.final form>.hp,.final form .field--wide{grid-column:1 / -1}
+/* Every form here has an odd number of fields (7, or 5 on the audit page), so
+   the last one sits alone in column 1 and the button flows into column 2 beside
+   it. align-self:end lines the button up with the bottom of that field instead
+   of floating at the top of the row. */
+.final form>.btn{align-self:end}
+@media (max-width:760px){.final form{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}

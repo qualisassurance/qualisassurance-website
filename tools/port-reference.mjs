@@ -230,6 +230,28 @@ footer .logo .brand-logo{height:40px}
 .formstatus{margin-top:10px;min-height:1.2em}
 .formstatus[data-state="ok"]{color:var(--pass);font-weight:600}
 .formstatus[data-state="err"]{color:var(--crit);font-weight:600}
+/* --- SECTION NUMBERING ------------------------------------------------------
+   The reference numbers every section with a CSS counter, so each eyebrow reads
+   "01 — BOOK", "02 — SERVICES". The owner asked for the numbers gone. Overridden
+   rather than deleted: the counter rules come from the reference stylesheet and
+   a re-port would reinstate them. The counter itself still increments, which
+   costs nothing and keeps the ported CSS byte-comparable. */
+main section:not(.hero):not(.final) .sec-head .eyebrow::before,
+main section:not(.hero):not(.final) .prose-wrap>.eyebrow::before{content:none}
+/* --- ENQUIRY FORM LAYOUT ----------------------------------------------------
+   Two columns, so the form stops towering over the copy beside it. Fields that
+   deserve their own row opt out with .field--wide; the button, note and status
+   always span. Collapses to one column on narrow screens. */
+.final form{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-items:start}
+.final form .field{display:flex;flex-direction:column;min-width:0}
+.final form .field label{margin-top:0}
+.final form>.note,.final form>.formstatus,.final form>.hp,.final form .field--wide{grid-column:1 / -1}
+/* Every form here has an odd number of fields (7, or 5 on the audit page), so
+   the last one sits alone in column 1 and the button flows into column 2 beside
+   it. align-self:end lines the button up with the bottom of that field instead
+   of floating at the top of the row. */
+.final form>.btn{align-self:end}
+@media (max-width:760px){.final form{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 
@@ -308,6 +330,18 @@ function fixForms(main, stats) {
     return `<form${a}data-enquiry="wa"${b}>`;
   });
 
+  // Pair each label with its control inside a .field wrapper so the form can be
+  // a two-column grid. Without the wrapper, grid flow puts a label beside its
+  // own input instead of beside the next field. Seven stacked rows made the form
+  // 818px tall against 261px of copy next to it — 557px of dead space.
+  main = main.replace(
+    // Matched per element type on purpose: a single lazy pattern ending in `>`
+    // stops at the *opening* <select ...> tag and orphans its </select>.
+    /<label for="([^"]+)">([\s\S]*?)<\/label>\s*(<input\b[^>]*>|<select\b[\s\S]*?<\/select>|<textarea\b[\s\S]*?<\/textarea>)/g,
+    (_m, id, labelText, control) =>
+      `<div class="field field--${id}"><label for="${id}">${labelText}</label>${control}</div>`,
+  );
+
   // A honeypot a real visitor never sees or tabs to, and a live region the
   // submit handler writes the send result into — without it the only feedback
   // is the button label, which says nothing about whether the enquiry landed.
@@ -330,6 +364,129 @@ function fixForms(main, stats) {
    seven; the owner added Canada, Belgium and Denmark. Kept in one place so the
    visible footer line and the areaServed graph cannot drift apart. */
 const SERVED = ['US', 'CA', 'GB', 'AU', 'DE', 'NL', 'BE', 'FR', 'DK', 'AE'];
+
+
+/* --- SCHEMA COMPLETION -------------------------------------------------------
+   The reference typed most pages as a bare WebPage. These pages sell a named
+   service, so a Service node is added *alongside* the WebPage rather than
+   replacing it — the page is a WebPage that is about a Service, and rewriting
+   the type would discard the isPartOf/publisher data the reference got right.
+   serviceType mirrors the page's own name; nothing here is invented. */
+const SITE_URL = 'https://qualisinspections.com';
+
+const SERVICE_PAGES = {
+  '/during-production-inspection/': 'During-production inspection',
+  '/production-monitoring-india/': 'Production monitoring',
+  '/packaging-transit-validation/': 'Packaging and transit validation',
+  '/supplier-shortlisting/': 'Supplier shortlisting',
+  '/first-order-shield/': 'First-order inspection programme',
+  '/monsoon-watch/': 'Monsoon-season production monitoring',
+};
+
+/* The cluster pages already have one worked example: /clusters/jodhpur/ ships a
+   Service node in the reference. The other five are the same page with a
+   different city, so they get the same treatment. */
+const CLUSTER_CITIES = {
+  '/clusters/jaipur/': 'Jaipur',
+  '/clusters/saharanpur/': 'Saharanpur',
+  '/clusters/moradabad/': 'Moradabad',
+  '/clusters/delhi-ncr/': 'Delhi NCR',
+  '/clusters/kolkata/': 'Kolkata',
+};
+
+const CLUSTERS = ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', 'Kolkata'];
+
+const PROVIDER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis INC',
+  url: SITE_URL,
+  telephone: CONTACT.phoneE164,
+  email: CONTACT.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Jodhpur',
+    addressRegion: 'Rajasthan',
+    addressCountry: 'IN',
+  },
+};
+
+const titleCase = (seg) => seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+function breadcrumbFor(urlPath) {
+  const segs = urlPath.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+  const items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` }];
+  let acc = '';
+  segs.forEach((seg, i) => {
+    acc += `/${seg}`;
+    items.push({ '@type': 'ListItem', position: i + 2, name: titleCase(seg), item: `${SITE_URL}${acc}/` });
+  });
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items };
+}
+
+const SCHEMA_HUBS = {
+  '/services/': [
+    '/pre-shipment-inspection-india/', '/supplier-verification-india/',
+    '/factory-audit-india/', '/container-loading-supervision/',
+    '/production-monitoring-india/', '/during-production-inspection/',
+    '/packaging-transit-validation/', '/supplier-shortlisting/', '/first-order-shield/',
+  ],
+  '/clusters/': [
+    '/clusters/jodhpur/', '/clusters/jaipur/', '/clusters/saharanpur/',
+    '/clusters/moradabad/', '/clusters/delhi-ncr/', '/clusters/kolkata/',
+  ],
+};
+
+/** Fills the gaps the reference left. Never rewrites a node it did not add. */
+function completeSchema(jsonld, urlPath, stats) {
+  const types = jsonld.map((n) => n['@type']);
+  const page = jsonld.find((n) => n['@type'] === 'WebPage');
+
+  // Every page but the root deserves a trail; /why-independent/ was the one miss.
+  if (urlPath !== '/' && !types.includes('BreadcrumbList')) {
+    jsonld.push(breadcrumbFor(urlPath));
+    stats.breadcrumbs++;
+  }
+
+  const serviceType = SERVICE_PAGES[urlPath];
+  const city = CLUSTER_CITIES[urlPath];
+  if ((serviceType || city) && !types.includes('Service') && page) {
+    jsonld.push({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: page.name,
+      serviceType: serviceType ?? 'Furniture inspection and supplier verification',
+      description: page.description,
+      provider: PROVIDER,
+      areaServed: city
+        ? { '@type': 'City', name: city, containedInPlace: { '@type': 'Country', name: 'India' } }
+        : CLUSTERS.map((c) => ({ '@type': 'Place', name: c })),
+      audience: {
+        '@type': 'BusinessAudience',
+        name: 'Furniture importers, retailers, brands and e-commerce sellers',
+      },
+      mainEntityOfPage: `${SITE_URL}${urlPath}`,
+      inLanguage: 'en',
+    });
+    stats.services++;
+  }
+
+  // Hub pages: state what they list, so the children read as a set.
+  if (SCHEMA_HUBS[urlPath] && !types.includes('ItemList')) {
+    const hrefs = SCHEMA_HUBS[urlPath];
+    jsonld.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: page?.name ?? titleCase(urlPath.replace(/\//g, '')),
+      numberOfItems: hrefs.length,
+      itemListElement: hrefs.map((href, i) => ({
+        '@type': 'ListItem', position: i + 1, url: `${SITE_URL}${href}`,
+      })),
+    });
+    stats.itemlists++;
+  }
+  return jsonld;
+}
 
 /** telephone/email were absent from the reference's ProfessionalService graph. */
 function enrichJsonLd(graph) {
@@ -470,7 +627,7 @@ if (fs.existsSync(manifestPath)) {
   }
 }
 
-const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0, forms: 0 };
+const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0, forms: 0, breadcrumbs: 0, services: 0, itemlists: 0 };
 const problems = [];
 const manifest = [];
 
@@ -495,6 +652,7 @@ for (const file of files) {
       catch (e) { problems.push(`${urlPath}: invalid JSON-LD (${e.message})`); return null; }
     })
     .filter(Boolean);
+  completeSchema(jsonld, urlPath, stats);
 
   let main = between(html, '<main>', '</main>');
   if (main == null) { problems.push(`${urlPath}: no <main>`); continue; }
@@ -574,6 +732,7 @@ console.log(`image slots        : ${stats.phMatched}/${stats.phTotal} converted 
 console.log(`responsive tables  : ${stats.tables} tables, ${stats.cells} cells labelled`);
 console.log(`with photography   : ${stats.withPhoto}/${stats.phMatched} slots (rest still placeholders)`);
 console.log(`booking forms wired: ${stats.forms}`);
+console.log(`schema added       : ${stats.services} Service, ${stats.breadcrumbs} BreadcrumbList, ${stats.itemlists} ItemList`);
 if (stats.phUnmatched.length) console.log('  unmatched:', stats.phUnmatched.join('; '));
 if (problems.length) {
   console.log(`\nPROBLEMS (${problems.length}):`);

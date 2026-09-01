@@ -51,21 +51,21 @@
   {
     "url": "/clusters/delhi-ncr/",
     "title": "Furniture Inspection in Delhi NCR | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/clusters/",
     "title": "India Furniture Clusters — Risk Guide | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/clusters/jaipur/",
     "title": "Furniture Inspection in Jaipur | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -79,21 +79,21 @@
   {
     "url": "/clusters/kolkata/",
     "title": "Furniture Inspection in Kolkata | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/clusters/moradabad/",
     "title": "Furniture Inspection in Moradabad | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/clusters/saharanpur/",
     "title": "Furniture Inspection in Saharanpur | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -114,7 +114,7 @@
   {
     "url": "/during-production-inspection/",
     "title": "During-Production Inspection (DUPRO) in India | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -128,7 +128,7 @@
   {
     "url": "/first-order-shield/",
     "title": "First Order Shield — Bundle for Your First India Order | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -149,14 +149,14 @@
   {
     "url": "/monsoon-watch/",
     "title": "Monsoon Watch — Seasonal Risk Advisories | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/packaging-transit-validation/",
     "title": "Furniture Packaging & Transit Validation (ISTA) in India | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -170,7 +170,7 @@
   {
     "url": "/production-monitoring-india/",
     "title": "Furniture Production Monitoring in India | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -184,14 +184,14 @@
   {
     "url": "/services/",
     "title": "Furniture Inspection Services in India | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
   {
     "url": "/supplier-shortlisting/",
     "title": "Fixed-Fee Furniture Supplier Shortlisting in India | QUALIS",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/global.css",
     "imageSlots": 0
   },
@@ -205,7 +205,7 @@
   {
     "url": "/why-independent/",
     "title": "Why Independent | The Qualis Independence Charter",
-    "jsonld": 2,
+    "jsonld": 3,
     "stylesheet": "styles/pages/why-independent.css",
     "imageSlots": 0
   }

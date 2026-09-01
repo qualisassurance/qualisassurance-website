@@ -1,0 +1,151 @@
+---
+/**
+ * Contact page. Hand-written, not ported — the reference had no contact page,
+ * so this is not in tools/port-manifest.json and a re-port leaves it alone.
+ *
+ * The enquiry form is deliberately identical to the one on the booking pages:
+ * same field names, same data-enquiry="wa" hook, same honeypot and status
+ * region, so the handler in BaseLayout drives it with no special-casing and
+ * submissions land in the same Web3Forms inbox with the same field names.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE, waLink } from '../../lib/site';
+import '../../styles/global.css';
+
+const canonical = 'https://qualisinspections.com/contact/';
+const title = 'Contact Qualis — Furniture Inspection in India';
+const description =
+  'Talk to an independent furniture inspector in India. Phone and WhatsApp on +91 844 000 7574, email info@qualisinspections.com, or send an enquiry and we reply within 2 hours.';
+
+const org = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis INC',
+  url: SITE.url,
+  telephone: SITE.phoneE164,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Jodhpur',
+    addressRegion: 'Rajasthan',
+    addressCountry: 'IN',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: SITE.phoneE164,
+      email: SITE.email,
+      availableLanguage: ['en', 'hi'],
+      areaServed: ['US', 'CA', 'GB', 'AU', 'DE', 'NL', 'BE', 'FR', 'DK', 'AE'],
+    },
+  ],
+};
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: title,
+    url: canonical,
+    description,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: SITE.url },
+    about: org,
+    publisher: org,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonld={jsonld}
+  navVariant="inner"
+>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1>Talk to an inspector, not a call centre</h1>
+      <p class="lead">
+        Qualis is on the ground in India's furniture clusters. Tell us the service, the
+        factory location and your target date, and we come back with scope and a fixed
+        quote — within two hours on a working day.
+      </p>
+      <div class="hero-ctas"><a class="btn btn-solid" href="#book">Send an enquiry</a><a class="btn btn-ghost" href="/services/">See all services</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Direct</span>
+      <h2>Reach us directly</h2>
+      <div class="contact-cards">
+        <a class="contact-card" href={`tel:${SITE.phoneE164}`}>
+          <b>Phone / WhatsApp</b>
+          <span>{SITE.phoneDisplay}</span>
+          <small>Same number for calls and WhatsApp</small>
+        </a>
+        <a
+          class="contact-card"
+          href={waLink('Hi Qualis — I would like to talk about an inspection in India.')}
+          target="_blank"
+          rel="noopener"
+        >
+          <b>WhatsApp</b>
+          <span>Start a chat</span>
+          <small>Fastest route during Indian working hours</small>
+        </a>
+        <a class="contact-card" href={`mailto:${SITE.email}`}>
+          <b>Email</b>
+          <span>{SITE.email}</span>
+          <small>Send specs, drawings or a packing list</small>
+        </a>
+        <div class="contact-card">
+          <b>Based in</b>
+          <span>Jodhpur, Rajasthan</span>
+          <small>Inspecting across Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="book">
+    <div class="wrap final-grid">
+      <div>
+        <span class="eyebrow">Enquiry</span>
+        <h2>Tell us about your order</h2>
+        <p>
+          Every enquiry reaches a person, not a queue. We reply with what we would check,
+          what it costs and when we can be at the factory.
+        </p>
+        <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
+      </div>
+      <form data-enquiry="wa">
+        <div class="field field--svc"><label for="svc">Service</label><select id="svc" name="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select></div>
+        <div class="field field--cluster"><label for="cluster">Factory location</label><select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select></div>
+        <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required></div>
+        <div class="field field--company"><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Company name" required></div>
+        <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required></div>
+        <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000"></div>
+        <div class="field field--date"><label for="date">Target inspection date</label><input id="date" name="date" type="date"></div>
+        <button class="btn btn-solid" type="submit">Get instant estimate</button>
+        <p class="note">No payment now. We reply with scope and a fixed quote.</p>
+        <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <p class="note formstatus" role="status" aria-live="polite"></p>
+      </form>
+      <div class="bookdirect">
+        <a href={`tel:${SITE.phoneE164}`}><b>Phone/WhatsApp</b><span>{SITE.phoneDisplay}</span></a>
+        <a href={`mailto:${SITE.email}`}><b>Email</b><span>{SITE.email}</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
