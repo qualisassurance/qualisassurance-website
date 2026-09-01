@@ -92,6 +92,15 @@ deliberate and costs ~4.4 KB gzipped per page.
 Blog mobile rules live in `blog.css`, not `mobile.css`, because Astro emits `blog.css`
 *after* the layout's `mobile.css` on blog routes.
 
+`global.css` is an **input** to the porter, not an output. The porter reads it to decide
+which pages can share it, and never rewrites it — but it also holds its own copy of the
+porter's `OWNER_FIXES` block. Editing `OWNER_FIXES` alone updates the 7 page stylesheets
+and silently leaves the 23 shared pages on the old rules. Change both, then diff them.
+
+Anything that must beat `mobile.css` has to be *in* `mobile.css`. It loads last, so a
+rule of equal specificity anywhere else loses — `.fcol a` there quietly overrode a
+`.fcontact a` rule in `global.css`.
+
 ### Framework gotchas that cost real time
 
 - `compressHTML: false` is deliberate — Astro's whitespace stripping removed a meaningful
