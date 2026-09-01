@@ -67,6 +67,10 @@ const {
 <meta property="og:site_name" content={SITE.siteName}>
 <meta property="og:locale" content={SITE.locale}>
 <meta name="twitter:card" content="summary_large_image">
+<!-- .ico first as the universal fallback; browsers that understand the SVG
+     prefer it via type. Google's favicon crawler also probes /favicon.ico
+     at the site root regardless of what is declared here. -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/icon-180.png">
 <!-- Self-hosted webfonts. The third-party Google Fonts request was render-blocking

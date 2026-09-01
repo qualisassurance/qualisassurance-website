@@ -61,6 +61,47 @@ for (const size of [180, 192, 512]) {
     .toFile(path.join(IMAGES, `icon-${size}.png`));
 }
 
+/* 4. favicon.ico. Browsers prefer the SVG, but Google's favicon crawler and a
+   long tail of feed readers, chat unfurlers and older clients still request
+   /favicon.ico from the site root, and a 404 there means no icon at all.
+
+   sharp cannot write ICO, so the container is assembled here rather than
+   pulling in a dependency for ~200 lines of format. An ICO is a 6-byte header,
+   one 16-byte directory entry per frame, then the frame payloads; the payloads
+   are PNGs, which every browser since IE11 reads. Three sizes cover the tab
+   strip (16), retina tabs and bookmarks (32), and Windows shortcuts (48). */
+const icoSizes = [16, 32, 48];
+const frames = [];
+for (const size of icoSizes) {
+  frames.push(
+    await sharp(tile, { density: 400 }).resize(size, size).png({ compressionLevel: 9 }).toBuffer(),
+  );
+}
+
+const header = Buffer.alloc(6);
+header.writeUInt16LE(0, 0);            // reserved
+header.writeUInt16LE(1, 2);            // 1 = icon
+header.writeUInt16LE(frames.length, 4);
+
+let offset = 6 + frames.length * 16;
+const entries = frames.map((buf, i) => {
+  const e = Buffer.alloc(16);
+  e.writeUInt8(icoSizes[i] === 256 ? 0 : icoSizes[i], 0);  // 0 encodes 256
+  e.writeUInt8(icoSizes[i] === 256 ? 0 : icoSizes[i], 1);
+  e.writeUInt8(0, 2);                  // palette size, 0 for truecolour
+  e.writeUInt8(0, 3);                  // reserved
+  e.writeUInt16LE(1, 4);               // colour planes
+  e.writeUInt16LE(32, 6);              // bits per pixel
+  e.writeUInt32LE(buf.length, 8);
+  e.writeUInt32LE(offset, 12);
+  offset += buf.length;
+  return e;
+});
+
+const icoPath = path.join(ROOT, 'public/favicon.ico');
+fs.writeFileSync(icoPath, Buffer.concat([header, ...entries, ...frames]));
+console.log(`  favicon.ico                  ${icoSizes.join('/')}px      ${(fs.statSync(icoPath).size / 1024).toFixed(1)}K`);
+
 for (const f of ['qualis-logo.png', 'og-qualis-1200x630.jpg', 'icon-180.png', 'icon-192.png', 'icon-512.png']) {
   const p = path.join(IMAGES, f);
   const m = await sharp(p).metadata();
