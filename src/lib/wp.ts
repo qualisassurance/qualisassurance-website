@@ -15,6 +15,10 @@ export const WP_ENDPOINT =
   process.env.WP_GRAPHQL_ENDPOINT ??
   'https://cms.qualisinspections.com/graphql';
 
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { SITE } from './site';
+
 const TIMEOUT_MS = 20_000;
 
 let failed = false;
@@ -126,6 +130,26 @@ const POST_FIELDS = (seo: boolean) => `
 
 type RawPost = Record<string, any>;
 
+/**
+ * Serve a featured image from our own domain when we already ship the identical
+ * file in public/images. The CMS has been unreachable before, and a static page
+ * that hotlinks it loses its images with it — including the og:image every
+ * social preview depends on. Anything we do not have locally keeps the CMS URL,
+ * so the owner can still add a brand-new image through WordPress alone.
+ *
+ * Absolute on purpose: BaseLayout emits ogImage verbatim, so a root-relative
+ * path here would produce an og:image no scraper can resolve.
+ */
+function localiseImage(sourceUrl: string): string {
+  const base = sourceUrl.split('/').pop();
+  if (!base) return sourceUrl;
+  // process.cwd(), not import.meta.url: Vite bundles this module elsewhere at
+  // build time, so a path relative to the source file resolves to nothing.
+  return existsSync(join(process.cwd(), 'public/images', base))
+    ? `${SITE.url}/images/${base}`
+    : sourceUrl;
+}
+
 function shape(n: RawPost): WpPost {
   const img = n.featuredImage?.node ?? null;
   return {
@@ -141,7 +165,7 @@ function shape(n: RawPost): WpPost {
       : null,
     featuredImage: img
       ? {
-          sourceUrl: img.sourceUrl,
+          sourceUrl: localiseImage(img.sourceUrl),
           altText: img.altText || null,
           width: img.mediaDetails?.width ?? null,
           height: img.mediaDetails?.height ?? null,
