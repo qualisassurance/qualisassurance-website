@@ -37,6 +37,18 @@ export const SITE = {
   analyticsToken: '1143a6f279af4bc38364bf03b5df4676',
 } as const;
 
+/**
+ * Buyer markets, in the order the footer prints them. Single source of truth:
+ * the footer and llms.txt both read this. They drifted once already — three
+ * markets were added to the footer while llms.txt kept advertising the old
+ * seven. The porter holds the ISO-code form of this same list (SERVED in
+ * tools/port-reference.mjs) for the areaServed graph; keep the two in step.
+ */
+export const MARKETS = [
+  'USA', 'Canada', 'UK', 'Australia', 'Germany',
+  'Netherlands', 'Belgium', 'France', 'Denmark', 'UAE',
+] as const;
+
 /** Pre-filled WhatsApp link. `text` is encoded by the caller. */
 export const waLink = (text?: string) =>
   `https://wa.me/${SITE.waNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`;

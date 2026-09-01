@@ -1,5 +1,5 @@
 ---
-import { FOOTER_COLUMNS, SITE } from '../lib/site';
+import { FOOTER_COLUMNS, MARKETS, SITE } from '../lib/site';
 import Logo from './Logo.astro';
 ---
 <footer>
@@ -22,6 +22,6 @@ import Logo from './Logo.astro';
   </div>
   <div class="wrap fbase">
     <span>© Qualis INC · Jodhpur, Rajasthan, India</span>
-    <span>Serving buyers in USA · Canada · UK · Australia · Germany · Netherlands · Belgium · France · Denmark · UAE</span>
+    <span>Serving buyers in {MARKETS.join(' · ')}</span>
   </div>
 </footer>
