@@ -214,7 +214,7 @@ footer .logo .brand-logo{height:40px}
 .fcontact{margin-top:18px;display:flex;flex-direction:column;gap:2px}
 .fcontact a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--g700);font-size:.9rem;padding:6px 0}
 .fcontact a:hover{color:var(--pass)}
-.fcontact b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:74px}
+.fcontact b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:104px}
 @media (max-width:960px){.fcontact a{padding:10px 0;min-height:44px;align-items:center}}
 
 /* --- CONTACT STRIP beside the booking form -------------------------------- */
@@ -222,7 +222,7 @@ footer .logo .brand-logo{height:40px}
 .bookdirect a{display:flex;gap:12px;align-items:baseline;padding:13px 18px;text-decoration:none;color:var(--ink);font-size:.95rem;border-bottom:1px dashed var(--rule)}
 .bookdirect a:last-child{border-bottom:none}
 .bookdirect a:hover{background:var(--pass-tint)}
-.bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:82px}
+.bookdirect b{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);font-weight:500;min-width:112px}
 .bookdirect span{color:var(--pass);font-weight:600}
 @media (max-width:960px){.bookdirect a{padding:15px 18px;min-height:48px;align-items:center;font-size:1rem}}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
@@ -304,20 +304,30 @@ function fixForms(main, stats) {
   });
 
   // a direct-contact strip under each form, so there is always a way through
+  // One row per channel. The phone and the WhatsApp number are the same line,
+  // so listing them separately read as two different numbers; they share a row.
   main = main.replace(/<\/form>/g, `</form>
       <div class="bookdirect">
-        <a href="https://wa.me/${CONTACT.wa}?text=${encodeURIComponent('Hi Qualis — I would like to book an inspection.')}" target="_blank" rel="noopener"><b>WhatsApp</b><span>${CONTACT.phoneDisplay}</span></a>
-        <a href="tel:${CONTACT.phoneE164}"><b>Call</b><span>${CONTACT.phoneDisplay}</span></a>
+        <a href="tel:${CONTACT.phoneE164}"><b>Phone/WhatsApp</b><span>${CONTACT.phoneDisplay}</span></a>
         <a href="mailto:${CONTACT.email}"><b>Email</b><span>${CONTACT.email}</span></a>
       </div>`);
   return main;
 }
+
+/* Buyer markets, in the order the footer lists them. The reference shipped
+   seven; the owner added Canada, Belgium and Denmark. Kept in one place so the
+   visible footer line and the areaServed graph cannot drift apart. */
+const SERVED = ['US', 'CA', 'GB', 'AU', 'DE', 'NL', 'BE', 'FR', 'DK', 'AE'];
 
 /** telephone/email were absent from the reference's ProfessionalService graph. */
 function enrichJsonLd(graph) {
   if (graph['@type'] === 'ProfessionalService') {
     graph.telephone = CONTACT.phoneE164;
     graph.email = CONTACT.email;
+  }
+  // Only the country-code list form; /clusters/jodhpur/ uses an areaServed Place.
+  if (Array.isArray(graph.areaServed) && graph.areaServed.every((c) => /^[A-Z]{2}$/.test(c))) {
+    graph.areaServed = [...SERVED, ...graph.areaServed.filter((c) => !SERVED.includes(c))];
   }
   for (const v of Object.values(graph)) {
     if (v && typeof v === 'object') enrichJsonLd(v);

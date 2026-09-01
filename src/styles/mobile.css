@@ -189,6 +189,14 @@
   .nav-links a { min-height: 48px; display: flex; align-items: center; }
 
   .fcol a { padding: 11px 0; min-height: 44px; display: flex; align-items: center; }
+
+  /* "Phone/WhatsApp" is a far longer label than the "Call"/"WhatsApp" rows it
+     replaced. Holding the label gutter on a narrow screen pushes the email
+     address past the strip's right edge, so the label sits above its value.
+     This has to live here, after .fcol a: same specificity, and the mobile
+     layer loads last, so an equivalent rule in global.css loses. */
+  .fcontact a, .bookdirect a { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .fcontact b, .bookdirect b { min-width: 0; }
   .crumbs { line-height: 2.4; }
   /* widen the breadcrumb hit area without moving anything: the negative margin
      cancels the padding, so the trail still reads "Home / Services / …" */
