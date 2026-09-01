@@ -26,7 +26,7 @@ export const SITE = {
    * before, and nothing on the page changes. Paste the key to switch capture on.
    */
   formEndpoint: 'https://api.web3forms.com/submit',
-  formAccessKey: '',
+  formAccessKey: 'fff3ccfe-6c40-4d3c-bf75-fffac0824f60',
 } as const;
 
 /** Pre-filled WhatsApp link. `text` is encoded by the caller. */
