@@ -15,8 +15,6 @@ export const WP_ENDPOINT =
   process.env.WP_GRAPHQL_ENDPOINT ??
   'https://cms.qualisinspections.com/graphql';
 
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
 import { SITE } from './site';
 
 const TIMEOUT_MS = 20_000;
@@ -140,14 +138,20 @@ type RawPost = Record<string, any>;
  * Absolute on purpose: BaseLayout emits ogImage verbatim, so a root-relative
  * path here would produce an og:image no scraper can resolve.
  */
+const SHIPPED_IMAGES = new Set(
+  Object.keys(import.meta.glob('../../public/images/*', { eager: false })).map((p) =>
+    p.split('/').pop()!,
+  ),
+);
+
+if (SHIPPED_IMAGES.size === 0) {
+  console.warn('[wp] no local images resolved — featured images will hotlink the CMS');
+}
+
 function localiseImage(sourceUrl: string): string {
   const base = sourceUrl.split('/').pop();
   if (!base) return sourceUrl;
-  // process.cwd(), not import.meta.url: Vite bundles this module elsewhere at
-  // build time, so a path relative to the source file resolves to nothing.
-  return existsSync(join(process.cwd(), 'public/images', base))
-    ? `${SITE.url}/images/${base}`
-    : sourceUrl;
+  return SHIPPED_IMAGES.has(base) ? `${SITE.url}/images/${base}` : sourceUrl;
 }
 
 function shape(n: RawPost): WpPost {
