@@ -27,6 +27,14 @@ export const SITE = {
    */
   formEndpoint: 'https://api.web3forms.com/submit',
   formAccessKey: 'fff3ccfe-6c40-4d3c-bf75-fffac0824f60',
+  /**
+   * Cloudflare Web Analytics beacon token. Public by design, like the form key.
+   * Installed manually rather than via Cloudflare's automatic injection: this
+   * site is served by a Worker, and Worker responses bypass the proxy's HTML
+   * rewriting, so the auto-injected beacon never reached the page (verified —
+   * zero occurrences in the live HTML after automatic setup was enabled).
+   */
+  analyticsToken: '1143a6f279af4bc38364bf03b5df4676',
 } as const;
 
 /** Pre-filled WhatsApp link. `text` is encoded by the caller. */
