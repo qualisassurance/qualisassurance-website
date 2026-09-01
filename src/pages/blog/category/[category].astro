@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import TermArchive from '../../../components/TermArchive.astro';
+import type { WpPost } from '../../../lib/wp';
 import { getUsedTerms, getPostsByTerm } from '../../../lib/wp';
 import { SITE } from '../../../lib/site';
 import '../../../styles/global.css';
@@ -20,7 +21,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return out;
 };
 
-const { name, posts } = Astro.props as any;
+interface TermProps { name: string; posts: WpPost[] }
+const { name, posts } = Astro.props as TermProps;
 const canonical = `${SITE.url}/blog/category/${Astro.params.category}/`;
 const label = 'category' === 'tag' ? `#${name}` : name;
 const title = `${name} — Furniture Inspection Field Notes | QUALIS`;

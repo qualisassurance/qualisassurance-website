@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BlogIndex from '../../../components/BlogIndex.astro';
+import type { WpPost } from '../../../lib/wp';
 import { getAllPosts, getUsedTerms, POSTS_PER_PAGE } from '../../../lib/wp';
 import '../../../styles/global.css';
 import '../../../styles/blog.css';
@@ -25,7 +26,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return paths;
 };
 
-const { posts, page, totalPages, total } = Astro.props as any;
+interface PageProps { posts: WpPost[]; page: number; totalPages: number; total: number }
+const { posts, page, totalPages, total } = Astro.props as PageProps;
 const categories = await getUsedTerms('categories');
 const tags = await getUsedTerms('tags');
 

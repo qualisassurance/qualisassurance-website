@@ -190,7 +190,9 @@ export async function getAllPosts(): Promise<WpPost[]> {
   let after: string | null = null;
 
   for (let page = 0; page < 100; page++) {
-    const data: any = await gql(
+    const data = await gql<{
+      posts: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; nodes: RawPost[] };
+    }>(
       `query Posts($after: String) {
          posts(first: 50, after: $after, where: { status: PUBLISH, orderby: { field: DATE, order: DESC } }) {
            pageInfo { hasNextPage endCursor }
