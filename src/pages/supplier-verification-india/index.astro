@@ -5,6 +5,7 @@ import '../../styles/pages/supplier-verification-india.css';
 
 const title = "Furniture Supplier Verification in India | QUALIS";
 const description = "Verify an Indian furniture supplier before wiring a deposit: premises check, manufacturer-vs-trader confirmation, IEC & GST checks. Report in 3 days.";
+const preloadImage = "/images/img-sv-01.avif";
 const canonical = "https://qualisinspections.com/supplier-verification-india/";
 const jsonld = [
   {
@@ -129,7 +130,7 @@ const jsonld = [
   }
 ];
 ---
-<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ctaLabel={"Verify a supplier"} ctaHref={"#book"}>
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="service" ctaLabel={"Verify a supplier"} ctaHref={"#book"} preloadImage={preloadImage}>
 <div class="wrap crumbs"><a href="/">Home</a> / <a href="/services/">Services</a> / Supplier Verification</div>
 
 <!-- 01 HERO -->

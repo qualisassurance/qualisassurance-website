@@ -123,7 +123,13 @@ function toImageSlots(main, stats) {
     if (img) {
       stats.withPhoto++;
       parts.push(`src=${attr(img.src)}`, `width={${img.width}}`, `height={${img.height}}`);
-      if (HERO_SLOTS.has(id)) parts.push('eager');
+      if (HERO_SLOTS.has(id)) {
+        parts.push('eager');
+        // Remember it so the page can preload it: the hero is the LCP element on
+        // every page that has one, and it was being discovered only after 92KB
+        // of preloaded fonts had taken the connection.
+        stats.heroSrc = img.src.replace(/\.(jpe?g|png|webp)$/i, '.avif');
+      }
     }
     return `<ImageSlot ${parts.join(' ')} />`;
   });
@@ -673,6 +679,7 @@ for (const file of files) {
   const rel = path.relative(REF, file).replace(/index\.html$/, '');
   const urlPath = '/' + rel;
   stats.current = urlPath;
+  stats.heroSrc = null;
 
   const title = META_TITLES[urlPath] ?? decodeAttr(between(html, '<title>', '</title>') ?? '');
   const description =
@@ -748,6 +755,7 @@ for (const file of files) {
   if (cta && cta.href !== defHref) props.push(`ctaHref=${attr(cta.href)}`);
   if (ogTitle && ogTitle !== title) props.push('ogTitle={ogTitle}');
   if (ogDescription && ogDescription !== description) props.push('ogDescription={ogDescription}');
+  if (stats.heroSrc) props.push('preloadImage={preloadImage}');
 
   const fm = [
     '---',
@@ -755,6 +763,7 @@ for (const file of files) {
     '',
     `const title = ${JSON.stringify(title)};`,
     `const description = ${JSON.stringify(description)};`,
+    ...(stats.heroSrc ? [`const preloadImage = ${JSON.stringify(stats.heroSrc)};`] : []),
     `const canonical = ${JSON.stringify(canonical)};`,
     ...(ogTitle && ogTitle !== title ? [`const ogTitle = ${JSON.stringify(ogTitle)};`] : []),
     ...(ogDescription && ogDescription !== description ? [`const ogDescription = ${JSON.stringify(ogDescription)};`] : []),

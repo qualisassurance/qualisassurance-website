@@ -5,6 +5,7 @@ import '../styles/pages/home.css';
 
 const title = "Furniture Inspection & Supplier Verification in India | QUALIS";
 const description = "Independent furniture inspection, factory audits & supplier verification in Jodhpur and across India. Reports in 24 hours. Buyer-paid since 2017.";
+const preloadImage = "/images/img-01.avif";
 const canonical = "https://qualisinspections.com/";
 const ogTitle = "QUALIS — India's Furniture Import Assurance Partner";
 const jsonld = [
@@ -147,7 +148,7 @@ const jsonld = [
   }
 ];
 ---
-<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="home" ogTitle={ogTitle}>
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="home" ogTitle={ogTitle} preloadImage={preloadImage}>
 <!-- 01 HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
