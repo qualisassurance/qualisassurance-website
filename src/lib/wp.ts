@@ -16,6 +16,7 @@ export const WP_ENDPOINT =
   'https://cms.qualisinspections.com/graphql';
 
 import { SITE } from './site';
+import snapshot from '../data/blog-snapshot.json';
 
 const TIMEOUT_MS = 20_000;
 
@@ -51,7 +52,8 @@ async function gql<T>(
       console.warn(
         `\n[wp] Could not reach WPGraphQL at ${WP_ENDPOINT}\n` +
           `[wp]   ${err instanceof Error ? err.message : String(err)}\n` +
-          `[wp] Building with an empty blog. The rest of the site is unaffected.\n`
+          `[wp] Falling back to the committed snapshot if one exists; the rest of the\n` +
+        `[wp] site is unaffected either way.\n`
       );
     }
     return null;
@@ -207,6 +209,41 @@ let cmsSiteName = '';
 let cache: WpPost[] | null = null;
 
 /** Every published post, newest first. Cursor-paginated so it scales past 100. */
+/**
+ * Last-known-good copy of the blog, committed to the repo.
+ *
+ * The site is built ahead of time, so posts already deployed keep serving even
+ * if the CMS disappears — but only until the next build, which happens on every
+ * push. Without this, one unrelated deploy during a CMS outage would silently
+ * erase every post, with a green build and no error.
+ *
+ * The snapshot is refreshed on any build that reaches the CMS and gets posts
+ * back, so it stays current on its own. It is never written from an empty or
+ * failed fetch, which would defeat the point.
+ */
+const SNAPSHOT_PATH = 'src/data/blog-snapshot.json';
+
+function readSnapshot(): WpPost[] {
+  const posts = (snapshot as { posts?: WpPost[] }).posts ?? [];
+  return Array.isArray(posts) ? posts : [];
+}
+
+async function writeSnapshot(posts: WpPost[]): Promise<void> {
+  if (!posts.length) return;
+  try {
+    // Node-only, and only meaningful on a developer machine: on CI the write is
+    // discarded with the container, which is correct — CI must not commit.
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    writeFileSync(
+      join(process.cwd(), SNAPSHOT_PATH),
+      JSON.stringify({ capturedAt: new Date().toISOString(), posts }, null, 2) + '\n',
+    );
+  } catch {
+    // A read-only or unexpected working directory must never fail a build.
+  }
+}
+
 export async function getAllPosts(): Promise<WpPost[]> {
   if (cache) return cache;
   const seo = await hasSeoFields();
@@ -233,6 +270,21 @@ export async function getAllPosts(): Promise<WpPost[]> {
     out.push(...data.posts.nodes.map(shape));
     if (!data.posts.pageInfo?.hasNextPage) break;
     after = data.posts.pageInfo.endCursor;
+  }
+
+  if (!out.length) {
+    const saved = readSnapshot();
+    if (saved.length) {
+      console.warn(
+        `[wp] CMS returned no posts — serving the last-known-good snapshot ` +
+          `(${saved.length} post${saved.length === 1 ? '' : 's'}, captured ` +
+          `${(snapshot as { capturedAt?: string }).capturedAt ?? 'unknown'}).`,
+      );
+      cache = saved;
+      return saved;
+    }
+  } else {
+    await writeSnapshot(out);
   }
 
   cache = out;
