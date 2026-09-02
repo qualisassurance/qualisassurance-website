@@ -258,6 +258,14 @@ main section:not(.hero):not(.final) .prose-wrap>.eyebrow::before{content:none}
    of floating at the top of the row. */
 .final form>.btn{align-self:end}
 @media (max-width:760px){.final form{grid-template-columns:1fr}}
+/* --- HEADING TRACKING -------------------------------------------------------
+   The reference sets h1 at -0.028em and h2/h3 at -0.015em. That squeeze is the
+   single strongest "AI-generated" signal on the page — it is the house style of
+   a particular era of startup landing pages. Relaxed, not removed: the headings
+   still sit tighter than default, they just stop looking compressed.
+   Overridden rather than edited, because a re-port reinstates the source rules. */
+h1,h2,h3{letter-spacing:-.006em}
+h1{letter-spacing:-.008em}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
 `;
 
@@ -409,6 +417,29 @@ const META_DESCRIPTIONS = {
 const META_TITLES = {
   '/buyers/projects/': 'Furniture Inspection for Interior & Hospitality Projects | QUALIS',
 };
+/**
+ * The reference puts a mono eyebrow above every section — 159 of them across the
+ * 30 pages. Used that uniformly the label stops meaning "here is data" and comes
+ * to mean "a section starts here", which is decoration, and is one of the three
+ * things that made the site read as generated.
+ *
+ * The hero's eyebrow is kept on every page: it carries the positioning line, not
+ * a section name. Everything after the hero goes.
+ */
+function rationEyebrows(main, stats) {
+  const hero = main.match(/<section class="hero"[\s\S]*?<\/section>/);
+  if (!hero) return main;                       // every ported page has one; guard anyway
+  const cut = hero.index + hero[0].length;
+  let rest = main.slice(cut).replace(/<span class="eyebrow">[\s\S]*?<\/span>/g, () => {
+    stats.eyebrows++;
+    return '';
+  });
+  // A .sec-head whose only child was the eyebrow is now an empty wrapper that
+  // would still contribute its margin.
+  rest = rest.replace(/<div class="sec-head">\s*<div>\s*<\/div>\s*<\/div>/g, '');
+  return main.slice(0, cut) + rest;
+}
+
 /* --- SCHEMA COMPLETION -------------------------------------------------------
    The reference typed most pages as a bare WebPage. These pages sell a named
    service, so a Service node is added *alongside* the WebPage rather than
@@ -670,7 +701,7 @@ if (fs.existsSync(manifestPath)) {
   }
 }
 
-const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0, forms: 0, breadcrumbs: 0, services: 0, itemlists: 0 };
+const stats = { phTotal: 0, phMatched: 0, phUnmatched: [], current: '', pages: 0, withCss: 0, tables: 0, cells: 0, withPhoto: 0, forms: 0, breadcrumbs: 0, services: 0, itemlists: 0, eyebrows: 0 };
 const problems = [];
 const manifest = [];
 
@@ -711,6 +742,7 @@ for (const file of files) {
   if (main == null) { problems.push(`${urlPath}: no <main>`); continue; }
   main = rewriteSections(main, urlPath, problems);
   main = fixForms(main, stats);
+  main = rationEyebrows(main, stats);
   main = labelTableCells(main, stats);
   main = toImageSlots(main, stats);
   const usesImageSlot = main.includes('<ImageSlot');
@@ -787,6 +819,7 @@ console.log(`image slots        : ${stats.phMatched}/${stats.phTotal} converted 
 console.log(`responsive tables  : ${stats.tables} tables, ${stats.cells} cells labelled`);
 console.log(`with photography   : ${stats.withPhoto}/${stats.phMatched} slots (rest still placeholders)`);
 console.log(`booking forms wired: ${stats.forms}`);
+console.log(`section eyebrows   : ${stats.eyebrows} removed (hero line kept on each page)`);
 console.log(`schema added       : ${stats.services} Service, ${stats.breadcrumbs} BreadcrumbList, ${stats.itemlists} ItemList`);
 if (stats.phUnmatched.length) console.log('  unmatched:', stats.phUnmatched.join('; '));
 if (problems.length) {

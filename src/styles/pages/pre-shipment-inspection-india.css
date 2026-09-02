@@ -319,4 +319,12 @@ main section:not(.hero):not(.final) .prose-wrap>.eyebrow::before{content:none}
    of floating at the top of the row. */
 .final form>.btn{align-self:end}
 @media (max-width:760px){.final form{grid-template-columns:1fr}}
+/* --- HEADING TRACKING -------------------------------------------------------
+   The reference sets h1 at -0.028em and h2/h3 at -0.015em. That squeeze is the
+   single strongest "AI-generated" signal on the page — it is the house style of
+   a particular era of startup landing pages. Relaxed, not removed: the headings
+   still sit tighter than default, they just stop looking compressed.
+   Overridden rather than edited, because a re-port reinstates the source rules. */
+h1,h2,h3{letter-spacing:-.006em}
+h1{letter-spacing:-.008em}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}

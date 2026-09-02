@@ -287,3 +287,12 @@ a.contact-card:hover{border-color:var(--pass);background:var(--pass-tint)}
 .contact-card span{font-size:1.05rem;font-weight:600;color:var(--pass)}
 .contact-card small{font-size:.8rem;color:var(--g700);line-height:1.5}
 @media (max-width:960px){.contact-card{padding:20px}}
+
+/* --- HEADING TRACKING -------------------------------------------------------
+   The reference sets h1 at -0.028em and h2/h3 at -0.015em. That squeeze is the
+   single strongest "AI-generated" signal on the page — it is the house style of
+   a particular era of startup landing pages. Relaxed, not removed: the headings
+   still sit tighter than default, they just stop looking compressed.
+   Overridden rather than edited, because a re-port reinstates the source rules. */
+h1,h2,h3{letter-spacing:-.006em}
+h1{letter-spacing:-.008em}
