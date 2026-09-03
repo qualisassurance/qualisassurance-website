@@ -115,7 +115,7 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
     right: 0;
     bottom: 0;
     z-index: 60;
-    display: flex;
+    display: none; /* mobile/tablet only — turned on in the media query below */
     gap: 10px;
     padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
     background: rgba(247, 246, 242, 0.97);
@@ -142,11 +142,11 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   .sticky-cta__book { background: var(--ink, #111214); color: #fff; }
   .sticky-cta__wa { background: var(--pass, #0f7a5a); color: #fff; }
   .sticky-cta__btn:active { transform: translateY(1px); }
-  /* room so the fixed bar never hides the footer's last row */
-  body { padding-bottom: 78px; }
-  @media (min-width: 961px) {
-    .sticky-cta { justify-content: center; gap: 14px; }
-    .sticky-cta__btn { flex: 0 0 auto; min-width: 220px; }
+  /* Mobile & tablet only. On desktop the bar is hidden and no body padding is
+     added, so the desktop layout is untouched. */
+  @media (max-width: 960px) {
+    .sticky-cta { display: flex; }
+    body { padding-bottom: 78px; }
   }
 </style>
 <script>
