@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, type NavVariant } from '../lib/site';
+import { SITE, waLink, type NavVariant } from '../lib/site';
 
 /* No stylesheet is imported here on purpose. In the reference, each page is a
    single self-contained <style> block where base rules and page rules interleave;
@@ -49,6 +49,11 @@ const {
   ogType = 'website',
   preloadImage,
 } = Astro.props;
+
+// Sticky bottom CTA bar (replaces the removed header "Book" button). Points at
+// the same booking target the header CTA used, per nav variant.
+const bookHref = ctaHref ?? (navVariant === 'home' ? '#book' : '/#book');
+const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection in India.';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -92,6 +97,58 @@ const {
   <slot />
 </main>
 <Footer />
+
+<!-- Sticky bottom CTA bar — persistent Book + WhatsApp actions on every page. -->
+<div class="sticky-cta" role="region" aria-label="Quick actions">
+  <a class="sticky-cta__btn sticky-cta__book" href={bookHref}>Book an inspection</a>
+  <a
+    class="sticky-cta__btn sticky-cta__wa"
+    href={waLink(stickyWaText)}
+    target="_blank"
+    rel="noopener"
+  >WhatsApp</a>
+</div>
+<style is:global>
+  .sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(247, 246, 242, 0.97);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--rule, #e9e7e1);
+    box-shadow: 0 -8px 24px -14px rgba(17, 18, 20, 0.35);
+  }
+  .sticky-cta__btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.9rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+  }
+  .sticky-cta__book { background: var(--ink, #111214); color: #fff; }
+  .sticky-cta__wa { background: var(--pass, #0f7a5a); color: #fff; }
+  .sticky-cta__btn:active { transform: translateY(1px); }
+  /* room so the fixed bar never hides the footer's last row */
+  body { padding-bottom: 78px; }
+  @media (min-width: 961px) {
+    .sticky-cta { justify-content: center; gap: 14px; }
+    .sticky-cta__btn { flex: 0 0 auto; min-width: 220px; }
+  }
+</style>
 <script>
   import { SITE, waLink } from '../lib/site';
 

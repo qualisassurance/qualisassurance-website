@@ -60,6 +60,14 @@
 
   .ibar span { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--rule); }
   .ibar span:last-child { border-bottom: none; }
+
+  /* Client logos: two columns (not one) so each mark is half-size, with soft
+     rounded corners. Overrides the single-column collapse in the rule above. */
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .logos figure, .logos img, .logos .ph {
+    border-radius: 10px;
+    overflow: hidden;
+  }
 }
 
 /* ==========================================================================

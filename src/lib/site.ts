@@ -120,6 +120,7 @@ export const FOOTER_COLUMNS = [
       { href: '/defects/', label: 'Defect Library' },
       { href: '/sample-reports/', label: 'Sample Reports' },
       { href: '/import-compliance/', label: 'Import Compliance' },
+      { href: '/importing-furniture-from-india/', label: 'Importing from India' },
       { href: '/academy/', label: 'Import Academy' },
       { href: '/why-independent/', label: 'Why Independent' },
       { href: '/contact/', label: 'Contact' },
