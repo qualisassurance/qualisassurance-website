@@ -1,5 +1,5 @@
 ---
-import { FOOTER_COLUMNS, MARKETS, SITE } from '../lib/site';
+import { FOOTER_COLUMNS, SITE } from '../lib/site';
 import Logo from './Logo.astro';
 ---
 <footer>
@@ -11,6 +11,7 @@ import Logo from './Logo.astro';
       <div class="fcontact">
         <a href={`tel:${SITE.phoneE164}`}><b>Phone/WhatsApp</b>{SITE.phoneDisplay}</a>
         <a href={`mailto:${SITE.email}`}><b>Email</b>{SITE.email}</a>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Qualis Inspections, ${SITE.addressFull}`)}`} target="_blank" rel="noopener"><b>Address</b>{SITE.addressFull}</a>
       </div>
     </div>
     {FOOTER_COLUMNS.map((col) => (
@@ -22,6 +23,6 @@ import Logo from './Logo.astro';
   </div>
   <div class="wrap fbase">
     <span>© Qualis INC · Jodhpur, Rajasthan, India</span>
-    <span>Serving buyers in {MARKETS.join(' · ')}</span>
+    <span>Independent furniture inspection &amp; supplier verification · Buyer-paid since 2017</span>
   </div>
 </footer>

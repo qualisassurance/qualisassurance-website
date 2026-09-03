@@ -479,8 +479,10 @@ const PROVIDER = {
   email: CONTACT.email,
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban',
     addressLocality: 'Jodhpur',
     addressRegion: 'Rajasthan',
+    postalCode: '342001',
     addressCountry: 'IN',
   },
 };

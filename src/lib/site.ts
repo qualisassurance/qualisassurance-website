@@ -16,6 +16,14 @@ export const SITE = {
   phoneE164: '+918440007574',
   waNumber: '918440007574',
   email: 'info@qualisinspections.com',
+  /** Registered office. Kept consistent for NAP (name/address/phone) across the
+   *  site footer and JSON-LD PostalAddress. */
+  addressStreet: 'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban',
+  addressLocality: 'Jodhpur',
+  addressRegion: 'Rajasthan',
+  postalCode: '342001',
+  addressFull:
+    'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban, Jodhpur, Rajasthan 342001',
   /**
    * Form backend for booking enquiries. Web3Forms delivers straight to the
    * address the key was verified against; the access key is public by design
