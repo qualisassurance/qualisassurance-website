@@ -21,7 +21,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -183,20 +183,54 @@
   h2,h3{letter-spacing:-0.006em;}
   .eyebrow{display:none;}
   .hero .eyebrow{display:inline-block;}
+
+  /* ===== Site-matching chrome (header, footer, logo) ===== */
+  .site-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line);}
+  .site-nav{position:relative;display:flex;align-items:center;gap:1.2rem;height:66px;}
+  .brandlogo{display:inline-flex;align-items:center;text-decoration:none;flex:0 0 auto;}
+  .brandlogo svg{display:block;}
+  .site-menu{display:flex;gap:1.35rem;align-items:center;margin-left:auto;}
+  .site-menu a{font-family:"Inter Tight",sans-serif;font-weight:500;font-size:.92rem;color:var(--ink);text-decoration:none;white-space:nowrap;}
+  .site-menu a:hover{color:var(--green-ink);}
+  .site-menu-btn{display:none;margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.12em;background:none;border:1px solid var(--line-2);border-radius:3px;padding:.5rem .7rem;cursor:pointer;color:var(--ink);}
+  @media(max-width:900px){
+    .site-menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 12px 24px -16px rgba(17,18,20,.3);padding:.25rem 0;}
+    .site-menu.open{display:flex;}
+    .site-menu a{padding:.85rem var(--pad);border-bottom:1px solid var(--line);}
+    .site-menu a:last-child{border-bottom:none;}
+    .site-menu-btn{display:inline-block;}
+  }
+  .site-footer{background:var(--paper);border-top:1px solid var(--line);}
+  .site-foot{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:32px;padding-top:48px;padding-bottom:34px;}
+  .sf-brand .brandlogo{margin-bottom:14px;}
+  .sf-brand p{color:var(--ink-2);font-size:.9rem;line-height:1.5;max-width:38ch;margin:0 0 .8rem;}
+  .sf-paid{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.06em;color:var(--green)!important;}
+  .sf-contact{margin-top:1.1rem;display:flex;flex-direction:column;gap:.6rem;}
+  .sf-contact a{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--ink);text-decoration:none;}
+  .sf-contact a b{display:block;color:var(--ink-2);font-weight:500;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px;}
+  .sf-col b{display:block;font-family:"JetBrains Mono",monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:13px;font-weight:500;}
+  .sf-col a{display:block;text-decoration:none;font-size:.88rem;color:var(--ink-2);padding:4px 0;}
+  .sf-col a:hover{color:var(--green-ink);}
+  .sf-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-top:18px;padding-bottom:30px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--ink-2);letter-spacing:.02em;}
+  @media(max-width:900px){ .site-foot{grid-template-columns:1fr 1fr;} .sf-brand{grid-column:1 / -1;} }
+  @media(max-width:540px){ .site-foot{grid-template-columns:1fr;} }
+
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap bar">
-    <a class="logo" href="https://qualisinspections.com/">QUALIS<b>·</b>INSPECTION</a>
-    <nav class="navlinks">
-      <a href="https://qualisinspections.com/pre-shipment-inspection-india/">Inspection</a>
-      <a href="https://qualisinspections.com/supplier-verification-india/">Verification</a>
-      <a href="https://qualisinspections.com/eudr-compliance-india-furniture/">EUDR</a>
-      <a href="https://qualisinspections.com/why-independent/">Independence</a>
+<header class="site-header">
+  <div class="wrap site-nav">
+    <a class="brandlogo" href="https://qualisinspections.com/" aria-label="Qualis Inspection — home"><svg viewBox="0 0 560 100" height="30" width="168" role="img" aria-label="Qualis Inspection" focusable="false"><g><circle cx="50" cy="50" r="36" fill="none" stroke="#0F7A5A" stroke-width="11" stroke-dasharray="200 26.2" stroke-dashoffset="-54.5"/><line x1="65" y1="65" x2="83" y2="83" stroke="#0F7A5A" stroke-width="11"/><polyline points="34,49 45,60 67,36" fill="none" stroke="#0F7A5A" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/></g><text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="0.5" fill="#111214">QUALIS</text><text x="113" y="84" font-family="Archivo, Helvetica, sans-serif" font-weight="600" font-size="19" letter-spacing="5.2" fill="#0F7A5A">INSPECTION</text></svg></a>
+    <nav class="site-menu" id="site-menu">
+      <a href="https://qualisinspections.com/services/">Services</a>
+      <a href="https://qualisinspections.com/importing-furniture-from-india/">Import Guides</a>
+      <a href="https://qualisinspections.com/clusters/">Clusters</a>
+      <a href="https://qualisinspections.com/sample-reports/">Sample report</a>
+      <a href="https://qualisinspections.com/blog/">Field Notes</a>
+      <a href="https://qualisinspections.com/why-independent/">Why independent</a>
     </nav>
-    <a class="btn btn-primary" href="#book">Talk to us</a>
+    <button class="site-menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">MENU</button>
   </div>
 </header>
 
@@ -472,14 +506,24 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot">
-    <div class="fl">© Qualis INC · Jodhpur, Rajasthan, India<br><b>PAID BY BUYERS. NEVER BY FACTORIES.</b></div>
-    <div>
-      <a href="https://qualisinspections.com/importing-furniture-from-india/">Market guides</a>
-      <a href="https://qualisinspections.com/pre-shipment-inspection-india/">Inspection</a>
-      <a href="https://qualisinspections.com/why-independent/">Independence Charter</a>
+<footer class="site-footer">
+  <div class="wrap site-foot">
+    <div class="sf-brand">
+      <a class="brandlogo" href="https://qualisinspections.com/" aria-label="Qualis Inspection — home"><svg viewBox="0 0 560 100" height="34" width="190" role="img" aria-label="Qualis Inspection" focusable="false"><g><circle cx="50" cy="50" r="36" fill="none" stroke="#0F7A5A" stroke-width="11" stroke-dasharray="200 26.2" stroke-dashoffset="-54.5"/><line x1="65" y1="65" x2="83" y2="83" stroke="#0F7A5A" stroke-width="11"/><polyline points="34,49 45,60 67,36" fill="none" stroke="#0F7A5A" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/></g><text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="0.5" fill="#111214">QUALIS</text><text x="113" y="84" font-family="Archivo, Helvetica, sans-serif" font-weight="600" font-size="19" letter-spacing="5.2" fill="#0F7A5A">INSPECTION</text></svg></a>
+      <p>India's Furniture Import Assurance Partner. Independent inspection and verification on the ground in India's furniture clusters since 2017.</p>
+      <p class="sf-paid">PAID BY BUYERS. NEVER BY FACTORIES.</p>
+      <div class="sf-contact">
+        <a href="tel:+918440007574"><b>Phone / WhatsApp</b>+91 844 000 7574</a>
+        <a href="mailto:info@qualisinspections.com"><b>Email</b>info@qualisinspections.com</a>
+      </div>
     </div>
+    <div class="sf-col"><b>Services</b><a href="https://qualisinspections.com/pre-shipment-inspection-india/">Pre-Shipment Inspection</a><a href="https://qualisinspections.com/supplier-verification-india/">Supplier Verification</a><a href="https://qualisinspections.com/factory-audit-india/">Factory Audit</a><a href="https://qualisinspections.com/container-loading-supervision/">Container Loading</a><a href="https://qualisinspections.com/production-monitoring-india/">Production Monitoring</a><a href="https://qualisinspections.com/first-order-shield/">First Order Shield</a></div>
+    <div class="sf-col"><b>Import Guides</b><a href="https://qualisinspections.com/importing-furniture-from-india/">All markets</a><a href="https://qualisinspections.com/importing-furniture-from-india/usa/">USA</a><a href="https://qualisinspections.com/importing-furniture-from-india/uk/">UK</a><a href="https://qualisinspections.com/importing-furniture-from-india/germany/">Germany</a><a href="https://qualisinspections.com/importing-furniture-from-india/netherlands/">Netherlands</a><a href="https://qualisinspections.com/importing-furniture-from-india/france/">France</a><a href="https://qualisinspections.com/importing-furniture-from-india/spain/">Spain</a><a href="https://qualisinspections.com/importing-furniture-from-india/canada/">Canada</a><a href="https://qualisinspections.com/importing-furniture-from-india/australia/">Australia</a><a href="https://qualisinspections.com/importing-furniture-from-india/uae/">UAE & GCC</a><a href="https://qualisinspections.com/importing-furniture-from-india/saudi-arabia/">Saudi Arabia</a></div>
+    <div class="sf-col"><b>Resources</b><a href="https://qualisinspections.com/blog/">Field Notes</a><a href="https://qualisinspections.com/sample-reports/">Sample Reports</a><a href="https://qualisinspections.com/defects/">Defect Library</a><a href="https://qualisinspections.com/import-compliance/">Import Compliance</a><a href="https://qualisinspections.com/why-independent/">Why Independent</a><a href="https://qualisinspections.com/contact/">Contact</a></div>
+  </div>
+  <div class="wrap sf-base">
+    <span>© Qualis INC · Jodhpur, Rajasthan, India</span>
+    <span>Serving buyers in USA · Canada · UK · Australia · Germany · Netherlands · Belgium · France · Denmark · UAE</span>
   </div>
 </footer>
 
@@ -508,5 +552,6 @@
 }
 </script>
 
+<script>(function(){var b=document.querySelector('.site-menu-btn'),m=document.getElementById('site-menu');if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});}})();</script>
 </body>
 </html>
