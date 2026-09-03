@@ -1,0 +1,16 @@
+{
+  // Static-assets-only Worker. Astro builds a fully static site (output:'static',
+  // no adapter) into ./dist, and this config makes `npx wrangler deploy` upload
+  // that directory directly.
+  //
+  // Why this file exists: without a wrangler config, recent wrangler versions
+  // run `astro add cloudflare` during deploy, which pulls an @astrojs/cloudflare
+  // adapter that is incompatible with the pinned Astro ("renderForPrerender" is
+  // not exported by "astro/app") and fails the build. Declaring the assets target
+  // here gives wrangler a deployable target so it skips that framework auto-setup.
+  "name": "qualisinspections-website",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
