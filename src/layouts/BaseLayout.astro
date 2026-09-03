@@ -142,12 +142,40 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   .sticky-cta__book { background: var(--ink, #111214); color: #fff; }
   .sticky-cta__wa { background: var(--pass, #0f7a5a); color: #fff; }
   .sticky-cta__btn:active { transform: translateY(1px); }
-  /* Mobile & tablet only. On desktop the bar is hidden and no body padding is
-     added, so the desktop layout is untouched. */
+  /* Mobile & tablet: full-width bottom bar. */
   @media (max-width: 960px) {
     .sticky-cta { display: flex; }
     body { padding-bottom: 78px; }
   }
+  /* Desktop: the same two actions as floating buttons, bottom-right corner. */
+  @media (min-width: 961px) {
+    .sticky-cta {
+      display: flex;
+      flex-direction: column;
+      left: auto;
+      right: 22px;
+      bottom: 22px;
+      gap: 12px;
+      padding: 0;
+      background: none;
+      border-top: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      box-shadow: none;
+    }
+    .sticky-cta__btn {
+      flex: 0 0 auto;
+      min-width: 210px;
+      padding: 0.95rem 1.5rem;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px -8px rgba(17, 18, 20, 0.45);
+    }
+    /* Footer gains a fifth track for the new Import Guides column. */
+    footer .bigfoot { grid-template-columns: 1.4fr repeat(4, 1fr); }
+  }
+  /* Client-logo rounded corners on every viewport (mobile.css rounds them on
+     small screens; this extends the same treatment to desktop). */
+  .logos figure, .logos img, .logos .ph { border-radius: 10px; overflow: hidden; }
 </style>
 <script>
   import { SITE, waLink } from '../lib/site';
