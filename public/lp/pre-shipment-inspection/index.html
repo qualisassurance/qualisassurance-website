@@ -568,7 +568,10 @@
 
       <!-- IMPORTANT: set action to your form endpoint (Formspree / Basin / your handler).
            Until then, submit is handled by JS below and falls back to email/WhatsApp. -->
-      <form class="lead" id="leadForm" action="https://REPLACE-WITH-YOUR-ENDPOINT" method="POST">
+      <form class="lead" id="leadForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="fff3ccfe-6c40-4d3c-bf75-fffac0824f60">
+        <input type="hidden" name="from_name" value="qualisinspections.com">
+        <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" autocomplete="off" style="position:absolute;left:-9999px;opacity:0">
         <div class="field-2">
           <div class="field">
             <label for="service">Service</label>
@@ -645,26 +648,35 @@
   var form = document.getElementById('leadForm');
   if (form){
     form.addEventListener('submit', function(e){
-      var endpointSet = form.action.indexOf('REPLACE-WITH-YOUR-ENDPOINT') === -1;
-      track('generate_lead', { service: form.service.value, cluster: form.cluster.value /*, send_to:'AW-XXXXXXXXX/FORM_LABEL' */ });
-
-      if (!endpointSet){
-        // No backend yet — fall back to a prefilled email so no lead is lost.
-        e.preventDefault();
-        var subject = encodeURIComponent('Inspection request — ' + form.service.value + ' · ' + form.cluster.value);
-        var body = encodeURIComponent(
-          'Service: ' + form.service.value + '\n' +
-          'Cluster: ' + form.cluster.value + '\n' +
-          'Name: ' + form.name.value + '\n' +
-          'Company: ' + form.company.value + '\n' +
-          'Email: ' + form.email.value + '\n' +
-          'Phone: ' + form.phone.value + '\n' +
-          'Target date: ' + form.date.value
-        );
-        document.getElementById('formSuccess').classList.add('show');
-        window.location.href = 'mailto:info@qualisinspections.com?subject=' + subject + '&body=' + body;
-      }
-      // If endpoint IS set, let the normal POST proceed.
+      e.preventDefault();
+      if (form.reportValidity && !form.reportValidity()) return;
+      var fd = new FormData(form);
+      if (fd.get('botcheck')) return; /* honeypot: silently drop bots */
+      track('generate_lead', { lp:'psi', service: form.service.value, cluster: form.cluster.value /*, send_to:'AW-XXXXXXXXX/FORM_LABEL' */ });
+      var data = {
+        access_key: 'fff3ccfe-6c40-4d3c-bf75-fffac0824f60',
+        from_name: 'qualisinspections.com',
+        subject: 'Inspection request \u2014 ' + (form.service.value || 'Qualis') + (form.cluster.value ? ' \u00b7 ' + form.cluster.value : ''),
+        page: location.pathname
+      };
+      fd.forEach(function(v, k){ if (k !== 'access_key') data[k] = v; });
+      var success = document.getElementById('formSuccess');
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      if (btn){ btn.disabled = true; btn.textContent = 'Sending\u2026'; }
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST', keepalive: true,
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(r){
+        if (!r.ok) throw new Error(String(r.status));
+        if (success){ success.classList.add('show'); }
+        form.reset();
+        if (btn){ btn.textContent = 'Sent \u2713'; }
+      }).catch(function(){
+        if (btn){ btn.disabled = false; btn.textContent = label || 'Get a fixed quote'; }
+        if (success){ success.textContent = 'Could not send that just now. Please WhatsApp us or email info@qualisinspections.com and we\u2019ll pick it up.'; success.classList.add('show'); }
+      });
     });
   }
 </script>
