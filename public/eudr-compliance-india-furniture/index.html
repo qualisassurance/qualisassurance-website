@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EUDR Compliance for Furniture Imported from India | QUALIS</title>
+<meta name="description" content="EUDR applies to furniture from 30 December 2026. As the EU importer you are the operator and carry primary legal liability. What the regulation requires, and how we collect the evidence in India's furniture clusters.">
+<link rel="canonical" href="https://qualisinspections.com/eudr-compliance-india-furniture/">
+<meta name="theme-color" content="#F7F6F2">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="QUALIS">
+<meta property="og:title" content="EUDR Compliance for Furniture Imported from India">
+<meta property="og:description" content="Furniture is in scope. The EU importer is the operator. Deadline: 30 December 2026. Here is what the evidence chain looks like from an Indian factory floor.">
+<meta property="og:url" content="https://qualisinspections.com/eudr-compliance-india-furniture/">
+<meta property="og:image" content="https://qualisinspections.com/images/og-qualis-1200x630.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F7F6F2; --ink:#111214; --ink-2:#54565A;
+    --line:#E2E0D8; --line-2:#D2CFC4;
+    --green:#0F7A5A; --green-ink:#0B5E45; --green-wash:#EAF3EF;
+    --crit:#B23A2E; --maj:#B5791F; --card:#FFFFFF;
+    --maxw:1080px; --pad:clamp(20px,5vw,48px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:"Inter Tight",sans-serif;line-height:1.12;letter-spacing:-0.015em;margin:0;}
+  h1{font-size:clamp(2rem,4.8vw,3.1rem);font-weight:700;}
+  h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:600;}
+  h3{font-size:1.12rem;font-weight:600;}
+  p{margin:0 0 1rem;}
+  a{color:var(--green-ink);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+  .narrow{max-width:72ch;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-ink);display:inline-block;margin-bottom:0.9rem;}
+  .mono{font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:0.05em;color:var(--ink-2);}
+
+  .btn{display:inline-flex;align-items:center;gap:0.5rem;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1rem;padding:0.85rem 1.4rem;border-radius:2px;border:1.5px solid var(--ink);text-decoration:none;cursor:pointer;line-height:1;transition:background .12s ease,color .12s ease;}
+  .btn-primary{background:var(--green);border-color:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--green-ink);border-color:var(--green-ink);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .btn:focus-visible{outline:3px solid var(--green);outline-offset:2px;}
+
+  header{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:40;}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;}
+  .logo{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:0.95rem;color:var(--ink);text-decoration:none;white-space:nowrap;}
+  .logo b{color:var(--green);}
+  .navlinks{display:flex;gap:1.4rem;}
+  .navlinks a{font-size:0.9rem;color:var(--ink-2);text-decoration:none;}
+  .navlinks a:hover{color:var(--green-ink);}
+  .bar .btn{padding:0.6rem 1rem;font-size:0.88rem;}
+  @media (max-width:860px){.navlinks{display:none;}}
+
+  .crumb{font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.05em;color:var(--ink-2);padding:1rem 0 0;}
+  .crumb a{color:var(--ink-2);text-decoration:none;}
+
+  /* Hero */
+  .hero{border-bottom:1px solid var(--line);padding-bottom:clamp(36px,5vw,56px);}
+  .hero h1{margin-bottom:1rem;max-width:20ch;}
+  .hero .lede{font-size:1.14rem;color:var(--ink-2);max-width:62ch;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.4rem;}
+
+  /* Deadline panel */
+  .deadline{background:var(--card);border:1px solid var(--line-2);border-left:3px solid var(--crit);border-radius:3px;padding:1.3rem 1.5rem;margin-top:1.8rem;}
+  .deadline .dh{font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.08em;color:var(--crit);margin-bottom:0.7rem;}
+  .dl-row{display:flex;justify-content:space-between;gap:1rem;padding:0.55rem 0;border-bottom:1px solid var(--line);font-size:0.95rem;}
+  .dl-row:last-child{border-bottom:none;}
+  .dl-row .d{font-family:"JetBrains Mono",monospace;font-size:0.82rem;font-weight:600;color:var(--ink);white-space:nowrap;}
+
+  section.block{padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(44px,6vw,72px);border-bottom:1px solid var(--line);}
+  .section-head{max-width:62ch;margin-bottom:2rem;}
+  .section-head p{color:var(--ink-2);margin-top:0.7rem;margin-bottom:0;}
+
+  /* Liability callout */
+  .callout{background:var(--green-wash);border:1px solid #C9E2D8;border-radius:3px;padding:1.4rem 1.6rem;margin:1.6rem 0;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout .ct{font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.08em;color:var(--green-ink);margin-bottom:0.6rem;}
+
+  /* Three steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:var(--card);}
+  .step{padding:1.5rem;border-right:1px solid var(--line);}
+  .step:last-child{border-right:none;}
+  .step .sn{font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.08em;color:var(--green);margin-bottom:0.7rem;}
+  .step h3{margin-bottom:0.5rem;}
+  .step p{color:var(--ink-2);font-size:0.95rem;margin:0;}
+
+  /* Evidence table */
+  .tablecard{background:var(--card);border:1px solid var(--line-2);border-radius:3px;overflow:hidden;}
+  .tablecard .th{padding:0.85rem 1.1rem;border-bottom:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.07em;color:var(--ink-2);}
+  table.ev{width:100%;border-collapse:collapse;font-size:0.92rem;}
+  table.ev th,table.ev td{text-align:left;padding:0.75rem 1.1rem;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.ev th{font-family:"JetBrains Mono",monospace;font-size:0.66rem;letter-spacing:0.06em;color:var(--ink-2);font-weight:500;text-transform:uppercase;}
+  table.ev tr:last-child td{border-bottom:none;}
+  table.ev td:first-child{font-weight:600;width:32%;}
+  .who{font-family:"JetBrains Mono",monospace;font-size:0.64rem;font-weight:600;letter-spacing:0.05em;padding:0.2rem 0.44rem;border-radius:2px;white-space:nowrap;}
+  .who.q{background:var(--green-wash);color:var(--green-ink);}
+  .who.y{background:#F2EFE6;color:var(--maj);}
+
+  /* What we do / don't */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .panel{background:var(--card);border:1px solid var(--line-2);border-radius:3px;padding:1.5rem;}
+  .panel.neg{background:transparent;border-style:dashed;}
+  .panel h3{margin-bottom:0.9rem;}
+  .panel ul{list-style:none;margin:0;padding:0;}
+  .panel li{padding:0.6rem 0;border-bottom:1px solid var(--line);font-size:0.95rem;display:flex;gap:0.7rem;align-items:flex-start;}
+  .panel li:last-child{border-bottom:none;}
+  .mk{flex:0 0 auto;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:700;margin-top:3px;}
+  .mk.y{background:var(--green-wash);color:var(--green-ink);}
+  .mk.n{background:#F2EFE6;color:var(--ink-2);}
+
+  /* India risk cards */
+  .risks{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+  .risk{background:var(--card);border:1px solid var(--line-2);border-radius:3px;padding:1.3rem 1.4rem;}
+  .risk .rm{font-family:"JetBrains Mono",monospace;font-size:0.64rem;letter-spacing:0.06em;color:var(--ink-2);margin-bottom:0.4rem;}
+  .risk h3{font-size:1.02rem;margin-bottom:0.45rem;}
+  .risk p{font-size:0.94rem;color:var(--ink-2);margin:0;}
+
+  /* FAQ */
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq summary{cursor:pointer;list-style:none;padding:1rem 0;font-family:"Inter Tight",sans-serif;font-weight:600;font-size:1.04rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--green);font-size:1.3rem;font-weight:400;}
+  .faq details[open] summary::after{content:"–";}
+  .faq details p{color:var(--ink-2);font-size:0.97rem;padding:0 0 1.1rem;margin:0;max-width:72ch;}
+  .faq summary:focus-visible{outline:3px solid var(--green);outline-offset:2px;}
+
+  /* Disclaimer */
+  .disclaim{background:transparent;border:1px dashed var(--line-2);border-radius:3px;padding:1.1rem 1.3rem;font-size:0.88rem;color:var(--ink-2);}
+  .disclaim strong{color:var(--ink);}
+
+  /* CTA */
+  #book{background:var(--ink);color:var(--paper);border-bottom:none;}
+  #book h2{color:#fff;}
+  #book .eyebrow{color:#5FCBA6;}
+  #book p{color:#B9BABC;}
+  .cta-contact{font-family:"JetBrains Mono",monospace;font-size:0.8rem;color:#B9BABC;line-height:2;margin-top:1.4rem;}
+  .cta-contact a{color:#5FCBA6;text-decoration:none;}
+
+  footer{padding:2.4rem 0;}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;}
+  .foot .fl{font-family:"JetBrains Mono",monospace;font-size:0.72rem;color:var(--ink-2);}
+  .foot .fl b{color:var(--green);}
+  .foot a{color:var(--ink-2);text-decoration:none;font-size:0.8rem;margin-left:1rem;}
+
+  @media (max-width:860px){
+    .steps{grid-template-columns:1fr;}
+    .step{border-right:none;border-bottom:1px solid var(--line);}
+    .step:last-child{border-bottom:none;}
+    .twocol,.risks{grid-template-columns:1fr;}
+    table.ev td:first-child{width:auto;}
+  }
+
+  /* --- Finalised design: relaxed heading tracking + rationed eyebrows (matches live qualisinspections.com) --- */
+  h1{letter-spacing:-0.008em;}
+  h2,h3{letter-spacing:-0.006em;}
+  .eyebrow{display:none;}
+  .hero .eyebrow{display:inline-block;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="https://qualisinspections.com/">QUALIS<b>·</b>INSPECTION</a>
+    <nav class="navlinks">
+      <a href="https://qualisinspections.com/pre-shipment-inspection-india/">Inspection</a>
+      <a href="https://qualisinspections.com/supplier-verification-india/">Verification</a>
+      <a href="https://qualisinspections.com/import-compliance/">Compliance</a>
+      <a href="https://qualisinspections.com/why-independent/">Independence</a>
+    </nav>
+    <a class="btn btn-primary" href="#book">Talk to us</a>
+  </div>
+</header>
+
+<div class="wrap crumb">
+  <a href="https://qualisinspections.com/">Home</a> / <a href="https://qualisinspections.com/import-compliance/">Import compliance</a> / EUDR
+</div>
+
+<!-- HERO -->
+<section class="wrap hero" style="padding-top:1.6rem;">
+  <span class="eyebrow">EU Deforestation Regulation · Regulation (EU) 2023/1115</span>
+  <h1>EUDR compliance for furniture imported from India</h1>
+  <p class="lede">Wooden furniture is in scope. If you place it on the EU market, you are the operator — and the operator carries the legal responsibility. The evidence you need has to be collected in India, at the factory and behind it.</p>
+
+  <div class="deadline">
+    <div class="dh">APPLICATION DATES</div>
+    <div class="dl-row"><span>Large and medium operators and traders</span><span class="d">30 DEC 2026</span></div>
+    <div class="dl-row"><span>Micro and small enterprises</span><span class="d">30 JUN 2027</span></div>
+    <div class="dl-row"><span>Deforestation cut-off date (unchanged)</span><span class="d">31 DEC 2020</span></div>
+    <div class="dl-row"><span>EUTR remains in force until replaced</span><span class="d">TRANSITIONAL</span></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#book">Start a supplier evidence review</a>
+    <a class="btn btn-ghost" href="#what">What the regulation requires</a>
+  </div>
+</section>
+
+<!-- WHY IT LANDS ON YOU -->
+<section class="block" id="liability">
+  <div class="wrap narrow">
+    <span class="eyebrow">Who carries the risk</span>
+    <h2>The importer is the operator</h2>
+    <p>Under EUDR, the first entity placing a product on the EU market bears primary legal responsibility. For furniture made in India and sold in the EU, that is you — the importer — not your Indian factory and not your freight forwarder.</p>
+    <p>Suppliers outside the EU have no direct filing obligation. Their role is to hand you the documentation you need to complete your own due diligence. If they can't produce it, the exposure stays with you.</p>
+
+    <div class="callout">
+      <div class="ct">WHAT NON-COMPLIANCE COSTS</div>
+      <p>Penalties reach up to 4% of EU annual turnover, alongside seizure of goods and exclusion from the EU market. For most furniture importers that is not a fine — it is the business.</p>
+    </div>
+
+    <p>There is one piece of good news. Since the December 2025 simplification, only the first operator placing the product on the EU market files the due diligence statement; everyone downstream passes the reference number along, and filing can be annual rather than per shipment. That reduces paperwork volume. It does not reduce the evidence you must hold behind it.</p>
+  </div>
+</section>
+
+<!-- WHAT IT REQUIRES -->
+<section class="block" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The obligation</span>
+      <h2>Three conditions, and a statement that says you checked</h2>
+      <p>To be placed on the EU market, in-scope products must be deforestation-free, produced legally under the laws of the country of origin, and covered by a due diligence statement.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="sn">STEP 01</div>
+        <h3>Collect information</h3>
+        <p>Geolocation coordinates for every plot the timber came from, documentation that production was legal under Indian law, and the chain of operators and traders who handled the material between forest and container.</p>
+      </div>
+      <div class="step">
+        <div class="sn">STEP 02</div>
+        <h3>Assess risk</h3>
+        <p>Judge whether that information shows a non-negligible risk that the wood came from land deforested or degraded after 31 December 2020, or was produced in breach of relevant law.</p>
+      </div>
+      <div class="step">
+        <div class="sn">STEP 03</div>
+        <h3>Mitigate, then declare</h3>
+        <p>Where risk is not negligible, take mitigation steps until it is. Then file the due diligence statement before the goods are placed on the market.</p>
+      </div>
+    </div>
+
+    <p class="mono" style="margin-top:1.1rem;">SCOPE NOTE — EUDR covers timber and six agricultural commodities, including products made from them such as furniture. It replaces the EU Timber Regulation, which targeted only illegal logging; EUDR targets deforestation regardless of legality.</p>
+  </div>
+</section>
+
+<!-- THE INDIA PROBLEM -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why India furniture is harder than most</span>
+      <h2>The evidence gap sits upstream of your factory</h2>
+      <p>Your Jodhpur supplier assembles. It rarely owns the forest. Between the plot and the polished tabletop sit timber traders, sawmills and yards — and that is exactly the stretch EUDR asks you to document.</p>
+    </div>
+    <div class="risks">
+      <div class="risk">
+        <div class="rm">RISK 01 · TRACEABILITY</div>
+        <h3>Sheesham bought through traders</h3>
+        <p>Solid sheesham and acacia typically reach the factory via timber markets, not direct from a plantation. Ask for plot coordinates and you often get a purchase invoice from a yard instead.</p>
+      </div>
+      <div class="risk">
+        <div class="rm">RISK 02 · SMALLHOLDER ORIGIN</div>
+        <h3>Farm and field-boundary timber</h3>
+        <p>Much Indian hardwood comes from smallholdings and field boundaries rather than managed forest. Legitimate — but the geolocation and legality paperwork usually doesn't exist unless someone goes and builds it.</p>
+      </div>
+      <div class="risk">
+        <div class="rm">RISK 03 · MIXED BATCHES</div>
+        <h3>One SKU, several timber sources</h3>
+        <p>A single container can carry wood from multiple lots. If the paperwork covers only part of the batch, the due diligence statement behind it is weaker than it looks.</p>
+      </div>
+      <div class="risk">
+        <div class="rm">RISK 04 · DOCUMENT QUALITY</div>
+        <h3>Paperwork that hasn't been checked</h3>
+        <p>A supplier declaration is not evidence. Transit permits, purchase records and species claims need to be seen, matched to the actual goods, and photographed on site.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE MATRIX -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The evidence chain</span>
+      <h2>What has to exist, and who produces it</h2>
+    </div>
+    <div class="tablecard">
+      <div class="th">EUDR EVIDENCE — INDIA FURNITURE SUPPLY CHAIN</div>
+      <table class="ev">
+        <thead><tr><th>Evidence</th><th>What it looks like in practice</th><th>Collected by</th></tr></thead>
+        <tbody>
+          <tr><td>Plot geolocation</td><td>Coordinates for the land the timber was harvested from, traced back through the yard or trader.</td><td><span class="who q">QUALIS</span></td></tr>
+          <tr><td>Legality documents</td><td>Transit permits, purchase records and species declarations, checked against the actual material on the floor.</td><td><span class="who q">QUALIS</span></td></tr>
+          <tr><td>Supply chain map</td><td>Named operators and traders between harvest and export, with premises verified as real.</td><td><span class="who q">QUALIS</span></td></tr>
+          <tr><td>Species identification</td><td>Declared species matched to what is actually in the batch at inspection.</td><td><span class="who q">QUALIS</span></td></tr>
+          <tr><td>Batch linkage</td><td>Documented wood sources tied to the specific PO, cartons and container leaving India.</td><td><span class="who q">QUALIS</span></td></tr>
+          <tr><td>Risk assessment</td><td>Your formal judgement on whether risk is negligible, using the evidence above.</td><td><span class="who y">YOU</span></td></tr>
+          <tr><td>Due diligence statement</td><td>Filed by you in the EU information system before the goods are placed on the market.</td><td><span class="who y">YOU</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO / DON'T -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our role</span>
+      <h2>We collect the evidence. You file the statement.</h2>
+      <p>We're an independent inspection firm on the ground in India's furniture clusters, paid by buyers and never by factories. That independence is the point: an evidence file is worth nothing if the party assembling it is paid by the party being checked.</p>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h3>What we do</h3>
+        <ul>
+          <li><span class="mk y">✓</span><span>Audit your supplier's timber documentation on site, not by email.</span></li>
+          <li><span class="mk y">✓</span><span>Trace material back through yards and traders to identify origin, and record what can and cannot be evidenced.</span></li>
+          <li><span class="mk y">✓</span><span>Capture geolocation data where the supply chain allows it to be established.</span></li>
+          <li><span class="mk y">✓</span><span>Photograph and index every document against the batch it covers.</span></li>
+          <li><span class="mk y">✓</span><span>Deliver a structured evidence file your compliance team can act on.</span></li>
+          <li><span class="mk y">✓</span><span>Flag gaps early — while you can still change supplier or timber source.</span></li>
+        </ul>
+      </div>
+      <div class="panel neg">
+        <h3>What we don't do</h3>
+        <ul>
+          <li><span class="mk n">—</span><span>File your due diligence statement. That obligation is yours as operator and cannot be delegated to us.</span></li>
+          <li><span class="mk n">—</span><span>Issue EUDR certification. No inspection company can; EUDR has no certification scheme.</span></li>
+          <li><span class="mk n">—</span><span>Give legal advice. We document facts; your counsel interprets obligations.</span></li>
+          <li><span class="mk n">—</span><span>Guarantee an outcome. If the evidence isn't there, our report says so — that is what you are paying us for.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="disclaim" style="margin-top:1.4rem;">
+      <strong>Not legal advice.</strong> This page summarises publicly available information about Regulation (EU) 2023/1115 for orientation only. EUDR has been amended and postponed more than once, and obligations differ by company size and role. Confirm your position with qualified counsel and against the current official text before relying on it.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>EUDR and Indian furniture — FAQ</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Does EUDR apply to wooden furniture?</summary>
+        <p>Yes. The regulation covers timber and products derived from it, and furniture is named explicitly among in-scope products. If your product contains wood and you place it on the EU market, you are within scope.</p>
+      </details>
+      <details>
+        <summary>When do I actually have to comply?</summary>
+        <p>Large and medium operators and traders from 30 December 2026. Micro and small enterprises from 30 June 2027. The deforestation cut-off date is 31 December 2020 and has not moved — land converted after that date disqualifies the material regardless of the deadline you fall under.</p>
+      </details>
+      <details>
+        <summary>My Indian supplier says they'll handle EUDR. Is that enough?</summary>
+        <p>No. Non-EU suppliers have no filing obligation under EUDR; their role is to provide documentation so you can complete your own due diligence. Legal responsibility sits with the operator placing the product on the EU market — the importer. A supplier promise is not a defence.</p>
+      </details>
+      <details>
+        <summary>What happens to EUTR in the meantime?</summary>
+        <p>EUDR repeals and replaces the older EU Timber Regulation, but EUTR remains the active legal requirement during the transition. Exporters and importers should continue meeting EUTR legality obligations until EUDR fully applies to them.</p>
+      </details>
+      <details>
+        <summary>Can you certify my supplier as EUDR compliant?</summary>
+        <p>No — and be wary of anyone who says they can. EUDR does not operate a certification scheme. What exists is evidence and a due diligence statement you file yourself. We collect and verify the evidence; the statement and the risk judgement remain yours.</p>
+      </details>
+      <details>
+        <summary>How early should we start?</summary>
+        <p>Before your next production run, not before your next shipment. If timber traceability turns out to be unevidenced, the fix is changing supplier or timber source — and that takes months, not days.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" id="book">
+  <div class="wrap narrow">
+    <span class="eyebrow">Next step</span>
+    <h2>Find the gaps while you can still fix them</h2>
+    <p>Send us your supplier and product mix. We'll tell you what evidence is realistically obtainable in that supply chain, what isn't, and what it costs to build the file — before the deadline decides for you.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://wa.me/918440007574?text=Hi%20Qualis%2C%20we%20import%20furniture%20from%20India%20into%20the%20EU%20and%20need%20help%20with%20EUDR%20supplier%20evidence." target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <a class="btn btn-ghost" style="border-color:#5FCBA6;color:#5FCBA6;" href="mailto:info@qualisinspections.com?subject=EUDR%20supplier%20evidence%20review">Email the team</a>
+    </div>
+    <div class="cta-contact">
+      PHONE / WHATSAPP<br><a href="tel:+918440007574">+91 844 000 7574</a><br><br>
+      EMAIL<br><a href="mailto:info@qualisinspections.com">info@qualisinspections.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="fl">© Qualis INC · Jodhpur, Rajasthan, India<br><b>PAID BY BUYERS. NEVER BY FACTORIES.</b></div>
+    <div>
+      <a href="https://qualisinspections.com/import-compliance/">Import compliance</a>
+      <a href="https://qualisinspections.com/supplier-verification-india/">Supplier verification</a>
+      <a href="https://qualisinspections.com/why-independent/">Independence Charter</a>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Does EUDR apply to wooden furniture?","acceptedAnswer":{"@type":"Answer","text":"Yes. The regulation covers timber and products derived from it, and furniture is named explicitly among in-scope products. If your product contains wood and you place it on the EU market, you are within scope."}},
+    {"@type":"Question","name":"When do I have to comply with EUDR?","acceptedAnswer":{"@type":"Answer","text":"Large and medium operators and traders from 30 December 2026. Micro and small enterprises from 30 June 2027. The deforestation cut-off date is 31 December 2020."}},
+    {"@type":"Question","name":"Can my Indian supplier handle EUDR compliance for me?","acceptedAnswer":{"@type":"Answer","text":"No. Non-EU suppliers have no filing obligation under EUDR. Legal responsibility sits with the operator placing the product on the EU market, which is the importer. Suppliers provide documentation so the importer can complete their own due diligence."}},
+    {"@type":"Question","name":"What happens to the EU Timber Regulation under EUDR?","acceptedAnswer":{"@type":"Answer","text":"EUDR repeals and replaces the EU Timber Regulation, but EUTR remains the active legal requirement during the transition period until EUDR fully applies."}},
+    {"@type":"Question","name":"Can an inspection company certify a supplier as EUDR compliant?","acceptedAnswer":{"@type":"Answer","text":"No. EUDR does not operate a certification scheme. What exists is evidence and a due diligence statement filed by the operator. An inspection firm can collect and verify evidence, but the statement and risk judgement remain the importer's responsibility."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://qualisinspections.com/"},
+    {"@type":"ListItem","position":2,"name":"Import compliance","item":"https://qualisinspections.com/import-compliance/"},
+    {"@type":"ListItem","position":3,"name":"EUDR compliance for India furniture","item":"https://qualisinspections.com/eudr-compliance-india-furniture/"}
+  ]
+}
+</script>
+
+</body>
+</html>
