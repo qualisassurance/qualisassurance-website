@@ -262,7 +262,7 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
       };
 
       const lines = [
-        'New inspection enquiry from qualisinspections.com',
+        'New inspection enquiry from qualisassurance.com',
         '',
         fields.service && `Service: ${fields.service}`,
         fields.factory_location && `Factory location: ${fields.factory_location}`,
@@ -290,7 +290,7 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
           body: JSON.stringify({
             access_key: SITE.formAccessKey,
             subject: `Inspection enquiry — ${fields.service || 'Qualis'}${fields.factory_location ? ` · ${fields.factory_location}` : ''}`,
-            from_name: 'qualisinspections.com',
+            from_name: 'qualisassurance.com',
             ...fields,
             page: location.pathname,
           }),

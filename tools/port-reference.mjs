@@ -317,7 +317,7 @@ const CONTACT = {
   phoneDisplay: '+91 844 000 7574',
   phoneE164: '+918440007574',
   wa: '918440007574',
-  email: 'info@qualisinspections.com',
+  email: 'info@qualisassurance.com',
 };
 
 /**
@@ -446,7 +446,18 @@ function rationEyebrows(main, stats) {
    replacing it — the page is a WebPage that is about a Service, and rewriting
    the type would discard the isPartOf/publisher data the reference got right.
    serviceType mirrors the page's own name; nothing here is invented. */
-const SITE_URL = 'https://qualisinspections.com';
+const SITE_URL = 'https://qualisassurance.com';
+
+/* The static reference predates the rebrand: its markup still says
+   qualisinspections.com and "Qualis Inspection". Rewrite both on the way through
+   so a regen matches the live qualisassurance.com brand. The reference itself is
+   left untouched (it is the immutable source of the port). */
+const rebrand = (s) =>
+  typeof s === 'string'
+    ? s.replaceAll('qualisinspections.com', 'qualisassurance.com')
+       .replaceAll('Qualis Inspections', 'Qualis Assurance')
+       .replaceAll('Qualis Inspection', 'Qualis Assurance')
+    : s;
 
 const SERVICE_PAGES = {
   '/during-production-inspection/': 'During-production inspection',
@@ -714,27 +725,27 @@ for (const file of files) {
   stats.current = urlPath;
   stats.heroSrc = null;
 
-  const title = META_TITLES[urlPath] ?? decodeAttr(between(html, '<title>', '</title>') ?? '');
-  const description =
+  const title = rebrand(META_TITLES[urlPath] ?? decodeAttr(between(html, '<title>', '</title>') ?? ''));
+  const description = rebrand(
     META_DESCRIPTIONS[urlPath] ??
     metaContent(html, (a) => (a.name === 'description' ? a.content : null)) ??
-    '';
-  const canonical = metaContent(html, (a) => (a.rel === 'canonical' ? a.href : null)) ?? '';
-  const ogTitle = metaContent(html, (a) => (a.property === 'og:title' ? a.content : null));
+    '');
+  const canonical = rebrand(metaContent(html, (a) => (a.rel === 'canonical' ? a.href : null)) ?? '');
+  const ogTitle = rebrand(metaContent(html, (a) => (a.property === 'og:title' ? a.content : null)));
   // A trimmed description has to carry into og:description too. The reference
   // sets both to the same string, so they used to match and the porter emitted
   // only `description`, with BaseLayout falling back to it. Overriding one alone
   // made them differ, which resurrected the untrimmed text in the social preview.
-  const ogDescription =
+  const ogDescription = rebrand(
     META_DESCRIPTIONS[urlPath] ??
-    metaContent(html, (a) => (a.property === 'og:description' ? a.content : null));
+    metaContent(html, (a) => (a.property === 'og:description' ? a.content : null)));
 
   /* The reference points the organisation logo at /images/qualis-logo.svg, which
      has never existed (404 on the live site). Repoint it at the raster built by
      tools/prepare-brand.mjs. */
   const jsonld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((m) => {
-      try { return enrichJsonLd(JSON.parse(m[1].replaceAll('/images/qualis-logo.svg', '/images/qualis-logo.png'))); }
+      try { return enrichJsonLd(JSON.parse(rebrand(m[1]).replaceAll('/images/qualis-logo.svg', '/images/qualis-logo.png'))); }
       catch (e) { problems.push(`${urlPath}: invalid JSON-LD (${e.message})`); return null; }
     })
     .filter(Boolean);
@@ -747,6 +758,7 @@ for (const file of files) {
   main = rationEyebrows(main, stats);
   main = labelTableCells(main, stats);
   main = toImageSlots(main, stats);
+  main = rebrand(main);
   const usesImageSlot = main.includes('<ImageSlot');
 
   const style = between(html, '<style>', '</style>') ?? '';

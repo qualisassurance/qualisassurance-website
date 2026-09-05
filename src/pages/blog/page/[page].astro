@@ -33,14 +33,14 @@ const tags = await getUsedTerms('tags');
 
 const title = `Field Notes — page ${page} | QUALIS`;
 const description = `Page ${page} of furniture inspection field notes and India import guides from Qualis.`;
-const canonical = `https://qualisinspections.com/blog/page/${page}/`;
+const canonical = `https://qualisassurance.com/blog/page/${page}/`;
 const jsonld = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: title,
     url: canonical,
-    isPartOf: { '@type': 'Blog', name: 'Qualis Field Notes', url: 'https://qualisinspections.com/blog/' },
+    isPartOf: { '@type': 'Blog', name: 'Qualis Field Notes', url: 'https://qualisassurance.com/blog/' },
   },
 ];
 ---

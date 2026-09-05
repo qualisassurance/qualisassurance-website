@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // Astro routes) — @astrojs/sitemap can't see them, so they're listed here.
 // The /lp/* ad landing pages are deliberately NOT listed: they are noindex,
 // paid-traffic-only, and twin the organic service pages.
-const SITE = 'https://qualisinspections.com';
+const SITE = 'https://qualisassurance.com';
 const staticPublicPages = [
   `${SITE}/importing-furniture-from-india/`,
   `${SITE}/importing-furniture-from-india/germany/`,
@@ -24,7 +24,7 @@ const staticPublicPages = [
 ];
 
 export default defineConfig({
-  site: 'https://qualisinspections.com',
+  site: 'https://qualisassurance.com',
   output: 'static',
   trailingSlash: 'always',
   build: {

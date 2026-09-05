@@ -5,13 +5,13 @@ import Logo from './Logo.astro';
 <footer>
   <div class="wrap bigfoot">
     <div class="fcol fbrand">
-      <a class="logo" href="/" aria-label="Qualis Inspection — home"><Logo height={34} /></a>
+      <a class="logo" href="/" aria-label="Qualis Assurance — home"><Logo height={34} /></a>
       <p>India's Furniture Import Assurance Partner. Independent inspection and verification on the ground in India's furniture clusters since 2017.</p>
       <p class="mono" style="color:var(--pass)">PAID BY BUYERS. NEVER BY FACTORIES.</p>
       <div class="fcontact">
         <a href={`tel:${SITE.phoneE164}`}><b>Phone/WhatsApp</b>{SITE.phoneDisplay}</a>
         <a href={`mailto:${SITE.email}`}><b>Email</b>{SITE.email}</a>
-        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Qualis Inspections, ${SITE.addressFull}`)}`} target="_blank" rel="noopener"><b>Address</b>{SITE.addressFull}</a>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Qualis Assurance, ${SITE.addressFull}`)}`} target="_blank" rel="noopener"><b>Address</b>{SITE.addressFull}</a>
       </div>
     </div>
     {FOOTER_COLUMNS.map((col) => (

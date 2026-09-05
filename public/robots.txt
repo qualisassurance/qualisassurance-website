@@ -14,4 +14,4 @@ User-agent: Google-Extended
 Allow: /
 User-agent: CCBot
 Allow: /
-Sitemap: https://qualisinspections.com/sitemap-index.xml
+Sitemap: https://qualisassurance.com/sitemap-index.xml

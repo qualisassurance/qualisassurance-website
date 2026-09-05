@@ -14,7 +14,7 @@ const posts = all.slice(0, POSTS_PER_PAGE);
 const title = 'Furniture Inspection Field Notes & Import Guides | QUALIS';
 const description =
   'Furniture inspection findings, defect patterns and India import-compliance notes from Qualis inspectors on the ground in Jodhpur, Jaipur, Delhi NCR and beyond.';
-const canonical = 'https://qualisinspections.com/blog/';
+const canonical = 'https://qualisassurance.com/blog/';
 
 const jsonld = [
   {
@@ -28,7 +28,7 @@ const jsonld = [
       '@type': 'ProfessionalService',
       name: 'Qualis',
       legalName: 'Qualis INC',
-      url: 'https://qualisinspections.com',
+      url: 'https://qualisassurance.com',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban',
@@ -41,7 +41,7 @@ const jsonld = [
     blogPost: posts.map((p) => ({
       '@type': 'BlogPosting',
       headline: p.title,
-      url: `https://qualisinspections.com/blog/${p.slug}/`,
+      url: `https://qualisassurance.com/blog/${p.slug}/`,
       datePublished: p.date,
       dateModified: p.modified,
     })),
@@ -50,7 +50,7 @@ const jsonld = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisinspections.com/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
       { '@type': 'ListItem', position: 2, name: 'Field Notes', item: canonical },
     ],
   },

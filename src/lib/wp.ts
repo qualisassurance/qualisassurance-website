@@ -11,10 +11,11 @@
  */
 
 /**
- * CMS lives at qa.qualisassurance.com — a subdomain of the primary domain
- * (parked on the same Hostinger install that used to answer only at
- * cms.qualisinspections.com; that hostname still works too, unchanged, so the
- * qualisinspections.com site's own build is unaffected by this rebrand).
+ * CMS lives at qa.qualisassurance.com — now the Hostinger install's primary
+ * domain (deliberately reassigned from cms.qualisinspections.com, which no
+ * longer resolves, so the CMS doesn't depend on qualisinspections.com staying
+ * registered). qualisinspections.com's own build is unaffected: it only ever
+ * reads from this endpoint at build time, never serves the CMS itself.
  */
 export const WP_ENDPOINT =
   import.meta.env.WP_GRAPHQL_ENDPOINT ??
