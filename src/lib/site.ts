@@ -52,6 +52,14 @@ export const SITE = {
    * silently reports zero traffic rather than erroring.
    */
   analyticsToken: '1143a6f279af4bc38364bf03b5df4676',
+  /**
+   * Google Analytics 4 Measurement ID. Public by design (it ships in the page).
+   * Property "qualisassurance.com" under the qualisassurance@gmail.com account.
+   * Loaded as gtag.js from googletagmanager.com in BaseLayout's head — unlike
+   * the Cloudflare beacon, a plain client-side script tag is served verbatim by
+   * the Worker, so it needs no proxy injection. Empty = disabled.
+   */
+  ga4Id: 'G-3MW9GK3DV8',
 } as const;
 
 /**

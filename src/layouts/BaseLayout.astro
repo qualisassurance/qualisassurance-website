@@ -61,6 +61,10 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
 <meta charset="UTF-8">
 <meta name="theme-color" content={SITE.themeColor}>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{SITE.ga4Id && (
+  <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
+  <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${SITE.ga4Id}');`}></script>
+)}
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={canonical}>
