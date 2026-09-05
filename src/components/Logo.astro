@@ -2,22 +2,21 @@
 /**
  * Brand lockup, inlined rather than referenced as <img>.
  *
- * Sub-wordmark reads "ASSURANCE" (was "INSPECTION" pre-rebrand — the domain
- * moved from qualisinspections.com to qualisassurance.com). Kept at 19/600
- * with the same 5.2 letter-spacing rather than re-deriving proportions: it was
- * originally widened past the source lockup's 13.5/500 so it renders as a
- * legible shape at header scale (~5px) rather than a readable word, and one
- * character fewer ("ASSURANCE" vs "INSPECTION") doesn't change that. Verify
- * visually if the mark is ever rendered larger than a header/footer logo.
- * The mark's geometry is untouched.
+ * Matches the final "Qualis Assurance" handoff (Brand Logo Qualis Assurance/
+ * assets/qualis-logo-horizontal.svg): QUALIS in ink/paper with the "A" in brand
+ * green, ASSURANCE beneath in bold green (700) tracked at 10.6 so its line width
+ * matches QUALIS above. The green "A" and green sub-wordmark use {mark}; the
+ * QUALIS body uses {wordmark} so the ink/paper tone still flips on dark sections
+ * (the handoff's -dark variant only recolors the QUALIS body to paper, keeping
+ * both the mark and the green letters green).
  *
  * The wordmark is <text> in Archivo. An SVG loaded via <img> renders in an
  * isolated document with no access to the page's webfonts, so it would silently
  * fall back to Helvetica and change width per platform. Inlining lets the
  * self-hosted Archivo apply, which is what the brand handoff specifies.
  *
- * Geometry is verbatim from design_handoff_brand_logo/assets — ring, tail and
- * checkmark untouched.
+ * Geometry (ring, tail, checkmark) is verbatim from the handoff and unchanged
+ * across every rebrand — do not re-derive it.
  */
 interface Props {
   /** "ink" for light backgrounds (header, footer); "paper" for dark sections. */
@@ -44,6 +43,6 @@ const mark = '#0F7A5A';
     <line x1="65" y1="65" x2="83" y2="83" stroke={mark} stroke-width="11" />
     <polyline points="34,49 45,60 67,36" fill="none" stroke={mark} stroke-width="10" stroke-linecap="square" stroke-linejoin="miter" />
   </g>
-  <text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="0.5" fill={wordmark}>QUALIS</text>
-  <text x="113" y="84" font-family="Archivo, Helvetica, sans-serif" font-weight="600" font-size="19" letter-spacing="5.2" fill={mark}>ASSURANCE</text>
+  <text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" fill={wordmark}>QU<tspan fill={mark}>A</tspan>LIS</text>
+  <text x="113" y="86" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="19" letter-spacing="10.6" fill={mark}>ASSURANCE</text>
 </svg>
