@@ -33,14 +33,12 @@ export const SITE = {
    * Empty key = disabled: the forms fall back to WhatsApp only, exactly as
    * before, and nothing on the page changes. Paste the key to switch capture on.
    *
-   * REBRAND NOTE: this key is still verified against info@qualisinspections.com
-   * — Web3Forms routes by key, not by the `email` field above, so forms keep
-   * delivering correctly through the domain migration with zero interim
-   * breakage. Once info@qualisassurance.com exists and is verified in the
-   * Web3Forms dashboard, swap this for a key bound to the new address.
+   * This key is its own Web3Forms account/form ("Qualis Assurance —
+   * Enquiries"), delivering to qualisassurance@gmail.com — independent of the
+   * qualisinspections.com site's key, matching the separate-accounts strategy.
    */
   formEndpoint: 'https://api.web3forms.com/submit',
-  formAccessKey: 'fff3ccfe-6c40-4d3c-bf75-fffac0824f60',
+  formAccessKey: 'a41b501f-3917-461c-b783-08f23b1d6747',
   /**
    * Cloudflare Web Analytics beacon token. Public by design, like the form key.
    * Installed manually rather than via Cloudflare's automatic injection: this
