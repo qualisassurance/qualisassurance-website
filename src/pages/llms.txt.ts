@@ -43,7 +43,7 @@ export const GET: APIRoute = async () => {
 
   const body = `# QUALIS — India's Furniture Import Assurance Partner
 
-> Qualis (legal name Qualis INC) is an independent furniture inspection and supplier verification company based in Jodhpur, Rajasthan, India, operating since 2017. Paid only by overseas buyers; zero commission from factories. Serves furniture importers, retailers, brands and e-commerce sellers in ${MARKETS.slice(0, -1).join(', ')} and the ${MARKETS.at(-1)}. Founder: Yogesh Raygoor.
+> Qualis (legal name Qualis Assurance) is an independent furniture inspection and supplier verification company based in Jodhpur, Rajasthan, India, operating since 2017. Paid only by overseas buyers; zero commission from factories. Serves furniture importers, retailers, brands and e-commerce sellers in ${MARKETS.slice(0, -1).join(', ')} and the ${MARKETS.at(-1)}. Founder: Yogesh Raygoor.
 
 Key facts: bookings confirmed within 2 hours; reports within 24 hours; same-day on-site in Jodhpur and Jaipur; AQL 2.5/4.0 per ISO 2859-1; flat buyer-paid fees, no travel charges inside clusters.
 

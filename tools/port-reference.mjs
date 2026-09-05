@@ -484,7 +484,7 @@ const CLUSTERS = ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', '
 const PROVIDER = {
   '@type': 'ProfessionalService',
   name: 'Qualis',
-  legalName: 'Qualis INC',
+  legalName: 'Qualis Assurance',
   url: SITE_URL,
   telephone: CONTACT.phoneE164,
   email: CONTACT.email,

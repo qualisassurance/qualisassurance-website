@@ -40,19 +40,6 @@ export const SITE = {
   formEndpoint: 'https://api.web3forms.com/submit',
   formAccessKey: 'a41b501f-3917-461c-b783-08f23b1d6747',
   /**
-   * Cloudflare Web Analytics beacon token. Public by design, like the form key.
-   * Installed manually rather than via Cloudflare's automatic injection: this
-   * site is served by a Worker, and Worker responses bypass the proxy's HTML
-   * rewriting, so the auto-injected beacon never reached the page (verified —
-   * zero occurrences in the live HTML after automatic setup was enabled).
-   *
-   * REBRAND NOTE: this token is registered against the qualisinspections.com
-   * zone in Cloudflare Web Analytics. Once qualisassurance.com exists as a
-   * zone, register it there too and swap this token — a mismatched token
-   * silently reports zero traffic rather than erroring.
-   */
-  analyticsToken: '1143a6f279af4bc38364bf03b5df4676',
-  /**
    * Google Analytics 4 Measurement ID. Public by design (it ships in the page).
    * Property "qualisassurance.com" under the qualisassurance@gmail.com account.
    * Loaded as gtag.js from googletagmanager.com in BaseLayout's head — unlike

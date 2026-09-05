@@ -333,13 +333,5 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
     addEventListener('scroll', onScroll, { passive: true });
   }
 </script>
-{SITE.analyticsToken && (
-  <script
-    is:inline
-    type="module"
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon={`{"token": "${SITE.analyticsToken}"}`}
-  />
-)}
 </body>
 </html>
