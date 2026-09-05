@@ -11,15 +11,10 @@
  */
 
 /**
- * REBRAND NOTE: the CMS is moving from cms.qualisinspections.com to
- * qa.qualisassurance.com — a subdomain of the new primary domain, not the
- * separate qualissourcing.com domain (that idea was dropped; simpler to keep
- * everything on one zone). This fallback must not point there until the
- * qa subdomain has a DNS record pointed at the Hostinger server AND
- * WordPress's own Site Address/Home URL have been updated to match — until
- * then this would just degrade every build to the committed snapshot (safe,
- * by design, but stale). Flip it only once `curl https://qa.qualisassurance.com/graphql`
- * responds.
+ * CMS lives at qa.qualisassurance.com — a subdomain of the primary domain
+ * (parked on the same Hostinger install that used to answer only at
+ * cms.qualisinspections.com; that hostname still works too, unchanged, so the
+ * qualisinspections.com site's own build is unaffected by this rebrand).
  */
 export const WP_ENDPOINT =
   import.meta.env.WP_GRAPHQL_ENDPOINT ??
