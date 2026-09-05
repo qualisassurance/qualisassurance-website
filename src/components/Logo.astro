@@ -2,10 +2,14 @@
 /**
  * Brand lockup, inlined rather than referenced as <img>.
  *
- * One deliberate departure from the handoff SVG: "INSPECTION" is set at 19/600
- * rather than 13.5/500. In the source lockup it is 13.5px inside a 100px
- * viewBox, so at the 36px the header can spare it rendered around 5px — legible
- * as a shape, not as a word. The mark's geometry is untouched.
+ * Sub-wordmark reads "ASSURANCE" (was "INSPECTION" pre-rebrand — the domain
+ * moved from qualisinspections.com to qualisassurance.com). Kept at 19/600
+ * with the same 5.2 letter-spacing rather than re-deriving proportions: it was
+ * originally widened past the source lockup's 13.5/500 so it renders as a
+ * legible shape at header scale (~5px) rather than a readable word, and one
+ * character fewer ("ASSURANCE" vs "INSPECTION") doesn't change that. Verify
+ * visually if the mark is ever rendered larger than a header/footer logo.
+ * The mark's geometry is untouched.
  *
  * The wordmark is <text> in Archivo. An SVG loaded via <img> renders in an
  * isolated document with no access to the page's webfonts, so it would silently
@@ -32,7 +36,7 @@ const mark = '#0F7A5A';
   height={height}
   width={height * 5.6}
   role="img"
-  aria-label="Qualis Inspection"
+  aria-label="Qualis Assurance"
   focusable="false"
 >
   <g>
@@ -41,5 +45,5 @@ const mark = '#0F7A5A';
     <polyline points="34,49 45,60 67,36" fill="none" stroke={mark} stroke-width="10" stroke-linecap="square" stroke-linejoin="miter" />
   </g>
   <text x="112" y="60" font-family="Archivo, Helvetica, sans-serif" font-weight="700" font-size="52" letter-spacing="0.5" fill={wordmark}>QUALIS</text>
-  <text x="113" y="84" font-family="Archivo, Helvetica, sans-serif" font-weight="600" font-size="19" letter-spacing="5.2" fill={mark}>INSPECTION</text>
+  <text x="113" y="84" font-family="Archivo, Helvetica, sans-serif" font-weight="600" font-size="19" letter-spacing="5.2" fill={mark}>ASSURANCE</text>
 </svg>

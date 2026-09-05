@@ -10,10 +10,20 @@
  * blog so the other 30 pages still deploy.
  */
 
+/**
+ * REBRAND NOTE: the CMS is moving from the cms.qualisinspections.com subdomain
+ * onto the qualissourcing.com domain (an owned, previously-parked domain being
+ * repurposed as the dedicated CMS host). This fallback must not point there
+ * until qualissourcing.com's DNS is pointed at the Hostinger server AND
+ * WordPress's own Site Address/Home URL have been updated to match — until
+ * then this would just degrade every build to the committed snapshot (safe,
+ * by design, but stale). Flip it only once `curl https://qualissourcing.com/graphql`
+ * responds.
+ */
 export const WP_ENDPOINT =
   import.meta.env.WP_GRAPHQL_ENDPOINT ??
   process.env.WP_GRAPHQL_ENDPOINT ??
-  'https://cms.qualisinspections.com/graphql';
+  'https://qualissourcing.com/graphql';
 
 import { SITE } from './site';
 import snapshot from '../data/blog-snapshot.json';
@@ -90,7 +100,7 @@ export interface WpPost {
  * if the bridge is ever removed or breaks after a plugin update.
  *
  * We read only `title` and `metaDesc`. Deliberately NOT used:
- *   · `canonical`     — points at cms.qualisinspections.com, never our domain.
+ *   · `canonical`     — points at the CMS domain (qualissourcing.com), never our domain.
  *   · `metaRobotsNoindex` — reflects the CMS's own site-wide "discourage search
  *     engines" setting, which is ON (the CMS must not be indexed). Propagating
  *     it would put noindex on every published post of the public site.

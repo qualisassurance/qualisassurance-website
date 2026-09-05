@@ -1,11 +1,11 @@
 /** Site-wide constants. Values mirror the static reference exactly. */
 export const SITE = {
-  url: 'https://qualisinspections.com',
+  url: 'https://qualisassurance.com',
   name: 'QUALIS',
   siteName: 'QUALIS',
   locale: 'en_US',
   themeColor: '#F7F6F2',
-  defaultOgImage: 'https://qualisinspections.com/images/og-qualis-1200x630.jpg',
+  defaultOgImage: 'https://qualisassurance.com/images/og-qualis-1200x630.jpg',
   /** Self-hosted in public/fonts. Regenerate by refetching this URL with a
    *  modern browser UA and re-running the localisation step (see fonts.css). */
   fontsSource:
@@ -15,7 +15,7 @@ export const SITE = {
   phoneDisplay: '+91 844 000 7574',
   phoneE164: '+918440007574',
   waNumber: '918440007574',
-  email: 'info@qualisinspections.com',
+  email: 'info@qualisassurance.com',
   /** Registered office. Kept consistent for NAP (name/address/phone) across the
    *  site footer and JSON-LD PostalAddress. */
   addressStreet: 'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban',
@@ -32,6 +32,12 @@ export const SITE = {
    *
    * Empty key = disabled: the forms fall back to WhatsApp only, exactly as
    * before, and nothing on the page changes. Paste the key to switch capture on.
+   *
+   * REBRAND NOTE: this key is still verified against info@qualisinspections.com
+   * — Web3Forms routes by key, not by the `email` field above, so forms keep
+   * delivering correctly through the domain migration with zero interim
+   * breakage. Once info@qualisassurance.com exists and is verified in the
+   * Web3Forms dashboard, swap this for a key bound to the new address.
    */
   formEndpoint: 'https://api.web3forms.com/submit',
   formAccessKey: 'fff3ccfe-6c40-4d3c-bf75-fffac0824f60',
@@ -41,6 +47,11 @@ export const SITE = {
    * site is served by a Worker, and Worker responses bypass the proxy's HTML
    * rewriting, so the auto-injected beacon never reached the page (verified —
    * zero occurrences in the live HTML after automatic setup was enabled).
+   *
+   * REBRAND NOTE: this token is registered against the qualisinspections.com
+   * zone in Cloudflare Web Analytics. Once qualisassurance.com exists as a
+   * zone, register it there too and swap this token — a mismatched token
+   * silently reports zero traffic rather than erroring.
    */
   analyticsToken: '1143a6f279af4bc38364bf03b5df4676',
 } as const;
