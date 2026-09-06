@@ -1,4 +1,4 @@
-# qualisinspections.com
+# qualisassurance.com
 
 Headless rebuild of the Qualis website: **30 static marketing pages** ported from the
 existing hand-built site, plus a **blog driven by WordPress** over WPGraphQL. Output is
@@ -26,7 +26,7 @@ npm run preview  # serve dist/ locally
 
 | Variable | Required | Default | Purpose |
 |---|---|---|---|
-| `WP_GRAPHQL_ENDPOINT` | no | `https://cms.qualisinspections.com/graphql` | WordPress GraphQL endpoint the blog is built from |
+| `WP_GRAPHQL_ENDPOINT` | no | `https://qa.qualisassurance.com/graphql` | WordPress GraphQL endpoint the blog is built from |
 
 It has a working default so local builds and CI need no configuration. Set it in
 Cloudflare Pages if the CMS ever moves. A `.env` file at the repo root also works and is
@@ -239,7 +239,7 @@ each build and falls back to post title + excerpt if the bridge is ever removed.
 Only `seo.title` and `seo.metaDesc` are consumed. Two Yoast fields are deliberately
 ignored:
 
-- `canonical` — points at `cms.qualisinspections.com`, never this domain.
+- `canonical` — points at `qa.qualisassurance.com`, never this domain.
 - `metaRobotsNoindex` — reflects the CMS's own site-wide "discourage search engines"
   setting, which is **on**. Propagating it would put `noindex` on every published post.
 

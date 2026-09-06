@@ -1,4 +1,4 @@
-# CLAUDE.md — qualisinspections.com
+# CLAUDE.md — qualisassurance.com
 
 Guidance for Claude Code working in this repo. Read before changing anything.
 
