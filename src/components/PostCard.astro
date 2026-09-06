@@ -11,7 +11,9 @@ const cat = post.categories[0];
     <div class="b-thumb">
       <img
         src={post.featuredImage.sourceUrl}
-        alt={post.featuredImage.altText ?? ''}
+        {/* Empty on purpose: the card's <h2> right below already names the post,
+            so alt text here would make a screen reader read the title twice. */}
+        alt=""
         width={post.featuredImage.width ?? undefined}
         height={post.featuredImage.height ?? undefined}
         loading="lazy"

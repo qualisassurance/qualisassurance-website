@@ -117,6 +117,21 @@ export const SOCIAL_LINKS = [
   { label: 'Google', href: 'https://maps.app.goo.gl/bdA2qD15SzmagDnXA' },
 ] as const;
 
+/**
+ * The six buyer audiences, in the order the homepage "Who we protect" grid
+ * prints them. Read by AudienceLinks.astro, which cross-links them from each
+ * other and from /services/. `label` carries an entity because it is rendered
+ * with set:html — see the component.
+ */
+export const AUDIENCES = [
+  { slug: 'importers', label: 'Importers &amp; wholesalers', blurb: 'Container-level assurance and repeat-order monitoring.' },
+  { slug: 'retail-chains', label: 'Retail chains', blurb: 'Vendor programmes, AQL alignment and audit trails for your QA team.' },
+  { slug: 'brands', label: 'Furniture brands &amp; DTC', blurb: 'Spec enforcement from golden sample to sealed container.' },
+  { slug: 'ecommerce', label: 'E-commerce sellers', blurb: 'ISTA packaging validation to cut transit-damage returns.' },
+  { slug: 'projects', label: 'Interior &amp; hospitality projects', blurb: 'FF&amp;E inspection against project specifications and deadlines.' },
+  { slug: 'procurement', label: 'Procurement teams', blurb: 'Independent eyes and documented evidence for every India PO.' },
+] as const;
+
 export const FOOTER_COLUMNS = [
   {
     heading: 'Services',

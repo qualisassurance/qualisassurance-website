@@ -121,7 +121,9 @@ const jsonld = [
           <figure class="b-hero-img">
             <img
               src={post.featuredImage.sourceUrl}
-              alt={post.featuredImage.altText ?? post.title}
+              {/* `||`, not `??`: WordPress returns "" for an image whose alt was
+                  never filled in, and "" would slip past a nullish check. */}
+              alt={post.featuredImage.altText?.trim() || post.title}
               width={post.featuredImage.width ?? undefined}
               height={post.featuredImage.height ?? undefined}
               loading="eager"

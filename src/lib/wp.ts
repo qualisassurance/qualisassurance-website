@@ -335,7 +335,14 @@ export function sanitize(html: string): string {
     .replace(/\son[a-z]+\s*=\s*"[^"]*"/gi, '')
     .replace(/\son[a-z]+\s*=\s*'[^']*'/gi, '')
     .replace(/\son[a-z]+\s*=\s*[^\s>]+/gi, '')
-    .replace(/(href|src)\s*=\s*(["'])\s*javascript:[^"']*\2/gi, '$1="#"');
+    .replace(/(href|src)\s*=\s*(["'])\s*javascript:[^"']*\2/gi, '$1="#"')
+    /* An <img> with no alt at all makes a screen reader fall back to reading the
+       file name, and fails the Lighthouse a11y check the site holds at 100. We
+       cannot invent alt text for a CMS image, but marking it decorative is the
+       correct default and is what the WCAG guidance says to do when there is
+       nothing meaningful to say. An author who fills the field in WordPress
+       still wins — this only touches images where the attribute is absent. */
+    .replace(/<img\b(?![^>]*\salt\s*=)([^>]*?)(\/?)>/gi, '<img$1 alt=""$2>');
 }
 
 /** Strip tags and entities from an excerpt so it is safe in a meta tag. */

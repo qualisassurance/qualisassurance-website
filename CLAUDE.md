@@ -136,8 +136,16 @@ rule of equal specificity anywhere else loses — `.fcol a` there quietly overro
 ```bash
 node tools/prepare-images.mjs "<dir1>" "<dir2>"   # -> public/images (AVIF/WebP/JPEG)
 node tools/prepare-brand.mjs                      # -> OG card, logo raster, app icons
-node tools/port-reference.mjs <reference-dir>     # -> the 30 pages
+node tools/build-lastmod.mjs                      # -> src/data/lastmod.json (sitemap dates)
+node tools/port-reference.mjs <reference-dir>     # -> the 30 pages  ⚠️ RETIRED, see above
 ```
+
+`build-lastmod.mjs` records the last commit date of each page source and is read by
+the sitemap config. Re-run and commit it after content changes, or the sitemap will
+advertise a stale `lastmod`. It must be a committed file: the Cloudflare build gets a
+shallow clone with no per-file history, and file mtimes there are all checkout time.
+Blog dates are not in it — they come from WordPress's `modified` via
+`src/data/blog-snapshot.json`.
 
 `tools/image-map.json` maps slot id → source file. Repeated slot ids (the client-logo row)
 are keyed `LOGO#2`, `LOGO#3`, … in document order. Image sizes come from each slot's

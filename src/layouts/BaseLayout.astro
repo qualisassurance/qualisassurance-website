@@ -33,6 +33,13 @@ interface Props {
   ogType?: string;
   /** AVIF path of the page's hero image, preloaded so it is not queued behind the fonts. */
   preloadImage?: string;
+  /**
+   * Keep the page out of the index but still follow its links. Used by term
+   * archives holding a single post, which are otherwise a thin duplicate of
+   * that post and compete with it. Such routes are also dropped from the
+   * sitemap — see the `filter` in astro.config.mjs.
+   */
+  noindex?: boolean;
 }
 
 const {
@@ -48,6 +55,7 @@ const {
   ogImage = SITE.defaultOgImage,
   ogType = 'website',
   preloadImage,
+  noindex = false,
 } = Astro.props;
 
 // Sticky bottom CTA bar (replaces the removed header "Book" button). Points at
@@ -67,6 +75,7 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
 )}
 <title>{title}</title>
 <meta name="description" content={description}>
+{noindex && <meta name="robots" content="noindex,follow" />}
 <link rel="canonical" href={canonical}>
 <meta property="og:title" content={ogTitle ?? title}>
 <meta property="og:description" content={ogDescription ?? description}>
@@ -90,14 +99,19 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
 <link rel="preload" href="/fonts/intertight-NGSwv5HMAFg6IuGlBNMjxLsH8ahuQ2e8.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
+<!-- Reveal-on-scroll starts every .rv at opacity 0 and the observer below turns
+     them on. With JS off that observer never runs, so most of the page would be
+     invisible. This is the only styling that must survive a scriptless load. -->
+<noscript><style>.rv{opacity:1 !important;transform:none !important}</style></noscript>
 {jsonld.map((graph) => (
   <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 ))}
 <slot name="head" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <Header variant={navVariant} ctaLabel={ctaLabel} ctaHref={ctaHref} />
-<main>
+<main id="main" tabindex="-1">
   <slot />
 </main>
 <Footer />
@@ -113,6 +127,27 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   >WhatsApp</a>
 </div>
 <style is:global>
+  /* Skip link: off-screen until focused, then the first thing a keyboard user
+     lands on. `main` takes tabindex="-1" so the jump actually moves focus and
+     not just the scroll position (Safari and Chrome both need that). */
+  .skip-link {
+    /* fixed, not absolute: absolute pins it to the top of the *document*, so it
+       would slide in off-screen for anyone who reaches it after scrolling. */
+    position: fixed;
+    left: 8px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--ink, #111214);
+    color: #fff;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 6px 6px;
+    transition: top .15s ease;
+  }
+  .skip-link:focus { top: 0; }
+  main:focus { outline: none; }
   .sticky-cta {
     position: fixed;
     left: 0;
@@ -150,6 +185,14 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   @media (max-width: 960px) {
     .sticky-cta { display: flex; }
     body { padding-bottom: 78px; }
+  }
+  /* Narrow phones: "Book an inspection" wrapped to two lines at 320–375px,
+     which pushed the bar taller than the padding reserved for it. Size the
+     WhatsApp button to its content and let the label keep one line. */
+  @media (max-width: 400px) {
+    .sticky-cta { gap: 8px; padding-left: 10px; padding-right: 10px; }
+    .sticky-cta__btn { font-size: .95rem; padding: .9rem .7rem; white-space: nowrap; }
+    .sticky-cta__wa { flex: 0 0 auto; }
   }
   /* Desktop: the same two actions as floating buttons, bottom-right corner. */
   @media (min-width: 961px) {

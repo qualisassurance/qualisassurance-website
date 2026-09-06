@@ -10,7 +10,19 @@
 /*.svg
   Cache-Control: public, max-age=604800
 
+# HSTS. Cloudflare already 301s http -> https at the edge, but that first plain
+# request is still interceptable; this tells the browser never to make it again.
+#
+# `includeSubDomains` is safe as configured: the only subdomain in use is the
+# headless CMS, qa.qualisassurance.com, and it was verified to serve HTTPS and
+# to 301 plain HTTP to it. Any NEW subdomain must therefore be TLS-capable from
+# the day it resolves, or browsers that have seen this header will refuse it.
+#
+# `preload` is deliberately absent — submitting to the browser preload list is
+# effectively irreversible. To back this out: change max-age to 0, deploy, and
+# wait out the longest max-age any visitor already cached.
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN

@@ -347,10 +347,10 @@ const jsonld = [
     <form data-enquiry="wa">
       <div class="field field--supplier"><label for="supplier">Supplier name or listing URL</label><input id="supplier" name="supplier" type="text" placeholder="e.g. company name, IndiaMART/Alibaba link" required></div>
       <div class="field field--level"><label for="level">Level</label><select id="level" name="level"><option>Free Red-Flag Check (desk only)</option><option>Full Verification (on-site)</option><option>Verification + Factory Audit</option></select></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required></div>
-      <div class="field field--company"><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Company name" required></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000"></div>
+      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
+      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
+      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
+      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
       <div class="field field--value"><label for="value">Approx. order value (optional)</label><input id="value" name="value" type="text" placeholder="e.g. $40,000"></div>
       <button class="btn btn-solid" type="submit">Start verification</button>
       <p class="note">No payment for the Red-Flag Check. Fixed quote before any paid work.</p>

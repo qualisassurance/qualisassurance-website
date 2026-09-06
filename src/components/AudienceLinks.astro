@@ -1,0 +1,73 @@
+---
+/**
+ * Cross-links the six /buyers/* audience pages.
+ *
+ * They had exactly one inbound link each — the "Who we protect" grid on the
+ * homepage — so they sat two clicks deep with no lateral path between them.
+ * Rendering this on all six (each omitting itself) plus /services/ takes them
+ * to seven inbound links each, and gives a reader who lands on the wrong one a
+ * way across.
+ *
+ * A plain link row rather than the usual `.grid` of cards on purpose: `.grid`
+ * is a fixed three-column track whose 1px gaps are painted as rules, so a row
+ * of five leaves a visible grey cell where the sixth would be.
+ */
+import { AUDIENCES } from '../lib/site';
+
+interface Props {
+  /** Slug of the page this is rendered on, omitted from the list. */
+  current?: string;
+  heading?: string;
+}
+const { current, heading = 'Who else we protect' } = Astro.props;
+const items = AUDIENCES.filter((a) => a.slug !== current);
+---
+<section class="aud">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>{heading}</h2></div></div>
+    <ul class="aud-list">
+      {items.map((a) => (
+        <li>
+          <a href={`/buyers/${a.slug}/`}>
+            <b set:html={a.label} />
+            <span>{a.blurb}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .aud-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule, #e9e7e1);
+  }
+  .aud-list a {
+    display: block;
+    padding: 18px 2px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule, #e9e7e1);
+    color: inherit;
+  }
+  .aud-list li:nth-child(odd) a { padding-right: 26px; }
+  .aud-list li:nth-child(even) a { padding-left: 26px; }
+  .aud-list b {
+    display: block;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .aud-list span { color: var(--g500, #737169); font-size: .95rem; }
+  .aud-list a:hover b { color: var(--pass, #0f7a5a); }
+  @media (max-width: 640px) {
+    .aud-list { grid-template-columns: 1fr; }
+    .aud-list li a { padding-left: 0; padding-right: 0; }
+  }
+</style>
