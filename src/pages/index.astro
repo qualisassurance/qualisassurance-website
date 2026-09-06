@@ -11,9 +11,21 @@ const ogTitle = "QUALIS — India's Furniture Import Assurance Partner";
 const jsonld = [
   {
     "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://qualisassurance.com/#website",
+    "name": "Qualis Assurance",
+    "alternateName": "Qualis",
+    "url": "https://qualisassurance.com/",
+    "inLanguage": "en",
+    "publisher": { "@id": "https://qualisassurance.com/#organization" }
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://qualisassurance.com/#organization",
     "name": "Qualis",
     "legalName": "Qualis Assurance",
+    "priceRange": "$$",
     "url": "https://qualisassurance.com",
     "logo": "https://qualisassurance.com/images/qualis-logo.png",
     "description": "Independent furniture inspection, factory audits and supplier verification for overseas buyers importing furniture from India.",

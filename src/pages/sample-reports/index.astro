@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE, waLink } from '../../lib/site';
 import '../../styles/global.css';
+
+/* The four cards used to end "[PDF + HTML coming at launch]", which made the
+   page a dead end for the one visitor most worth converting: the buyer checking
+   the product before paying. Until the anonymised PDFs are published, each card
+   points at the section of its service page that shows real findings, and the
+   block below offers the full sample on request. */
+const sampleWa = waLink('Hi Qualis — please send me a full anonymised sample inspection report.');
 
 const title = "Sample Furniture Inspection Reports | QUALIS";
 const description = "Read real anonymised Qualis reports before you hire us: pre-shipment inspection, supplier verification and factory audit. No login, no email gate.";
@@ -21,6 +29,7 @@ const jsonld = [
       "@type": "ProfessionalService",
       "name": "Qualis",
       "legalName": "Qualis Assurance",
+      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -62,7 +71,15 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection — PSI</h3><p>14-page anonymised report: AQL summary, moisture readings, defect photos with severity classes, pass/fail result. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>The three-layer verdict report: documents, premises evidence, manufacturer-vs-trader conclusion. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>Scored 8-section audit with corrective action plan example. [PDF + HTML coming at launch]</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Condition record, tally, tier-by-tier photo sequence and sealed seal number. [PDF + HTML coming at launch]</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Three habits make our reports useful: numbers instead of adjectives (a moisture range, not "acceptable"), a standard reference on every check (ISO 2859-1, EN 1728, ISTA 3A, or your spec), and a severity class on every defect so you can apply your own tolerance. The final page is always a decision aid: release payment, demand rework, or hold—with the evidence you would need for either conversation.</p></div></section>
+<section><div class="wrap"><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection — PSI</h3><p>14-page anonymised report: AQL summary, moisture readings, defect photos with severity classes, pass/fail result. See the report anatomy and last month's real findings →</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>The three-layer verdict report: documents, premises evidence, manufacturer-vs-trader conclusion. See how the verdict is built →</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>Scored 8-section audit with a corrective action plan example. See the eight sections and how they are scored →</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Condition record, tally, tier-by-tier photo sequence and sealed seal number. See the loading checks in order →</p></a></div></div></section>
+<section><div class="wrap"><div class="sr-ask rv">
+<h2>Want the full anonymised report?</h2>
+<p>The complete PDFs are being prepared for publication. Until they are up, ask and we will send the full anonymised report for the service you are buying — no email gate, no sales call attached.</p>
+<div class="hero-ctas">
+<a class="btn btn-solid" href={sampleWa} target="_blank" rel="noopener">Ask for a sample on WhatsApp</a>
+<a class="btn btn-ghost" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Sample inspection report request')}`}>Email {SITE.email}</a>
+</div>
+</div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Three habits make our reports useful: numbers instead of adjectives (a moisture range, not "acceptable"), a standard reference on every check (ISO 2859-1, EN 1728, ISTA 3A, or your spec), and a severity class on every defect so you can apply your own tolerance. The final page is always a decision aid: release payment, demand rework, or hold—with the evidence you would need for either conversation.</p></div></section>
 <section class="final">
 <div class="wrap">
 
@@ -71,4 +88,11 @@ const jsonld = [
 <a class="btn btn-solid" href="/#book">Book an inspection</a>
 </div>
 </section>
+
+<style>
+  .sr-ask { border: 1px solid var(--rule, #e9e7e1); padding: 28px 26px; max-width: 760px; }
+  .sr-ask h2 { margin: 0 0 10px; }
+  .sr-ask p { margin: 0 0 18px; color: var(--g500, #737169); }
+  .sr-ask .hero-ctas { margin: 0; }
+</style>
 </BaseLayout>
