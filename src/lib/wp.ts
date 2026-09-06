@@ -342,7 +342,22 @@ export function sanitize(html: string): string {
        correct default and is what the WCAG guidance says to do when there is
        nothing meaningful to say. An author who fills the field in WordPress
        still wins — this only touches images where the attribute is absent. */
-    .replace(/<img\b(?![^>]*\salt\s*=)([^>]*?)(\/?)>/gi, '<img$1 alt=""$2>');
+    .replace(/<img\b(?![^>]*\salt\s*=)([^>]*?)(\/?)>/gi, '<img$1 alt=""$2>')
+    /* Associate table cells with headers so a screen reader can navigate them,
+       and so Lighthouse `td-has-header` passes. WordPress emits bare <th>/<td>.
+       Two fixes: mark every <thead> cell as a column header (scope="col"), and
+       promote a row's leading bold-only <td> to a row header (<th scope="row">).
+       The second targets comparison/matrix tables, whose row labels ("Question",
+       "Timing", …) were data cells associated only with an empty corner header;
+       it leaves plain data tables (a numeric first column, no <strong>) untouched.
+       th[scope="row"] is restyled back to a normal bold cell in blog.css so the
+       promotion is invisible. */
+    .replace(/<thead[\s\S]*?<\/thead>/gi, (thead) =>
+      /* `(?=[\s>])` keeps this from also matching <thead> — "th" is its prefix. */
+      thead.replace(/<th(?=[\s>])(?![^>]*\sscope=)([^>]*)>/gi, '<th scope="col"$1>'))
+    .replace(
+      /(<tr[^>]*>\s*)<td(?![^>]*\sscope=)[^>]*>(\s*<strong>[\s\S]*?<\/strong>\s*)<\/td>/gi,
+      '$1<th scope="row">$2</th>');
 }
 
 /** Strip tags and entities from an excerpt so it is safe in a meta tag. */

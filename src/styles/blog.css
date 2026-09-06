@@ -79,6 +79,9 @@
 .b-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);font-size:.9rem}
 .b-body th,.b-body td{padding:11px 14px;border-bottom:1px dashed var(--rule);text-align:left;vertical-align:top}
 .b-body th{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);border-bottom:1px solid var(--rule);font-weight:500}
+/* Row headers (first-column labels promoted from <td><strong> in wp.ts) read as
+   normal bold body cells, not the mono/uppercase treatment column headers get. */
+.b-body th[scope="row"]{font-family:'Inter',sans-serif;font-size:.9rem;letter-spacing:normal;text-transform:none;color:var(--ink);font-weight:600;border-bottom:1px dashed var(--rule)}
 .b-body hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
 .b-body iframe{max-width:100%;border:1px solid var(--rule)}
 

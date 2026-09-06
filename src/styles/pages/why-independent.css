@@ -89,6 +89,10 @@ header{position:sticky;top:0;background:rgba(247,246,242,.94);backdrop-filter:bl
 .cmp td{padding:14px 18px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--g700)}
 .cmp tr:last-child td{border-bottom:none}
 .cmp td:first-child{font-weight:600;color:var(--ink);font-family:'Inter Tight',sans-serif}
+/* First-column labels are <th scope="row"> for accessibility (td-has-header).
+   Keep the exact look they had as a first-column <td>, not the column-header th. */
+.cmp th[scope="row"]{padding:14px 18px;vertical-align:top;font-weight:600;color:var(--ink);font-family:'Inter Tight',sans-serif;border-bottom:1px solid var(--rule)}
+.cmp tr:last-child th[scope="row"]{border-bottom:none}
 .cmp .y{color:var(--pass);font-weight:600}
 .cmp .n{color:var(--crit)}
 .cmp .qcol{background:var(--pass-tint)}
