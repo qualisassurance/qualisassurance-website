@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -105,8 +115,52 @@ const jsonld = [
       "@type": "BusinessAudience",
       "name": "Furniture importers, retailers, brands and e-commerce sellers"
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free seasonal advisory for buyers with orders in production"
+    },
     "mainEntityOfPage": "https://qualisassurance.com/monsoon-watch/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Monsoon Watch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A free seasonal advisory for buyers with orders in production in India between July and September."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does monsoon actually change on the factory floor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Humidity stalls drying and re-wets seasoned stock, lacquer blushes and cure times stretch, and power, transport and subcontractor delays stack quietly against the vessel date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often are advisories sent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At monsoon onset, mid-season and close-out, plus alerts when conditions warrant."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do you recommend for shipments in this window?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A during-production inspection, a pre-shipment inspection and container loading supervision as a set, rather than any one of them alone."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +173,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/clusters/jodhpur/"><h3>Moisture physics</h3><p>Humidity stalls drying and re-wets seasoned stock; we tighten moisture limits and extend kiln checks.</p></a><a class="card rv" href="/defects/"><h3>Finish behaviour</h3><p>Lacquer blushes and cure times stretch—early finished pieces need longer holds before packing.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Lead-time drift</h3><p>Power, transport and subcontractor delays stack quietly. Vessel dates need buffer, not optimism.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Loading protocol</h3><p>Weather holds enforced at stuffing; rain-exposed cartons pulled. Non-negotiable under CLS L-10.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Subscribers receive a short advisory at monsoon onset, mid-season and close-out, plus alerts when conditions warrant. It's free—the goal is fewer August surprises for everyone. If you're shipping in this window, our standing recommendation is DUPRO plus PSI plus CLS as a set, not any one alone.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>What changes between July and September</h2></div></div><div class="grid"><a class="card rv" href="/clusters/jodhpur/"><h3>Moisture physics</h3><p>Humidity stalls drying and re-wets seasoned stock; we tighten moisture limits and extend kiln checks.</p></a><a class="card rv" href="/defects/"><h3>Finish behaviour</h3><p>Lacquer blushes and cure times stretch—early finished pieces need longer holds before packing.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Lead-time drift</h3><p>Power, transport and subcontractor delays stack quietly. Vessel dates need buffer, not optimism.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Loading protocol</h3><p>Weather holds enforced at stuffing; rain-exposed cartons pulled. Non-negotiable under CLS L-10.</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>What subscribers receive</h2></div></div><p class="prose rv">Subscribers receive a short advisory at monsoon onset, mid-season and close-out, plus alerts when conditions warrant. It's free—the goal is fewer August surprises for everyone. If you're shipping in this window, our standing recommendation is DUPRO plus PSI plus CLS as a set, not any one alone.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Monsoon Watch FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What is Monsoon Watch?</summary><p>A free seasonal advisory for buyers with orders in production in India between July and September.</p></details>
+      <details class="rv"><summary>What does monsoon actually change on the factory floor?</summary><p>Humidity stalls drying and re-wets seasoned stock, lacquer blushes and cure times stretch, and power, transport and subcontractor delays stack quietly against the vessel date.</p></details>
+      <details class="rv"><summary>How often are advisories sent?</summary><p>At monsoon onset, mid-season and close-out, plus alerts when conditions warrant.</p></details>
+      <details class="rv"><summary>What do you recommend for shipments in this window?</summary><p>A during-production inspection, a pre-shipment inspection and container loading supervision as a set, rather than any one of them alone.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 

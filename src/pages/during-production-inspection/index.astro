@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -105,8 +115,52 @@ const jsonld = [
       "@type": "BusinessAudience",
       "name": "Furniture importers, retailers, brands and e-commerce sellers"
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "249",
+      "priceCurrency": "USD",
+      "description": "Flat fee, buyer-paid, published on booking"
+    },
     "mainEntityOfPage": "https://qualisassurance.com/during-production-inspection/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should a during-production inspection be booked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At 20\u201350% completion \u2014 early enough that findings still change the run, late enough that there is real product to inspect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does DUPRO check that a pre-shipment inspection cannot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Core moisture readings on components and panels before assembly hides them, first-off dimensions before the batch repeats an error, and early finished pieces against the golden sample before the rest are sprayed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a during-production inspection cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "From $249, with the fixed fee published on booking. The report follows within 24 hours of the visit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should DUPRO be combined with a pre-shipment inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On first orders and monsoon-season orders we recommend DUPRO plus PSI as a pair. That combination is included in the First Order Shield bundle."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +173,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Moisture, before assembly hides it</h3><p>Core readings on components and panels—the point where a skipped kiln cycle is still fixable.</p></a><a class="card rv" href="/#book"><h3>Dimensions &amp; first-offs</h3><p>First completed pieces measured against spec before the whole batch repeats an error.</p></a><a class="card rv" href="/#book"><h3>Finish direction</h3><p>Early finished pieces vs golden sample, before 200 more are sprayed the wrong shade.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Schedule truth</h3><p>Real progress vs claimed progress—the honest answer to "will it make the vessel?"</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Book DUPRO at 20–50% completion—early enough that findings change the run, late enough that there is real product to inspect. On first orders and monsoon-season orders we recommend DUPRO plus PSI as a pair; the combination is included in the First Order Shield bundle. Same-day availability in Jodhpur and Jaipur, report within 24 hours, fixed fee from $249 published on booking.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>What a during-production inspection checks</h2></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Moisture, before assembly hides it</h3><p>Core readings on components and panels—the point where a skipped kiln cycle is still fixable.</p></a><a class="card rv" href="/#book"><h3>Dimensions &amp; first-offs</h3><p>First completed pieces measured against spec before the whole batch repeats an error.</p></a><a class="card rv" href="/#book"><h3>Finish direction</h3><p>Early finished pieces vs golden sample, before 200 more are sprayed the wrong shade.</p></a><a class="card rv" href="/production-monitoring-india/"><h3>Schedule truth</h3><p>Real progress vs claimed progress—the honest answer to "will it make the vessel?"</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>When to book DUPRO</h2></div></div><p class="prose rv">Book DUPRO at 20–50% completion—early enough that findings change the run, late enough that there is real product to inspect. On first orders and monsoon-season orders we recommend DUPRO plus PSI as a pair; the combination is included in the First Order Shield bundle. Same-day availability in Jodhpur and Jaipur, report within 24 hours, fixed fee from $249 published on booking.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>During-production inspection FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>When should a during-production inspection be booked?</summary><p>At 20–50% completion — early enough that findings still change the run, late enough that there is real product to inspect.</p></details>
+      <details class="rv"><summary>What does DUPRO check that a pre-shipment inspection cannot?</summary><p>Core moisture readings on components and panels before assembly hides them, first-off dimensions before the batch repeats an error, and early finished pieces against the golden sample before the rest are sprayed.</p></details>
+      <details class="rv"><summary>How much does a during-production inspection cost?</summary><p>From $249, with the fixed fee published on booking. The report follows within 24 hours of the visit.</p></details>
+      <details class="rv"><summary>Should DUPRO be combined with a pre-shipment inspection?</summary><p>On first orders and monsoon-season orders we recommend DUPRO plus PSI as a pair. That combination is included in the <a href="/first-order-shield/">First Order Shield</a> bundle.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 

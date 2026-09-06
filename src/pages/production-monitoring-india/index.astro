@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -105,8 +115,52 @@ const jsonld = [
       "@type": "BusinessAudience",
       "name": "Furniture importers, retailers, brands and e-commerce sellers"
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "199",
+      "priceCurrency": "USD",
+      "description": "Per visit, buyer-paid; weekly programme rates available"
+    },
     "mainEntityOfPage": "https://qualisassurance.com/production-monitoring-india/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is monitoring different from a single inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One inspection is a snapshot. Monitoring runs scheduled and unannounced visits through the entire production window, with photo reports at every milestone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does production monitoring cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "From $199 per visit, or as a weekly programme rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is production monitoring for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retail chains running repeat programmes, brands with strict spec tolerances, and any buyer whose order spans six weeks or more of production."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the factory visits announced?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both. Scheduled milestone visits are planned; unannounced checks are what keep subcontracting honest \u2014 possible because we are minutes away, not a flight."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +173,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/#book"><h3>Milestone visits</h3><p>Material intake, machining, assembly, finishing, packing—photographed at each stage against the plan.</p></a><a class="card rv" href="/clusters/jodhpur/"><h3>Unannounced checks</h3><p>The visits that keep subcontracting honest—possible only because we're minutes away, not a flight.</p></a><a class="card rv" href="/#book"><h3>Schedule tracking</h3><p>Weekly real-progress reporting so a slipping vessel date is news in week 2, not week 8.</p></a><a class="card rv" href="/during-production-inspection/"><h3>Early defect alerts</h3><p>Problems flagged to you the day they're seen, with the rework conversation held while it's cheap.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Retail chains running repeat programmes, brands with strict spec tolerances, and any buyer whose order spans six weeks or more of production. Monitoring is priced from $199 per visit or as a weekly programme rate; most buyers pair it with a closing pre-shipment inspection so the final AQL check lands on a run that was never allowed to drift.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>What production monitoring covers</h2></div></div><div class="grid"><a class="card rv" href="/#book"><h3>Milestone visits</h3><p>Material intake, machining, assembly, finishing, packing—photographed at each stage against the plan.</p></a><a class="card rv" href="/clusters/jodhpur/"><h3>Unannounced checks</h3><p>The visits that keep subcontracting honest—possible only because we're minutes away, not a flight.</p></a><a class="card rv" href="/#book"><h3>Schedule tracking</h3><p>Weekly real-progress reporting so a slipping vessel date is news in week 2, not week 8.</p></a><a class="card rv" href="/during-production-inspection/"><h3>Early defect alerts</h3><p>Problems flagged to you the day they're seen, with the rework conversation held while it's cheap.</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>Who it is for, and what it costs</h2></div></div><p class="prose rv">Retail chains running repeat programmes, brands with strict spec tolerances, and any buyer whose order spans six weeks or more of production. Monitoring is priced from $199 per visit or as a weekly programme rate; most buyers pair it with a closing pre-shipment inspection so the final AQL check lands on a run that was never allowed to drift.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Production monitoring FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How is monitoring different from a single inspection?</summary><p>One inspection is a snapshot. Monitoring runs scheduled and unannounced visits through the entire production window, with photo reports at every milestone.</p></details>
+      <details class="rv"><summary>What does production monitoring cost?</summary><p>From $199 per visit, or as a weekly programme rate.</p></details>
+      <details class="rv"><summary>Who is production monitoring for?</summary><p>Retail chains running repeat programmes, brands with strict spec tolerances, and any buyer whose order spans six weeks or more of production.</p></details>
+      <details class="rv"><summary>Are the factory visits announced?</summary><p>Both. Scheduled milestone visits are planned; unannounced checks are what keep subcontracting honest — possible because we are minutes away, not a flight.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 

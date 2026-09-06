@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -107,6 +117,44 @@ const jsonld = [
     },
     "mainEntityOfPage": "https://qualisassurance.com/packaging-transit-validation/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ISTA 3A drop testing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The parcel-network drop protocol. We run sampled cartons through six orientations and photograph the results."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is checked besides the drop test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Packaging spec \u2014 corner protection, honeycomb board, void fill and carton grade against the weight actually inside \u2014 plus flat-pack kit integrity (hardware BOM counts, instruction sheets, part labelling) and marketplace packaging requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this be combined with a pre-shipment inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Buyers typically add it to a pre-shipment inspection on the same visit, so one booking covers both risks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why test packaging before the container ships?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A failed drop test before shipment costs a packaging respec. A failed journey after shipment costs return freight, refunds and reviews."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +167,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>ISTA 3A drop sequence</h3><p>Sampled cartons through the parcel-network drop protocol—six orientations, photographed results.</p></a><a class="card rv" href="/#book"><h3>Packaging spec review</h3><p>Corner protection, honeycomb board, void fill and carton grade vs the weight actually inside.</p></a><a class="card rv" href="/#book"><h3>Flat-pack kit integrity</h3><p>Hardware BOM counts, instruction sheets, part labelling—the difference between a sale and a return.</p></a><a class="card rv" href="/#book"><h3>Marketplace requirements</h3><p>Packaging expectations for Amazon-class parcel networks checked before goods are sealed.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Transit damage is the silent margin killer for e-commerce furniture: the product was perfect, the journey wasn't. A failed drop test before shipment costs a packaging respec; a failed journey after shipment costs return freight, refunds and reviews. Buyers typically add this to a pre-shipment inspection on the same visit—one booking, both risks covered.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>What packaging validation covers</h2></div></div><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>ISTA 3A drop sequence</h3><p>Sampled cartons through the parcel-network drop protocol—six orientations, photographed results.</p></a><a class="card rv" href="/#book"><h3>Packaging spec review</h3><p>Corner protection, honeycomb board, void fill and carton grade vs the weight actually inside.</p></a><a class="card rv" href="/#book"><h3>Flat-pack kit integrity</h3><p>Hardware BOM counts, instruction sheets, part labelling—the difference between a sale and a return.</p></a><a class="card rv" href="/#book"><h3>Marketplace requirements</h3><p>Packaging expectations for Amazon-class parcel networks checked before goods are sealed.</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>Why transit damage is worth testing for</h2></div></div><p class="prose rv">Transit damage is the silent margin killer for e-commerce furniture: the product was perfect, the journey wasn't. A failed drop test before shipment costs a packaging respec; a failed journey after shipment costs return freight, refunds and reviews. Buyers typically add this to a pre-shipment inspection on the same visit—one booking, both risks covered.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Packaging and transit validation FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What is ISTA 3A drop testing?</summary><p>The parcel-network drop protocol. We run sampled cartons through six orientations and photograph the results.</p></details>
+      <details class="rv"><summary>What is checked besides the drop test?</summary><p>Packaging spec — corner protection, honeycomb board, void fill and carton grade against the weight actually inside — plus flat-pack kit integrity (hardware BOM counts, instruction sheets, part labelling) and marketplace packaging requirements.</p></details>
+      <details class="rv"><summary>Can this be combined with a pre-shipment inspection?</summary><p>Yes. Buyers typically add it to a <a href="/pre-shipment-inspection-india/">pre-shipment inspection</a> on the same visit, so one booking covers both risks.</p></details>
+      <details class="rv"><summary>Why test packaging before the container ships?</summary><p>A failed drop test before shipment costs a packaging respec. A failed journey after shipment costs return freight, refunds and reviews.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 

@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -107,6 +117,44 @@ const jsonld = [
     },
     "mainEntityOfPage": "https://qualisassurance.com/supplier-shortlisting/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is this different from a sourcing agent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You pay a fixed fee and factories pay us nothing \u2014 no commission, no margin on your unit price and no success fee, under clauses 01 and 05 of the Independence Charter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take, and what do I receive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Within ten working days you receive a shortlist of typically three to five verified manufacturers, each with a verification summary, capacity notes, cluster context and a recommended inspection plan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are shortlisted factories actually verified?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every one passes the same V-01 to V-10 verification we sell standalone as supplier verification."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if a factory you shortlisted later fails an inspection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Any later inspection of a factory we shortlisted is signed by a different inspector, and we keep the written right to fail it."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +167,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/why-independent/"><h3>Fixed fee, buyer-paid</h3><p>No commission, no margin on your unit price, no success fee from factories—ever. Clause 01 &amp; 05 of the Charter.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Verified, not just listed</h3><p>Every shortlisted factory passes the same V-01 to V-10 verification we sell standalone.</p></a><a class="card rv" href="/why-independent/"><h3>The firewall</h3><p>Any later inspection of a factory we shortlisted is signed by a different inspector—and we keep the written right to fail it.</p></a><a class="card rv" href="/#book"><h3>Your list, your relationships</h3><p>You get names, evidence and introductions. We never sit in the middle of your commercial terms.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">A brief call defines your product, target price band, volumes and destination-market requirements. Within ten working days you receive a shortlist of verified manufacturers—typically three to five—each with a verification summary, capacity notes, cluster context and recommended inspection plan. What happens next is your negotiation; what we sell is the confidence that everyone on the list is real.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>How the shortlist stays honest</h2></div></div><div class="grid"><a class="card rv" href="/why-independent/"><h3>Fixed fee, buyer-paid</h3><p>No commission, no margin on your unit price, no success fee from factories—ever. Clause 01 &amp; 05 of the Charter.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Verified, not just listed</h3><p>Every shortlisted factory passes the same V-01 to V-10 verification we sell standalone.</p></a><a class="card rv" href="/why-independent/"><h3>The firewall</h3><p>Any later inspection of a factory we shortlisted is signed by a different inspector—and we keep the written right to fail it.</p></a><a class="card rv" href="/#book"><h3>Your list, your relationships</h3><p>You get names, evidence and introductions. We never sit in the middle of your commercial terms.</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>How the process runs</h2></div></div><p class="prose rv">A brief call defines your product, target price band, volumes and destination-market requirements. Within ten working days you receive a shortlist of verified manufacturers—typically three to five—each with a verification summary, capacity notes, cluster context and recommended inspection plan. What happens next is your negotiation; what we sell is the confidence that everyone on the list is real.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Supplier shortlisting FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How is this different from a sourcing agent?</summary><p>You pay a fixed fee and factories pay us nothing — no commission, no margin on your unit price and no success fee, under clauses 01 and 05 of the <a href="/why-independent/">Independence Charter</a>.</p></details>
+      <details class="rv"><summary>How long does it take, and what do I receive?</summary><p>Within ten working days you receive a shortlist of typically three to five verified manufacturers, each with a verification summary, capacity notes, cluster context and a recommended inspection plan.</p></details>
+      <details class="rv"><summary>Are shortlisted factories actually verified?</summary><p>Every one passes the same V-01 to V-10 verification we sell standalone as <a href="/supplier-verification-india/">supplier verification</a>.</p></details>
+      <details class="rv"><summary>What if a factory you shortlisted later fails an inspection?</summary><p>Any later inspection of a factory we shortlisted is signed by a different inspector, and we keep the written right to fail it.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 

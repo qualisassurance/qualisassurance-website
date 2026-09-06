@@ -77,6 +77,24 @@ deletes only what is listed in `tools/port-manifest.json`, so the hand-written `
 routes are safe. Agreed departures from the original live in `OWNER_FIXES`,
 `SECTION_REWRITES` and `PAGE_EXTRA_CSS` inside the porter, so a re-port cannot revert them.
 
+> ### ⚠️ STOP — the porter is retired. Do not run it. (2026-09-06)
+>
+> That rule held while the reference matched production. It no longer does, and
+> **re-running the porter now destroys the site.** Verified: running it against
+> `~/Downloads/Qualis/Qualis New 3rd Sep` (the only reference left on this machine)
+> reported `no <main>` for the root and every `_pre-*-backup-*` folder it walked, then
+> rewrote all 30 pages as empty stubs — a **4,713-line deletion with zero insertions**.
+> It was reverted with `git checkout -- src/pages`.
+>
+> Two things drifted apart: that reference is still the pre-rebrand
+> `qualisinspections.com` site, and `src/pages` has since taken changes the reference
+> never had (the 2026-09 rebrand, GA4 `G-N4X0DBRC1H`, the Web3Forms key, schema
+> `sameAs`/`priceRange`/`WebSite`, the service-page FAQ sections).
+>
+> **`src/pages/**` is now the source of truth — edit it directly.** If the porter is ever
+> wanted again, first rebuild a reference that matches production, then re-run it and
+> diff before committing. Never commit a porter run whose diff is mostly deletions.
+
 ### One stylesheet per page — do not "de-duplicate"
 
 Each page imports **exactly one** stylesheet: 23 share `styles/global.css`, and the 7 that

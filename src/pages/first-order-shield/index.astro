@@ -22,6 +22,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban",
@@ -63,6 +68,11 @@ const jsonld = [
       "name": "Qualis",
       "legalName": "Qualis Assurance",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.facebook.com/QualisAssurance",
+        "https://www.linkedin.com/company/qualisassurance/",
+        "https://www.instagram.com/qualisassurance/"
+      ],
       "url": "https://qualisassurance.com",
       "telephone": "+918440007574",
       "email": "info@qualisassurance.com",
@@ -105,8 +115,52 @@ const jsonld = [
       "@type": "BusinessAudience",
       "name": "Furniture importers, retailers, brands and e-commerce sellers"
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "649",
+      "priceCurrency": "USD",
+      "description": "Fixed bundle price, buyer-paid; below the three services booked separately"
+    },
     "mainEntityOfPage": "https://qualisassurance.com/first-order-shield/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is included in the First Order Shield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three services in sequence: supplier verification before the deposit, a during-production inspection at 20\u201350% complete, and a pre-shipment inspection before the balance payment. Container loading supervision can be added."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does the First Order Shield cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "$649 all in \u2014 priced below the three services booked separately."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the order of the three services matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each stage de-risks the next, and one inspector coordinates your order from verification through to the container."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it change our payment terms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It comes with the contract language that makes it work: a deposit released only after verification, and a balance payable against the passed pre-shipment report."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -119,7 +173,18 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><div class="grid"><a class="card rv" href="/supplier-verification-india/"><h3>1 · Supplier Verification</h3><p>Before the deposit: premises, documents, manufacturer-vs-trader verdict in 3 working days.</p></a><a class="card rv" href="/during-production-inspection/"><h3>2 · During-Production Inspection</h3><p>At 20–50% complete: moisture, first-offs and finish direction while rework is still cheap.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>3 · Pre-Shipment Inspection</h3><p>Before the balance payment: AQL 2.5 sampling, full checklist, photographed report in 24 hours.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Optional · Container Loading</h3><p>Add CLS to witness the tally, dunnage and seal—nothing ships unseen.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Priced below the three services booked separately, sequenced so each stage de-risks the next, and coordinated by one inspector who knows your order from verification to container. The Shield also comes with the contract language that makes it work: a deposit released only after verification, and a balance payable against the passed PSI report. Tell us your product and supplier—fixed quote within 2 hours.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><div><h2>What the Shield includes</h2></div></div><div class="grid"><a class="card rv" href="/supplier-verification-india/"><h3>1 · Supplier Verification</h3><p>Before the deposit: premises, documents, manufacturer-vs-trader verdict in 3 working days.</p></a><a class="card rv" href="/during-production-inspection/"><h3>2 · During-Production Inspection</h3><p>At 20–50% complete: moisture, first-offs and finish direction while rework is still cheap.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>3 · Pre-Shipment Inspection</h3><p>Before the balance payment: AQL 2.5 sampling, full checklist, photographed report in 24 hours.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Optional · Container Loading</h3><p>Add CLS to witness the tally, dunnage and seal—nothing ships unseen.</p></a></div></div></section><section><div class="wrap prose-wrap"><div class="sec-head"><div><h2>How the bundle is priced and sequenced</h2></div></div><p class="prose rv">Priced below the three services booked separately, sequenced so each stage de-risks the next, and coordinated by one inspector who knows your order from verification to container. The Shield also comes with the contract language that makes it work: a deposit released only after verification, and a balance payable against the passed PSI report. Tell us your product and supplier—fixed quote within 2 hours.</p></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>First Order Shield FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>What is included in the First Order Shield?</summary><p>Three services in sequence: supplier verification before the deposit, a during-production inspection at 20–50% complete, and a pre-shipment inspection before the balance payment. Container loading supervision can be added.</p></details>
+      <details class="rv"><summary>How much does the First Order Shield cost?</summary><p>$649 all in — priced below the three services booked separately.</p></details>
+      <details class="rv"><summary>Why does the order of the three services matter?</summary><p>Each stage de-risks the next, and one inspector coordinates your order from verification through to the container.</p></details>
+      <details class="rv"><summary>Does it change our payment terms?</summary><p>It comes with the contract language that makes it work: a deposit released only after verification, and a balance payable against the passed pre-shipment report.</p></details>
+    </div>
+  </div>
+</section>
 <section class="final">
 <div class="wrap">
 
