@@ -41,12 +41,14 @@ export const SITE = {
   formAccessKey: '5f305af2-a8f0-41b6-9050-182d91fc5341',
   /**
    * Google Analytics 4 Measurement ID. Public by design (it ships in the page).
-   * Property "qualisassurance.com" under the qualisassurance@gmail.com account.
+   * Property "Qualis Assurance" (stream qualisassurance.com) under the
+   * yogesh.qualis@gmail.com account. Replaced the orphaned G-3MW9GK3DV8, which
+   * was stuck under the lost qualisassurance@gmail.com Google account (2026-09).
    * Loaded as gtag.js from googletagmanager.com in BaseLayout's head — unlike
    * the Cloudflare beacon, a plain client-side script tag is served verbatim by
    * the Worker, so it needs no proxy injection. Empty = disabled.
    */
-  ga4Id: 'G-3MW9GK3DV8',
+  ga4Id: 'G-N4X0DBRC1H',
 } as const;
 
 /**
