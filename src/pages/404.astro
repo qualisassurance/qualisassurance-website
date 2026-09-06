@@ -1,0 +1,69 @@
+---
+/**
+ * 404 — branded not-found page.
+ *
+ * Cloudflare serves this for unmatched paths via `assets.not_found_handling`
+ * in wrangler.jsonc. Before it existed the Worker returned a 404 with a zero-byte
+ * body, so a mistyped or stale URL was a dead end with no way back into the site.
+ *
+ * noindex,follow: the page must never be indexed, but the recovery links on it
+ * should still pass crawl equity to the real pages.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const title = "Page not found (404) | Qualis Assurance";
+const description = "That page has moved or never existed. Find furniture inspection services, clusters, import guides and field notes from Qualis Assurance.";
+const canonical = "https://qualisassurance.com/404/";
+
+const routes = [
+  { href: '/services/', label: 'All services', note: 'Pre-shipment, supplier verification, factory audit, container loading' },
+  { href: '/clusters/', label: 'Clusters we cover', note: 'Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR, Kolkata' },
+  { href: '/importing-furniture-from-india/', label: 'Import guides', note: 'Market-by-market rules for the USA, UK, Germany and more' },
+  { href: '/sample-reports/', label: 'Sample reports', note: 'What a Qualis report contains before you hire us' },
+  { href: '/blog/', label: 'Field Notes', note: 'What our inspectors keep finding on the ground' },
+  { href: '/contact/', label: 'Contact', note: 'Reply within 2 hours on a working day' },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} navVariant="inner">
+<meta slot="head" name="robots" content="noindex,follow" />
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Error 404</span>
+    <h1>That page isn't here</h1>
+    <p class="lede">
+      The link is either out of date or was never a page on this site. Nothing is
+      wrong with your order — but if you were following a link from an email or a
+      report and it broke, tell us and we'll fix it.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="/">Back to the homepage</a>
+      <a class="btn btn-ghost" href="/contact/">Report a broken link</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap nf-routes">
+  <h2>Where you were probably heading</h2>
+  <ul class="nf-list">
+    {routes.map((r) => (
+      <li>
+        <a href={r.href}>{r.label}</a>
+        <span>{r.note}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .nf-routes { padding: 0 0 72px; }
+  .nf-routes h2 { margin: 0 0 22px; }
+  .nf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--rule, #e9e7e1); border: 1px solid var(--rule, #e9e7e1); }
+  .nf-list li { background: var(--paper, #f7f6f2); padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+  .nf-list a { font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 600; text-decoration: none; color: var(--ink, #111214); border-bottom: 1.5px solid var(--pass, #0f7a5a); }
+  .nf-list a:hover { color: var(--pass, #0f7a5a); }
+  .nf-list span { color: var(--g500, #737169); font-size: .95rem; }
+  @media (min-width: 761px) { .nf-list { grid-template-columns: 1fr 1fr; } }
+</style>
+</BaseLayout>

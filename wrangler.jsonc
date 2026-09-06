@@ -11,6 +11,9 @@
   "name": "qualisinspections-website",
   "compatibility_date": "2025-09-01",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // Serve the branded dist/404.html (built from src/pages/404.astro) for any
+    // unmatched path. Without this the Worker answers 404 with a zero-byte body.
+    "not_found_handling": "404-page"
   }
 }
