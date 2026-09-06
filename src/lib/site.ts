@@ -34,11 +34,11 @@ export const SITE = {
    * before, and nothing on the page changes. Paste the key to switch capture on.
    *
    * This key is its own Web3Forms account/form ("Qualis Assurance —
-   * Enquiries"), delivering to qualisassurance@gmail.com — independent of the
-   * qualisinspections.com site's key, matching the separate-accounts strategy.
+   * Enquiries"), delivering to yogesh.qualis@gmail.com (the owner-controlled
+   * inbox; the old qualisassurance@gmail.com account was lost in 2026-09).
    */
   formEndpoint: 'https://api.web3forms.com/submit',
-  formAccessKey: 'a41b501f-3917-461c-b783-08f23b1d6747',
+  formAccessKey: '5f305af2-a8f0-41b6-9050-182d91fc5341',
   /**
    * Google Analytics 4 Measurement ID. Public by design (it ships in the page).
    * Property "qualisassurance.com" under the qualisassurance@gmail.com account.
