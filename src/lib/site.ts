@@ -104,6 +104,19 @@ export const NAV: Record<NavVariant, { href: string; label: string }[]> = {
   ],
 };
 
+/**
+ * Public profiles. Single source of truth for the footer links and the schema
+ * `sameAs` array. Every URL here was checked to return 200 — a dead profile in
+ * `sameAs` is worse than omitting it. The Google entry is the Maps place link,
+ * not the `share.google` shortcut, which resolves to a search results page.
+ */
+export const SOCIAL_LINKS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/qualisassurance/' },
+  { label: 'Instagram', href: 'https://www.instagram.com/qualisassurance/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/QualisAssurance' },
+  { label: 'Google', href: 'https://maps.app.goo.gl/bdA2qD15SzmagDnXA' },
+] as const;
+
 export const FOOTER_COLUMNS = [
   {
     heading: 'Services',

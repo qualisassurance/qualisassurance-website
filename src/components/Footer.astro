@@ -1,5 +1,5 @@
 ---
-import { FOOTER_COLUMNS, SITE } from '../lib/site';
+import { FOOTER_COLUMNS, SITE, SOCIAL_LINKS } from '../lib/site';
 import Logo from './Logo.astro';
 ---
 <footer>
@@ -13,6 +13,11 @@ import Logo from './Logo.astro';
         <a href={`mailto:${SITE.email}`}><b>Email</b>{SITE.email}</a>
         <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Qualis Assurance, ${SITE.addressFull}`)}`} target="_blank" rel="noopener"><b>Address</b>{SITE.addressFull}</a>
       </div>
+      <ul class="fsocial">
+        {SOCIAL_LINKS.map((s) => (
+          <li><a href={s.href} target="_blank" rel="noopener me">{s.label}</a></li>
+        ))}
+      </ul>
     </div>
     {FOOTER_COLUMNS.map((col) => (
       <div class="fcol">
@@ -26,3 +31,27 @@ import Logo from './Logo.astro';
     <span>Independent furniture inspection &amp; supplier verification · Buyer-paid since 2017</span>
   </div>
 </footer>
+
+<style>
+  /* Profile links sit under the brand column's contact block. rel="me" marks
+     them as the same entity, which is the markup half of the schema sameAs. */
+  .fsocial {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin: 18px 0 0;
+    padding: 0;
+  }
+  .fsocial a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--g500, #8A8880);
+    border-bottom: 1px solid var(--rule, #E9E7E1);
+    padding-bottom: 3px;
+  }
+  .fsocial a:hover { color: var(--pass, #0F7A5A); border-bottom-color: currentColor; }
+</style>
