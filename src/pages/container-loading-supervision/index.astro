@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
 import '../../styles/pages/container-loading-supervision.css';
 
@@ -233,7 +234,7 @@ const jsonld = [
 <!-- 05 RECENT FINDING -->
 <section>
   <div class="wrap">
-    <div class="sec-head"><div><h2>What CLS caught last month</h2></div></div>
+    <div class="sec-head"><div><h2>What CLS actually catches</h2></div></div>
     <div class="finding rv">
       <figure style="margin:0">
         <ImageSlot id={"IMG-CLS-03"} spec={"1200×900px"} desc={"Torch-lit container floor with a visible dark wet patch spreading from the door end, inspector's boot and tally clipboard at frame edge for scale. Shot before any carton loaded."} anno={"L-03: WET FLOOR · REJECTED"} annoStyle={"top:34%;right:8%"} src={"/images/img-cls-03.jpg"} width={1200} height={900} />
@@ -315,19 +316,16 @@ const jsonld = [
       <p>Tell us the stuffing date and location. Confirmed within 2 hours; your inspector is at the door before the box opens.</p>
       <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT SAME DAY · PAID BY BUYERS ONLY</p>
     </div>
-    <form data-enquiry="wa">
-      <div class="field field--cluster"><label for="cluster">Loading location</label><select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select></div>
-      <div class="field field--size"><label for="size">Container</label><select id="size" name="size"><option>1×20ft</option><option>1×40ft</option><option>1×40ft HC</option><option>Multiple containers</option><option>Consolidated / multi-factory</option></select></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-      <div class="field field--date"><label for="date">Stuffing date</label><input id="date" name="date" type="date"></div>
-      <button class="btn btn-solid" type="submit">Get instant estimate</button>
-      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
-      <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <p class="note formstatus" role="status" aria-live="polite"></p>
-    </form>
+    <EnquiryForm
+      subject="Container loading supervision enquiry"
+      submitLabel="Book loading supervision"
+      dateLabel="Stuffing date"
+      lead={[
+        { name: 'cluster', label: 'Loading location', type: 'select', options: ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', 'Kolkata', 'Other / not sure'] },
+        { name: 'size', label: 'Container', type: 'select', options: ['1×20ft', '1×40ft', '1×40ft HC', 'Multiple containers', 'Consolidated / multi-factory'] },
+        { name: 'product', label: 'Product and quantity', type: 'text', placeholder: 'e.g. 320 cartons, flat-pack bedroom sets', wide: true },
+      ]}
+    />
       <div class="bookdirect">
         <a href="tel:+918440007574"><b>Phone/WhatsApp</b><span>+91 844 000 7574</span></a>
         <a href="mailto:info@qualisassurance.com"><b>Email</b><span>info@qualisassurance.com</span></a>

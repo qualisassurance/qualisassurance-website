@@ -82,13 +82,13 @@ export const waLink = (text?: string) =>
  */
 export type NavVariant = 'home' | 'service' | 'inner';
 
-/** Off-home header: every item is a real page except the pricing anchor. */
+/** Off-home header: every item is a real page. */
 const NAV_PAGES = [
   { href: '/services/', label: 'Services' },
   { href: '/clusters/', label: 'Clusters' },
   { href: '/why-independent/', label: 'Why independent' },
   { href: '/sample-reports/', label: 'Sample report' },
-  { href: '/#pricing', label: 'Pricing' },
+  { href: '/pricing/', label: 'Pricing' },
   { href: '/blog/', label: 'Field Notes' },
   { href: '/contact/', label: 'Contact' },
 ] as const;
@@ -99,7 +99,7 @@ export const NAV: Record<NavVariant, readonly { href: string; label: string }[]>
     { href: '#clusters', label: 'Clusters' },
     { href: '/why-independent/', label: 'Why independent' },
     { href: '#report', label: 'Sample report' },
-    { href: '#pricing', label: 'Pricing' },
+    { href: '/pricing/', label: 'Pricing' },
     { href: '/blog/', label: 'Field Notes' },
     { href: '/contact/', label: 'Contact' },
   ],
@@ -123,15 +123,17 @@ export const SOCIAL_LINKS = [
 /**
  * The six buyer audiences, in the order the homepage "Who we protect" grid
  * prints them. Read by AudienceLinks.astro, which cross-links them from each
- * other and from /services/. `label` carries an entity because it is rendered
- * with set:html — see the component.
+ * other and from /services/. Plain text, not HTML entities: `label` used to
+ * carry `&amp;` for a set:html render while `blurb` was interpolated, so the
+ * blurb's ampersand was escaped twice and shipped as a literal "FF&amp;E" on
+ * /services/ and five /buyers/ pages. Astro escapes both paths now.
  */
 export const AUDIENCES = [
-  { slug: 'importers', label: 'Importers &amp; wholesalers', blurb: 'Container-level assurance and repeat-order monitoring.' },
+  { slug: 'importers', label: 'Importers & wholesalers', blurb: 'Container-level assurance and repeat-order monitoring.' },
   { slug: 'retail-chains', label: 'Retail chains', blurb: 'Vendor programmes, AQL alignment and audit trails for your QA team.' },
-  { slug: 'brands', label: 'Furniture brands &amp; DTC', blurb: 'Spec enforcement from golden sample to sealed container.' },
+  { slug: 'brands', label: 'Furniture brands & DTC', blurb: 'Spec enforcement from golden sample to sealed container.' },
   { slug: 'ecommerce', label: 'E-commerce sellers', blurb: 'ISTA packaging validation to cut transit-damage returns.' },
-  { slug: 'projects', label: 'Interior &amp; hospitality projects', blurb: 'FF&amp;E inspection against project specifications and deadlines.' },
+  { slug: 'projects', label: 'Interior & hospitality projects', blurb: 'FF&E inspection against project specifications and deadlines.' },
   { slug: 'procurement', label: 'Procurement teams', blurb: 'Independent eyes and documented evidence for every India PO.' },
 ] as const;
 
@@ -164,6 +166,7 @@ export const FOOTER_COLUMNS = [
       { href: '/blog/', label: 'Field Notes' },
       { href: '/defects/', label: 'Defect Library' },
       { href: '/sample-reports/', label: 'Sample Reports' },
+      { href: '/pricing/', label: 'Pricing' },
       { href: '/import-compliance/', label: 'Import Compliance' },
       { href: '/eudr-compliance-india-furniture/', label: 'EUDR Compliance' },
       { href: '/eudr-supplier-evidence-review/', label: 'EUDR Evidence Review' },

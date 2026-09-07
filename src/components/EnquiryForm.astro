@@ -1,0 +1,93 @@
+---
+/**
+ * The one enquiry form (2026-09 audit, UX-02 / UX-03).
+ *
+ * There were seven hand-written copies of this form, each with a slightly
+ * different field list, and one shared submit handler in BaseLayout that read a
+ * hardcoded set of names — `svc`, `cluster`, `fullname`, `company`, `email`,
+ * `phone`, `date`. Every other field was silently dropped: the PSI form's
+ * `product`, the CLS `size`, Jodhpur's `area`, and verification's `supplier`,
+ * `level` and `value` never reached the owner, in the email or in WhatsApp.
+ *
+ * The seven were not flattened into one identical form — a verification
+ * enquiry genuinely needs the supplier name and a loading enquiry the container
+ * size. Instead each page passes its own `lead` fields and this component adds
+ * the common core, so there is one implementation and one set of behaviours.
+ * The handler now reads every named control off the form, so adding a field
+ * here can never again lose it in transit.
+ */
+export interface EnquiryField {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'date' | 'select' | 'textarea';
+  options?: readonly string[];
+  placeholder?: string;
+  required?: boolean;
+  autocomplete?: string;
+  /** Span both grid columns. Use for anything that needs the room. */
+  wide?: boolean;
+}
+
+interface Props {
+  /** Page-specific fields, rendered before the common core. */
+  lead?: readonly EnquiryField[];
+  submitLabel?: string;
+  note?: string;
+  /** Subject line prefix on the delivered email. */
+  subject?: string;
+  /** Ask for a target date, and what to call it. */
+  dateLabel?: string | null;
+  /** Placeholder for the free-text field every form now carries. */
+  messagePlaceholder?: string;
+}
+
+const {
+  lead = [],
+  submitLabel = 'Send enquiry',
+  note = 'No payment now. We reply with scope and a fixed quote.',
+  subject = 'Inspection enquiry',
+  dateLabel = 'Target inspection date',
+  messagePlaceholder = 'Anything else we should know — order value, deadline, what went wrong last time.',
+} = Astro.props;
+
+const CORE: EnquiryField[] = [
+  { name: 'fullname', label: 'Your name', type: 'text', placeholder: 'First and last name', required: true, autocomplete: 'name' },
+  { name: 'company', label: 'Company (optional)', type: 'text', placeholder: 'Company name', autocomplete: 'organization' },
+  { name: 'email', label: 'Work email', type: 'email', placeholder: 'you@company.com', required: true, autocomplete: 'email' },
+  { name: 'phone', label: 'Phone / WhatsApp (optional)', type: 'tel', placeholder: '+1 555 000 0000', autocomplete: 'tel' },
+];
+
+const fields: EnquiryField[] = [
+  ...lead,
+  ...CORE,
+  ...(dateLabel ? [{ name: 'date', label: dateLabel, type: 'date' as const }] : []),
+  { name: 'message', label: 'Anything else (optional)', type: 'textarea', placeholder: messagePlaceholder, wide: true },
+];
+---
+<form data-enquiry="qualis" data-subject={subject}>
+  {fields.map((f) => (
+    <div class={`field field--${f.name}${f.wide ? ' field--wide' : ''}`}>
+      <label for={f.name}>{f.label}</label>
+      {f.type === 'select' ? (
+        <select id={f.name} name={f.name}>
+          {(f.options ?? []).map((o) => <option>{o}</option>)}
+        </select>
+      ) : f.type === 'textarea' ? (
+        <textarea id={f.name} name={f.name} rows="3" placeholder={f.placeholder}></textarea>
+      ) : (
+        <input
+          id={f.name}
+          name={f.name}
+          type={f.type ?? 'text'}
+          placeholder={f.placeholder}
+          required={f.required}
+          autocomplete={f.autocomplete}
+        />
+      )}
+    </div>
+  ))}
+  <button class="btn btn-solid" type="submit">{submitLabel}</button>
+  <p class="note">{note}</p>
+  <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+  <p class="note formstatus" role="status" aria-live="polite"></p>
+</form>

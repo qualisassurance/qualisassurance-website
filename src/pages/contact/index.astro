@@ -9,6 +9,7 @@
  * submissions land in the same Web3Forms inbox with the same field names.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
 import { SITE, waLink } from '../../lib/site';
 import '../../styles/global.css';
 
@@ -129,19 +130,15 @@ const jsonld = [
         </p>
         <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
       </div>
-      <form data-enquiry="wa">
-        <div class="field field--svc"><label for="svc">Service</label><select id="svc" name="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select></div>
-        <div class="field field--cluster"><label for="cluster">Factory location</label><select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select></div>
-        <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-        <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-        <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-        <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-        <div class="field field--date"><label for="date">Target inspection date</label><input id="date" name="date" type="date"></div>
-        <button class="btn btn-solid" type="submit">Get instant estimate</button>
-        <p class="note">No payment now. We reply with scope and a fixed quote.</p>
-        <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-        <p class="note formstatus" role="status" aria-live="polite"></p>
-      </form>
+      <EnquiryForm
+      subject="Inspection enquiry"
+      submitLabel="Send enquiry"
+      lead={[
+        { name: 'svc', label: 'Service', type: 'select', options: ['Pre-Shipment Inspection', 'Container Loading Supervision', 'Supplier Verification', 'Factory Audit', 'Production Monitoring', 'Packaging & Transit Validation', 'Not sure — recommend for me'] },
+        { name: 'cluster', label: 'Factory location', type: 'select', options: ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', 'Kolkata', 'Other / not sure'] },
+        { name: 'product', label: 'Product and quantity', type: 'text', placeholder: 'e.g. 180 sheesham console tables, 1×40ft', wide: true },
+      ]}
+    />
       <div class="bookdirect">
         <a href={`tel:${SITE.phoneE164}`}><b>Phone/WhatsApp</b><span>{SITE.phoneDisplay}</span></a>
         <a href={`mailto:${SITE.email}`}><b>Email</b><span>{SITE.email}</span></a>

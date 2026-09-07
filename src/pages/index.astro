@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
 import ImageSlot from '../components/ImageSlot.astro';
 import '../styles/pages/home.css';
 
@@ -225,12 +226,12 @@ const jsonld = [
     </div>
     <p class="eyebrow" style="text-align:center">Trusted by furniture importers &amp; brands</p>
     <div class="logos rv">
-      <ImageSlot id={"LOGO-01…06"} spec={"400×160px · SVG/PNG"} desc={"Client logos, mono-grey"} as={"figure"} src={"/images/logo-01-06.jpg"} width={400} height={160} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo.jpg"} width={400} height={160} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-2.jpg"} width={400} height={160} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-3.jpg"} width={400} height={160} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-4.jpg"} width={400} height={160} />
-      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-5.jpg"} width={400} height={160} />
+      <ImageSlot id={"LOGO-01…06"} spec={"400×160px · SVG/PNG"} desc={"Client logos, mono-grey"} as={"figure"} src={"/images/logo-01-06.jpg"} width={400} height={160} alt={"4UDesigned.nl — Qualis client logo"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo.jpg"} width={400} height={160} alt={"Jolipa — Qualis client logo"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-2.jpg"} width={400} height={160} alt={"Wicker Emporium — Qualis client logo"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-3.jpg"} width={400} height={160} alt={"J-Line — Qualis client logo"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-4.jpg"} width={400} height={160} alt={"Fuhr Home — Qualis client logo"} />
+      <ImageSlot id={"LOGO"} desc={"400×160"} as={"figure"} src={"/images/logo-5.jpg"} width={400} height={160} alt={"Rustic Furniture Outlet — Qualis client logo"} />
     </div>
   </div>
 </section>
@@ -446,7 +447,7 @@ const jsonld = [
   <div class="wrap">
     <div class="sec-head">
       <div><h2 id="h-pricing">Published prices. No enterprise runaround.</h2></div>
-      <p>We're typically 40–60% below global inspection firms for equivalent scope. Because we're already here.</p>
+      <p>We're typically 40–60% below global inspection firms for equivalent scope. Because we're already here. These are the three most-booked; <a href="/pricing/">every price we charge is published</a>.</p>
     </div>
     <div class="price-grid">
       <div class="price rv">
@@ -521,19 +522,15 @@ const jsonld = [
       <p>Tell us the service, the cluster and the date. We confirm within 2 hours, inspect on schedule, and report within 24 — with live photo updates on WhatsApp if you want them.</p>
       <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
     </div>
-    <form data-enquiry="wa">
-      <div class="field field--svc"><label for="svc">Service</label><select id="svc" name="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select></div>
-      <div class="field field--cluster"><label for="cluster">Factory location</label><select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-      <div class="field field--date"><label for="date">Target inspection date</label><input id="date" name="date" type="date"></div>
-      <button class="btn btn-solid" type="submit">Get instant estimate</button>
-      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
-      <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <p class="note formstatus" role="status" aria-live="polite"></p>
-    </form>
+    <EnquiryForm
+      subject="Inspection enquiry"
+      submitLabel="Send enquiry"
+      lead={[
+        { name: 'svc', label: 'Service', type: 'select', options: ['Pre-Shipment Inspection', 'Container Loading Supervision', 'Supplier Verification', 'Factory Audit', 'Production Monitoring', 'Packaging & Transit Validation', 'Not sure — recommend for me'] },
+        { name: 'cluster', label: 'Factory location', type: 'select', options: ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', 'Kolkata', 'Other / not sure'] },
+        { name: 'product', label: 'Product and quantity', type: 'text', placeholder: 'e.g. 180 sheesham console tables, 1×40ft', wide: true },
+      ]}
+    />
       <div class="bookdirect">
         <a href="tel:+918440007574"><b>Phone/WhatsApp</b><span>+91 844 000 7574</span></a>
         <a href="mailto:info@qualisassurance.com"><b>Email</b><span>info@qualisassurance.com</span></a>

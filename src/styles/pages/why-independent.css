@@ -117,9 +117,17 @@ footer{border-top:1px solid var(--rule);padding:48px 0;font-size:.85rem;color:va
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
-.rv{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+/* Reveal-on-scroll (2026-09 audit, UX-09). The resting state is now VISIBLE.
+   It used to be opacity:0 waiting on an IntersectionObserver, which meant an
+   anchor jump (#pricing, #report, #faq), a shared deep link, a fast scroll or
+   a screenshot renderer all caught blank sections — and the client-logo strip,
+   the DEF-061 card and the CASE-03 card read as empty placeholders when they
+   were simply not revealed yet. The script hides only what is genuinely below
+   the fold at load, by adding .rv-pending, and removes it on intersect. */
+.rv{transition:opacity .5s ease,transform .5s ease}
+.rv.rv-pending{opacity:0;transform:translateY(12px)}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.rv,.rv.rv-pending{opacity:1;transform:none;transition:none}}
 @media (max-width:960px){
   .flow,.founder{grid-template-columns:1fr}
   .nav-links{display:none}

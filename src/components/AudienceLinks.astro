@@ -29,7 +29,7 @@ const items = AUDIENCES.filter((a) => a.slug !== current);
       {items.map((a) => (
         <li>
           <a href={`/buyers/${a.slug}/`}>
-            <b set:html={a.label} />
+            <b>{a.label}</b>
             <span>{a.blurb}</span>
           </a>
         </li>

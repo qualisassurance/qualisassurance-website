@@ -1,0 +1,322 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+/* 2026-09 audit, SEO-01. "Pricing" in the header pointed at a home-page anchor
+   showing three of the sixteen published prices, while the rest were scattered
+   across nine service pages — the $149 re-inspection and the $349 multi-factory
+   loading fee appeared on exactly one page each. "Furniture inspection cost
+   India" had nothing to rank.
+
+   Every figure below is lifted verbatim from the service page that publishes
+   it; nothing here is new, and this page is now the place to change one. The
+   flat published fee is a Charter position, not a promotion: Clause 02 fixes it
+   at booking so it cannot move with the result. */
+
+const STAGES = [
+  {
+    key: 'Stage 1 — before the order',
+    title: 'Verify',
+    blurb: 'Establish who you are buying from before a deposit moves.',
+    rows: [
+      { name: 'Red-Flag Check', href: '/supplier-verification-india/', price: 'Free', unit: 'desk only', detail: '5-point desk check on a supplier name or listing, returned within 24 hours.' },
+      { name: 'Supplier Verification', href: '/supplier-verification-india/', price: '$299', unit: '/ supplier', detail: 'On-site: documents, premises, export history. Verdict in 3 working days.' },
+      { name: 'Factory Audit', href: '/factory-audit-india/', price: '$449', unit: '/ factory', detail: 'Scored 8-section audit across process, capacity, QC and subcontracting.' },
+      { name: 'Verification + Factory Audit', href: '/factory-audit-india/', price: '$649', unit: '/ supplier', detail: 'Both, one visit, one inspector — the programme-onboarding pairing.' },
+      { name: 'Re-audit', href: '/factory-audit-india/', price: '$199', unit: '/ visit', detail: 'Follow-up against the corrective action plan from the first audit.' },
+      { name: 'Supplier Shortlisting', href: '/supplier-shortlisting/', price: 'from $990', unit: '3 factories', detail: 'Three verified manufacturers, plus $249 for each additional factory verified to the same standard. Factories pay nothing.' },
+    ],
+  },
+  {
+    key: 'Stage 2 — during production',
+    title: 'Monitor',
+    blurb: 'Catch a drifting run while rework is still cheap and the vessel date is safe.',
+    rows: [
+      { name: 'During-Production Inspection', href: '/during-production-inspection/', price: 'from $249', unit: '/ visit', detail: 'At 20–50% complete, against your AQL plan and golden sample.' },
+      { name: 'Production Monitoring', href: '/production-monitoring-india/', price: 'from $199', unit: '/ visit', detail: 'Scheduled and unannounced visits, or a weekly programme rate for long runs.' },
+      { name: 'Monsoon Watch', href: '/monsoon-watch/', price: 'Free', unit: 'Jul–Sep', detail: 'Seasonal moisture, curing and lead-time advisories for orders in production.' },
+    ],
+  },
+  {
+    key: 'Stage 3 — before payment',
+    title: 'Inspect',
+    blurb: 'Independent evidence of what you are about to pay for.',
+    rows: [
+      { name: 'Pre-Shipment Inspection', href: '/pre-shipment-inspection-india/', price: '$249', unit: '/ inspection', detail: 'Up to 1×40ft container / 1 factory. AQL 2.5 · ISO 2859-1, full C-01→C-10 checklist.' },
+      { name: 'Re-inspection', href: '/pre-shipment-inspection-india/', price: '$149', unit: '/ visit', detail: 'After a failed PSI and rework. Failed points re-checked in full, within 48 hrs in Jodhpur or Jaipur.' },
+      { name: 'Container Loading Supervision', href: '/container-loading-supervision/', price: '$269', unit: '/ container', detail: 'Booked on its own: container condition, full tally, dunnage, weather hold, photographed seal.' },
+      { name: 'Multi-factory loading', href: '/container-loading-supervision/', price: '$349', unit: '/ container', detail: 'Consolidated containers, with a per-factory tally at the door.' },
+      { name: 'Packaging & Transit Validation', href: '/packaging-transit-validation/', price: '$149', unit: 'added to a PSI', detail: 'ISTA 3A drop testing on the same visit. $249 booked on its own.' },
+    ],
+  },
+  {
+    key: 'Bundles',
+    title: 'Bundles',
+    blurb: 'Below the sum of their parts, and sequenced so each stage de-risks the next.',
+    rows: [
+      { name: 'Protected Container', href: '/container-loading-supervision/', price: '$449', unit: '/ container', detail: 'Pre-shipment inspection + container loading supervision, with priority 12-hour reporting.' },
+      { name: 'First Order Shield', href: '/first-order-shield/', price: '$649', unit: '/ order', detail: 'Supplier verification + during-production inspection + pre-shipment inspection, one inspector throughout.' },
+    ],
+  },
+];
+
+const title = 'Furniture Inspection Prices in India | QUALIS';
+const description =
+  'Every Qualis price on one page: pre-shipment inspection from $249, supplier verification $299, factory audit $449, container loading from $269. Flat fees, fixed at booking, paid by buyers only.';
+const canonical = 'https://qualisassurance.com/pricing/';
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'C-10, Saraswati Nagar Main Rd, M.I.A. 1st Phase, Basni, Madhuban',
+    addressLocality: 'Jodhpur',
+    addressRegion: 'Rajasthan',
+    postalCode: '342001',
+    addressCountry: 'IN',
+  },
+};
+
+/* Offer + PriceSpecification per line. Only the fixed single-figure fees are
+   given a numeric price; "from" fees carry the figure as a minPrice so the
+   markup never states a certainty the page does not. */
+const offers = STAGES.flatMap((s) =>
+  s.rows
+    .filter((r) => r.price !== 'Free')
+    .map((r) => {
+      const amount = Number(r.price.replace(/[^\d]/g, ''));
+      const isFrom = r.price.startsWith('from');
+      return {
+        '@type': 'Offer',
+        name: r.name,
+        url: `https://qualisassurance.com${r.href}`,
+        category: s.title,
+        priceCurrency: 'USD',
+        availableDeliveryMethod: 'http://purl.org/goodrelations/v1#OnSite',
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          priceCurrency: 'USD',
+          ...(isFrom ? { minPrice: amount } : { price: amount }),
+          valueAddedTaxIncluded: false,
+        },
+      };
+    }),
+);
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Furniture Inspection Prices in India',
+    url: canonical,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: 'https://qualisassurance.com' },
+    publisher: PUBLISHER,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: 'Qualis furniture inspection services — published pricing',
+    url: canonical,
+    provider: PUBLISHER,
+    itemListElement: offers,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Pricing', item: canonical },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does furniture inspection cost in India?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A standard pre-shipment inspection is $249 per inspection, covering up to one 40ft container at one factory, with AQL 2.5 sampling to ISO 2859-1, a photographed report within 24 hours and a decision call. Container loading supervision is $269 per container on its own, or $449 bundled with the inspection. Supplier verification is $299 and a factory audit $449. All fees are flat, published, fixed at booking and paid by the buyer.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are there travel charges on top of the inspection fee?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Not inside our six clusters — Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata. There is no man-day arithmetic and no hidden travel charge within them. Work outside those clusters is quoted before you book.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the fee change if the inspection fails?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Clause 02 of our Independence Charter fixes the fee at booking, and it does not change with the result. We earn exactly the same whether your shipment passes or fails, which is the whole reason an independent inspection is worth buying. A re-inspection after rework is charged at the reduced $149 rate.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is Qualis cheaper than SGS or Bureau Veritas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We are typically 40 to 60% below global inspection firms for equivalent scope, because we are already in the clusters. A global firm bills man-days plus flights and hotels to send a generalist inspector to Jodhpur; our inspectors live minutes from the factories, so the same work carries no travel and no mobilisation cost.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do factories ever pay any part of the fee?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Never. Clause 01 of the Independence Charter states that all Qualis revenue comes from buyer-paid fees, and that we accept no commission, referral fee, margin, gift or hospitality from any factory, trader or exporter, in any form.',
+        },
+      },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h1>Every price we charge, on one page</h1>
+    <p class="lead">Flat fees per inspection, published here and fixed at booking. No man-day arithmetic, no mobilisation fee, no travel charge inside our six clusters — and no invoice to any factory, ever.</p>
+    <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why we can fail your shipment</a></div>
+    <p class="mono" style="margin-top:22px;color:var(--g500)">PAID BY BUYERS ONLY · FIXED AT BOOKING · TYPICALLY 40–60% BELOW GLOBAL FIRMS</p>
+  </div>
+</section>
+
+{STAGES.map((stage) => (
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">{stage.key}</span><h2>{stage.title}</h2></div>
+        <p>{stage.blurb}</p>
+      </div>
+      <table class="check-table rv">
+        <thead><tr><th>Fee</th><th>Service</th><th>What it covers</th></tr></thead>
+        <tbody>
+          {stage.rows.map((r) => (
+            <tr>
+              <td data-label="Fee"><b class="pr-amt">{r.price}</b><span class="pr-unit">{r.unit}</span></td>
+              <td data-label="Service"><a href={r.href}>{r.name}</a></td>
+              <td data-label="What it covers">{r.detail}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+))}
+
+<section aria-labelledby="h-included">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">What the fee buys</span><h2 id="h-included">Included, and not included</h2></div>
+      <p>The same list on every engagement, so a quote is a confirmation rather than a negotiation.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>In every inspection fee</h3>
+        <p>AQL 2.5 sampling to ISO 2859-1 · the full published checklist for that service · a photographed report within 24 hours · standard references on every check · a severity class on every defect · a decision call with the inspector who did the work · travel anywhere inside our six clusters.</p>
+      </div>
+      <div class="card">
+        <h3>Quoted before you book</h3>
+        <p>Work outside Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata · orders larger than one 40ft container or spanning more than one factory · weekly monitoring programmes · shortlisting beyond the first three factories.</p>
+      </div>
+      <div class="card">
+        <h3>Never charged, to anyone</h3>
+        <p>No commission, referral fee, margin, gift or hospitality from any factory, trader or exporter — Clause 01 of the <a href="/why-independent/">Independence Charter</a>. The fee is identical whether we pass or fail your shipment, which is Clause 02.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-vs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Why the number is lower</span><h2 id="h-vs">A flat fee against a man-day quote</h2></div>
+    </div>
+    <p class="defn"><b>We are typically 40–60% below global inspection firms</b> for equivalent scope. Not because the work is lighter — the sampling plan and the standards are the same ones — but because a global firm bills man-days plus flights and hotels to send a generalist to Jodhpur, and our inspectors already live there. Distance is most of what you pay for elsewhere.</p>
+    <table class="check-table rv">
+      <thead><tr><th><span class="vh">Comparison</span></th><th>Sourcing agent</th><th>Global inspection firm</th><th>Qualis</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Who pays</th><td data-label="Sourcing agent">Factory commission</td><td data-label="Global firm">Buyer</td><td data-label="Qualis">Buyer only — Charter Clause 01</td></tr>
+        <tr><th scope="row">How it is priced</th><td data-label="Sourcing agent">Bundled into your unit price</td><td data-label="Global firm">Man-days + travel, quote on request</td><td data-label="Qualis">Flat fee, published on this page</td></tr>
+        <tr><th scope="row">Fee if the shipment fails</th><td data-label="Sourcing agent">Loses commission</td><td data-label="Global firm">Unchanged</td><td data-label="Qualis">Unchanged — Charter Clause 02</td></tr>
+        <tr><th scope="row">Typical cost</th><td data-label="Sourcing agent">"Free" (paid in your unit price)</td><td data-label="Global firm">High — man-days + travel</td><td data-label="Qualis">40–60% below global firms</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 id="h-faq">Pricing questions</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>How much does furniture inspection cost in India?</summary><p>A standard pre-shipment inspection is $249 per inspection, covering up to one 40ft container at one factory, with AQL 2.5 sampling to ISO 2859-1, a photographed report within 24 hours and a decision call. Container loading supervision is $269 per container on its own, or $449 bundled with the inspection. Supplier verification is $299 and a factory audit $449. All fees are flat, published, fixed at booking and paid by the buyer.</p></details>
+      <details class="rv"><summary>Are there travel charges on top of the inspection fee?</summary><p>Not inside our six clusters — Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata. There is no man-day arithmetic and no hidden travel charge within them. Work outside those clusters is quoted before you book.</p></details>
+      <details class="rv"><summary>Does the fee change if the inspection fails?</summary><p>No. Clause 02 of our <a href="/why-independent/">Independence Charter</a> fixes the fee at booking, and it does not change with the result. We earn exactly the same whether your shipment passes or fails, which is the whole reason an independent inspection is worth buying. A re-inspection after rework is charged at the reduced $149 rate.</p></details>
+      <details class="rv"><summary>Why is Qualis cheaper than SGS or Bureau Veritas?</summary><p>We are typically 40 to 60% below global inspection firms for equivalent scope, because we are already in the clusters. A global firm bills man-days plus flights and hotels to send a generalist inspector to Jodhpur; our inspectors live minutes from the factories, so the same work carries no travel and no mobilisation cost.</p></details>
+      <details class="rv"><summary>Do factories ever pay any part of the fee?</summary><p>Never. Clause 01 of the Independence Charter states that all Qualis revenue comes from buyer-paid fees, and that we accept no commission, referral fee, margin, gift or hospitality from any factory, trader or exporter, in any form.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Tell us the order. We quote in two hours.</h2>
+    <p>Service, cluster, product and date. The quote is the published fee, confirmed against your scope — not a range and not a starting point.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+
+<style>
+  /* Fee column: the amount is the scannable thing, the unit is support. */
+  .pr-amt {
+    display: block;
+    font-family: 'Inter Tight', Inter, sans-serif;
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--ink, #111214);
+    letter-spacing: -.01em;
+  }
+  .pr-unit {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .66rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--g500, #737169);
+    margin-top: 3px;
+  }
+  /* First column is mono-cased for checklist refs elsewhere; here it holds a
+     price, so it takes the display face instead. */
+  .check-table td:first-child { font-family: inherit; font-size: inherit; }
+  .check-table td a { color: inherit; font-weight: 600; }
+  .check-table td a:hover { color: var(--pass, #0f7a5a); }
+  .grid .card h3 { margin-bottom: 8px; }
+  /* Row headers in the comparison table are labels, not column heads: keep the
+     body face rather than the mono uppercase treatment .check-table th carries. */
+  .check-table tbody th {
+    font-family: 'Inter Tight', Inter, sans-serif;
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink, #111214);
+    padding: 12px 16px;
+    border-bottom: 1px dashed var(--rule, #e9e7e1);
+    vertical-align: top;
+  }
+  .check-table tbody tr:last-child th { border-bottom: none; }
+</style>
+</BaseLayout>

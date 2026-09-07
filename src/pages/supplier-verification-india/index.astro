@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
 import '../../styles/pages/supplier-verification-india.css';
 
@@ -263,7 +264,7 @@ const jsonld = [
 <!-- 07 RECENT FINDING -->
 <section>
   <div class="wrap">
-    <div class="sec-head"><div><h2>What verification found last month</h2></div></div>
+    <div class="sec-head"><div><h2>What verification actually finds</h2></div></div>
     <div class="finding rv">
       <figure style="margin:0">
         <ImageSlot id={"IMG-SV-03"} spec={"1200×900px"} desc={"Anonymised street shot: a small locked shutter beneath an oversized \"…FURNITURE INDUSTRIES — MANUFACTURER & EXPORTER\" signboard, no factory in sight. Neighbouring shops visible for scale. Signboard name blurred."} anno={"V-04: NO FACTORY AT ADDRESS"} annoStyle={"top:32%;right:8%"} src={"/images/img-sv-03.jpg"} width={1200} height={900} />
@@ -345,19 +346,17 @@ const jsonld = [
       <p>Send the supplier's name or listing. Free Red-Flag desk check in 24 hours; full on-site verification reported in 3 working days.</p>
       <p class="mono" style="color:var(--g300)">DESK CHECK 24H · FULL VERDICT 3 DAYS · PAID BY BUYERS ONLY</p>
     </div>
-    <form data-enquiry="wa">
-      <div class="field field--supplier"><label for="supplier">Supplier name or listing URL</label><input id="supplier" name="supplier" type="text" placeholder="e.g. company name, IndiaMART/Alibaba link" required></div>
-      <div class="field field--level"><label for="level">Level</label><select id="level" name="level"><option>Free Red-Flag Check (desk only)</option><option>Full Verification (on-site)</option><option>Verification + Factory Audit</option></select></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-      <div class="field field--value"><label for="value">Approx. order value (optional)</label><input id="value" name="value" type="text" placeholder="e.g. $40,000"></div>
-      <button class="btn btn-solid" type="submit">Start verification</button>
-      <p class="note">No payment for the Red-Flag Check. Fixed quote before any paid work.</p>
-      <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <p class="note formstatus" role="status" aria-live="polite"></p>
-    </form>
+    <EnquiryForm
+      subject="Supplier verification enquiry"
+      submitLabel="Start verification"
+      note="No payment for the Red-Flag Check. Fixed quote before any paid work."
+      dateLabel={null}
+      lead={[
+        { name: 'supplier', label: 'Supplier name or listing URL', type: 'text', placeholder: 'e.g. company name, IndiaMART/Alibaba link', required: true, wide: true },
+        { name: 'level', label: 'Level', type: 'select', options: ['Free Red-Flag Check (desk only)', 'Full Verification (on-site)', 'Verification + Factory Audit'] },
+        { name: 'value', label: 'Approx. order value (optional)', type: 'text', placeholder: 'e.g. $40,000' },
+      ]}
+    />
       <div class="bookdirect">
         <a href="tel:+918440007574"><b>Phone/WhatsApp</b><span>+91 844 000 7574</span></a>
         <a href="mailto:info@qualisassurance.com"><b>Email</b><span>info@qualisassurance.com</span></a>

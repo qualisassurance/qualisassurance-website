@@ -99,10 +99,6 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
 <link rel="preload" href="/fonts/intertight-NGSwv5HMAFg6IuGlBNMjxLsH8ahuQ2e8.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
-<!-- Reveal-on-scroll starts every .rv at opacity 0 and the observer below turns
-     them on. With JS off that observer never runs, so most of the page would be
-     invisible. This is the only styling that must survive a scriptless load. -->
-<noscript><style>.rv{opacity:1 !important;transform:none !important}</style></noscript>
 {jsonld.map((graph) => (
   <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 ))}
@@ -181,6 +177,19 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   .sticky-cta__book { background: var(--ink, #111214); color: #fff; }
   .sticky-cta__wa { background: var(--pass, #0f7a5a); color: #fff; }
   .sticky-cta__btn:active { transform: translateY(1px); }
+  /* Hidden while the booking section is on screen (2026-09 audit, UX-10). On
+     desktop the pair floats bottom-right and sat directly over the form's
+     "No payment now" note and the third pricing card — offering a second Book
+     button on top of the form the visitor is already filling in. Pointer
+     events go too, so it cannot swallow a click on what is underneath. */
+  .sticky-cta.sticky-cta--off {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+  }
+  .sticky-cta { transition: opacity .2s ease, transform .2s ease, visibility .2s; }
+  @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
   /* Mobile & tablet: full-width bottom bar. */
   @media (max-width: 960px) {
     .sticky-cta { display: flex; }
@@ -215,7 +224,11 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
       min-width: 210px;
       padding: 0.95rem 1.5rem;
       border-radius: 999px;
-      box-shadow: 0 10px 30px -8px rgba(17, 18, 20, 0.45);
+      /* Hairline ring as well as the drop shadow: the Book pill is var(--ink)
+         and so is every .final section, so on a dark CTA band the pill lost its
+         edge entirely and read as loose white text. The ring costs nothing on
+         the light ground and gives it a shape on the dark one. */
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 10px 30px -8px rgba(17, 18, 20, 0.45);
     }
     /* Footer gains a fifth track for the new Import Guides column. */
     footer .bigfoot { grid-template-columns: 1.4fr repeat(4, 1fr); }
@@ -223,28 +236,73 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
   /* Client-logo rounded corners on every viewport (mobile.css rounds them on
      small screens; this extends the same treatment to desktop). */
   .logos figure, .logos img, .logos .ph { border-radius: 10px; overflow: hidden; }
+
+  /* Enquiry confirmation (2026-09 audit, UX-02). Replaces the form in place on
+     a successful send, so the visitor gets a real end state instead of one
+     line of small print — and so the WhatsApp hand-off becomes their choice
+     rather than a pop-up fired at them. Always inside the dark .final section,
+     so it is painted for that ground. */
+  .enq-done {
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .04);
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .enq-done:focus { outline: 2px solid var(--pass, #0f7a5a); outline-offset: 3px; }
+  .enq-done__k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .12em;
+    color: var(--pass, #0f7a5a);
+    margin: 0;
+  }
+  .enq-done h3 { color: #fff; font-size: 1.25rem; margin: 0; }
+  .enq-done p { color: var(--g300, #C9C7C0); margin: 0; max-width: 46ch; font-size: 1rem; }
+  .enq-done p b { color: #fff; font-weight: 600; overflow-wrap: anywhere; }
+  .enq-done__opt { font-size: .92rem; }
+  .enq-done__wa { margin-top: 4px; }
+  .final .enq-done__wa { border-color: rgba(255, 255, 255, .35); color: #fff; }
+  .final .enq-done__wa:hover { border-color: var(--pass, #0f7a5a); }
 </style>
 <script>
   import { SITE, waLink } from '../lib/site';
 
-  // Reveal-on-scroll, mobile menu and header elevation.
-  // Ported from the reference; behaviour is identical.
+  // Reveal-on-scroll (2026-09 audit, UX-09).
+  //
+  // The CSS resting state is visible. Previously every .rv sat at opacity 0
+  // until the observer fired, so an anchor jump, a shared deep link, a fast
+  // scroll, a screenshot renderer or a blocked script all produced blank
+  // sections — and three image blocks read as empty placeholders when the
+  // photographs were present and simply unrevealed.
+  //
+  // Now only what is genuinely below the fold at load is hidden, and it is
+  // hidden by script, so nothing can be left invisible by a script that never
+  // ran. Elements already on screen are marked done without animating.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealables = document.querySelectorAll<HTMLElement>('.rv');
-  if (reduce) {
-    revealables.forEach((el) => el.classList.add('in'));
-  } else {
+  if (!reduce) {
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) {
+            e.target.classList.remove('rv-pending');
             e.target.classList.add('in');
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
     );
-    revealables.forEach((el) => io.observe(el));
+    revealables.forEach((el) => {
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.classList.add('rv-pending');
+        io.observe(el);
+      } else {
+        el.classList.add('in');
+      }
+    });
   }
 
   const mb = document.querySelector<HTMLButtonElement>('.menu-btn');
@@ -273,19 +331,30 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
     });
   }
 
-  // Booking enquiries. The reference's forms only faked a confirmation. These
-  // do two things: POST the enquiry to a form backend so it is captured even
-  // if the visitor never completes the WhatsApp handoff, and hand the same
-  // enquiry to WhatsApp, which is the channel Qualis actually answers on.
+  // Booking enquiries (2026-09 audit, UX-02).
   //
-  // Order is deliberate. window.open has to run synchronously inside the submit
-  // gesture or pop-up blockers kill it, so the POST is fired first, with
-  // keepalive so the request survives the tab going to WhatsApp, and is never
-  // awaited. Awaiting it would push window.open outside the gesture.
+  // What this used to do: POST to the form backend AND window.open a wa.me
+  // link on every submit. On a desktop the pop-up was blocked or the visitor
+  // landed on a WhatsApp Web login screen, the button read "Opening
+  // WhatsApp…", and the only confirmation was one line of small text. It also
+  // read a hardcoded field list, so anything outside svc/cluster/fullname/
+  // company/email/phone/date was dropped from both the email and the message.
   //
-  // With no access key configured the POST is skipped and behaviour is exactly
-  // what it was before: WhatsApp only.
-  document.querySelectorAll<HTMLFormElement>('form[data-enquiry="wa"]').forEach((form) => {
+  // What it does now: POST only, read every named control, and on success swap
+  // the form for a confirmation panel that names the address we will reply to
+  // and offers WhatsApp as an optional second step. The visitor chooses the
+  // channel; nothing is opened for them.
+  document.querySelectorAll<HTMLFormElement>('form[data-enquiry]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('.formstatus');
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const btnLabel = btn?.textContent ?? 'Send enquiry';
+
+    const setStatus = (text: string, state: string) => {
+      if (!status) return;
+      status.textContent = text;
+      status.dataset.state = state;
+    };
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -295,79 +364,114 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
       const hp = form.querySelector<HTMLInputElement>('[name="_hp"]');
       if (hp?.value) return;
 
-      const val = (n: string) =>
-        (form.querySelector(`[name="${n}"]`) as HTMLInputElement | HTMLSelectElement | null)?.value?.trim() ?? '';
+      // Every named control, labelled by its own <label>. Adding a field to
+      // EnquiryForm.astro is enough; nothing here needs to know about it.
+      const entries: [string, string][] = [];
+      form
+        .querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+          'input[name], select[name], textarea[name]',
+        )
+        .forEach((el) => {
+          if (el.name === '_hp') return;
+          const value = el.value?.trim();
+          if (!value) return;
+          const label =
+            form.querySelector(`label[for="${el.id}"]`)?.textContent?.replace(/\s*\(optional\)\s*$/i, '').trim() ||
+            el.name;
+          entries.push([label, value]);
+        });
 
-      const fields = {
-        service: val('svc'),
-        factory_location: val('cluster'),
-        name: val('fullname'),
-        company: val('company'),
-        email: val('email'),
-        phone: val('phone'),
-        target_date: val('date'),
-      };
+      const payload: Record<string, string> = {};
+      entries.forEach(([label, value]) => { payload[label] = value; });
 
-      const lines = [
-        'New inspection enquiry from qualisassurance.com',
-        '',
-        fields.service && `Service: ${fields.service}`,
-        fields.factory_location && `Factory location: ${fields.factory_location}`,
-        fields.name && `Name: ${fields.name}`,
-        fields.company && `Company: ${fields.company}`,
-        fields.email && `Email: ${fields.email}`,
-        fields.phone && `Phone: ${fields.phone}`,
-        fields.target_date && `Target date: ${fields.target_date}`,
-      ].filter(Boolean).join('\n');
+      const email = payload['Work email'] ?? '';
+      const lead = entries[0]?.[1] ?? '';
 
-      const status = form.querySelector<HTMLElement>('.formstatus');
-      const setStatus = (text: string, state: string) => {
-        if (!status) return;
-        status.textContent = text;
-        status.dataset.state = state;
-      };
+      if (!SITE.formAccessKey) {
+        // No backend configured: send them to a channel that exists rather
+        // than pretending the enquiry was captured.
+        setStatus(`Email ${SITE.email} or use the WhatsApp button and we will pick it up.`, 'err');
+        return;
+      }
 
-      const captured = Boolean(SITE.formAccessKey);
-      if (captured) {
-        setStatus('Sending your enquiry…', 'busy');
-        fetch(SITE.formEndpoint, {
-          method: 'POST',
-          keepalive: true,
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: SITE.formAccessKey,
-            subject: `Inspection enquiry — ${fields.service || 'Qualis'}${fields.factory_location ? ` · ${fields.factory_location}` : ''}`,
-            from_name: 'qualisassurance.com',
-            ...fields,
-            page: location.pathname,
-          }),
+      setStatus('Sending your enquiry…', 'busy');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      fetch(SITE.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: SITE.formAccessKey,
+          subject: `${form.dataset.subject || 'Inspection enquiry'}${lead ? ` — ${lead}` : ''}`,
+          from_name: 'qualisassurance.com',
+          ...payload,
+          page: location.pathname,
+        }),
+      })
+        .then((r) => {
+          if (!r.ok) throw new Error(String(r.status));
+
+          // GA4 conversion. Guarded: gtag is absent when the ID is unset or a
+          // blocker removed it, and a missing analytics tag must never break
+          // the confirmation the visitor is waiting for.
+          const w = window as unknown as { gtag?: (...a: unknown[]) => void };
+          try {
+            w.gtag?.('event', 'generate_lead', {
+              form_location: location.pathname,
+              enquiry_subject: form.dataset.subject || 'Inspection enquiry',
+            });
+          } catch { /* analytics is never load-bearing */ }
+
+          const panel = document.createElement('div');
+          panel.className = 'enq-done';
+          panel.setAttribute('role', 'status');
+          panel.setAttribute('tabindex', '-1');
+          const waText = [
+            'Hi Qualis — I just sent an enquiry from the website.',
+            ...entries.map(([k, v]) => `${k}: ${v}`),
+          ].join('\n');
+          panel.innerHTML = `
+            <p class="enq-done__k">ENQUIRY RECEIVED</p>
+            <h3>We reply within 2 working hours.</h3>
+            <p>Your enquiry is with an inspector, not a queue. The reply goes to
+              <b>${email ? email.replace(/[<>&"]/g, '') : 'the address you gave'}</b>
+              with what we would check, what it costs and when we can be at the factory.</p>
+            <p class="enq-done__opt">Prefer to talk now? That is optional — the enquiry is already in.</p>
+          `;
+          const wa = document.createElement('a');
+          wa.className = 'btn btn-ghost enq-done__wa';
+          wa.href = waLink(waText);
+          wa.target = '_blank';
+          wa.rel = 'noopener';
+          wa.textContent = 'Continue on WhatsApp';
+          panel.appendChild(wa);
+
+          form.replaceWith(panel);
+          panel.focus();
         })
-          .then((r) => {
-            if (!r.ok) throw new Error(String(r.status));
-            setStatus('Enquiry received. We reply within 2 hours.', 'ok');
-            form.reset();
-          })
-          .catch(() => {
-            setStatus(
-              `Could not send that. Please WhatsApp or email ${SITE.email} and we will pick it up.`,
-              'err',
-            );
-          });
-      }
-
-      const btn = form.querySelector('.btn');
-      if (btn) btn.textContent = 'Opening WhatsApp…';
-      const win = window.open(waLink(lines), '_blank', 'noopener');
-
-      // Pop-up blocked and nothing captured server-side means the enquiry is
-      // simply gone, which is the failure this whole block exists to prevent.
-      if (!win && !captured) {
-        setStatus('Pop-up blocked. Use the WhatsApp or email link just below.', 'err');
-      }
-
-      setTimeout(() => { if (btn) btn.textContent = 'Send another enquiry'; }, 2500);
+        .catch(() => {
+          if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+          setStatus(
+            `Could not send that. Please email ${SITE.email} or use the WhatsApp button — we will pick it up.`,
+            'err',
+          );
+        });
     });
   });
+
+  // Floating CTA pair steps aside for the booking form (2026-09 audit, UX-10).
+  // The pills are a shortcut TO the form; on top of it they are just clutter,
+  // and on desktop they overlapped the form note and the pricing cards.
+  const stickyCta = document.querySelector<HTMLElement>('.sticky-cta');
+  const bookingZone =
+    document.querySelector('#book') ?? document.querySelector('form[data-enquiry]')?.closest('section');
+  if (stickyCta && bookingZone) {
+    const zoneIo = new IntersectionObserver(
+      (entries) => entries.forEach((e) => stickyCta.classList.toggle('sticky-cta--off', e.isIntersecting)),
+      { threshold: 0 }
+    );
+    zoneIo.observe(bookingZone);
+  }
 
   const hdEl = document.querySelector('header');
   if (hdEl) {

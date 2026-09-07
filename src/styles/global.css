@@ -45,6 +45,10 @@ a.card:hover{background:var(--pass-tint)}
 .card h3{margin-bottom:6px}
 .card p{font-size:.88rem;color:var(--g700)}
 .prose-wrap{max-width:860px}
+/* Definition lead-in (2026-09 audit, SEO-03). Identical to the copy in the four
+   service stylesheets; /pricing/ shares global.css and uses the same element. */
+.defn{max-width:70ch;margin:0 0 30px;padding-left:16px;border-left:2px solid var(--pass);color:var(--g700);font-size:1.02rem;line-height:1.62}
+.defn b{color:var(--ink);font-weight:600}
 /* Report table. Copied verbatim from pages/home.css so the two stay identical:
    the anatomy table moved onto /sample-reports/, which shares global.css, while
    the home page keeps its own copy of these rules. Deliberately NOT set on
@@ -65,9 +69,17 @@ footer{border-top:1px solid var(--rule);padding:44px 0;font-size:.85rem;color:va
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
-.rv{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+/* Reveal-on-scroll (2026-09 audit, UX-09). The resting state is now VISIBLE.
+   It used to be opacity:0 waiting on an IntersectionObserver, which meant an
+   anchor jump (#pricing, #report, #faq), a shared deep link, a fast scroll or
+   a screenshot renderer all caught blank sections — and the client-logo strip,
+   the DEF-061 card and the CASE-03 card read as empty placeholders when they
+   were simply not revealed yet. The script hides only what is genuinely below
+   the fold at load, by adding .rv-pending, and removes it on intersect. */
+.rv{transition:opacity .5s ease,transform .5s ease}
+.rv.rv-pending{opacity:0;transform:translateY(12px)}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.rv,.rv.rv-pending{opacity:1;transform:none;transition:none}}
 .menu-btn{display:none;background:#fff;border:1px solid var(--rule);padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.1em;cursor:pointer;color:var(--ink)}
 @media (max-width:960px){
 .menu-btn{display:block;order:2}
@@ -124,8 +136,8 @@ form .note{font-size:.78rem;color:var(--g500);margin-top:12px;text-align:center}
 .check-table td{padding:12px 16px;border-bottom:1px dashed var(--rule);vertical-align:top}
 .check-table td:first-child{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--g500);white-space:nowrap}
 .check-table tr:last-child td{border-bottom:none}
-form input,form select{width:100%;padding:12px 14px;border:1px solid var(--g300);background:var(--paper);font-family:'Inter',sans-serif;font-size:.95rem}
-form input:focus,form select:focus{outline:2px solid var(--pass);outline-offset:1px}
+form input,form select,form textarea{width:100%;padding:12px 14px;border:1px solid var(--g300);background:var(--paper);font-family:'Inter',sans-serif;font-size:.95rem}
+form input:focus,form select:focus,form textarea:focus{outline:2px solid var(--pass);outline-offset:1px}
 form .btn{width:100%;margin-top:22px;text-align:center;border:none;cursor:pointer}
 
 /* ===== UX/UI REFINEMENT LAYER — engineering-report identity, sharpened ===== */
@@ -173,9 +185,9 @@ figure figcaption em::before{content:"";position:absolute;left:0;top:50%;transfo
 .faq summary:hover{background:var(--paper)}
 .faq details[open] summary{color:var(--pass)}
 /* forms */
-form input,form select{transition:border-color .15s ease,background .15s ease}
-form input:hover,form select:hover{border-color:var(--g500)}
-form input:focus,form select:focus{background:#fff}
+form input,form select,form textarea{transition:border-color .15s ease,background .15s ease}
+form input:hover,form select:hover,form textarea:hover{border-color:var(--g500)}
+form input:focus,form select:focus,form textarea:focus{background:#fff}
 /* staggered reveal inside grids */
 [class*="grid"]>.rv:nth-child(2),[class*="grid"]>*:nth-child(2)>.rv{transition-delay:.07s}
 [class*="grid"]>.rv:nth-child(3){transition-delay:.14s}
@@ -313,3 +325,5 @@ a.contact-card:hover{border-color:var(--pass);background:var(--pass-tint)}
    Overridden rather than edited, because a re-port reinstates the source rules. */
 h1,h2,h3{letter-spacing:-.006em}
 h1{letter-spacing:-.008em}
+/* Free-text field on every enquiry form (2026-09 audit, UX-03). */
+form textarea{resize:vertical;min-height:84px;line-height:1.5}

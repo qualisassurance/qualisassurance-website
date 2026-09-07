@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EnquiryForm from '../../../components/EnquiryForm.astro';
 import ImageSlot from '../../../components/ImageSlot.astro';
 import '../../../styles/pages/clusters-jodhpur.css';
 
@@ -293,19 +294,16 @@ const jsonld = [
       <p>Morning booking, afternoon inspection. The cluster is our neighbourhood.</p>
       <p class="mono" style="color:var(--g300)">SAME-DAY IN JODHPUR · RESPONSE &lt; 2 HRS · PAID BY BUYERS ONLY</p>
     </div>
-    <form data-enquiry="wa">
-      <div class="field field--svc"><label for="svc">Service</label><select id="svc" name="svc"><option>Pre-Shipment Inspection</option><option>Container Loading Supervision</option><option>Supplier Verification</option><option>Factory Audit</option><option>Production Monitoring</option><option>Packaging &amp; Transit Validation</option><option>Not sure — recommend for me</option></select></div>
-      <div class="field field--area"><label for="area">Factory area (if known)</label><select id="area" name="area"><option>Boranada / EPIP</option><option>Basni</option><option>Sangariya</option><option>Salawas Road</option><option>Elsewhere in Jodhpur</option><option>Don't know yet</option></select></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-      <div class="field field--date"><label for="date">Target date</label><input id="date" name="date" type="date"></div>
-      <button class="btn btn-solid" type="submit">Get instant estimate</button>
-      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
-      <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <p class="note formstatus" role="status" aria-live="polite"></p>
-    </form>
+    <EnquiryForm
+      subject="Jodhpur enquiry"
+      submitLabel="Book in Jodhpur"
+      dateLabel="Target date"
+      lead={[
+        { name: 'svc', label: 'Service', type: 'select', options: ['Pre-Shipment Inspection', 'Container Loading Supervision', 'Supplier Verification', 'Factory Audit', 'Production Monitoring', 'Packaging & Transit Validation', 'Not sure — recommend for me'] },
+        { name: 'area', label: 'Factory area (if known)', type: 'select', options: ['Boranada / EPIP', 'Basni', 'Sangariya', 'Salawas Road', 'Elsewhere in Jodhpur', "Don't know yet"] },
+        { name: 'product', label: 'Product and quantity', type: 'text', placeholder: 'e.g. 180 mango wood sideboards', wide: true },
+      ]}
+    />
       <div class="bookdirect">
         <a href="tel:+918440007574"><b>Phone/WhatsApp</b><span>+91 844 000 7574</span></a>
         <a href="mailto:info@qualisassurance.com"><b>Email</b><span>info@qualisassurance.com</span></a>

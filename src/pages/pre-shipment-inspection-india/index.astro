@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
 import '../../styles/pages/pre-shipment-inspection-india.css';
 
@@ -255,7 +256,7 @@ const jsonld = [
 <!-- 06 RECENT FINDING -->
 <section>
   <div class="wrap">
-    <div class="sec-head"><div><h2>What our inspectors found last month</h2></div></div>
+    <div class="sec-head"><div><h2>What our inspectors actually find</h2></div></div>
     <div class="finding rv">
       <figure style="margin:0">
         <ImageSlot id={"IMG-PSI-03"} spec={"1200×900px"} desc={"Real anonymised finding photo: moisture meter pins in a console-table top, display reading clearly visible, chalk circle around the test point, carton edge in frame proving packed-stage."} anno={"MC 13.6% · LIMIT 11%"} annoStyle={"top:30%;right:8%"} src={"/images/img-psi-03.jpg"} width={1200} height={900} />
@@ -336,19 +337,14 @@ const jsonld = [
       <p>Confirmed within 2 hours. Same-day availability in Jodhpur and Jaipur. Report within 24 hours of inspection.</p>
       <p class="mono" style="color:var(--g300)">RESPONSE &lt; 2 HRS · REPORT &lt; 24 HRS · PAID BY BUYERS ONLY</p>
     </div>
-    <form data-enquiry="wa">
-      <div class="field field--cluster"><label for="cluster">Factory location</label><select id="cluster" name="cluster"><option>Jodhpur</option><option>Jaipur</option><option>Saharanpur</option><option>Moradabad</option><option>Delhi NCR</option><option>Kolkata</option><option>Other / not sure</option></select></div>
-      <div class="field field--product"><label for="product">Product</label><input id="product" name="product" type="text" placeholder="e.g. Sheesham dining tables ×240"></div>
-      <div class="field field--fullname"><label for="fullname">Your name</label><input id="fullname" name="fullname" type="text" placeholder="First and last name" required autocomplete="name"></div>
-      <div class="field field--company"><label for="company">Company (optional)</label><input id="company" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
-      <div class="field field--email"><label for="email">Work email</label><input id="email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
-      <div class="field field--phone"><label for="phone">Phone / WhatsApp (optional)</label><input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel"></div>
-      <div class="field field--date"><label for="date">Target inspection date</label><input id="date" name="date" type="date"></div>
-      <button class="btn btn-solid" type="submit">Get instant estimate</button>
-      <p class="note">No payment now. We reply with scope and a fixed quote.</p>
-      <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <p class="note formstatus" role="status" aria-live="polite"></p>
-    </form>
+    <EnquiryForm
+      subject="Pre-shipment inspection enquiry"
+      submitLabel="Book a PSI"
+      lead={[
+        { name: 'cluster', label: 'Factory location', type: 'select', options: ['Jodhpur', 'Jaipur', 'Saharanpur', 'Moradabad', 'Delhi NCR', 'Kolkata', 'Other / not sure'] },
+        { name: 'product', label: 'Product and quantity', type: 'text', placeholder: 'e.g. Sheesham dining tables ×240, 1×40ft', wide: true },
+      ]}
+    />
       <div class="bookdirect">
         <a href="tel:+918440007574"><b>Phone/WhatsApp</b><span>+91 844 000 7574</span></a>
         <a href="mailto:info@qualisassurance.com"><b>Email</b><span>info@qualisassurance.com</span></a>
