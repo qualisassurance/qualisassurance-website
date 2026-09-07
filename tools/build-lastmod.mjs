@@ -18,7 +18,7 @@
  *   node tools/build-lastmod.mjs
  */
 import { execFileSync } from 'node:child_process';
-import { readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -66,6 +66,23 @@ const sources = [
   ...walk(join(ROOT, 'public'), 'index.html'),
 ].filter((f) => statSync(f).isFile());
 
+/**
+ * Dynamic routes are not `index.astro` files, so the walk above misses them and
+ * their URLs ship without a lastmod. The Defect Library is one template over a
+ * data file, so each entry is dated by whichever of the two changed last —
+ * editing an entry touches the data file, restyling the page touches the route.
+ * Add a block like this for any future dynamic route outside /blog.
+ */
+function defectRoutes() {
+  const route = join(ROOT, 'src/pages/defects/[slug].astro');
+  const data = join(ROOT, 'src/data/defects.ts');
+  if (!existsSync(route) || !existsSync(data)) return [];
+  const slugs = [...readFileSync(data, 'utf8').matchAll(/^\s*slug: '([^']+)',/gm)].map((m) => m[1]);
+  const dates = [lastCommitDate(route), lastCommitDate(data)].filter(Boolean).sort();
+  const date = dates.at(-1);
+  return date ? slugs.map((slug) => [`/defects/${slug}/`, date]) : [];
+}
+
 const lastmod = {};
 let skipped = 0;
 for (const file of sources) {
@@ -79,6 +96,8 @@ for (const file of sources) {
   }
   lastmod[route] = date;
 }
+
+for (const [route, date] of defectRoutes()) lastmod[route] = date;
 
 const sorted = Object.fromEntries(Object.entries(lastmod).sort(([a], [b]) => a.localeCompare(b)));
 mkdirSync(dirname(OUT), { recursive: true });
