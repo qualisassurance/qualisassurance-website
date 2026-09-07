@@ -63,7 +63,7 @@ const jsonld = [
 
 const sevClass = d.severity === 'CRITICAL' ? 'chip-crit' : d.severity === 'MAJOR' ? 'chip-amber' : 'chip-pass';
 ---
-<BaseLayout title={title} description={description} canonical={url} jsonld={jsonld} navVariant="inner">
+<BaseLayout title={title} description={description} canonical={url} jsonld={jsonld} navVariant="inner" ownCrumbs>
 <nav class="crumbs" aria-label="Breadcrumb">
   <div class="wrap">
     <a href="/">Home</a> <span aria-hidden="true">/</span>

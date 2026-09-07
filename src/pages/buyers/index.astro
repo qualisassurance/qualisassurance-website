@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUDIENCES } from '../../lib/site';
+import '../../styles/global.css';
+
+/* 2026-09 audit, IA-06. The six /buyers/ pages each declared a "Buyers" crumb
+   pointing at /buyers, which was a directory with no page in it — a dead link
+   in the schema that nobody saw until the visible breadcrumb was switched on.
+   Rather than delete the crumb, the parent it names now exists: the audience
+   family gets the hub it never had, and the six pages stop being orphans two
+   clicks deep with no lateral parent. */
+
+const title = 'Who We Protect — Furniture Import Assurance by Buyer Type | QUALIS';
+const description =
+  'Independent furniture inspection in India for importers, retail chains, brands, e-commerce sellers, hospitality projects and procurement teams. Buyer-paid, never factory-paid.';
+const canonical = 'https://qualisassurance.com/buyers/';
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+};
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Who we protect',
+    url: canonical,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: 'https://qualisassurance.com' },
+    publisher: PUBLISHER,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Furniture import assurance by buyer type',
+    url: canonical,
+    numberOfItems: AUDIENCES.length,
+    itemListElement: AUDIENCES.map((a, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: a.label,
+      url: `https://qualisassurance.com/buyers/${a.slug}/`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Who we protect', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Who we protect</span>
+    <h1>The same evidence, shaped to what you are buying against</h1>
+    <p class="lead">Every engagement runs on the same checklists and the same Independence Charter. What changes is the question you need answered: whether a supplier is real, whether a container matches a spec package, whether the packaging survives a courier, or whether a programme vendor still deserves the programme.</p>
+    <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/services/">See all services</a></div>
+  </div>
+</section>
+
+<section aria-labelledby="h-aud">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2 id="h-aud">Six kinds of buyer, six different first questions</h2></div>
+      <p>Pick the one closest to you. If none fits exactly, the differences are smaller than they look — tell us the order and we will recommend the sequence.</p>
+    </div>
+    <div class="grid">
+      {AUDIENCES.map((a) => (
+        <a class="card rv" href={`/buyers/${a.slug}/`}>
+          <h3>{a.label}</h3>
+          <p>{a.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section><div class="wrap prose-wrap"><p class="prose rv">Whatever you are buying, the sequence is the same shape: establish who the supplier actually is before the deposit moves, catch a drifting run while rework is still cheap, and put independent evidence between the goods and the balance payment. The <a href="/services/">services</a> are the same, the <a href="/pricing/">prices</a> are published, and the fee does not change with the result — that is <a href="/why-independent/">the whole point</a>.</p></div></section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Your next India order. Protected.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+</BaseLayout>

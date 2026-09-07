@@ -1,0 +1,29 @@
+---
+/**
+ * Visible breadcrumb, rendered from the page's own BreadcrumbList schema
+ * (2026-09 audit, IA-06).
+ *
+ * Every page already declared the trail in JSON-LD, but only 20 of 46 rendered
+ * it on screen — so five of six cluster pages, every /buyers/ page and the
+ * hubs left a reader two clicks deep with no visible route back. Deriving the
+ * markup from the schema means the two cannot drift apart, and adding a page
+ * needs no second edit.
+ *
+ * The last crumb is the current page and is not a link.
+ */
+interface Item { name: string; item?: string }
+interface Props { trail: Item[] }
+const { trail } = Astro.props;
+---
+{trail.length > 1 && (
+  <nav class="wrap crumbs" aria-label="Breadcrumb">
+    {trail.map((c, i) => (
+      <>
+        {i > 0 && <span aria-hidden="true"> / </span>}
+        {i === trail.length - 1 || !c.item
+          ? <span aria-current="page">{c.name}</span>
+          : <a href={new URL(c.item).pathname}>{c.name}</a>}
+      </>
+    ))}
+  </nav>
+)}

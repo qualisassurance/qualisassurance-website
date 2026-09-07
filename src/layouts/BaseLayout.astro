@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, waLink, type NavVariant } from '../lib/site';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 /* No stylesheet is imported here on purpose. In the reference, each page is a
    single self-contained <style> block where base rules and page rules interleave;
@@ -29,6 +30,9 @@ interface Props {
   ctaHref?: string;
   ogTitle?: string;
   ogDescription?: string;
+  /** Set on pages that render their own breadcrumb markup, so the layout
+   *  does not draw a second one. Remove as those pages are migrated. */
+  ownCrumbs?: boolean;
   ogImage?: string;
   ogType?: string;
   /** AVIF path of the page's hero image, preloaded so it is not queued behind the fonts. */
@@ -48,6 +52,7 @@ const {
   canonical,
   jsonld = [],
   navVariant = 'inner',
+  ownCrumbs = false,
   ctaLabel,
   ctaHref,
   ogTitle,
@@ -62,6 +67,17 @@ const {
 // the same booking target the header CTA used, per nav variant.
 const bookHref = ctaHref ?? (navVariant === 'home' ? '#book' : '/#book');
 const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection in India.';
+
+/* Breadcrumb trail, read off the page's own BreadcrumbList (2026-09 audit,
+   IA-06). Pages that render their own crumb markup opt out with
+   `ownCrumbs`, so nothing is drawn twice while those are migrated. */
+interface CrumbItem { '@type'?: string; name?: string; item?: string }
+const crumbGraph = jsonld.find((g) => g['@type'] === 'BreadcrumbList') as
+  | { itemListElement?: CrumbItem[] }
+  | undefined;
+const crumbTrail = (crumbGraph?.itemListElement ?? [])
+  .map((li) => ({ name: li.name ?? '', item: li.item }))
+  .filter((c) => c.name);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +123,9 @@ const stickyWaText = 'Hi Qualis — I would like to book a furniture inspection 
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <Header variant={navVariant} ctaLabel={ctaLabel} ctaHref={ctaHref} />
+
 <main id="main" tabindex="-1">
+  {!ownCrumbs && <Breadcrumbs trail={crumbTrail} />}
   <slot />
 </main>
 <Footer />

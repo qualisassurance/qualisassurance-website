@@ -257,3 +257,22 @@
   }
   .rv { opacity: 1 !important; transform: none !important; }
 }
+
+/* Home page length on mobile (2026-09 audit, UX-08). The page runs to roughly
+   29 screens at 375px. Two blocks cost the most and gain the least there:
+   the second row of defect cards, which now has a real destination in the
+   Defect Library, and the blueprint cluster map, which is decorative and
+   repeats what the table beneath it already says. Both stay on desktop.
+   Base rules first, then the media query turns the link on — the reverse
+   order silently hid it at every width. */
+.defect-more { display: none; }
+.defect-more a {
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .defect-grid > .defect:nth-child(n + 4) { display: none; }
+  .defect-more { display: block; margin-top: 20px; }
+  .cl-grid > .map-fig { display: none; }
+}
