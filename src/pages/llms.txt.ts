@@ -25,6 +25,22 @@ const SERVICES = [
   ['Production Monitoring', 'from $199', '/production-monitoring-india/'],
 ];
 
+/**
+ * The Independence Charter, DOC QLS-IC-01. Hand-written facts, like the price
+ * list — summarised verbatim from /why-independent/. This is Qualis's core
+ * differentiator and the content an answer engine is most likely to cite, so it
+ * belongs in the brief. Keep in step with the page if the clauses ever change.
+ */
+const CHARTER = [
+  ['Paid by buyers only', 'all revenue is buyer-paid fees; factories pay nothing, ever'],
+  ['Same fee, pass or fail', 'the fee is fixed at booking and never changes with the result'],
+  ['Your report goes only to you', 'findings, photographs and results go to the buyer alone'],
+  ['Random sampling, our hands', 'samples are chosen by our own inspector, at random, from packed goods'],
+  ['The shortlisting firewall', 'supplier shortlisting is a fixed buyer-paid fee with zero factory commission; a different inspector signs any later inspection of a shortlisted factory'],
+  ['Furniture only', 'we inspect furniture and nothing else'],
+  ['Declared conflicts, refused work', 'any relationship that could compromise independence — family, financial or otherwise — means we decline the engagement'],
+];
+
 const RESOURCES = [
   ['Independence Charter', '/why-independent/'],
   ['Defect Library', '/defects/'],
@@ -59,6 +75,11 @@ ${SERVICES.map(([name, price, href]) => `- ${name}: ${price} — ${SITE.url}${hr
 
 ## Clusters
 Jodhpur (HQ, same-day), Jaipur, Saharanpur, Moradabad, Delhi NCR, Kolkata — ${SITE.url}/clusters/
+
+## Independence Charter (why Qualis is different)
+Binding on every engagement (DOC QLS-IC-01). The whole model: Qualis is paid by the buyer and earns the same fee whether a shipment passes or fails, so it has no financial reason to pass bad goods — unlike a sourcing agent, whose income depends on the factory shipping.
+${CHARTER.map(([name, detail], i) => `- Clause 0${i + 1} — ${name}: ${detail}`).join('\n')}
+Full charter: ${SITE.url}/why-independent/
 
 ## Key resources
 ${RESOURCES.map(([name, href]) => `- ${name} — ${SITE.url}${href}`).join('\n')}
