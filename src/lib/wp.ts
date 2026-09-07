@@ -163,6 +163,24 @@ function localiseImage(sourceUrl: string): string {
   return SHIPPED_IMAGES.has(base) ? `${SITE.url}/images/${base}` : sourceUrl;
 }
 
+/**
+ * AVIF/WebP siblings to serve above the JPEG in a <picture>, for a featured
+ * image. Only a localised /images/*.jpg (see localiseImage) has shipped
+ * siblings; a CMS-hosted image returns just its jpg, so the caller renders a
+ * plain <img>. The marketing pages already serve AVIF/WebP via ImageSlot; the
+ * blog served bare JPEGs, which cost it Lighthouse performance on the listing
+ * pages. The image pipeline ships all three formats per basename, but this only
+ * references a sibling that is actually in SHIPPED_IMAGES.
+ */
+export function featuredSources(sourceUrl: string): { avif?: string; webp?: string; jpg: string } {
+  const m = sourceUrl.match(/\/images\/(.+)\.jpe?g$/i);
+  if (!m) return { jpg: sourceUrl };
+  const base = m[1];
+  const sib = (ext: 'avif' | 'webp') =>
+    SHIPPED_IMAGES.has(`${base}.${ext}`) ? `${SITE.url}/images/${base}.${ext}` : undefined;
+  return { avif: sib('avif'), webp: sib('webp'), jpg: sourceUrl };
+}
+
 function shape(n: RawPost): WpPost {
   const img = n.featuredImage?.node ?? null;
   return {

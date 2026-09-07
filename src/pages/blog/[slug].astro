@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import type { WpPost } from '../../lib/wp';
-import { getAllPosts, sanitize, plainText, formatDate, readingMinutes } from '../../lib/wp';
+import { getAllPosts, sanitize, plainText, formatDate, readingMinutes, featuredSources } from '../../lib/wp';
 import { SITE } from '../../lib/site';
 import '../../styles/global.css';
 import '../../styles/blog.css';
@@ -34,6 +34,7 @@ const url = `${SITE.url}/blog/${post.slug}/`;
 const title = post.seoTitle || `${post.title} | QUALIS`;
 const description = post.seoDescription || plainText(post.excerpt, 155) || plainText(post.content, 155);
 const image = post.featuredImage?.sourceUrl ?? SITE.defaultOgImage;
+const heroImg = post.featuredImage ? featuredSources(post.featuredImage.sourceUrl) : null;
 const body = sanitize(post.content);
 const mins = readingMinutes(post.content);
 
@@ -117,18 +118,23 @@ const jsonld = [
   <section>
     <div class="wrap">
       <article class="b-article">
-        {post.featuredImage && (
+        {post.featuredImage && heroImg && (
           <figure class="b-hero-img">
-            <img
-              src={post.featuredImage.sourceUrl}
-              {/* `||`, not `??`: WordPress returns "" for an image whose alt was
-                  never filled in, and "" would slip past a nullish check. */}
-              alt={post.featuredImage.altText?.trim() || post.title}
-              width={post.featuredImage.width ?? undefined}
-              height={post.featuredImage.height ?? undefined}
-              loading="eager"
-              decoding="async"
-            />
+            <picture>
+              {heroImg.avif && <source type="image/avif" srcset={heroImg.avif} />}
+              {heroImg.webp && <source type="image/webp" srcset={heroImg.webp} />}
+              <img
+                src={heroImg.jpg}
+                {/* `||`, not `??`: WordPress returns "" for an image whose alt was
+                    never filled in, and "" would slip past a nullish check. */}
+                alt={post.featuredImage.altText?.trim() || post.title}
+                width={post.featuredImage.width ?? undefined}
+                height={post.featuredImage.height ?? undefined}
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
             <figcaption><span>Evidence</span><em>Qualis · {formatDate(post.date)}</em></figcaption>
           </figure>
         )}

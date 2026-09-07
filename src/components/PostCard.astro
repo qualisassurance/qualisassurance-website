@@ -1,24 +1,29 @@
 ---
 import type { WpPost } from '../lib/wp';
-import { formatDate, plainText } from '../lib/wp';
+import { formatDate, plainText, featuredSources } from '../lib/wp';
 
 interface Props { post: WpPost }
 const { post } = Astro.props;
 const cat = post.categories[0];
+const img = post.featuredImage ? featuredSources(post.featuredImage.sourceUrl) : null;
 ---
 <a class="b-card rv" href={`/blog/${post.slug}/`}>
-  {post.featuredImage ? (
+  {post.featuredImage && img ? (
     <div class="b-thumb">
-      <img
-        src={post.featuredImage.sourceUrl}
-        {/* Empty on purpose: the card's <h2> right below already names the post,
-            so alt text here would make a screen reader read the title twice. */}
-        alt=""
-        width={post.featuredImage.width ?? undefined}
-        height={post.featuredImage.height ?? undefined}
-        loading="lazy"
-        decoding="async"
-      />
+      <picture>
+        {img.avif && <source type="image/avif" srcset={img.avif} />}
+        {img.webp && <source type="image/webp" srcset={img.webp} />}
+        <img
+          src={img.jpg}
+          {/* Empty on purpose: the card's <h2> right below already names the post,
+              so alt text here would make a screen reader read the title twice. */}
+          alt=""
+          width={post.featuredImage.width ?? undefined}
+          height={post.featuredImage.height ?? undefined}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
   ) : (
     <div class="b-thumb is-empty"><span>Qualis field note</span></div>
