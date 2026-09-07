@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { GLOSSARY, GLOSSARY_GROUPS } from '../../data/glossary';
+import '../../styles/global.css';
+
+/* 2026-09 audit, SEO-05. AQL, DUPRO, golden sample, dunnage and ISPM 15 are
+   used across the service, cluster, defect and market pages with no page that
+   defines them — a buyer meeting "AQL 2.5 major / 4.0 minor under ISO 2859-1,
+   GII" had nowhere to go. This is also the internal-link hub the site lacked:
+   every term points back at the page where it does real work. */
+
+const title = 'Furniture Inspection Glossary — AQL, DUPRO, ISPM 15 | QUALIS';
+const description =
+  'Plain definitions of the terms on a furniture inspection report: AQL, ISO 2859-1, golden sample, moisture content, dunnage, seal verification and ISPM 15.';
+const canonical = 'https://qualisassurance.com/glossary/';
+
+const grouped = GLOSSARY_GROUPS.map((g) => ({
+  group: g,
+  terms: GLOSSARY.filter((t) => t.group === g),
+})).filter((g) => g.terms.length);
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+};
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': `${canonical}#glossary`,
+    name: 'Furniture inspection glossary',
+    url: canonical,
+    description,
+    publisher: PUBLISHER,
+    hasDefinedTerm: GLOSSARY.map((t) => ({
+      '@type': 'DefinedTerm',
+      '@id': `${canonical}#${t.slug}`,
+      name: t.expansion ? `${t.term} (${t.expansion})` : t.term,
+      description: t.definition,
+      inDefinedTermSet: `${canonical}#glossary`,
+      url: `${canonical}#${t.slug}`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Glossary', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Reference</span>
+    <h1>The words on your inspection report, defined</h1>
+    <p class="lead">An inspection report is only useful if you can read it. These are the terms that appear on ours, written the way we would explain them on a call — with a link to the page where each one does real work.</p>
+    <div class="hero-ctas"><a class="btn btn-solid" href="/sample-reports/">See what a report contains</a><a class="btn btn-ghost" href="/#book">Book an inspection</a></div>
+  </div>
+</section>
+
+<section aria-labelledby="h-index">
+  <div class="wrap">
+    <h2 id="h-index" class="vh">Jump to a section</h2>
+    <nav class="gl-jump" aria-label="Glossary sections">
+      {grouped.map((g) => (
+        <a href={`#${g.group.toLowerCase().replace(/[^a-z]+/g, '-')}`}>{g.group}</a>
+      ))}
+    </nav>
+  </div>
+</section>
+
+{grouped.map((g) => (
+  <section aria-labelledby={g.group.toLowerCase().replace(/[^a-z]+/g, '-')}>
+    <div class="wrap">
+      <div class="sec-head">
+        <div><h2 id={g.group.toLowerCase().replace(/[^a-z]+/g, '-')}>{g.group}</h2></div>
+      </div>
+      <dl class="gl-list">
+        {g.terms.map((t) => (
+          <div class="gl-item rv" id={t.slug}>
+            <dt>
+              {t.term}
+              {t.expansion && <span class="gl-exp">{t.expansion}</span>}
+            </dt>
+            <dd>
+              <p>{t.definition}</p>
+              {t.seeAlso && t.seeAlso.length > 0 && (
+                <p class="gl-see">See: {t.seeAlso.map((s, i) => (
+                  <>{i > 0 && ' · '}<a href={s.href}>{s.label}</a></>
+                ))}</p>
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+))}
+
+<section class="final">
+  <div class="wrap">
+    <h2>Still not sure what a line on your report means?</h2>
+    <p>Ask the inspector who wrote it. Every Qualis report comes with a decision call, and the person on it is the person who stood in the factory.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+
+<style>
+  .gl-jump { display: flex; flex-wrap: wrap; gap: 10px 14px; }
+  .gl-jump a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--g500, #737169);
+    border: 1px solid var(--rule, #e9e7e1);
+    padding: 8px 12px;
+  }
+  .gl-jump a:hover { color: var(--pass, #0f7a5a); border-color: currentColor; }
+
+  .gl-list { margin: 0; }
+  .gl-item {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule, #e9e7e1);
+    scroll-margin-top: 90px;
+  }
+  .gl-item:last-child { border-bottom: 1px solid var(--rule, #e9e7e1); }
+  .gl-item dt {
+    font-family: 'Inter Tight', Inter, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    min-width: 0;
+  }
+  .gl-exp {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .66rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--pass, #0f7a5a);
+    margin-top: 5px;
+  }
+  .gl-item dd { margin: 0; min-width: 0; }
+  .gl-item dd p { margin: 0; color: var(--g700, #3A3C40); max-width: 68ch; }
+  .gl-see { margin-top: 10px !important; font-size: .95rem; }
+  .gl-see a { color: var(--g700, #3A3C40); }
+  .gl-see a:hover { color: var(--pass, #0f7a5a); }
+
+  @media (max-width: 760px) {
+    .gl-item { grid-template-columns: 1fr; gap: 10px; }
+    /* .gl-see carries sentences, not labels — back to 16px on mobile. */
+    .gl-see, .gl-see a { font-size: 1rem; }
+  }
+</style>
+</BaseLayout>

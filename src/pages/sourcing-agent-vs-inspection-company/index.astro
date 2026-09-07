@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+/* 2026-09 audit, SEO-04. "Sourcing agent vs inspection company" is a
+   commercial-intent query the site had no page for — the argument existed only
+   inside the Charter page, which is about the Charter rather than the choice.
+   This page answers the question and links to the Charter rather than
+   restating its clauses, so the two do not compete for the same query.
+   Every claim is drawn from the comparison table already published on
+   /why-independent/. Nothing is asserted about any named firm. */
+
+const title = 'Sourcing Agent vs Inspection Company: Who Actually Works for You';
+const description =
+  'A sourcing agent earns commission when your shipment leaves. An independent inspector earns the same fee either way. How to tell them apart.';
+const canonical = 'https://qualisassurance.com/sourcing-agent-vs-inspection-company/';
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+};
+
+const FAQ = [
+  {
+    q: 'What is the difference between a sourcing agent and an inspection company?',
+    a: 'A sourcing agent earns from the factories they introduce, usually as commission on shipped orders, so their income depends on shipments passing. An independent inspection company is paid only by the buyer and earns the same fee whether the shipment passes or fails. The first has a reason to say yes; the second has no reason to say anything but what it found.',
+  },
+  {
+    q: 'Is a free inspection from my sourcing agent really free?',
+    a: 'No. It is bundled into the commission the factory pays, which is bundled into the unit price you pay. You are funding it either way — the difference is that you cannot see the amount, and the person doing the inspecting is paid more when your container ships than when it does not.',
+  },
+  {
+    q: 'How do I tell whether an inspection is independent?',
+    a: 'Ask three questions. Who pays you, and does any part of your income come from the factory? Does your fee change if you fail the shipment? Will you show me a full sample report before I book? An independent firm answers all three plainly and in writing. Qualis publishes the answers as the Independence Charter.',
+  },
+  {
+    q: 'Can one company both source suppliers and inspect them?',
+    a: 'Only with a firewall, and only if it is written down. Qualis offers supplier shortlisting as a fixed fee paid by the buyer with zero factory commission, and Clause 05 of the Charter requires that any later inspection of a factory Qualis shortlisted is performed and signed by a different inspector. We have failed factories we shortlisted and retain that right in writing.',
+  },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Sourcing agent vs inspection company',
+    url: canonical,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: 'https://qualisassurance.com' },
+    publisher: PUBLISHER,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Sourcing agent vs inspection company', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Comparison</span>
+    <h1>Sourcing agent or inspection company: who actually works for you</h1>
+    <p class="lead">Both will offer to check your order. Only one of them still gets paid the same if they stop it. That single difference decides what a report is worth, and it is the easiest thing in this trade to verify before you commit.</p>
+    <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an independent inspection</a><a class="btn btn-ghost" href="/why-independent/">Read the Independence Charter</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>The difference is where the money comes from</h2></div></div>
+    <p class="defn"><b>A sourcing agent is paid by the factory</b>, usually as commission on shipped orders, so their income depends on your shipment passing. An independent inspection company is paid only by the buyer and earns the same fee whether that shipment passes or fails. Everything else — the checklist, the photographs, the tone of the report — follows from that one fact.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>What the agent model pays for</h3>
+        <p>The factory pays a commission on what ships. You are quoted a unit price with that commission inside it, and an inspection described as free. Nothing about that is illegal or even unusual — but the person checking your goods is paid more when the container leaves than when it is held.</p>
+      </div>
+      <div class="card">
+        <h3>What the buyer-paid model pays for</h3>
+        <p>You pay a published fee, fixed at booking. The factory pays nothing, so there is no commission to protect and no reason to soften a finding. If we fail your shipment we earn exactly what we would have earned by passing it.</p>
+      </div>
+      <div class="card">
+        <h3>Why "free" is the expensive option</h3>
+        <p>A free inspection is funded from your unit price, at an amount you cannot see, by someone whose interest runs opposite to yours at the only moment that matters. A rejected container costs many times an inspection fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Side by side</h2></div>
+      <p>Drawn from the same comparison we publish on the Charter page. It describes the two business models, not any particular firm.</p>
+    </div>
+    <div class="tablewrap">
+      <table class="check-table rv">
+        <thead><tr><th><span class="vh">Dimension</span></th><th>Sourcing agent</th><th>Independent inspection company</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Who pays</th><td data-label="Sourcing agent">Factory commission on shipped orders</td><td data-label="Independent">The buyer, and nobody else</td></tr>
+          <tr><th scope="row">Income if the shipment fails</th><td data-label="Sourcing agent">Falls</td><td data-label="Independent">Unchanged</td></tr>
+          <tr><th scope="row">What you are quoted</th><td data-label="Sourcing agent">A unit price with the commission inside it</td><td data-label="Independent">A published fee, fixed at booking</td></tr>
+          <tr><th scope="row">The report</th><td data-label="Sourcing agent">Often informal, rarely a full document</td><td data-label="Independent">Photographed, standards-referenced, severity-classed</td></tr>
+          <tr><th scope="row">Who the report goes to</th><td data-label="Sourcing agent">Varies — the agent also serves the factory</td><td data-label="Independent">The buyer alone</td></tr>
+          <tr><th scope="row">Who picks the samples</th><td data-label="Sourcing agent">Frequently the factory</td><td data-label="Independent">The inspector, at random, from packed goods</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Three questions that settle it in one email</h2></div>
+      <p>You do not need to take anyone's word for this, including ours. Ask, and keep the answers.</p>
+    </div>
+    <ol class="cmp-q">
+      <li class="rv"><b>Who pays you, and does any part of your income come from the factory?</b> Commission, referral fees, a margin on the goods, hospitality — any of them changes the incentive. Ask for a yes or no in writing.</li>
+      <li class="rv"><b>Does your fee change if you fail my shipment?</b> If the answer is anything other than a flat no, the report is a negotiation.</li>
+      <li class="rv"><b>Will you show me a full sample report before I book?</b> A firm that will not show you the product is asking you to buy a promise. Ours are <a href="/sample-reports/">published, ungated</a>.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>What about shortlisting? Isn't that sourcing?</h2></div></div>
+    <div class="prose-wrap">
+      <p class="prose rv">It is the buyer-side version of it, and it only works with a firewall. Our <a href="/supplier-shortlisting/">supplier shortlisting</a> is a fixed fee paid by you, with zero factory commission. Clause 05 of the <a href="/why-independent/">Independence Charter</a> requires that any later inspection of a factory we shortlisted is performed and signed by a different inspector. We have failed factories we shortlisted, and we retain that right in writing.</p>
+      <p class="prose rv">If you are also weighing a large international inspection firm, the trade-off there is different — specialisation and distance rather than conflict of interest. That comparison is <a href="/global-inspection-firm-vs-specialist/">on its own page</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Common questions</h2></div></div>
+    <div class="faq">
+      {FAQ.map((f) => (
+        <details class="rv"><summary>{f.q}</summary><p set:html={f.a.replace('Independence Charter', '<a href="/why-independent/">Independence Charter</a>')} /></details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Hire the one party in the deal that works for you.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+
+<style>
+  .tablewrap { overflow-x: auto; }
+  .cmp-q { margin: 0; padding-left: 1.15rem; max-width: 74ch; }
+  .cmp-q li { margin-bottom: 16px; padding-left: 6px; color: var(--g700, #3A3C40); }
+  .cmp-q li::marker { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--pass, #0f7a5a); }
+  .cmp-q b { color: var(--ink, #111214); }
+  .check-table tbody th {
+    font-family: 'Inter Tight', Inter, sans-serif; font-size: .95rem; font-weight: 600;
+    letter-spacing: 0; text-transform: none; color: var(--ink, #111214);
+    padding: 12px 16px; border-bottom: 1px dashed var(--rule, #e9e7e1); vertical-align: top;
+  }
+  .check-table tbody tr:last-child th { border-bottom: none; }
+  /* Row headers are sentences here, not column labels. */
+  @media (max-width: 760px) { .check-table tbody th { font-size: 1rem; } }
+</style>
+</BaseLayout>

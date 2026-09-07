@@ -171,6 +171,8 @@ export const FOOTER_COLUMNS = [
       { href: '/defects/', label: 'Defect Library' },
       { href: '/sample-reports/', label: 'Sample Reports' },
       { href: '/pricing/', label: 'Pricing' },
+      { href: '/glossary/', label: 'Glossary' },
+      { href: '/sourcing-agent-vs-inspection-company/', label: 'Agent vs Inspector' },
       { href: '/import-compliance/', label: 'Import Compliance' },
       { href: '/eudr-compliance-india-furniture/', label: 'EUDR Compliance' },
       { href: '/eudr-supplier-evidence-review/', label: 'EUDR Evidence Review' },

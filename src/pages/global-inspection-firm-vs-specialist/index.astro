@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+/* 2026-09 audit, SEO-04, second of two. Distinct from the sourcing-agent page:
+   that one is about conflict of interest, this one about specialisation and
+   distance. Both large firms and Qualis are buyer-paid, so the honest framing
+   is a trade-off rather than a warning — and the page says plainly where a
+   large firm is the better choice. Comparative statements describe the
+   business model (man-days plus travel, generalist inspectors, quoted pricing)
+   and make no claim about the conduct or quality of any named firm. */
+
+const title = 'Global Inspection Firm or Furniture Specialist: How to Choose';
+const description =
+  'Large inspection firms are buyer-paid and credible. So when is a furniture-only specialist in the cluster the better call, and when is it not?';
+const canonical = 'https://qualisassurance.com/global-inspection-firm-vs-specialist/';
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+};
+
+const FAQ = [
+  {
+    q: 'Is a global inspection firm better than a specialist?',
+    a: 'For furniture from India, not automatically. Both models are buyer-paid, so neither has the conflict a factory-paid agent has. A global firm gives you one contract across many countries and categories, accredited laboratory services in-house, and a name your bank or insurer already recognises. A furniture-only specialist in the cluster gives you an inspector who sees the same materials, joints and finishes every day, same-day availability, and a published flat fee. The right answer depends on which of those you actually need.',
+  },
+  {
+    q: 'Why is a specialist cheaper than a global firm?',
+    a: 'Distance is most of what you pay for elsewhere. A global firm bills man-days plus flights and hotels to send a generalist inspector to Jodhpur; our inspectors already live there, so the same scope carries no travel and no mobilisation cost. We are typically 40 to 60% below global inspection firms for equivalent scope, and the sampling plan and standards are the same ones.',
+  },
+  {
+    q: 'When should I use a global inspection firm instead?',
+    a: 'When you need accredited laboratory testing rather than verification of somebody else’s test report; when you are buying across many countries or product categories and want one contract covering all of them; when a customer, bank or insurer specifically names a firm; or when you need a certification scheme we cannot issue, such as ECAS, SABER or fire testing. We say so rather than sell around it.',
+  },
+  {
+    q: 'Does Qualis hold ISO/IEC 17020 accreditation?',
+    a: 'It is in progress, and we say so on every page rather than implying otherwise. If accreditation is a hard requirement in your supplier programme today, use a firm that already holds it. If what you need is an experienced furniture inspector in the cluster tomorrow morning with a published fee, that is what we are.',
+  },
+];
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Global inspection firm or furniture specialist',
+    url: canonical,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: 'https://qualisassurance.com' },
+    publisher: PUBLISHER,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Global firm or specialist', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Comparison</span>
+    <h1>Global inspection firm, or a furniture specialist in the cluster</h1>
+    <p class="lead">This is a genuine trade-off rather than a warning. Both models are paid by the buyer, so neither carries the conflict a factory-paid agent does. What differs is specialisation, distance and how the fee is built — and for some orders the large firm is the right call.</p>
+    <div class="hero-ctas"><a class="btn btn-solid" href="/pricing/">See our published pricing</a><a class="btn btn-ghost" href="/sample-reports/">Read a report first</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Where the price difference actually comes from</h2></div></div>
+    <p class="defn"><b>We are typically 40–60% below global inspection firms</b> for equivalent scope. Not because the work is lighter — the sampling plan and the standards are the same ones — but because a global firm bills man-days plus flights and hotels to send a generalist to Jodhpur, and our inspectors already live there. Distance is most of what you pay for elsewhere.</p>
+    <div class="tablewrap">
+      <table class="check-table rv">
+        <thead><tr><th><span class="vh">Dimension</span></th><th>Global inspection firm</th><th>Furniture specialist in the cluster</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Who pays</th><td data-label="Global firm">The buyer</td><td data-label="Specialist">The buyer</td></tr>
+          <tr><th scope="row">How the fee is built</th><td data-label="Global firm">Man-days plus travel, quoted on request</td><td data-label="Specialist">Flat fee, published on the website</td></tr>
+          <tr><th scope="row">Inspector background</th><td data-label="Global firm">Generalist, any product category</td><td data-label="Specialist">Furniture only, every day</td></tr>
+          <tr><th scope="row">Distance to the factory</th><td data-label="Global firm">Flight and hotel, billed to you</td><td data-label="Specialist">Minutes — same-day in Jodhpur and Jaipur</td></tr>
+          <tr><th scope="row">Unannounced revisits</th><td data-label="Global firm">Costly to mobilise</td><td data-label="Specialist">Routine</td></tr>
+          <tr><th scope="row">Country and category coverage</th><td data-label="Global firm">Global, one contract everywhere</td><td data-label="Specialist">India&rsquo;s furniture clusters only</td></tr>
+          <tr><th scope="row">Accredited laboratory testing</th><td data-label="Global firm">In-house</td><td data-label="Specialist">Not offered — we verify reports, labs produce them</td></tr>
+          <tr><th scope="row">ISO/IEC 17020</th><td data-label="Global firm">Held</td><td data-label="Specialist">In progress</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>When the global firm is the better choice</h2></div>
+      <p>Said plainly, because a comparison that never concedes anything is marketing.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>You need the laboratory, not the inspector</h3><p>Fire testing, formaldehyde emissions, accredited physical testing. We verify that certificates trace to the batch in production; we do not produce them. If the test itself is what you are buying, buy it from a laboratory.</p></div>
+      <div class="card"><h3>You buy across many countries or categories</h3><p>If your programme spans Vietnam, China and India, or furniture plus textiles plus lighting, one global contract is genuinely simpler than several specialists.</p></div>
+      <div class="card"><h3>Somebody has named a firm</h3><p>A customer, bank or insurer that specifies a particular provider has settled the question. Arguing with it costs more than complying.</p></div>
+      <div class="card"><h3>Accreditation is a hard requirement today</h3><p>Our ISO/IEC 17020 accreditation is in progress and we say so everywhere rather than implying otherwise. If your programme requires it now, use a firm that already holds it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>When the specialist is the better choice</h2></div>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>The failure modes are furniture-specific</h3><p>Moisture in a core rather than a surface, batch finish drift against a golden sample, an undersized tenon, a missing corner block. An inspector who sees these every day catches them faster than one who saw electronics last week. They are documented in our <a href="/defects/">Defect Library</a>.</p></div>
+      <div class="card"><h3>You need somebody there tomorrow</h3><p>Same-day in Jodhpur and Jaipur, 24 hours in Delhi NCR. Rework and re-inspection inside 48 hours. Mobilising a flight for a re-inspection changes the economics of failing a shipment at all.</p></div>
+      <div class="card"><h3>You want the price before the conversation</h3><p>Every fee we charge is <a href="/pricing/">published</a>, flat, and fixed at booking. No man-day arithmetic and no travel charge inside our six clusters.</p></div>
+      <div class="card"><h3>You want to judge the report before you buy</h3><p>Our report anatomy and a real finding are <a href="/sample-reports/">published ungated</a>. Judge the product, not the brochure.</p></div>
+    </div>
+  </div>
+</section>
+
+<section><div class="wrap prose-wrap"><p class="prose rv">One thing both models share, and the reason this comparison is a trade-off rather than a warning: neither is paid by the factory. If you are also weighing a sourcing agent&rsquo;s offer of a free inspection, that is a different question entirely, and it is <a href="/sourcing-agent-vs-inspection-company/">on its own page</a>.</p></div></section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Common questions</h2></div></div>
+    <div class="faq">
+      {FAQ.map((f) => <details class="rv"><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Same standards, same sampling plan, in the cluster.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+
+<style>
+  .tablewrap { overflow-x: auto; }
+  .check-table tbody th {
+    font-family: 'Inter Tight', Inter, sans-serif; font-size: .95rem; font-weight: 600;
+    letter-spacing: 0; text-transform: none; color: var(--ink, #111214);
+    padding: 12px 16px; border-bottom: 1px dashed var(--rule, #e9e7e1); vertical-align: top;
+  }
+  .check-table tbody tr:last-child th { border-bottom: none; }
+  /* Row headers are sentences here, not column labels. */
+  @media (max-width: 760px) { .check-table tbody th { font-size: 1rem; } }
+  .grid .card h3 { margin-bottom: 8px; }
+</style>
+</BaseLayout>
