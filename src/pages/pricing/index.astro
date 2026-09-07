@@ -50,6 +50,16 @@ const STAGES = [
     ],
   },
   {
+    key: 'Compliance',
+    title: 'Evidence',
+    blurb: 'Timber documentation collected in India, where the evidence actually lives. Priced per supplier, not per shipment.',
+    rows: [
+      { name: 'Timber Documentation Audit', href: '/eudr-supplier-evidence-review/', price: '$390', unit: '/ supplier', detail: 'Level 1. Premises check, photographed timber document register, species verification against stock, gap register. Report in 5 working days.' },
+      { name: 'Supply Chain Trace', href: '/eudr-supplier-evidence-review/', price: '$890', unit: '/ supplier', detail: 'Level 2. Everything in Level 1 plus upstream tracing to yards and traders, a supply chain map, and origin and geolocation records where obtainable. Report in 7–10 working days.' },
+      { name: 'Evidence Programme', href: '/eudr-supplier-evidence-review/', price: 'from $2,400', unit: '/ quarter', detail: 'Level 3. Level 2 across your supplier base, batch linkage to each PO and container, quarterly re-verification and a named inspector on standing call.' },
+    ],
+  },
+  {
     key: 'Bundles',
     title: 'Bundles',
     blurb: 'Below the sum of their parts, and sequenced so each stage de-risks the next.',
@@ -62,7 +72,7 @@ const STAGES = [
 
 const title = 'Furniture Inspection Prices in India | QUALIS';
 const description =
-  'Every Qualis price on one page: pre-shipment inspection from $249, supplier verification $299, factory audit $449, container loading from $269. Flat fees, fixed at booking, paid by buyers only.';
+  'Every Qualis price on one page: pre-shipment inspection $249, verification $299, audit $449, loading from $269, EUDR evidence from $390. Flat, buyer-paid fees.';
 const canonical = 'https://qualisassurance.com/pricing/';
 
 const PUBLISHER = {
@@ -226,11 +236,11 @@ const jsonld = [
     <div class="grid">
       <div class="card">
         <h3>In every inspection fee</h3>
-        <p>AQL 2.5 sampling to ISO 2859-1 · the full published checklist for that service · a photographed report within 24 hours · standard references on every check · a severity class on every defect · a decision call with the inspector who did the work · travel anywhere inside our six clusters.</p>
+        <p>AQL 2.5 sampling to ISO 2859-1 · the full published checklist for that service · a photographed report within 24 hours · standard references on every check · a severity class on every defect · a decision call with the inspector who did the work · travel anywhere inside our six clusters on inspection work.</p>
       </div>
       <div class="card">
         <h3>Quoted before you book</h3>
-        <p>Work outside Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata · orders larger than one 40ft container or spanning more than one factory · weekly monitoring programmes · shortlisting beyond the first three factories.</p>
+        <p>Work outside Jodhpur, Jaipur, Saharanpur, Moradabad, Delhi NCR and Kolkata · orders larger than one 40ft container or spanning more than one factory · weekly monitoring programmes · shortlisting beyond the first three factories · evidence work outside Jodhpur and Jaipur, where travel is quoted at cost · upstream tracing beyond the cluster, quoted per chain.</p>
       </div>
       <div class="card">
         <h3>Never charged, to anyone</h3>
