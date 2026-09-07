@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RelatedLinks from '../../../components/RelatedLinks.astro';
 import AudienceLinks from '../../../components/AudienceLinks.astro';
 import '../../../styles/global.css';
 
@@ -78,6 +79,7 @@ const jsonld = [
 </section>
 <section><div class="wrap"><h2 class="vh">How we support procurement teams</h2><div class="grid"><a class="card rv" href="/supplier-verification-india/"><h3>Documented diligence</h3><p>Verification and audit reports that satisfy internal risk and compliance sign-off.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Payment-linked inspection</h3><p>Balance-against-passed-PSI clauses that make quality contractual.</p></a><a class="card rv" href="/why-independent/"><h3>One accountable partner</h3><p>Fixed fees, named inspectors, SLA-bound reporting—no man-day arithmetic.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Tell us your product, supplier status and destination market — we'll recommend the right sequence of services and a fixed quote within 2 hours. Every engagement is buyer-paid under our Independence Charter: we take nothing from factories, ever.</p></div></section>
 <AudienceLinks current="procurement" />
+<RelatedLinks path={"/buyers/procurement/"} />
 <section class="final">
 <div class="wrap">
 

@@ -2,6 +2,8 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import { RELATED_BY_CATEGORY } from '../../data/related';
 import type { WpPost } from '../../lib/wp';
 import { getAllPosts, sanitize, plainText, formatDate, readingMinutes, featuredSources } from '../../lib/wp';
 import { SITE } from '../../lib/site';
@@ -27,6 +29,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const { post, related } = Astro.props as { post: WpPost; related: WpPost[] };
+
+/* Cross-family links keyed to the post's category (2026-09 audit, IA-02).
+   Field Notes linked to a service or two and to each other, and to no cluster,
+   guide or defect entry at all. */
+const relatedSet = post.categories
+  .map((c) => RELATED_BY_CATEGORY[c.slug])
+  .find(Boolean);
 
 const url = `${SITE.url}/blog/${post.slug}/`;
 /* SEO_FIELDS_PER_POST: use the SEO plugin's fields when the schema exposes them,
@@ -174,6 +183,8 @@ const jsonld = [
       </div>
     </section>
   )}
+
+  {relatedSet && <RelatedLinks set={relatedSet} heading="Related on this site" />}
 
   <section class="final">
     <div class="wrap">

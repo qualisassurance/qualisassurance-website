@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
 import EnquiryForm from '../../components/EnquiryForm.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
 import '../../styles/pages/factory-audit-india.css';
@@ -238,6 +239,7 @@ const jsonld = [
   </div>
 </section>
 
+<RelatedLinks path={"/factory-audit-india/"} />
 <section class="final" id="book">
   <div class="wrap final-grid">
     <div>

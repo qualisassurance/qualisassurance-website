@@ -1,0 +1,84 @@
+---
+/**
+ * Cross-family related links (2026-09 audit, IA-02).
+ *
+ * Rendered from the hand-written map in src/data/related.ts, keyed by the
+ * page's own path, so a page that is not in the map renders nothing rather
+ * than inventing links. Groups are only shown when they hold something.
+ */
+import { RELATED, LABELS, type RelatedSet } from '../data/related';
+
+interface Props {
+  /** Route to look up, e.g. "/pre-shipment-inspection-india/". */
+  path?: string;
+  /** A set passed directly, for routes whose content is not static. */
+  set?: RelatedSet;
+  heading?: string;
+}
+const { path, set: given, heading = 'Related on this site' } = Astro.props;
+const set = given ?? (path ? RELATED[path] : undefined);
+
+const GROUPS: { key: 'services' | 'clusters' | 'guides' | 'defects' | 'posts' | 'pages'; label: string }[] = [
+  { key: 'services', label: 'Services' },
+  { key: 'clusters', label: 'Clusters' },
+  { key: 'guides', label: 'Destination guides' },
+  { key: 'defects', label: 'Defects it catches' },
+  { key: 'posts', label: 'Field Notes' },
+  { key: 'pages', label: 'Also useful' },
+];
+
+const columns = set
+  ? GROUPS.map((g) => ({ label: g.label, links: (set[g.key] ?? []).filter((h) => LABELS[h]) }))
+      .filter((c) => c.links.length)
+  : [];
+---
+{columns.length > 0 && (
+  <section class="rel" aria-labelledby="h-related">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><h2 id="h-related">{heading}</h2></div>
+        {set?.lede && <p>{set.lede}</p>}
+      </div>
+      <div class="rel-grid">
+        {columns.map((c) => (
+          <div class="rel-col">
+            <b class="mono">{c.label}</b>
+            <ul>
+              {c.links.map((h) => <li><a href={h}>{LABELS[h]}</a></li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .rel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--rule, #e9e7e1);
+    border: 1px solid var(--rule, #e9e7e1);
+  }
+  .rel-col { background: #fff; padding: 20px 22px 22px; min-width: 0; }
+  .rel-col > b {
+    display: block;
+    font-size: .64rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--g500, #737169);
+    margin-bottom: 12px;
+  }
+  .rel-col ul { list-style: none; margin: 0; padding: 0; }
+  .rel-col li { margin-bottom: 9px; }
+  .rel-col li:last-child { margin-bottom: 0; }
+  .rel-col a {
+    text-decoration: none;
+    color: var(--ink, #111214);
+    font-size: 1rem;
+    line-height: 1.4;
+    border-bottom: 1px solid transparent;
+  }
+  .rel-col a:hover { color: var(--pass, #0f7a5a); border-bottom-color: currentColor; }
+</style>
