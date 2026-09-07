@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import { DEFECTS, type DefectEntry } from '../../data/defects';
+import '../../styles/global.css';
+
+/* One page per Defect Library entry (2026-09 audit, SEO-02). The shape is the
+   one /defects/ already specified in prose: ID and family, macro photograph
+   with its measurement annotation, material and process stage, root cause,
+   severity, how to specify against it in a PO, and which service catches it. */
+
+export function getStaticPaths() {
+  return DEFECTS.map((d) => ({ params: { slug: d.slug }, props: { defect: d } }));
+}
+
+interface Props { defect: DefectEntry }
+const { defect: d } = Astro.props;
+
+const url = `https://qualisassurance.com/defects/${d.slug}/`;
+const title = `${d.title} — furniture defect ${d.id} | QUALIS`;
+const description = d.meta;
+
+const idx = DEFECTS.findIndex((x) => x.slug === d.slug);
+const others = [...DEFECTS.slice(idx + 1), ...DEFECTS.slice(0, idx)].slice(0, 3);
+
+const PUBLISHER = {
+  '@type': 'ProfessionalService',
+  name: 'Qualis',
+  legalName: 'Qualis Assurance',
+  priceRange: '$$',
+  url: 'https://qualisassurance.com',
+  telephone: '+918440007574',
+  email: 'info@qualisassurance.com',
+};
+
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `${d.id} — ${d.title}`,
+    url,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Qualis', url: 'https://qualisassurance.com' },
+    publisher: PUBLISHER,
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      contentUrl: `https://qualisassurance.com${d.image}`,
+      caption: d.imageAlt,
+      representativeOfPage: true,
+    },
+    about: { '@type': 'Thing', name: `${d.title} in furniture manufactured in India` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://qualisassurance.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Defect Library', item: 'https://qualisassurance.com/defects/' },
+      { '@type': 'ListItem', position: 3, name: `${d.id} ${d.title}`, item: url },
+    ],
+  },
+];
+
+const sevClass = d.severity === 'CRITICAL' ? 'chip-crit' : d.severity === 'MAJOR' ? 'chip-amber' : 'chip-pass';
+---
+<BaseLayout title={title} description={description} canonical={url} jsonld={jsonld} navVariant="inner">
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <a href="/">Home</a> <span aria-hidden="true">/</span>
+    <a href="/defects/">Defect Library</a> <span aria-hidden="true">/</span>
+    <span>{d.id}</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">{d.id} · {d.family}</span>
+    <h1>{d.title}</h1>
+    <p class="lead">{d.summary}</p>
+    <div class="dx-meta">
+      <div><small>Severity</small><b><span class={`chip ${sevClass}`}>{d.severity}</span></b></div>
+      <div><small>Material</small><b>{d.material}</b></div>
+      <div><small>Process stage</small><b>{d.stage}</b></div>
+      <div><small>Surfaces</small><b>{d.surfaces}</b></div>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="/#book">Book the inspection that catches it</a>
+      <a class="btn btn-ghost" href="/defects/">All defects</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap dx-grid">
+    <figure class="dx-fig rv">
+      <ImageSlot
+        id={d.id}
+        spec={'800×600px'}
+        desc={d.imageAlt}
+        alt={d.imageAlt}
+        anno={d.anno}
+        annoStyle={'top:30%;right:6%'}
+        src={d.image}
+        width={800}
+        height={600}
+        eager
+      />
+      <figcaption><em>{d.id}</em><span>{d.family.toUpperCase()}</span></figcaption>
+    </figure>
+    <div class="rv">
+      <h2>Why it happens</h2>
+      {d.cause.map((c) => <p>{c}</p>)}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Write it into the order</span><h2>How to specify against it</h2></div>
+      <p>A defect you can name in the purchase order is a defect an inspector can fail the shipment on. One you only describe in an email is not.</p>
+    </div>
+    <ol class="dx-spec">
+      {d.specify.map((sp) => <li class="rv">{sp}</li>)}
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Where we catch it</span><h2>The inspection point</h2></div>
+      <p>Each of these is a numbered check on a published scope, so you can see exactly which visit finds this and when.</p>
+    </div>
+    <ul class="dx-caught">
+      {d.caughtAt.map((c) => (
+        <li class="rv"><a href={c.href}><span class="mono">{c.code}</span></a></li>
+      ))}
+    </ul>
+    {d.related.length > 0 && (
+      <p class="dx-related">Further reading: {d.related.map((r, i) => (
+        <>{i > 0 && ' · '}<a href={r.href}>{r.label}</a></>
+      ))}</p>
+    )}
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Other defects in the library</h2></div></div>
+    <div class="grid">
+      {others.map((o) => (
+        <a class="card rv" href={`/defects/${o.slug}/`}>
+          <h3>{o.title}</h3>
+          <p><span class="mono">{o.id} · {o.family}</span><br />{o.summary}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Catch this one before it ships.</h2>
+    <p>Confirmed within 2 hours. Report within 24 hours of inspection. Paid by buyers only — never by factories.</p>
+    <a class="btn btn-solid" href="/#book">Book an inspection</a>
+  </div>
+</section>
+
+<style>
+  .dx-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--rule, #e9e7e1);
+    border: 1px solid var(--rule, #e9e7e1);
+    margin: 28px 0;
+  }
+  .dx-meta > div { background: #fff; padding: 14px 16px; }
+  .dx-meta small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--g500, #737169);
+    margin-bottom: 6px;
+  }
+  .dx-meta b { font-family: 'Inter Tight', Inter, sans-serif; font-size: 1rem; font-weight: 600; }
+
+  .dx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+  .dx-fig .ph { aspect-ratio: 4 / 3; }
+  .dx-grid h2 { margin-bottom: 14px; }
+  .dx-grid p { margin-bottom: 14px; max-width: 60ch; }
+
+  /* Numbered because a PO clause list is read in order and cited by number. */
+  .dx-spec { margin: 0; padding-left: 1.15rem; max-width: 72ch; }
+  .dx-spec li { margin-bottom: 14px; padding-left: 6px; }
+  .dx-spec li::marker { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--pass, #0f7a5a); }
+
+  .dx-caught { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--rule, #e9e7e1); border: 1px solid var(--rule, #e9e7e1); }
+  .dx-caught li { background: #fff; }
+  .dx-caught a { display: block; padding: 15px 18px; text-decoration: none; color: inherit; }
+  .dx-caught a:hover { background: #FCFBF7; }
+  .dx-caught a:hover .mono { color: var(--pass, #0f7a5a); }
+  .dx-caught .mono { font-size: .8rem; }
+
+  .dx-related { margin-top: 22px; font-size: 1rem; color: var(--g700, #3A3C40); max-width: 70ch; }
+  .card .mono { color: var(--g500, #737169); font-size: .7rem; }
+
+  @media (max-width: 860px) {
+    .dx-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
+</BaseLayout>

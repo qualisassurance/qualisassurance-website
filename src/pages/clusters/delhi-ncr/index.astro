@@ -1,9 +1,26 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import '../../../styles/global.css';
+import '../../../styles/pages/clusters-delhi-ncr.css';
+
+/* 2026-09 audit, IA-03. Delhi NCR was the thinnest page on the site at ~208
+   words, with no risk codes, no FAQ and no depth — while its own copy called it
+   "the cluster where knowing exactly who you're dealing with matters most" and
+   the one carrying the heaviest verification workload.
+
+   It now follows the Jodhpur template, minus two sections that would have
+   required inventing facts: there is no drive-time map (Qualis is based in
+   Jodhpur, ~24 hours away, so "drive time from our base" is meaningless here)
+   and no cluster production calendar (nothing NCR-specific is published). The
+   four risks, every CAUGHT AT reference and every buyer tip below trace to
+   scope codes already published on the service pages — V-01→V-10 verification,
+   C-01→C-10 inspection, L-01→L-12 loading, A-01→A-08 audit.
+
+   Fire-safety detail is deliberately NOT restated here. It lives on the UK
+   market guide, and duplicating a regulatory claim across two pages means two
+   places to get out of date. */
 
 const title = "Furniture Inspection in Delhi NCR | QUALIS";
-const description = "Furniture inspection, factory audits & supplier verification in Delhi NCR — upholstery, mixed-material production and export houses. 24-hour response.";
+const description = "Furniture inspection and supplier verification in Delhi NCR: trader-vs-factory checks, upholstery substitution, per-factory container tallies. 24-hour response.";
 const canonical = "https://qualisassurance.com/clusters/delhi-ncr/";
 const jsonld = [
   {
@@ -107,19 +124,174 @@ const jsonld = [
     },
     "mainEntityOfPage": "https://qualisassurance.com/clusters/delhi-ncr/",
     "inLanguage": "en"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you cover Gurgaon, Noida and Faridabad as well as Delhi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — the whole NCR belt. Delhi, Gurgaon, Noida and Faridabad are covered as one cluster on a 24-hour response, and a single engagement can take in more than one site if your order is split across them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How fast can you get to a furniture factory in Delhi NCR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Within 24 hours of booking. Qualis is based in Jodhpur, so Delhi NCR is a planned visit rather than the same-day availability offered in Jodhpur and Jaipur — an inspector travels to the site, which is also what makes an unannounced verification visit possible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does supplier verification matter more in Delhi NCR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the belt has the densest concentration of export houses and trading offices in the country. Many Delhi NCR \u2018manufacturers\u2019 are intermediaries. Verification establishes whether there is a factory behind the name, what it can actually build, and which processes leave the building."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you check fire labelling on UK-bound upholstered furniture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We verify the product side on the ground: that the required labels are physically present, permanent and correctly worded, that the certification on file traces to the batch of foam and cover fabric actually in production, and that nothing has been substituted since the sample was approved. Qualis is not a testing laboratory and does not issue fire certificates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you supervise a container consolidated from several Delhi NCR factories?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Consolidated loading is standard in Delhi NCR, and container loading supervision runs a per-factory tally so you can see which supplier\u2019s goods actually went in, alongside the usual condition, dunnage, weather-hold and seal checks."
+        }
+      }
+    ]
   }
 ];
 ---
 <BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
+<!-- 01 HERO -->
 <section class="hero">
-<div class="wrap">
-<span class="eyebrow">Cluster — 24-hour response</span>
-<h1>Furniture inspection &amp; supplier verification in Delhi NCR</h1>
-<p class="lead">Upholstery, mixed-material production, and the largest concentration of furniture manufacturers, export houses and trading offices in the country. Every Qualis service is available across Delhi NCR now, with 24-hour response.</p>
-<div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
-</div>
+  <div class="wrap">
+    <span class="eyebrow">Cluster — 24-hour response</span>
+    <h1>Furniture inspection &amp; supplier verification in Delhi NCR</h1>
+    <p class="lead">Upholstery, mixed-material production and the largest concentration of furniture manufacturers, export houses and trading offices in the country. It is also the cluster with the most intermediaries per square kilometre — which is why almost every NCR engagement starts by establishing who you are actually buying from.</p>
+    <div class="hero-facts">
+      <div><small>Response</small><b>24 hrs</b></div>
+      <div><small>The belt</small><b>Delhi · Gurgaon · Noida · Faridabad</b></div>
+      <div><small>Known for</small><b>Upholstery &amp; mixed material</b></div>
+      <div><small>Premises visits</small><b>Unannounced OK</b></div>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="/#book">Book in Delhi NCR</a>
+      <a class="btn btn-ghost" href="#risks">NCR risk guide</a>
+    </div>
+  </div>
 </section>
-<section><div class="wrap"><h2 class="vh">What we inspect in Delhi NCR</h2><div class="grid"><a class="card rv" href="/supplier-verification-india/"><h3>Trader vs factory</h3><p>NCR has more trading offices per square kilometre than anywhere in the trade — verification is step zero here.</p></a><a class="card rv" href="/import-compliance/"><h3>Upholstery compliance</h3><p>Fire-safety labelling for UK-bound upholstered goods physically checked at PSI.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Consolidation risk</h3><p>Multi-source orders assembled for shipping — CLS with per-factory tally keeps the container honest.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">The NCR belt (Delhi, Gurgaon, Noida, Faridabad) mixes genuine manufacturers with a dense layer of export houses and traders. It's the cluster where knowing exactly who you're dealing with matters most—and where our verification workload is heaviest.</p></div></section><section><div class="wrap"><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection</h3><p>AQL 2.5, moisture, structure, finish vs golden sample — report in 24h.</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>Unannounced premises visits, verdict in 3–5 working days.</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>8-section scored audit for programme onboarding.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Tally, dunnage, weather hold and photographed seal.</p></a></div></div></section>
+
+<!-- 02 CLUSTER PROFILE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>What Delhi NCR makes, and why buyers source here</h2></div>
+    </div>
+    <div class="prose-wrap">
+      <p class="prose rv">The NCR belt — Delhi, Gurgaon, Noida and Faridabad — is where India makes the furniture the wood clusters do not. Upholstered seating, mixed-material pieces and finished ranges assembled from several suppliers all come out of this belt, and the export houses here can put a whole programme in one container.</p>
+      <p class="prose rv">That breadth is the reason to buy here and the reason to check. NCR mixes genuine manufacturers with a dense layer of export houses and trading offices, so the name on your proforma invoice is frequently not the name on the building where your order is built. It is the cluster where knowing exactly who you are dealing with matters most, and where our verification workload is heaviest.</p>
+    </div>
+    <div class="made-grid rv">
+      <div class="made"><b>Upholstered seating &amp; sofas</b><span>The cluster's speciality — and the only furniture category with a destination-market fire gate to clear</span></div>
+      <div class="made"><b>Mixed-material furniture</b><span>Wood combined with metal, glass, stone and cane in one piece, and often one order</span></div>
+      <div class="made"><b>Export-house programmes</b><span>Multi-supplier ranges consolidated under a single exporter and a single container</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 CLUSTER RISKS -->
+<section id="risks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>The four Delhi NCR risks we inspect for</h2></div>
+      <p>Every cluster fails in its own way. Jodhpur's failures are about wood and weather; NCR's are about who built it, what went into it, and whose goods ended up in your container.</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk rv"><span class="mono">RISK NCR-1 · IDENTITY</span><h3>The office that presents as a factory</h3><p>NCR has more trading offices per square kilometre than anywhere in the trade. A registered company with a real GST number, a convincing profile and no machinery can take your deposit and subcontract the entire order to a unit you will never see. Verification is not due diligence theatre here; it is step zero.</p><span class="caught">CAUGHT AT: <a href="/supplier-verification-india/">VERIFICATION V-04 PREMISES VISIT</a> + <a href="/supplier-verification-india/">V-05 MANUFACTURER VS TRADER</a></span></div>
+      <div class="risk rv"><span class="mono">RISK NCR-2 · SUBSTITUTION</span><h3>Certified component, uncertified run</h3><p>The single biggest compliance risk on upholstery. A supplier tests one foam and one cover fabric, then buys different stock mid-run because the certified batch ran out or cost more. The certificate on file is genuine; the sofa in the container is not the sofa that was tested. Paperwork cannot catch this — only somebody standing in the factory while it is being built.</p><span class="caught">CAUGHT AT: <a href="/during-production-inspection/">DUPRO</a> + <a href="/pre-shipment-inspection-india/">PSI C-10 MARKS &amp; LABELS</a> + <a href="/factory-audit-india/">AUDIT A-08 COMPLIANCE READINESS</a></span></div>
+      <div class="risk rv"><span class="mono">RISK NCR-3 · CONSOLIDATION</span><h3>One container, several factories</h3><p>Export houses build a container from multiple sources, which means the tally that matters is per factory, not per container. Counted only at the door against the supplier's own packing list, a short or mixed load is discovered at destination — where it becomes a credit-note argument with a supplier who has already been paid.</p><span class="caught">CAUGHT AT: <a href="/container-loading-supervision/">CLS L-05 CARTON TALLY</a> + <a href="/container-loading-supervision/">L-11 LOAD PLAN AS EXECUTED</a></span></div>
+      <div class="risk rv"><span class="mono">RISK NCR-4 · SUBCONTRACTING</span><h3>Upholstery leaves the building</h3><p>Frame-making, foam cutting and covering are routinely split across units, and upholstery is one of the processes most often sent out. Every hand-off is a point where a specified component can quietly become an available one, and quality control ends at the factory gate unless somebody has mapped where the work actually happens.</p><span class="caught">CAUGHT AT: <a href="/supplier-verification-india/">VERIFICATION V-07 SUBCONTRACTING EXPOSURE</a> + <a href="/factory-audit-india/">AUDIT A-06 SUBCONTRACTING MAP</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 UPHOLSTERY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Upholstery is the reason to inspect during production, not after</h2></div>
+    </div>
+    <div class="prose-wrap">
+      <p class="prose rv">A wooden table can be judged when it is finished. An upholstered sofa cannot: once the cover is on, the foam inside it is a matter of trust. Destination markets add a second layer — furniture sold in the UK has to meet the UK's furniture fire safety regulations and carry the required permanent labelling, and what is tested has to be what is actually built. The rules, and where they currently stand, are set out in our <a href="/importing-furniture-from-india/uk/">UK market guide</a>.</p>
+      <p class="prose rv">What we can verify on the ground is the part that goes wrong: that the certification on file traces to the batch of foam and cover fabric actually in production, that the required labels are physically present, permanent and correctly worded, and that no component has been substituted since you approved the sample. That is a during-production job. A pre-shipment inspection on a finished, covered sofa can confirm the label and the workmanship, but it cannot un-upholster the piece to find out what went in.</p>
+      <p class="prose rv">Guidance for buyers, not legal advice. Fire-safety requirements and their labelling rules change; confirm your position against current OPSS guidance and your own counsel before you order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 COVERAGE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>How Qualis covers Delhi NCR</h2></div>
+      <p>We are based in Jodhpur, so NCR runs on a 24-hour response — a planned visit by an inspector on the ground, not a remote sign-off.</p>
+    </div>
+    <table class="area-table rv">
+      <thead><tr><th>Service</th><th>How it runs in NCR</th><th>Response</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Service"><a href="/supplier-verification-india/">Supplier Verification</a></td><td data-label="How it runs in NCR">Unannounced premises visit anywhere in the belt — the check that matters most here</td><td class="mono" data-label="Response">3–5 DAYS</td></tr>
+        <tr><td data-label="Service"><a href="/factory-audit-india/">Factory Audit</a></td><td data-label="How it runs in NCR">Scored A-01→A-08, with the subcontracting map weighted heavily</td><td class="mono" data-label="Response">BOOKED</td></tr>
+        <tr><td data-label="Service"><a href="/during-production-inspection/">During-Production Inspection</a></td><td data-label="How it runs in NCR">The substitution check — components verified before the cover goes on</td><td class="mono" data-label="Response">24 HRS</td></tr>
+        <tr><td data-label="Service"><a href="/pre-shipment-inspection-india/">Pre-Shipment Inspection</a></td><td data-label="How it runs in NCR">AQL 2.5 to ISO 2859-1, full C-01→C-10, report within 24 hours of inspection</td><td class="mono" data-label="Response">24 HRS</td></tr>
+        <tr><td data-label="Service"><a href="/container-loading-supervision/">Container Loading Supervision</a></td><td data-label="How it runs in NCR">Per-factory tally on consolidated loads, dunnage, weather hold and photographed seal</td><td class="mono" data-label="Response">24 HRS</td></tr>
+        <tr><td data-label="Service"><a href="/packaging-transit-validation/">Packaging &amp; Transit Validation</a></td><td data-label="How it runs in NCR">ISTA 3A drop testing, usually added to a pre-shipment inspection on the same visit</td><td class="mono" data-label="Response">24 HRS</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 06 BUYER TIPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Five things to know before ordering in Delhi NCR</h2></div>
+    </div>
+    <div class="tips">
+      <div class="tip rv"><div class="tnum">TIP 01</div><div class="tbody"><h3>Verify before the deposit, not after the sample</h3><p>An approved sample proves someone can build one. It does not prove your supplier owns a factory. An unannounced premises visit and a manufacturer-versus-trader verdict cost a fraction of the deposit they protect.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 02</div><div class="tbody"><h3>Name the manufacturing site in the PO</h3><p>Not just the exporter. If the goods are built somewhere else, you want that address written down before production starts, so an inspector can be sent to the right building.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 03</div><div class="tbody"><h3>Specify upholstery by certificate, and require the batch to match</h3><p>Name the foam and the cover fabric with their certification, and make it a condition that the batch in production is the batch that was tested. Then book a during-production visit to check it while the frame is still open.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 04</div><div class="tbody"><h3>On consolidated containers, demand a per-factory tally</h3><p>One export house, several sources, one container. Counting against the supplier's packing list at the door tells you the load is full, not that it is yours.</p></div></div>
+      <div class="tip rv"><div class="tnum">TIP 05</div><div class="tbody"><h3>Check the bank account against the legal entity</h3><p>The wire-fraud check. If the account name does not match the registered company on the quote, stop — that mismatch is a verification finding in its own right, and it is the cheapest one we ever report.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Delhi NCR inspection FAQ</h2></div></div>
+    <div class="faq">
+      <details class="rv"><summary>Do you cover Gurgaon, Noida and Faridabad as well as Delhi?</summary><p>Yes — the whole NCR belt. Delhi, Gurgaon, Noida and Faridabad are covered as one cluster on a 24-hour response, and a single engagement can take in more than one site if your order is split across them.</p></details>
+      <details class="rv"><summary>How fast can you get to an NCR factory?</summary><p>Within 24 hours of booking. We are based in Jodhpur, so NCR is a planned visit rather than the same-day availability we offer in Jodhpur and Jaipur — an inspector travels to the site, which is also what makes an unannounced verification visit possible.</p></details>
+      <details class="rv"><summary>Why does supplier verification matter more in Delhi NCR?</summary><p>Because the belt has the densest concentration of export houses and trading offices in the country. A great many NCR "manufacturers" are intermediaries, which is fine if you know it and expensive if you do not. Verification establishes whether there is a factory behind the name, what it can actually build, and which processes leave the building.</p></details>
+      <details class="rv"><summary>Can you check fire labelling on UK-bound upholstered furniture?</summary><p>We verify the product side on the ground: that the required labels are physically present, permanent and correctly worded, that the certification on file traces to the batch of foam and cover fabric actually in production, and that nothing has been substituted since you approved the sample. We are not a testing laboratory and we do not issue fire certificates. The regulatory position is summarised in our <a href="/importing-furniture-from-india/uk/">UK market guide</a>.</p></details>
+      <details class="rv"><summary>Can you supervise a container consolidated from several NCR factories?</summary><p>Yes. Consolidated loading is standard here, and <a href="/container-loading-supervision/">container loading supervision</a> runs a per-factory tally so you can see which supplier's goods actually went in, alongside the usual condition, dunnage, weather-hold and seal checks.</p></details>
+    </div>
+  </div>
+</section>
+
 <section><div class="wrap prose-wrap"><p class="prose rv"><strong>Where Delhi NCR containers land.</strong> The same goods fail differently by destination — climate sets the moisture specification and the market sets the paperwork. Read the guide for <a href="/importing-furniture-from-india/uk/">the UK</a>, <a href="/importing-furniture-from-india/usa/">the USA</a>, <a href="/importing-furniture-from-india/uae/">UAE &amp; GCC</a> and <a href="/importing-furniture-from-india/saudi-arabia/">Saudi Arabia</a>, or the full <a href="/importing-furniture-from-india/">set of ten market guides</a>.</p></div></section>
 <section class="final">
 <div class="wrap">

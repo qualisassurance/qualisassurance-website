@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import { DEFECTS } from '../../data/defects';
 import '../../styles/global.css';
 
 const title = "India Furniture Defect Library | QUALIS";
@@ -59,17 +61,70 @@ const jsonld = [
     ]
   }
 ];
+
+jsonld.push({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'India Furniture Defect Library',
+  url: 'https://qualisassurance.com/defects/',
+  numberOfItems: DEFECTS.length,
+  itemListElement: DEFECTS.map((d, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${d.id} — ${d.title}`,
+    url: `https://qualisassurance.com/defects/${d.slug}/`,
+  })),
+});
 ---
 <BaseLayout title={title} description={description} canonical={canonical} jsonld={jsonld} navVariant="inner">
 <section class="hero">
 <div class="wrap">
 <span class="eyebrow">Resource</span>
 <h1>The India Furniture Defect Library</h1>
-<p class="lead">Every defect we log gets a photo, a cause, a severity class and the inspection point that catches it. The library grows with every inspection—first 40 entries publishing at launch.</p>
+<p class="lead">Every defect we log gets a photo, a cause, a severity class, the wording that makes it enforceable in your purchase order, and the inspection point that catches it. Six entries are published; the library grows with every inspection.</p>
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><h2 class="vh">Defect categories</h2><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Wood &amp; moisture</h3><p>Cracking, splits, warp and movement from unseasoned or badly kilned timber—the largest claim family.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Finish</h3><p>Bloom, blush, colour drift vs golden sample, adhesion failure, over-distressing on "antique" work.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Structure &amp; joints</h3><p>Undersized tenons, missing corner blocks, racking failure, unstable bases.</p></a><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Hardware &amp; fit</h3><p>Missing or mismatched fittings, misaligned drawers, failed cycles on moving parts.</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Quantity &amp; documentation</h3><p>Short shipment, wrong SKUs, label and barcode errors.</p></a><a class="card rv" href="/packaging-transit-validation/"><h3>Packaging &amp; loading</h3><p>Failed drop tests, crushed tiers, wet cartons, inadequate dunnage.</p></a></div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Each entry records: defect ID and family, a macro photograph with measurement annotation, material and process stage, root cause, severity (critical / major / minor per AQL practice), how to specify against it in your PO, and which Qualis service catches it. Buyers use the library two ways—to write tighter specifications before ordering, and to classify what they're looking at when a shipment arrives wrong.</p></div></section>
+<section aria-labelledby="h-entries">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">The library</span><h2 id="h-entries">Six failure patterns, documented</h2></div>
+      <p>These six cause most rejected containers and most buyer claims. Each entry is written to be used twice: to tighten a specification before you order, and to classify what you are looking at when a shipment arrives wrong.</p>
+    </div>
+    <div class="dl-grid">
+      {DEFECTS.map((d) => (
+        <a class="dl-card rv" href={`/defects/${d.slug}/`}>
+          <figure>
+            <ImageSlot id={d.id} spec={"800×600px"} desc={d.imageAlt} alt={""} anno={d.anno} annoStyle={"top:30%;right:6%"} src={d.image} width={800} height={600} />
+          </figure>
+          <div class="dl-body">
+            <span class="mono">{d.id} · {d.family}</span>
+            <h3>{d.title}</h3>
+            <p>{d.summary}</p>
+            <span class={`chip ${d.severity === 'CRITICAL' ? 'chip-crit' : d.severity === 'MAJOR' ? 'chip-amber' : 'chip-pass'}`}>{d.severity}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Families</span><h2>How we classify a defect</h2></div><p>Every entry belongs to one of six families, and every family maps to the service that catches it.</p></div>
+    <div class="grid">
+      <a class="card rv" href="/defects/unseasoned-timber-cracking/"><h3>Wood &amp; moisture</h3><p>Cracking, splits, warp and movement from unseasoned or badly kilned timber—the largest claim family.</p></a>
+      <a class="card rv" href="/defects/finish-bloom-in-transit/"><h3>Finish</h3><p>Bloom, blush, colour drift vs golden sample, adhesion failure, over-distressing on "antique" work.</p></a>
+      <a class="card rv" href="/defects/joint-and-frame-failure/"><h3>Structure &amp; joints</h3><p>Undersized tenons, missing corner blocks, racking failure, unstable bases.</p></a>
+      <a class="card rv" href="/defects/wrong-or-missing-hardware/"><h3>Hardware &amp; fit</h3><p>Missing or mismatched fittings, misaligned drawers, failed cycles on moving parts.</p></a>
+      <a class="card rv" href="/defects/short-shipment/"><h3>Quantity &amp; documentation</h3><p>Short shipment, wrong SKUs, label and barcode errors.</p></a>
+      <a class="card rv" href="/defects/container-loading-damage/"><h3>Packaging &amp; loading</h3><p>Failed drop tests, crushed tiers, wet cartons, inadequate dunnage.</p></a>
+    </div>
+  </div>
+</section>
+
+<section><div class="wrap prose-wrap"><p class="prose rv">Each entry records: defect ID and family, a macro photograph with measurement annotation, material and process stage, root cause, severity (critical / major / minor per AQL practice), how to specify against it in your PO, and which Qualis service catches it. Severity follows the same classes we apply on a report under <a href="/pre-shipment-inspection-india/">AQL 2.5 sampling to ISO 2859-1</a> — critical defects are zero-tolerance.</p></div></section>
+
 <section class="final">
 <div class="wrap">
 
@@ -78,4 +133,19 @@ const jsonld = [
 <a class="btn btn-solid" href="/#book">Book an inspection</a>
 </div>
 </section>
+
+<style>
+  .dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule, #e9e7e1); border: 1px solid var(--rule, #e9e7e1); }
+  .dl-card { background: #fff; text-decoration: none; color: inherit; display: block; transition: background .15s; }
+  .dl-card:hover { background: #FCFBF7; }
+  .dl-card figure { margin: 0; }
+  .dl-card .ph { aspect-ratio: 4 / 3; border: 0; }
+  .dl-body { padding: 20px 22px 24px; }
+  .dl-body .mono { display: block; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--g500, #737169); margin-bottom: 8px; }
+  .dl-body h3 { margin-bottom: 6px; }
+  .dl-body p { font-size: .9rem; color: var(--g700, #3A3C40); margin-bottom: 12px; }
+  .dl-card:hover h3 { color: var(--pass, #0f7a5a); }
+  @media (max-width: 900px) { .dl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .dl-grid { grid-template-columns: 1fr; } }
+</style>
 </BaseLayout>
