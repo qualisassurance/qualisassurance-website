@@ -3,11 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE, waLink } from '../../lib/site';
 import '../../styles/global.css';
 
-/* The four cards used to end "[PDF + HTML coming at launch]", which made the
-   page a dead end for the one visitor most worth converting: the buyer checking
-   the product before paying. Until the anonymised PDFs are published, each card
-   points at the section of its service page that shows real findings, and the
-   block below offers the full sample on request. */
+/* 2026-09 audit fix. The home page promised "Download three full sample
+   reports · no login, no email gate" and landed here on a page whose only
+   answer was "the PDFs are being prepared" — a bait-and-switch at the exact
+   moment a cautious first-time buyer decides whether this firm is evidence or
+   marketing. Two changes, no invented content:
+     1. The "ask for the full report" block moved to the top, so the honest
+        position is the first thing read rather than the last.
+     2. The report anatomy moved here from the home page, section by section,
+        built only from what is already published elsewhere on the site
+        (the C-01→C-10 checklist, the standards list, the AQL plan, the
+        severity classes, the decision page). No page numbers are claimed
+        beyond the published 14-page length.
+   When the anonymised PDFs exist they replace the request block in place; the
+   anatomy below stays, because it is what makes the PDF worth opening. */
 const sampleWa = waLink('Hi Qualis — please send me a full anonymised sample inspection report.');
 
 const title = "Sample Furniture Inspection Reports | QUALIS";
@@ -77,15 +86,78 @@ const jsonld = [
 <div class="hero-ctas"><a class="btn btn-solid" href="/#book">Book an inspection</a><a class="btn btn-ghost" href="/why-independent/">Why independent</a></div>
 </div>
 </section>
-<section><div class="wrap"><h2 class="vh">Sample reports by service</h2><div class="grid"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection — PSI</h3><p>14-page anonymised report: AQL summary, moisture readings, defect photos with severity classes, pass/fail result. See the report anatomy and last month's real findings →</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>The three-layer verdict report: documents, premises evidence, manufacturer-vs-trader conclusion. See how the verdict is built →</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>Scored 8-section audit with a corrective action plan example. See the eight sections and how they are scored →</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Condition record, tally, tier-by-tier photo sequence and sealed seal number. See the loading checks in order →</p></a></div></div></section>
+<!-- The honest position, first. -->
 <section><div class="wrap"><div class="sr-ask rv">
+<span class="eyebrow">Before you ask</span>
 <h2>Want the full anonymised report?</h2>
-<p>The complete PDFs are being prepared for publication. Until they are up, ask and we will send the full anonymised report for the service you are buying — no email gate, no sales call attached.</p>
+<p>The complete PDFs are being prepared for publication. Until they are up, ask and we will send the full anonymised report for the service you are buying — no email gate, no sales call attached. Everything below is the anatomy of that report, ungated.</p>
 <div class="hero-ctas">
 <a class="btn btn-solid" href={sampleWa} target="_blank" rel="noopener">Ask for a sample on WhatsApp</a>
 <a class="btn btn-ghost" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Sample inspection report request')}`}>Email {SITE.email}</a>
 </div>
-</div></div></section><section><div class="wrap prose-wrap"><p class="prose rv">Three habits make our reports useful: numbers instead of adjectives (a moisture range, not "acceptable"), a standard reference on every check (ISO 2859-1, EN 1728, ISTA 3A, or your spec), and a severity class on every defect so you can apply your own tolerance. The final page is always a decision aid: release payment, demand rework, or hold—with the evidence you would need for either conversation.</p></div></section>
+</div></div></section>
+
+<!-- Section-by-section anatomy of the 14-page PSI report. -->
+<section id="anatomy" aria-labelledby="h-anatomy">
+<div class="wrap">
+<div class="sec-head">
+<div><span class="eyebrow">Report anatomy</span><h2 id="h-anatomy">What is inside a 14-page pre-shipment report</h2></div>
+<p>Every Qualis PSI report is built in the same six parts, in this order. A supplier verification, factory audit or loading report changes the middle sections and keeps the first and last.</p>
+</div>
+<ol class="anatomy">
+<li class="rv">
+<div class="an-k"><span class="mono">PART 01</span><b>Cover &amp; result</b></div>
+<div class="an-v"><p>Report reference in the <span class="mono">QLS-2026-0000</span> series, service, factory, cluster, product and PO, inspection date, the inspector's name, and the single-line result: cleared for loading, or not. The result is on the cover so nobody has to hunt for it.</p></div>
+</li>
+<li class="rv">
+<div class="an-k"><span class="mono">PART 02</span><b>Scope &amp; sampling plan</b></div>
+<div class="an-v"><p>What was agreed before arrival: the checklist, the golden sample and spec references, and the sampling plan — AQL 2.5 major / 4.0 minor under ISO 2859-1, General Inspection Level II, unless your own AQL was specified. Critical defects are zero-tolerance. Cartons are drawn at random by the inspector from packed goods; factory-preselected pieces are refused, and the refusal is recorded here.</p></div>
+</li>
+<li class="rv">
+<div class="an-k"><span class="mono">PART 03</span><b>Checklist results, C-01 → C-10</b></div>
+<div class="an-v"><p>The ten checks, each with its method and its reading: quantity against the PO and packing list, moisture content, dimensions against spec, structural and joint integrity, finish against the golden sample, workmanship classified per our Defect Library, hardware kits against the BOM, function and moving parts, packaging integrity, and marks, labels and barcodes.</p></div>
+</li>
+<li class="rv">
+<div class="an-k"><span class="mono">PART 04</span><b>Photographed findings</b></div>
+<div class="an-v"><p>The bulk of the report. Every finding is a macro photograph with the measurement annotated on the image, the check it failed, and a severity class — critical, major or minor — so you can apply your own tolerance rather than ours. Moisture is reported as a range across the sampled pieces, against the limit set for your destination climate, never as a single flattering number.</p></div>
+</li>
+<li class="rv">
+<div class="an-k"><span class="mono">PART 05</span><b>Standards referenced</b></div>
+<div class="an-v"><p>Every check names the standard it was judged against: ISO 2859-1 for the sampling plan, EN 1728 and EN 12520 for seating, EN 12521 for tables, ISTA 3A for packaged-product drop testing, BS 5852 for UK-bound upholstery fire labelling — and your own specification, which is always the first standard.</p></div>
+</li>
+<li class="rv">
+<div class="an-k"><span class="mono">PART 06</span><b>The decision page</b></div>
+<div class="an-v"><p>The last page is a decision aid, not a summary: release payment, demand rework, or hold the container — with the evidence you would need for either conversation, and a re-inspection route if the answer is rework. Your inspector then talks you through it on a call.</p></div>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- The findings table, moved here from the home page. -->
+<section aria-labelledby="h-rows">
+<div class="wrap">
+<div class="sec-head">
+<div><span class="eyebrow">How to read a findings row</span><h2 id="h-rows">Four rows from a real PSI report</h2></div>
+<p>Anonymised, and typical of Part 04. Item is the sampled piece against the lot size, Reading is the measurement, Standard is what it was judged against, and Class is the severity you apply your tolerance to.</p>
+</div>
+<div class="sr rv">
+<table>
+<thead><tr><th>Item</th><th>Check</th><th>Reading</th><th>Standard</th><th>Class</th></tr></thead>
+<tbody>
+<tr><td class="mono" data-label="Item">03/240</td><td data-label="Check">Tabletop moisture content</td><td class="mono" data-label="Reading">13.6%</td><td class="mono" data-label="Standard">SPEC ≤11%</td><td data-label="Class"><span class="chip chip-crit">CRIT</span></td></tr>
+<tr><td class="mono" data-label="Item">17/240</td><td data-label="Check">Leg joint racking test</td><td class="mono" data-label="Reading">STABLE</td><td class="mono" data-label="Standard">EN 1728</td><td data-label="Class"><span class="chip chip-pass">PASS</span></td></tr>
+<tr><td class="mono" data-label="Item">44/240</td><td data-label="Check">Finish vs approved sample</td><td class="mono" data-label="Reading">ΔVISIBLE</td><td class="mono" data-label="Standard">CLIENT REF</td><td data-label="Class"><span class="chip chip-amber">MAJ</span></td></tr>
+<tr><td class="mono" data-label="Item">CARTON</td><td data-label="Check">Drop test, 6 orientations</td><td class="mono" data-label="Reading">6/6</td><td class="mono" data-label="Standard">ISTA 3A</td><td data-label="Class"><span class="chip chip-pass">PASS</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="wrap prose-wrap" style="padding:0"><p class="prose rv" style="margin-top:24px">Three habits make our reports useful: numbers instead of adjectives (a moisture range, not "acceptable"), a standard reference on every check (ISO 2859-1, EN 1728, ISTA 3A, or your spec), and a severity class on every defect so you can apply your own tolerance. The final page is always a decision aid: release payment, demand rework, or hold—with the evidence you would need for either conversation.</p></div>
+</div>
+</section>
+
+<!-- Per-service reports. -->
+<section><div class="wrap"><div class="sec-head"><div><span class="eyebrow">By service</span><h2>What changes in the other three reports</h2></div><p>Same cover and same decision page. The middle sections change with what was inspected.</p></div><div class="grid grid-2"><a class="card rv" href="/pre-shipment-inspection-india/"><h3>Pre-Shipment Inspection — PSI</h3><p>14-page anonymised report: AQL summary, moisture readings, defect photos with severity classes, pass/fail result. See the report anatomy and last month's real findings →</p></a><a class="card rv" href="/supplier-verification-india/"><h3>Supplier Verification</h3><p>The three-layer verdict report: documents, premises evidence, manufacturer-vs-trader conclusion. See how the verdict is built →</p></a><a class="card rv" href="/factory-audit-india/"><h3>Factory Audit</h3><p>Scored 8-section audit with a corrective action plan example. See the eight sections and how they are scored →</p></a><a class="card rv" href="/container-loading-supervision/"><h3>Container Loading Supervision</h3><p>Condition record, tally, tier-by-tier photo sequence and sealed seal number. See the loading checks in order →</p></a></div></div></section>
+
 <section class="final">
 <div class="wrap">
 
@@ -100,5 +172,33 @@ const jsonld = [
   .sr-ask h2 { margin: 0 0 10px; }
   .sr-ask p { margin: 0 0 18px; color: var(--g500, #737169); }
   .sr-ask .hero-ctas { margin: 0; }
+
+  /* Report anatomy. A numbered list because the six parts are a real running
+     order inside the document, not a decorative sequence. Scoped to this page:
+     .anatomy exists nowhere else, so it cannot collide with mobile.css. */
+  .anatomy { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule, #e9e7e1); }
+  .anatomy > li {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule, #e9e7e1);
+  }
+  .an-k { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .an-k .mono { color: var(--pass, #0F7A5A); }
+  .an-k b { font-family: 'Inter Tight', Inter, sans-serif; font-size: 1.02rem; }
+  .an-v { min-width: 0; }
+  .an-v p { margin: 0; color: var(--g700, #4A4842); }
+
+  @media (max-width: 720px) {
+    .anatomy > li { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* Four service cards in the shared 3-column .grid leave one card alone in a
+     half-empty row. Widened to 2x2, and only above the mobile breakpoint, so
+     the max-width rules in global.css and mobile.css keep winning below it. */
+  @media (min-width: 961px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </BaseLayout>

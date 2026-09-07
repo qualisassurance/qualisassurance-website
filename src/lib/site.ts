@@ -68,40 +68,43 @@ export const waLink = (text?: string) =>
   `https://wa.me/${SITE.waNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 
 /**
- * The reference ships three header variants. They differ only in how the
- * "Clusters" item is linked and whether an FAQ item is present.
- *   home    — on-page hash anchors, plus FAQ         (index.html)
- *   service — /#clusters                             (psi, sv, cls, why-independent)
- *   inner   — /clusters/                             (the other 25 pages)
+ * Header link sets. Three variants remain because the home page links its own
+ * on-page sections by hash; `service` and `inner` are now identical and are
+ * both kept only so existing `navVariant` props keep type-checking.
+ *
+ * 2026-09 audit changes: "Why independent" (the Independence Charter, the whole
+ * positioning) and "Contact" were footer-only — /contact/ had no in-body inbound
+ * link anywhere on the site. They are now in the header on every page. "Who we
+ * protect" and "FAQ" came out to hold the row at seven items: the audience grid
+ * still lives on /services/ and the home page, and the FAQ item pointed at a
+ * home anchor that simply vanished on every inner page. "Clusters" now goes to
+ * the /clusters/ hub off-home instead of bouncing back to a home anchor.
  */
 export type NavVariant = 'home' | 'service' | 'inner';
 
-export const NAV: Record<NavVariant, { href: string; label: string }[]> = {
+/** Off-home header: every item is a real page except the pricing anchor. */
+const NAV_PAGES = [
+  { href: '/services/', label: 'Services' },
+  { href: '/clusters/', label: 'Clusters' },
+  { href: '/why-independent/', label: 'Why independent' },
+  { href: '/sample-reports/', label: 'Sample report' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/blog/', label: 'Field Notes' },
+  { href: '/contact/', label: 'Contact' },
+] as const;
+
+export const NAV: Record<NavVariant, readonly { href: string; label: string }[]> = {
   home: [
     { href: '#services', label: 'Services' },
-    { href: '#who', label: 'Who we protect' },
     { href: '#clusters', label: 'Clusters' },
+    { href: '/why-independent/', label: 'Why independent' },
     { href: '#report', label: 'Sample report' },
     { href: '#pricing', label: 'Pricing' },
     { href: '/blog/', label: 'Field Notes' },
-    { href: '#faq', label: 'FAQ' },
+    { href: '/contact/', label: 'Contact' },
   ],
-  service: [
-    { href: '/services/', label: 'Services' },
-    { href: '/#who', label: 'Who we protect' },
-    { href: '/#clusters', label: 'Clusters' },
-    { href: '/sample-reports/', label: 'Sample report' },
-    { href: '/#pricing', label: 'Pricing' },
-    { href: '/blog/', label: 'Field Notes' },
-  ],
-  inner: [
-    { href: '/services/', label: 'Services' },
-    { href: '/#who', label: 'Who we protect' },
-    { href: '/clusters/', label: 'Clusters' },
-    { href: '/sample-reports/', label: 'Sample report' },
-    { href: '/#pricing', label: 'Pricing' },
-    { href: '/blog/', label: 'Field Notes' },
-  ],
+  service: NAV_PAGES,
+  inner: NAV_PAGES,
 };
 
 /**
@@ -162,6 +165,8 @@ export const FOOTER_COLUMNS = [
       { href: '/defects/', label: 'Defect Library' },
       { href: '/sample-reports/', label: 'Sample Reports' },
       { href: '/import-compliance/', label: 'Import Compliance' },
+      { href: '/eudr-compliance-india-furniture/', label: 'EUDR Compliance' },
+      { href: '/eudr-supplier-evidence-review/', label: 'EUDR Evidence Review' },
       { href: '/academy/', label: 'Import Academy' },
       { href: '/why-independent/', label: 'Why Independent' },
       { href: '/contact/', label: 'Contact' },

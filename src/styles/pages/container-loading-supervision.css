@@ -310,3 +310,10 @@ main section:not(.hero):not(.final) .prose-wrap>.eyebrow::before{content:none}
 h1,h2,h3{letter-spacing:-.006em}
 h1{letter-spacing:-.008em}
 @media (prefers-reduced-motion:reduce){.logo:hover .brand-logo{transition:none}}
+
+/* Definition lead-in (2026-09 audit, SEO-03). A plain-language answer to the
+   question each H2 implies, kept to 40–60 words so it can be lifted whole as a
+   featured snippet. The same answers exist in the FAQ accordions at the foot of
+   the page, where a crawler weights them far less and a reader has to click. */
+.defn{max-width:70ch;margin:0 0 30px;padding-left:16px;border-left:2px solid var(--pass);color:var(--g700);font-size:1.02rem;line-height:1.62}
+.defn b{color:var(--ink);font-weight:600}

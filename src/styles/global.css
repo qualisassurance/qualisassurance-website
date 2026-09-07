@@ -45,6 +45,17 @@ a.card:hover{background:var(--pass-tint)}
 .card h3{margin-bottom:6px}
 .card p{font-size:.88rem;color:var(--g700)}
 .prose-wrap{max-width:860px}
+/* Report table. Copied verbatim from pages/home.css so the two stay identical:
+   the anatomy table moved onto /sample-reports/, which shares global.css, while
+   the home page keeps its own copy of these rules. Deliberately NOT set on
+   .sr td/th font-size beyond the base — mobile.css restyles those to 16px and
+   must keep winning. */
+.sr{background:#fff;border:1px solid var(--rule)}
+.sr table{width:100%;border-collapse:collapse;font-size:.82rem}
+.sr th{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);font-weight:500}
+.sr td{padding:11px 14px;border-bottom:1px dashed var(--rule)}
+.sr tr:last-child td{border-bottom:none}
+.sr .mono{color:var(--g500)}
 .prose{color:var(--g700);font-size:1rem}
 .final{background:var(--ink);color:var(--paper);border-top:none;padding:72px 0}
 .final .eyebrow{color:var(--g300)}

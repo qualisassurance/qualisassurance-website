@@ -317,3 +317,10 @@ h1{letter-spacing:-.008em}
 .founder-statement blockquote{font-size:clamp(1.3rem,2.6vw,1.7rem);border-left:3px solid var(--pass);padding-left:22px}
 .founder-statement .sig{display:inline-flex;gap:12px;align-items:baseline;background:var(--ink);color:var(--g300);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;padding:8px 14px;text-transform:uppercase;margin:0 0 26px}
 .founder-statement .sig em{font-style:normal;color:var(--pass-tint)}
+
+/* Definition lead-in (2026-09 audit, SEO-03). A plain-language answer to the
+   question each H2 implies, kept to 40–60 words so it can be lifted whole as a
+   featured snippet. The same answers exist in the FAQ accordions at the foot of
+   the page, where a crawler weights them far less and a reader has to click. */
+.defn{max-width:70ch;margin:0 0 30px;padding-left:16px;border-left:2px solid var(--pass);color:var(--g700);font-size:1.02rem;line-height:1.62}
+.defn b{color:var(--ink);font-weight:600}

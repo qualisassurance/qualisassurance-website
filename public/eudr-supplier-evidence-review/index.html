@@ -431,6 +431,70 @@
   </div>
 </section>
 
+<!-- WHERE INSPECTION FITS (2026-09 audit, IA-01) -->
+<section class="block" id="inspection-fits">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Where inspection fits</span>
+      <h2>The pages behind this guide</h2>
+      <p>An evidence review is one service among several, and it works best behind the others. These are the checks either side of it, the clusters they run in, and the charter that means our findings are not for sale.</p>
+    </div>
+    <div class="ifits">
+      <div class="ifits-p">
+        <h3>Services, in order of use</h3>
+        <ul>
+          <li><a href="https://qualisassurance.com/supplier-verification-india/">Supplier verification</a><span>BEFORE DEPOSIT</span></li>
+          <li><a href="https://qualisassurance.com/during-production-inspection/">During-production inspection</a><span>MID-RUN</span></li>
+          <li><a href="https://qualisassurance.com/pre-shipment-inspection-india/">Pre-shipment inspection</a><span>PRE-PAYMENT</span></li>
+          <li><a href="https://qualisassurance.com/container-loading-supervision/">Container loading supervision</a><span>AT LOADING</span></li>
+        </ul>
+      </div>
+      <div class="ifits-p">
+        <h3>Where the goods are made</h3>
+        <ul>
+          <li><a href="https://qualisassurance.com/clusters/jodhpur/">Jodhpur</a><span>HQ · SAME DAY</span></li>
+          <li><a href="https://qualisassurance.com/clusters/jaipur/">Jaipur</a><span>SAME DAY</span></li>
+          <li><a href="https://qualisassurance.com/clusters/delhi-ncr/">Delhi NCR</a><span>UPHOLSTERY</span></li>
+          <li><a href="https://qualisassurance.com/clusters/">All six clusters</a><span>RISK GUIDE</span></li>
+        </ul>
+      </div>
+      <div class="ifits-p">
+        <h3>Before you book</h3>
+        <ul>
+          <li><a href="https://qualisassurance.com/eudr-compliance-india-furniture/">EUDR compliance</a><span>30 DEC 2026</span></li>
+          <li><a href="https://qualisassurance.com/why-independent/">The Independence Charter</a><span>CHARTER</span></li>
+          <li><a href="https://qualisassurance.com/sample-reports/">What a report contains</a><span>UNGATED</span></li>
+          <li><a href="https://qualisassurance.com/importing-furniture-from-india/">All ten market guides</a><span>10 MARKETS</span></li>
+          <li><a href="https://qualisassurance.com/import-compliance/">Compliance map</a><span>ALL MARKETS</span></li>
+        </ul>
+      </div>
+    </div>
+  <style>
+    /* Self-contained: these three pages carry different stylesheets from the ten
+       country guides (the hub has .svcs but no .panel, the EUDR pages the
+       reverse), so this block brings its own grid rather than depending on
+       either. Tokens are the ones every page in public/ already defines. */
+    .ifits{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .ifits-p{background:var(--card,#fff);border:1px solid var(--line-2,#D2CFC4);border-radius:3px;padding:1.5rem}
+    .ifits-p h3{margin:0 0 .8rem}
+    .ifits-p ul{list-style:none;margin:0;padding:0}
+    .ifits-p li{padding:.55rem 0;border-bottom:1px solid var(--line,#E2E0D8);font-size:.94rem;display:flex;justify-content:space-between;gap:1rem}
+    .ifits-p li:last-child{border-bottom:none}
+    .ifits-p li span{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--ink-2,#54565A);white-space:nowrap}
+    @media (max-width:860px){.ifits{grid-template-columns:1fr}}
+  </style>
+  </div>
+  <style>
+    /* The guides' own .panel rows sit at 0.94rem (15.04px). That is fine on a
+       desktop stat list, but this block is body copy a buyer has to read, so it
+       goes back to 16px once the grid is single-column. Scoped by id so the
+       page's existing panels are untouched. */
+    @media (max-width:860px){
+      #inspection-fits .panel li,#inspection-fits .ifits-p li{font-size:1rem}
+    }
+  </style>
+</section>
+
 <!-- CTA -->
 <section class="block" id="book">
   <div class="wrap narrow">
